@@ -33,9 +33,29 @@ require_once "views/login.view.php";
         <br>
         <p class="index_login_text">Password:</p>
         <input class="index_input" type="password" name="password" placeholder="Password">
+        <br>
+        <label>
+          <!--TEh ccheck boxes-->
+        <input class="mutually-exclusive" type="checkbox" name="CB_administrator" value="true"> Administrator
+        </label>
+        <br>
+        <label>
+        <input class="mutually-exclusive" type="checkbox" name="CB_lecturer" value="true"> Lecturer
+        </label>
+        <br>
+        <label>
+        <input class="mutually-exclusive" type="checkbox" name="CB_instructor" value="true"> Instructor
+        </label>
+        <br>
+        <label>
+        <input class="mutually-exclusive" type="checkbox" name="CB_student" value="true"> Student
+        </label>
+
         <br><br>
         <button class="index_login_button" type="submit"name="submit">LOGIN</button>
       </form>
+
+      <script src="./index.js"></script>
 
       <?php
       check_login_errors();

@@ -4,6 +4,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $username = $_POST["username"];
     $password = $_POST["password"];
 
+    $CB_administrator = isset($_POST["CB_administrator"]) ? $_POST["CB_administrator"] : "false";
+    $CB_lecturer = isset($_POST["CB_lecturer"]) ? $_POST["CB_lecturer"] : "false";
+    $CB_instructor = isset($_POST["CB_instructor"]) ? $_POST["CB_instructor"] : "false";
+    $CB_student = isset($_POST["CB_student"]) ? $_POST["CB_student"] : "false";
+
+
     try{
         require_once "../config/dbh.config.php";
         require_once "../models/login.model.php";
@@ -43,7 +49,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
         $_SESSION["last_regeneration"] = time();
 
-        header("Location: ../ok.html");
+        //checking which checkbox is checked and redirect accordingly
+        if ($CB_administrator === "true") {
+            header("Location: ../views/administrator.view.php");
+            die();
+        } elseif ($CB_lecturer === "true") {
+            header("Location: ../views/lecturer.view.php");
+            die();
+        } elseif ($CB_instructor === "true") {
+            header("Location: ../views/instructor.view.php");
+            die();
+        } elseif ($CB_student === "true") {
+            header("Location: ../views/student.view.php");
+            die();
+        }else{
+            $errors["checkbox_not_selected"] = "Check a checkbox";
+            $_SESSION["errors_login"] = $errors;
+            header("Location: ../index.php");
+            die();
+        }
 
         $pdo = null;
         $stmt = null;
@@ -55,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
 
 }else{
+    
     header("Location: ../index.php");
     die();
 }
