@@ -11,7 +11,7 @@ require_once "views/login.view.php";
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="public/css/style.css">
+  <link rel="stylesheet" type="text/css" href="public/css/index.css">
   <link rel="stylesheet" type="text/css" href="public/css/header.css">
   <link rel="stylesheet" type="text/css" href="public/css/footer.css">
   <link rel="stylesheet" type="text/css" href="public/css/body.css">
