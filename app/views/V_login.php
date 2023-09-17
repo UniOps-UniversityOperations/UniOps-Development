@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/header.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/body.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/login.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/footer.css">
+    <style>
+      body, p, h1 {
+        font-family: Arial;
+      }
+    </style>
+  <title>UniOps</title>
+</head>
+<body>
+  <header>
+    <img class="header_img" src="<?php echo URLROOT;?>/images/UniOps.png" alt="UniOps">
+  </header>
+
+  <section class="index_login">
+    <div class="login">
+      <h3 class="index_login_title">LOGIN</h3>
+      <form action="" method="post">
+        <p class="index_login_text">Username:</p>
+        <input class="index_input" type="text" name="user_id" placeholder="Username" <?php echo $data['user_id'];?>>
+        <br>
+        <span class="invalidFeedback"> Value = "<?php echo $data['user_idError']; ?>" </span>
+        <br>
+        <p class="index_login_text">Password:</p>
+        <input class="index_input" type="password" name="password" placeholder="Password" <?php echo $data['password'];?>>
+        <br>
+        <span class="invalidFeedback"> Value = "<?php echo $data['passwordError']; ?>" </span>
+        <br>
+        <label>
+          <!--TEh ccheck boxes-->
+        <input class="mutually-exclusive" type="checkbox" name="CB_administrator" value="true"> Administrator
+        </label>
+        <br>
+        <label>
+        <input class="mutually-exclusive" type="checkbox" name="CB_lecturer" value="true"> Lecturer
+        </label>
+        <br>
+        <label>
+        <input class="mutually-exclusive" type="checkbox" name="CB_instructor" value="true"> Instructor
+        </label>
+        <br>
+        <label>
+        <input class="mutually-exclusive" type="checkbox" name="CB_student" value="true"> Student
+        </label>
+
+        <br><br>
+        <button class="index_login_button" type="submit"name="submit">LOGIN</button>
+      </form>
+
+      <script src="<?php echo URLROOT;?>/js/login.js"></script>
+    </div>
+  </section>
+  <footer>
+    <p>Uniops</p>
+  </footer>
+</body>
+</html>
