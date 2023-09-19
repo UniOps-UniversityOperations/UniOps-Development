@@ -1,16 +1,16 @@
 <?php
 
 //Database configaration
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'uniops');
+define('DB_HOST', getenv('DB_HOST'));
+define('DB_USER', getenv('DB_USER'));
+define('DB_PASSWORD', getenv('DB_PASSWORD'));
+define('DB_NAME', getenv('DB_NAME'));
 
 //APP ROOT
 define('APPROOT', dirname(dirname(__FILE__)));
 
 //URL ROOT
-define('URLROOT', 'http://localhost/UniOps');
+define('URLROOT', getenv('URLROOT'));
 
 //Website Name
 define('SITENAME', 'UniOps');
