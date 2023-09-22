@@ -1,6 +1,6 @@
 <?php
 
-    //echo 'Hello from Core.lib.php <br>';
+    echo 'Hello from Core.lib.php <br>';
     class Core{
         //The URL fromat --> /controller/method/params
 
