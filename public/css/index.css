@@ -1,0 +1,32 @@
+.index_login{
+  padding: 10px;
+  border-radius: 10px;
+  width: 200px;
+  height: auto;
+  background-color: #62919e;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+}
+
+.index_login_title{
+  margin-top: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.index_login_text{
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.index_login_button{
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.index_input{
+  border-radius: 4px;
+  background-color: #e3e3e3;
+}
