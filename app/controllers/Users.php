@@ -3,13 +3,18 @@
 class Users extends Controller {
     public function __construct(){
         $this->userModel = $this->model('M_Users');
-
     }
     
     public function login(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             //form is submitted
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $CB_administrator = isset($_POST['CB_administrator']) ? $_POST['CB_administrator'] : 'false';
+            $CB_lecturer = isset($_POST['CB_lecturer']) ? $_POST['CB_lecturer'] : 'false';
+            $CB_instructor = isset($_POST['CB_instructor']) ? $_POST['CB_instructor'] : 'false';
+            $CB_student = isset($_POST['CB_student']) ? $_POST['CB_student'] : 'false';
+
 
             $data = [
                 'user_id' => trim($_POST['user_id']),
@@ -46,15 +51,26 @@ class Users extends Controller {
                 if($loggedInUser){
                     //user athunticated
                     //create session
-                    die('SUCCESS');
+                    if($CB_administrator == 'true'){
+                        redirect('pages/administrator_dashboard');
+                    }else if($CB_lecturer == 'true'){
+                        die('lecturer');
+                    }else if($CB_instructor == 'true'){
+                        die('instructor');
+                    }else if($CB_student == 'true'){
+                        die('student');
+                    }else{
+                        die('no role');
+                    }
+
                 }else{
                     $data['passwordError'] = 'Password incorrect';
                     //redirect to login
-                    $this->view('V_login', $data);
+                    $this->view('v_login', $data);
                 }
             }else{
                 //load view with errors
-                $this->view('V_login', $data);
+                $this->view('v_login', $data);
             }
 
             
@@ -69,7 +85,7 @@ class Users extends Controller {
             ];
 
             //load view
-            $this->view('V_login', $data);
+            $this->view('v_login', $data);
         }
     }
 }
