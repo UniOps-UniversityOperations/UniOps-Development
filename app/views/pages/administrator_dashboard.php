@@ -10,7 +10,7 @@
     <!-- Navigation Bar -->
     <header>
         <nav>
-            <h1>Admin Dashboard</h1>
+            <h1>Admin Dashboard ( <?php echo $_SESSION['username']; ?> )</h1>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Settings</a></li>
