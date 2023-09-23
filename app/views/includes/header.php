@@ -12,7 +12,7 @@
         font-family: Arial;
       }
     </style>
-  <title>UniOps</title>
+  <title> <?php echo $data['title']; ?> </title>
 </head>
 <body>
 
