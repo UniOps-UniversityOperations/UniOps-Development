@@ -52,7 +52,8 @@ class Users extends Controller {
                     //user athunticated
                     //create session
                     if($CB_administrator == 'true'){
-                        redirect('pages/administrator_dashboard');
+                        //redirect('pages/administrator_dashboard');
+                        $this->createUserSession($loggedInUser);
                     }else if($CB_lecturer == 'true'){
                         die('lecturer');
                     }else if($CB_instructor == 'true'){
@@ -86,6 +87,28 @@ class Users extends Controller {
 
             //load view
             $this->view('v_login', $data);
+        }
+    }
+
+    public function createUserSession($user){
+        $_SESSION['user_id'] = $user->user_id;
+        $_SESSION['username'] = $user->username;
+
+        redirect('pages/administrator_dashboard');
+    }
+
+    public function logout(){
+        unset($_SESSION['user_id']);
+        unset($_SESSION['username']);
+        session_destroy();
+        redirect('users/login');
+    }
+
+    public function isLoggedIn(){
+        if(isset($_SESSION['user_id'])){
+            return true;
+        }else{
+            return false;
         }
     }
 }

@@ -6,6 +6,7 @@
 
     // Load Helpers
     require_once 'helpers/URL_Helper.php';
+    require_once 'helpers/Session_Helper.php';
 
     // Load Config
     require_once 'config/config.php';
