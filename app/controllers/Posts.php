@@ -79,6 +79,18 @@
                 $this->view('posts/v_createLectureRoom', $data);
             }
         }
+      
+        //show all lecture rooms
+        public function viewLectureRooms(){
+            $posts = $this->LR_postModel->getLectureRooms();
+
+            $data = [
+                'title' => 'Lecture Rooms',
+                'posts' => $posts
+            ];
+
+            $this->view('posts/v_viewLectureRooms', $data);
+        }
     }
 
 /*

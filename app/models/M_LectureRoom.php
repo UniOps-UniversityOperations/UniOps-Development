@@ -71,4 +71,13 @@
                 return false;
             }
         }
+
+        public function getLectureRooms(){
+            $this->db->query('SELECT * FROM lecture_room');
+
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
+
     }

@@ -1,0 +1,46 @@
+/* Style for the lecture room container */
+.lecture_room {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px;
+  }
+  
+  /* Style for the lecture room header */
+  .lecture_room_header h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  /* Style for the lecture room body */
+  .lecture_room_body {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  /* Style for the left side of the lecture room body */
+  .lecture_room_body_left {
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+  }
+  
+  /* Style for the right side of the lecture room body */
+  .lecture_room_body_right {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  /* Style for the individual information paragraphs */
+  .lecture_room_body p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  /* Optional: Style for boolean values (e.g., Is AC, Is Wifi) */
+  .lecture_room_body p:contains("Is") {
+    color: #007acc;
+  }
+  
