@@ -79,7 +79,7 @@
                 $this->view('posts/v_createLectureRoom', $data);
             }
         }
-
+      
         //show all lecture rooms
         public function viewLectureRooms(){
             $posts = $this->LR_postModel->getLectureRooms();
