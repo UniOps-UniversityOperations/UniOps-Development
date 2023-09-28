@@ -44,3 +44,40 @@
     color: #007acc;
   }
   
+  /* Style for the lecture room header */
+.lecture_room_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+}
+
+/* Style for the update button */
+.update_button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Change the background color on hover */
+.update_button:hover {
+  background-color: #45a049;
+}
+
+/* Style for the delete button */
+.delete_button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Change the background color on hover */
+.delete_button:hover {
+  background-color: #d32f2f;
+}

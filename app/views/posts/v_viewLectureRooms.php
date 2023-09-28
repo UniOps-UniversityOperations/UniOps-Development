@@ -7,6 +7,12 @@
     <div class="lecture_room">
         <div class="lecture_room_header">
             <h1><?php echo $post->LR_Name; ?></h1>
+
+            <div class="action_buttons">
+                <a href="<?php echo URLROOT;?>/Posts/updateLectureRoom/<?php echo $post->LR_ID ?>"><button class="update_button">Update</button></a>
+                <a href=""><button class="delete_button">Delete</button></a>
+            </div>
+
         </div>
         <div class="lecture_room_body">
             <div class="lecture_room_body_left">
