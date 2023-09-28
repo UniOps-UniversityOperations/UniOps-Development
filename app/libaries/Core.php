@@ -23,6 +23,7 @@
                 //call the controller
                 require_once '../app/controllers/' . $this->currentController . '.php'; 
 
+            }
                 //instantiate the controller class
                 //now this holds a object of the controller class
                 $this->currentController = new $this->currentController;
@@ -40,9 +41,9 @@
                 $this->params = $url ? array_values($url) : [];
 
                 //call the method with params
-                call_user_func_array([$this->currentController, $this->currentMethod], $this->params); 
+                call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
 
-            }
+            
         }
 
         public function getURL(){
