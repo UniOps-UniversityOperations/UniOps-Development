@@ -97,6 +97,7 @@
             $this->view('AdminPosts/v_viewRooms', $data);
         }
 
+
         public function updateRoom($postId){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -164,6 +165,15 @@
             }
                
         }
+
+
+        public function deleteRoom($postId){
+            if($this->R_postModel->deleteRoom($postId)){
+                redirect('AdminPosts/viewRooms');
+            }else{
+                die('Something went wrong');
+            }
+    }
 
     }
 

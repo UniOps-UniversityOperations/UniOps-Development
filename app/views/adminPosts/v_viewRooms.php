@@ -10,7 +10,7 @@
 
             <div class="action_buttons">
                 <a href="<?php echo URLROOT;?>/AdminPosts/updateRoom/<?php echo $post->id ?>"><button class="update_button">Update</button></a>
-                <a href=""><button class="delete_button">Delete</button></a>
+                <a href="<?php echo URLROOT;?>/AdminPosts/deleteRoom/<?php echo $post->id ?>"><button class="delete_button">Delete</button></a>
             </div>
 
         </div>

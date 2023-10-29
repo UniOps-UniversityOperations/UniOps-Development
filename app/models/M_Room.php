@@ -146,6 +146,18 @@
             return $row;
         }
 
+        public function deleteRoom($id){
+            $this->db->query('DELETE FROM rooms WHERE id = :id');
+            //Bind values
+            $this->db->bind(':id', $id);
+
+            //Execute function
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
     }
 
