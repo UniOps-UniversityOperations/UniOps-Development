@@ -8,6 +8,7 @@
 	<meta name="viewport"content="width=device-width, initial-scale=1.0">
 	<title>Admin Dashboard</title>
 	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/adminHeaderStyles.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/<?php echo $style ;?>.css">
 </head>
 
 <body>
@@ -43,7 +44,7 @@
 					</div>
 
 					<div class="option2 nav-option">
-						<a href="<?php echo URLROOT;?>/Users/login/">
+						<a href="<?php echo URLROOT;?>/AdminPosts/viewRooms/">
 							<img src="<?php echo URLROOT;?>/images/room.png" class="nav-img" alt="Rooms">
 							<h3> Rooms</h3>
 						</a>

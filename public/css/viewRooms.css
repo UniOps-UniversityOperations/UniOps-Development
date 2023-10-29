@@ -81,3 +81,10 @@
 .delete_button:hover {
   background-color: #d32f2f;
 }
+
+.option2 {
+  border-left: 5px solid #010058af;
+  background-color: var(--Border-color);
+  color: white;
+  cursor: pointer;
+  }

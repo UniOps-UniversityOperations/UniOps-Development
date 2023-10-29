@@ -1,7 +1,9 @@
 <!-- this variable is used to set the css file for this view -->
 <?php $style = "viewRooms"; ?> 
 
-<?php require APPROOT . '/views/includes/header.php'; ?>
+<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+
+<h1>View Lecture Rooms / Laboratories / Meeting Rooms</h1>
 
 <?php foreach($data['posts'] as $post) : ?>
     <div class="lecture_room">
@@ -42,4 +44,4 @@
 <?php endforeach; ?>
 
 
-<?php require APPROOT . '/views/includes/footer.php'; ?>
+<?php require APPROOT . '/views/includes/adminFooter.php'; ?>
