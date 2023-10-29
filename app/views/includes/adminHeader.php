@@ -36,38 +36,52 @@
 				<div class="nav-upper-options">
 
 					<div class="nav-option option1">
-						<img src= "<?php echo URLROOT;?>/images/dashboard_icon.png" class="nav-img" alt="dashboard">
-						<h3> Dashboard</h3>
+						<a href="<?php echo URLROOT;?>/Pages/administrator_dashboard/">
+							<img src= "<?php echo URLROOT;?>/images/dashboard_icon.png" class="nav-img" alt="dashboard">
+							<h3> Dashboard</h3>
+						</a>
 					</div>
 
 					<div class="option2 nav-option">
-						<img src="<?php echo URLROOT;?>/images/room.png" class="nav-img" alt="Rooms">
-						<h3> Rooms</h3>
+						<a href="<?php echo URLROOT;?>/Users/login/">
+							<img src="<?php echo URLROOT;?>/images/room.png" class="nav-img" alt="Rooms">
+							<h3> Rooms</h3>
+						</a>
 					</div>
 
 					<div class="nav-option option3">
-						<img src="<?php echo URLROOT;?>/images/lecturer.png" class="nav-img" alt="Lecturers">
-						<h3> Lecturers</h3>
+						<a href="<?php echo URLROOT;?>/Users/login/">
+							<img src="<?php echo URLROOT;?>/images/lecturer.png" class="nav-img" alt="Lecturers">
+							<h3> Lecturers</h3>
+						</a>
 					</div>
 
 					<div class="nav-option option4">
-						<img src="<?php echo URLROOT;?>/images/instructor.svg" Class="nav-img" alt="Instructor">
-						<h3> Instructor</h3>
+						<a href="<?php echo URLROOT;?>/Users/login/">
+							<img src="<?php echo URLROOT;?>/images/instructor.svg" Class="nav-img" alt="Instructor">
+							<h3> Instructor</h3>
+						</a>
 					</div>
 
 					<div class="nav-option option5">
+					<a href="<?php echo URLROOT;?>/Users/login/">
 						<img src="<?php echo URLROOT;?>/images/student.jpg" class="nav-img" alt="Student">
 						<h3> Student</h3>
+					</a>
 					</div>
 
 					<div class="nav-option option6">
-						<img src="<?php echo URLROOT;?>/images/database.png" class="nav-img" alt="Database">
-						<h3> Database</h3>
+						<a href="<?php echo URLROOT;?>/Users/login/">
+							<img src="<?php echo URLROOT;?>/images/database.png" class="nav-img" alt="Database">
+							<h3> Database</h3>
+						</a>
 					</div>
 
 					<div class="nav-option logout">
-						<img src="<?php echo URLROOT;?>/images/logout.png" class="nav-img" alt="logout">
-						<h3> Logout</h3>
+						<a href="<?php echo URLROOT;?>/Users/login/">
+							<img src="<?php echo URLROOT;?>/images/logout.png" class="nav-img" alt="logout">
+							<h3> Logout</h3>
+						</a>
 					</div>
 
 				</div>

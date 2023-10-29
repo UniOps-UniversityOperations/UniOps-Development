@@ -168,6 +168,7 @@ cursor: pointer;
 }
 .nav-img {
 height: 30px;
+margin-right: 10px;
 }
 
 .nav-upper-options {
@@ -175,6 +176,14 @@ display: flex;
 flex-direction: column;
 align-items: center;
 gap: 30px;
+}
+
+
+.nav-option a {
+    text-decoration: none; 
+    display: flex; 
+    align-items: center; 
+	color: black;
 }
 
 .option1 {
