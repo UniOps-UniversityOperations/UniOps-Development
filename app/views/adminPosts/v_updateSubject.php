@@ -1,4 +1,4 @@
-<?php $style = "createRoom"; ?>
+<?php $style = "createSubject"; ?>
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
