@@ -65,7 +65,7 @@
 					</div>
 
 					<div class="nav-option option5">
-						<a href="<?php echo URLROOT;?>/Users/login/">
+						<a href="<?php echo URLROOT;?>/AdminPosts/viewInstructors/">
 							<img src="<?php echo URLROOT;?>/images/instructor.svg" Class="nav-img" alt="Instructor">
 							<h3> Instructor</h3>
 						</a>

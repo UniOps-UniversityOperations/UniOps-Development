@@ -7,6 +7,7 @@
             $this->R_postModel = $this->model('M_Room');
             $this->S_postModel = $this->model('M_Subject');
             $this->L_postModel = $this->model('M_Lecturer');
+            $this->I_postModel = $this->model('M_Instructor');
         }
 
 
@@ -420,6 +421,130 @@
         public function deleteLecturer($postId){
             if($this->L_postModel->deleteLecturer($postId)){
                 redirect('AdminPosts/viewLecturers');
+            }else{
+                die('Something went wrong');
+            }
+        }
+
+
+        //CRUD for Instructor
+
+        public function createInstructor(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+
+                    'title' => 'Create Instructor',
+
+                    'i_name' => trim($_POST['i_name']),
+                    'i_email' => trim($_POST['i_email']),
+                    'i_sub1_code' => trim($_POST['i_sub1_code']),
+                    'i_sub2_code' => trim($_POST['i_sub2_code']),
+                    'i_sub3_code' => trim($_POST['i_sub3_code']),
+                    'i_exp1_code' => trim($_POST['i_exp1_code']),
+                    'i_exp2_code' => trim($_POST['i_exp2_code']),
+                    'i_exp3_code' => trim($_POST['i_exp3_code']),
+                    
+                    'i_nameError' => '',
+                ];
+
+                if(empty($data['i_name'])){
+                    $data['i_nameError'] = 'Please enter Instructor Name';
+                }
+
+                if(empty($data['i_nameError'])){
+                    if($this->I_postModel->createInstructor($data)){
+                        //flash('post_message', 'Instructor Added');
+                        //redirect('pages/administrator_dashboard');
+                        redirect('AdminPosts/viewInstructors');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }else{
+                    $this->view('posts/v_createInstructor', $data);
+
+                }
+            }  else{
+                $data = [
+
+                    'title' => 'Create Instructor',
+
+                    'i_name' => '',
+                    'i_email' => '',
+                    'i_sub1_code' => '',
+                    'i_sub2_code' => '',
+                    'i_sub3_code' => '',
+                    'i_exp1_code' => '',
+                    'i_exp2_code' => '',
+                    'i_exp3_code' => '',
+                    
+                    'i_nameError' => '',
+                ];
+                $this->view('AdminPosts/v_createInstructor', $data);
+            }  
+        }
+
+        //show all instructors
+        public function viewInstructors(){
+            $posts = $this->I_postModel->getInstructors();
+            $data = [
+                'title' => 'View Instructors',
+                'posts' => $posts
+            ];
+            $this->view('AdminPosts/v_viewInstructors', $data);
+        }
+
+        public function updateInstructor($postId){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+
+                    'title' => 'Update Instructor',
+                    'postId' => $postId,
+
+                    'i_id' => trim($_POST['i_id']), //added
+                    'i_name' => trim($_POST['i_name']),
+                    'i_email' => trim($_POST['i_email']),
+                    'i_sub1_code' => trim($_POST['i_sub1_code']),
+                    'i_sub2_code' => trim($_POST['i_sub2_code']),
+                    'i_sub3_code' => trim($_POST['i_sub3_code']),
+                    'i_exp1_code' => trim($_POST['i_exp1_code']),
+                    'i_exp2_code' => trim($_POST['i_exp2_code']),
+                    'i_exp3_code' => trim($_POST['i_exp3_code']),
+                    
+                ];
+
+                if(1){
+                    if($this->I_postModel->updateInstructor($data)){
+                        redirect('AdminPosts/viewInstructors');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }
+            }else{
+                $post = $this->I_postModel->getInstructorById($postId);
+                $data = [
+                    'title' => 'Update Instructor',
+
+                    'i_id' => $post->i_id, //added
+                    'i_name' => $post->i_name,
+                    'i_email' => $post->i_email,
+                    'i_sub1_code' => $post->i_sub1_code,
+                    'i_sub2_code' => $post->i_sub2_code,
+                    'i_sub3_code' => $post->i_sub3_code,
+                    'i_exp1_code' => $post->i_exp1_code,
+                    'i_exp2_code' => $post->i_exp2_code,
+                    'i_exp3_code' => $post->i_exp3_code,
+                ];
+                $this->view('AdminPosts/v_updateInstructor', $data);
+            }
+        }
+
+        public function deleteInstructor($postId){
+            if($this->I_postModel->deleteInstructor($postId)){
+                redirect('AdminPosts/viewInstructors');
             }else{
                 die('Something went wrong');
             }
