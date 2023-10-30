@@ -88,3 +88,24 @@
   color: white;
   cursor: pointer;
   }
+
+
+.create_room_button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+}
+
+.create_button{
+  background-color: #1848A0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create_button:hover {
+  background-color: #0f2c61;
+}

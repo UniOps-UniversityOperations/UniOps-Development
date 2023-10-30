@@ -52,26 +52,33 @@
 
 					<div class="nav-option option3">
 						<a href="<?php echo URLROOT;?>/Users/login/">
-							<img src="<?php echo URLROOT;?>/images/lecturer.png" class="nav-img" alt="Lecturers">
-							<h3> Lecturers</h3>
+							<img src="<?php echo URLROOT;?>/images/subject.png" class="nav-img" alt="Subject">
+							<h3> Subject</h3>
 						</a>
 					</div>
 
 					<div class="nav-option option4">
+						<a href="<?php echo URLROOT;?>/Users/login/">
+							<img src="<?php echo URLROOT;?>/images/lecturer.png" class="nav-img" alt="Lecturer">
+							<h3> Lecturer</h3>
+						</a>
+					</div>
+
+					<div class="nav-option option5">
 						<a href="<?php echo URLROOT;?>/Users/login/">
 							<img src="<?php echo URLROOT;?>/images/instructor.svg" Class="nav-img" alt="Instructor">
 							<h3> Instructor</h3>
 						</a>
 					</div>
 
-					<div class="nav-option option5">
+					<div class="nav-option option6">
 					<a href="<?php echo URLROOT;?>/Users/login/">
 						<img src="<?php echo URLROOT;?>/images/student.jpg" class="nav-img" alt="Student">
 						<h3> Student</h3>
 					</a>
 					</div>
 
-					<div class="nav-option option6">
+					<div class="nav-option option7">
 						<a href="<?php echo URLROOT;?>/Users/login/">
 							<img src="<?php echo URLROOT;?>/images/database.png" class="nav-img" alt="Database">
 							<h3> Database</h3>

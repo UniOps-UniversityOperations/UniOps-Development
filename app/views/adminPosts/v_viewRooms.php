@@ -5,6 +5,13 @@
 
 <h1>View Lecture Rooms / Laboratories / Meeting Rooms</h1>
 
+<div class="create_room_button">
+    <a href="<?php echo URLROOT;?>/AdminPosts/createRoom">
+        <button class="create_button">Create Room</button>
+    </a>
+</div>
+
+
 <?php foreach($data['posts'] as $post) : ?>
     <div class="lecture_room">
         <div class="lecture_room_header">

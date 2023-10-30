@@ -5,7 +5,12 @@
         public function __construct(){
             //echo 'This is the posts controller';
             $this->R_postModel = $this->model('M_Room');
+            $this->S_postModel = $this->model('M_Subject');
         }
+
+
+
+        //CRUD for Room
 
         public function createRoom(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -86,7 +91,6 @@
             }  
         }
 
-
         //show all rooms
         public function viewRooms(){
             $posts = $this->R_postModel->getRooms();
@@ -96,7 +100,6 @@
             ];
             $this->view('AdminPosts/v_viewRooms', $data);
         }
-
 
         public function updateRoom($postId){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -166,14 +169,21 @@
                
         }
 
-
         public function deleteRoom($postId){
             if($this->R_postModel->deleteRoom($postId)){
                 redirect('AdminPosts/viewRooms');
             }else{
                 die('Something went wrong');
             }
-    }
+        }
+
+
+
+        //CRUD for Subject
+
+        public function createSubject(){
+
+        }
 
     }
 
