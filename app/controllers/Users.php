@@ -67,11 +67,11 @@ class Users extends Controller {
                 }else{
                     $data['passwordError'] = 'Password incorrect';
                     //redirect to login
-                    $this->view('v_login', $data);
+                    $this->view('V_login', $data);
                 }
             }else{
                 //load view with errors
-                $this->view('v_login', $data);
+                $this->view('V_login', $data);
             }
 
             
@@ -86,7 +86,7 @@ class Users extends Controller {
             ];
 
             //load view
-            $this->view('v_login', $data);
+            $this->view('V_login', $data);
         }
     }
 

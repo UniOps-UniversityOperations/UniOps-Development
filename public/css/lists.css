@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0 20px 0 20px;
+}
+
+.header-name {
+    display: flex;
+    flex-direction: row;
+    background-color: blue;
+    justify-content: space-between;
+}
+
+.btn-div {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.btn {
+    background-color: blueviolet;
+    height: fit-content;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 10px 10px;
+    background-color: rebeccapurple;
+}
+
+form {
+    display: flex;
+    justify-content: left;
+}
+
+.heading-row {
+    display: flex;
+    justify-content: space-around;
+    background-color: chartreuse;
+    list-style: none;
+}
+
+.list-div {
+    background-color: brown;
+}
