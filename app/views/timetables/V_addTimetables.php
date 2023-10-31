@@ -6,24 +6,24 @@
 
 <div class="form-div">
     <div class="add-div">
-        <form class="add">
+        <form method="post" class="add">
             <div class="enter-details">
-                <label for="type">Type</label>
-                <select name="type">
+                <label for="timetable_type">Type</label>
+                <select id="timetable_type" name="timetable_type">
                     <option value="exam">Exam</option>
                     <option value="lecture">Lecture</option>
                 </select>
             </div>
             <div class="enter-details">
                 <label for="degree">Degree</label>
-                <select name="degree">
+                <select id="degree" name="degree">
                     <option value="CS">CS</option>
                     <option value="IS">IS</option>
                 </select>
             </div>
             <div class="enter-details">
-                <label for="year">Year</label>
-                <select name="year">
+                <label for="student_year">Year</label>
+                <select id="student_year" name="student_year">
                     <option value="first-year">First Year</option>
                     <option value="second-year">Second Year</option>
                     <option value="third-year">Third Year</option>
@@ -32,18 +32,21 @@
             </div>
             <div class="enter-details">
                 <label for="semester">Semester</label>
-                <select name="semester">
+                <select id="semester" name="semester">
                     <option value="first-semester">First Semester</option>
                     <option value="second-semester">Second Semester</option>
                 </select>
             </div>
             <div class="enter-details">
                 <label for="academic-year">Academic Year</label>
-                <select name="academic-year">
+                <select id="academic-year" name="academic-year">
                     <option value="year-1">2020/2021</option>
                     <option value="year-2">2021/2022</option>
                 </select>
             </div>
+
+            
+
         </form>
     </div>
 
@@ -84,7 +87,7 @@
                 </select>
             </div>
         </form>
-        <button class="btn">Update Time Slot</button>
+        <input type="submit" class="btn" value="Update Time Slot">
     </div>
 </div>
 
@@ -143,7 +146,6 @@
             ?>
         </tr>
     </table>
-
-    <button class="btn">Add Timetable</button>
+    <input type="submit" value="Add Timetable" class="btn">
 </div>
 
