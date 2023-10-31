@@ -81,3 +81,31 @@
 .delete_button:hover {
   background-color: #d32f2f;
 }
+
+.option5 {
+  border-left: 5px solid #010058af;
+  background-color: var(--Border-color);
+  color: white;
+  cursor: pointer;
+  }
+
+
+.create_room_button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+}
+
+.create_button{
+  background-color: #1848A0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create_button:hover {
+  background-color: #0f2c61;
+}
