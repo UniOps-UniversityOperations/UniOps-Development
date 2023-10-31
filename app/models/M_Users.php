@@ -51,6 +51,23 @@ class M_Users {
         }
     }
 
+    //add user
+    public function addUser($data){
+        $this->db->query("INSERT INTO users (user_id, username, password, role) VALUES (:user_id, :username, :password, :role)");
+        //bind values
+        $this->db->bind(':user_id', $data['user_id']);
+        $this->db->bind(':username', $data['username']);
+        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':role', $data['role']);
+
+        //execute
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }
 
