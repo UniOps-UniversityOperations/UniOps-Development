@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    padding: 20px 20px 20px 20px;
+}
+
+.add {
+    display: flex;
+    flex-direction: column;
+}
+
+.enter-details {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.timetable-heading {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.timetable-align {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+td {
+    border: 1px solid;
+    padding: 5px 10px 5px 10px;
+    width: 15%;
+    height: 60px;
+    border-radius: 10px;
+}
+
+.table-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.form-div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.add-div {
+    width: 40%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    background-color: blueviolet;
+    height: fit-content;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    width: 50%;
+    align-self: self-end;
+    max-width: max-content;
+}
