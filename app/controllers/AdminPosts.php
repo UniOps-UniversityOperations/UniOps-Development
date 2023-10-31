@@ -73,7 +73,52 @@
             $this->view('Pages/administrator_dashboard', $data);
         }
 
+        //Update User
+        public function updateUser($postId){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+                $data = [
+
+                    'title' => 'Update User',
+                    'postId' => $postId,
+
+                    'user_id' => trim($_POST['user_id']),
+                    'username' => trim($_POST['username']),
+                    'password' => trim($_POST['password']),
+                    'role' => trim($_POST['role']),
+                    
+                ];
+
+                if(1){
+                    if($this->U_postModel->updateUser($data)){
+                        redirect('AdminPosts/viewUsers');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }
+            }else{
+                $post = $this->U_postModel->getUserById($postId);
+                $data = [
+                    'title' => 'Update User',
+
+                    'user_id' => $post->user_id,
+                    'username' => $post->username,
+                    'password' => $post->password,
+                    'role' => $post->role,
+                ];
+                $this->view('AdminPosts/v_updateUser', $data);
+            }
+        }
+
+        //Delete User
+        public function deleteUser($postId){
+            if($this->U_postModel->deleteUser($postId)){
+                redirect('AdminPosts/viewUsers');
+            }else{
+                die('Something went wrong');
+            }
+        }
 
         //CRUD for Room
 

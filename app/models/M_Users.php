@@ -76,6 +76,49 @@ class M_Users {
     
     }
 
+    //get user by id
+    public function getUserById($id){
+        $this -> db -> query("SELECT * FROM users WHERE user_id = :user_id");
+        $this -> db -> bind(':user_id', $id);
+        $row = $this -> db -> single();
+        return $row;
+    }
+
+    //update user
+    public function updateUser($data){
+        $this->db->query('UPDATE users SET
+        user_id = :user_id,
+        username = :username,
+        password = :password,
+        role = :role
+        WHERE user_id = :user_id
+        ');
+        //bind values
+        $this->db->bind(':user_id', $data['user_id']);
+        $this->db->bind(':username', $data['username']);
+        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':role', $data['role']);
+        //execute
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //delete user
+    public function deleteUser($id){
+        $this->db->query('DELETE FROM users WHERE user_id = :user_id');
+        //bind values
+        $this->db->bind(':user_id', $id);
+        //execute
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 /* User model Structure

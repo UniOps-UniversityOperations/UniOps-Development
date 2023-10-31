@@ -52,12 +52,12 @@
                     } 
                     ?></td>
                     <td class="link">
-                    <a href="<?php echo URLROOT;?>/AdminPosts/viewUsers">
+                    <a href="<?php echo URLROOT;?>/AdminPosts/updateUser/<?php echo $user->user_id; ?>">
                         <button class="update_button">UPDATE</button>
                     </a>
                     </td>
                     <td class="link">
-                    <a href="<?php echo URLROOT;?>/AdminPosts/viewUsers">
+                    <a href="<?php echo URLROOT;?>/AdminPosts/deleteUser/<?php echo $user->user_id; ?>">
                         <button class="delete_button">DELETE</button>
                     </a>
                     </td>
@@ -86,12 +86,12 @@
                     } 
                     ?></td>
                     <td class="link">
-                    <a href="<?php echo URLROOT;?>/AdminPosts/viewUsers">
+                    <a href="<?php echo URLROOT;?>/AdminPosts/updateUser/<?php echo $user->user_id; ?>">
                         <button class="update_button">UPDATE</button>
                     </a>
                     </td>
                     <td class="link">
-                    <a href="<?php echo URLROOT;?>/AdminPosts/viewUsers">
+                    <a href="<?php echo URLROOT;?>/AdminPosts/deleteUser/<?php echo $user->user_id; ?>">
                         <button class="delete_button">DELETE</button>
                     </a>
                     </td>
