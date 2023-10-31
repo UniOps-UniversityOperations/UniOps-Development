@@ -50,6 +50,7 @@ background-color: #0f2c61;
     padding: 12px 15px;
 }
 
+
 .styled-table tbody tr {
     border-bottom: 1px solid #dddddd;
 }
@@ -66,3 +67,38 @@ background-color: #0f2c61;
     font-weight: bold;
     color: #1848A0;
 }
+
+.link {
+    width: 100px
+}
+
+/* Style for the update button */
+.update_button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Change the background color on hover */
+  .update_button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Style for the delete button */
+  .delete_button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Change the background color on hover */
+  .delete_button:hover {
+    background-color: #d32f2f;
+  }

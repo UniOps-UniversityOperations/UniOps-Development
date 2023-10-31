@@ -19,6 +19,8 @@
                 <th>username</th>
                 <th>password</th>
                 <th>role</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>        
@@ -31,14 +33,68 @@
                     <td><?php echo $user->user_id; ?></td>
                     <td><?php echo $user->username; ?></td>
                     <td><?php echo $user->password; ?></td>
-                    <td><?php echo $user->role; ?></td>
+                    <td><?php switch($user->role){
+                        case 1:
+                            echo "Administrator(1)";
+                            break;
+                        case 2:
+                            echo "Lecturer(2)";
+                            break;
+                        case 3:
+                            echo "Instructor(3)";
+                            break;
+                        case 4:
+                            echo "Student(4)";
+                            break;
+                        default:
+                            echo "User";
+                            break;
+                    } 
+                    ?></td>
+                    <td class="link">
+                    <a href="<?php echo URLROOT;?>/AdminPosts/viewUsers">
+                        <button class="update_button">UPDATE</button>
+                    </a>
+                    </td>
+                    <td class="link">
+                    <a href="<?php echo URLROOT;?>/AdminPosts/viewUsers">
+                        <button class="delete_button">DELETE</button>
+                    </a>
+                    </td>
                 </tr>    
             <?php else : ?>
                 <tr class="active-row">
                     <td><?php echo $user->user_id; ?></td>
                     <td><?php echo $user->username; ?></td>
                     <td><?php echo $user->password; ?></td>
-                    <td><?php echo $user->role; ?></td>
+                    <td><?php switch($user->role){
+                        case 1:
+                            echo "Administrator(1)";
+                            break;
+                        case 2:
+                            echo "Lecturer(2)";
+                            break;
+                        case 3:
+                            echo "Instructor(3)";
+                            break;
+                        case 4:
+                            echo "Student(4)";
+                            break;
+                        default:
+                            echo "User";
+                            break;
+                    } 
+                    ?></td>
+                    <td class="link">
+                    <a href="<?php echo URLROOT;?>/AdminPosts/viewUsers">
+                        <button class="update_button">UPDATE</button>
+                    </a>
+                    </td>
+                    <td class="link">
+                    <a href="<?php echo URLROOT;?>/AdminPosts/viewUsers">
+                        <button class="delete_button">DELETE</button>
+                    </a>
+                    </td>
                 </tr>
             <?php endif; ?>
             <?php $i++; ?>
