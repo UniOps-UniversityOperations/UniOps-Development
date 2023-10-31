@@ -53,9 +53,9 @@ class Users extends Controller {
                     //create session
                     if($CB_administrator == 'true'){
                         //redirect('pages/administrator_dashboard');
-                        $this->createUserSession($loggedInUser);
+                        $this->createUserSessionAdmin($loggedInUser);
                     }else if($CB_lecturer == 'true'){
-                        die('lecturer');
+                        $this->createUserSessionLecturer($loggedInUser);
                     }else if($CB_instructor == 'true'){
                         die('instructor');
                     }else if($CB_student == 'true'){
@@ -90,11 +90,18 @@ class Users extends Controller {
         }
     }
 
-    public function createUserSession($user){
+    public function createUserSessionAdmin($user){
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['username'] = $user->username;
 
         redirect('pages/administrator_dashboard');
+    }
+
+    public function createUserSessionLecturer($user){
+        $_SESSION['user_id'] = $user->user_id;
+        $_SESSION['username'] = $user->username;
+
+        redirect('pages/Lecturer_dashboard');
     }
 
     public function logout(){
