@@ -63,6 +63,16 @@
 
         }
 
+        //show all users
+        public function viewUsers(){
+            $posts = $this->U_postModel->getUsers();
+            $data = [
+                'title' => 'View Users',
+                'posts' => $posts
+            ];
+            $this->view('Pages/administrator_dashboard', $data);
+        }
+
 
 
         //CRUD for Room
