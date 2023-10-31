@@ -20,6 +20,7 @@ class M_Users {
         }
     }
 
+
     //login user
     public function login($user_id, $pwd){
         $this->db->query("SELECT * FROM users WHERE user_id = :user_id");
@@ -34,4 +35,28 @@ class M_Users {
             return false;
         }
     }
+
+    //check role
+    public function checkRole($user_id, $rl){
+        $this->db->query("SELECT * FROM users WHERE user_id = :user_id AND role = :role");
+        $this->db->bind(':user_id', $user_id);
+        $this->db->bind(':role', $rl);
+        $row = $this->db->single();
+
+        $role = $row->role;
+        if($role == $rl){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }
+
+/* User model Structure
+    user_id
+    username
+    password   
+    role
+*/
