@@ -1,54 +1,58 @@
 /* Style for the lecture room container */
 .lecture_room {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 20px;
-  }
-  
-  /* Style for the lecture room header */
-  .lecture_room_header h1 {
-    font-size: 24px;
-    margin: 0;
-  }
-  
-  /* Style for the lecture room body */
-  .lecture_room_body {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  /* Style for the left side of the lecture room body */
-  .lecture_room_body_left {
-    flex: 1;
-    padding: 10px;
-    border-right: 1px solid #ccc;
-  }
-  
-  /* Style for the right side of the lecture room body */
-  .lecture_room_body_right {
-    flex: 1;
-    padding: 10px;
-  }
-  
-  /* Style for the individual information paragraphs */
-  .lecture_room_body p {
-    font-size: 16px;
-    margin: 5px 0;
-  }
-  
-  /* Optional: Style for boolean values (e.g., Is AC, Is Wifi) */
-  .lecture_room_body p:contains("Is") {
-    color: #007acc;
-  }
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+/* Style for the lecture room header */
+.lecture_room_header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Style for the lecture room body single row */
+.lecture_room_body_single_row {
+  display: flex;
+  flex-wrap: wrap; /* Allows content to wrap to the next line if it doesn't fit */
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+  margin-top: 20px;
+  padding: 10px;
+  border-top: 1px solid #ccc; /* Optional: Add a border between header and body */
+}
+
+/* Style for the individual information paragraphs in single row */
+.lecture_room_body_single_row p {
+  font-size: 16px;
+  margin: 5px 0;
+  flex: 1; /* Equal flex distribution for each paragraph */
+}
+
   
   /* Style for the lecture room header */
 .lecture_room_header {
   display: flex;
   justify-content: space-between;
   align-items: center; /* Center vertically */
+}
+
+/* Style for the view button */
+.view_button {
+  background-color: #1848A0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Change the background color on hover */
+.view_button:hover {
+  background-color: #0f2c61;
 }
 
 /* Style for the update button */
@@ -108,4 +112,85 @@
 
 .create_button:hover {
   background-color: #0f2c61;
+}
+
+/* Centered container styles */
+.centered_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Style for room type counts */
+.room_type_counts {
+  display: flex;
+  flex-wrap: wrap; /* Allow tiles to wrap to the next line */
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Style for each count tile */
+.count_tile {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: #f0f0f0;
+}
+
+/* Style for each count row */
+.count_row {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* Style for count column */
+.count_column {
+  margin-bottom: 5px;
+}
+
+/* Style for each room type count */
+.room_type_counts p {
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+}
+
+
+/* Style for the right sidebar */
+#rightSidebar {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #f0f0f0;
+  border-left: 1px solid #ccc;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+ /* Style for the lecture room body */
+ .lecture_room_body {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+
+ /* Style for the left side of the lecture room body */
+ .lecture_room_body_left {
+  flex: 1;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+/* Style for the right side of the lecture room body */
+.lecture_room_body_right {
+  flex: 1;
+  padding: 10px;
 }
