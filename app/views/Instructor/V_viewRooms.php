@@ -1,3 +1,4 @@
+
 <?php $style = "viewRooms"; ?> 
 
 <?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>

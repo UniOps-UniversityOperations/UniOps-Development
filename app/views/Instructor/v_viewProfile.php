@@ -1,3 +1,4 @@
+
 <!-- this variable is used to set the css file for this view -->
 <?php $style = "viewProfile"; ?> 
 
@@ -28,6 +29,5 @@
             </div>
         </div>
     </div>
-
 
 <?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>

@@ -1,3 +1,4 @@
+
 <!-- this variable is used to set the css file for this view -->
 <?php $style = "updateProfile"; ?>
 
@@ -36,4 +37,3 @@
 <button class="update_button">Update</button>
     <!-- Footer Section -->
 <?php require APPROOT . '/views/includes/lecturerFooter.php'; ?>
-
