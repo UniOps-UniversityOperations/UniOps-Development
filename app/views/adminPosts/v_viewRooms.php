@@ -5,13 +5,6 @@
 
 <h1>View Lecture Rooms / Laboratories / Meeting Rooms</h1>
 
-<div class="search-container">
-    <label for="search">Search:</label>
-    <input type="text" id="search" placeholder="Enter room name...">
-    <button id="searchButton">Search</button>
-</div>
-
-
 <div class="create_room_button">
     <a href="<?php echo URLROOT;?>/AdminPosts/createRoom">
         <button class="create_button">Create Room</button>
@@ -48,11 +41,15 @@
         </div>
     </div>
 
-
+<div class="search-container">
+    <label for="search">Search:</label>
+    <input type="text" id="search" placeholder="Enter room name...">
+    <span class="clear-icon" id="clear-search">&#10006;</span>
+</div>
 
 <?php foreach($data['posts'] as $post) : ?>
 
-    <div class="lecture_room">
+    <div class="lecture_room" data-room-name="<?php echo $post->name; ?>">
         <div class="lecture_room_header">
             <h2><?php echo $post->name; ?> (<?php echo $post->type; ?> room)</h2>
 
@@ -111,23 +108,45 @@
     
 <?php endforeach; ?>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var viewButtons = document.querySelectorAll('.view_button');
 
-        viewButtons.forEach(function (viewButton) {
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var viewButtons = document.querySelectorAll('.view_button');
+    var searchInput = document.getElementById('search');
+    var clearSearch = document.getElementById('clear-search');
+
+    viewButtons.forEach(function (viewButton) {
         viewButton.addEventListener('click', function () {
             var lectureRoom = this.closest('.lecture_room');
             var idleView = lectureRoom.querySelector('.idle-view');
             var detailedView = lectureRoom.querySelector('.detailed-view');
-            
+
             // Toggle the visibility of idle and detailed views
             idleView.style.display = idleView.style.display === 'none' ? 'block' : 'none';
             detailedView.style.display = detailedView.style.display === 'none' ? 'block' : 'none';
         });
+    });
+
+    searchInput.addEventListener('input', function () {
+        var searchTerm = searchInput.value.toLowerCase();
+
+        document.querySelectorAll('.lecture_room').forEach(function (lectureRoom) {
+            var roomName = lectureRoom.dataset.roomName.toLowerCase();
+
+            // Toggle the visibility based on the search term
+            lectureRoom.style.display = roomName.includes(searchTerm) ? 'block' : 'none';
         });
     });
-    </script>
+
+    // Clear search input when the "X" is clicked
+    clearSearch.addEventListener('click', function () {
+        searchInput.value = '';
+        document.querySelectorAll('.lecture_room').forEach(function (lectureRoom) {
+            lectureRoom.style.display = 'block'; // Show all rooms
+        });
+    });
+});
+</script>
 
 
 <?php require APPROOT . '/views/includes/adminFooter.php'; ?>

@@ -194,3 +194,30 @@
   flex: 1;
   padding: 10px;
 }
+
+/* Add this to your CSS file */
+#clear-search {
+  cursor: pointer;
+}
+
+/* Add any other existing styles you may have */
+#clear-search:hover {
+  color: red;
+}
+
+
+/* Style for the search container */
+.search-container {
+  margin-top: 20px;
+  position: relative;
+}
+
+/* Style for the search input */
+#search {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 16px;
+}
