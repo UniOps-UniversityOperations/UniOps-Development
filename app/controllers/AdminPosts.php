@@ -8,9 +8,117 @@
             $this->S_postModel = $this->model('M_Subject');
             $this->L_postModel = $this->model('M_Lecturer');
             $this->I_postModel = $this->model('M_Instructor');
+            $this->U_postModel = $this->model('M_Users');
         }
 
+        //CRUD for User
+        
+        //Add User
+        public function addUser(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+                $data = [
+
+                    'title' => 'Add User',
+
+                    'user_id' => trim($_POST['user_id']),
+                    'username' => trim($_POST['username']),
+                    'password' => trim($_POST['password']),
+                    'role' => trim($_POST['role']),
+                    
+                    'user_idError' => '',
+                ];
+
+                if(empty($data['user_id'])){
+                    $data['user_idError'] = 'Please enter User ID';
+                }
+
+                if(empty($data['user_idError'])){
+                    if($this->U_postModel->addUser($data)){
+                        //flash('post_message', 'User Added');
+                        //redirect('pages/administrator_dashboard');
+                        redirect('Pages/administrator_dashboard');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }else{
+                    $this->view('posts/v_addUser', $data);
+                }
+            }else{
+                $data = [
+
+                    'title' => 'Add User',
+
+                    'user_id' => '',
+                    'username' => '',
+                    'password' => '',
+                    'role' => '',
+                    
+                    'user_idError' => '',
+                ];
+                $this->view('AdminPosts/v_addUser', $data);
+            }
+                
+
+        }
+
+        //show all users
+        public function viewUsers(){
+            $posts = $this->U_postModel->getUsers();
+            $data = [
+                'title' => 'View Users',
+                'posts' => $posts
+            ];
+            $this->view('Pages/administrator_dashboard', $data);
+        }
+
+        //Update User
+        public function updateUser($postId){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+
+                    'title' => 'Update User',
+                    'postId' => $postId,
+
+                    'user_id' => trim($_POST['user_id']),
+                    'username' => trim($_POST['username']),
+                    'password' => trim($_POST['password']),
+                    'role' => trim($_POST['role']),
+                    
+                ];
+
+                if(1){
+                    if($this->U_postModel->updateUser($data)){
+                        redirect('AdminPosts/viewUsers');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }
+            }else{
+                $post = $this->U_postModel->getUserById($postId);
+                $data = [
+                    'title' => 'Update User',
+
+                    'user_id' => $post->user_id,
+                    'username' => $post->username,
+                    'password' => $post->password,
+                    'role' => $post->role,
+                ];
+                $this->view('AdminPosts/v_updateUser', $data);
+            }
+        }
+
+        //Delete User
+        public function deleteUser($postId){
+            if($this->U_postModel->deleteUser($postId)){
+                redirect('AdminPosts/viewUsers');
+            }else{
+                die('Something went wrong');
+            }
+        }
 
         //CRUD for Room
 
@@ -549,6 +657,7 @@
                 die('Something went wrong');
             }
         }
+
 
     }
 
