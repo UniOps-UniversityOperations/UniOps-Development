@@ -42,8 +42,7 @@
     </div>
 
 <div class="search-container">
-    <label for="search">Search:</label>
-    <input type="text" id="search" placeholder="Enter room name...">
+    <input type="text" id="search" placeholder="Search by room name..." >
     <span class="clear-icon" id="clear-search">&#10006;</span>
 </div>
 
@@ -60,49 +59,49 @@
             </div>
         </div>    
 
-    <!-- Idle view -->
-    <div class="idle-view">
-        <div class="lecture_room_body_single_row">
-        <p><b>ID / Code:</b> <?php echo $post->id; ?></p>
-        <p><b>Type:</b> <?php echo $post->type; ?></p>
-        <p><b>Capacity:</b> <?php echo $post->capacity; ?></p>
-        <p><b>Availability:</b> <?php echo $post->current_availability; ?></p>
-        </div>
-    </div>
-
-    <!-- Detailed view -->
-    <div class="detailed-view" style="display: none;">
-        
-        <div class="lecture_room_body_single_row">
+        <!-- Idle view -->
+        <div class="idle-view">
+            <div class="lecture_room_body_single_row">
             <p><b>ID / Code:</b> <?php echo $post->id; ?></p>
             <p><b>Type:</b> <?php echo $post->type; ?></p>
             <p><b>Capacity:</b> <?php echo $post->capacity; ?></p>
             <p><b>Availability:</b> <?php echo $post->current_availability; ?></p>
-            <!-- Add more details as needed -->
+            </div>
         </div>
 
-        <div class="lecture_room_body">
-        <div class="lecture_room_body_left">
-            <p>No of Tables: <?php echo $post->no_of_tables; ?></p>
-            <p>No of Chairs: <?php echo $post->no_of_chairs; ?></p>
-            <p>No of Boards: <?php echo $post->no_of_boards; ?></p>
-            <p>No of Projectors: <?php echo $post->no_of_projectors; ?></p>
-            <p>No of Computers: <?php echo $post->no_of_computers; ?></p>
-            <p>Is AC: <?php echo $post->is_ac; ?></p>
-            <p>Is Wifi: <?php echo $post->is_wifi; ?></p>
-            <p>Is Media: <?php echo $post->is_media; ?></p>
-        </div>
+        <!-- Detailed view -->
+        <div class="detailed-view" style="display: none;">
+            
+            <div class="lecture_room_body_single_row">
+                <p><b>ID / Code:</b> <?php echo $post->id; ?></p>
+                <p><b>Type:</b> <?php echo $post->type; ?></p>
+                <p><b>Capacity:</b> <?php echo $post->capacity; ?></p>
+                <p><b>Availability:</b> <?php echo $post->current_availability; ?></p>
+                <!-- Add more details as needed -->
+            </div>
 
-        <div class="lecture_room_body_right">
-            <p>Is Lecture: <?php echo $post->is_lecture; ?></p>
-            <p>Is Lab: <?php echo $post->is_lab; ?></p>
-            <p>Is Tutorial: <?php echo $post->is_tutorial; ?></p>
-            <p>Is Meeting: <?php echo $post->is_meeting; ?></p>
-            <p>Is Seminar: <?php echo $post->is_seminar; ?></p>
-            <p>Is Exam: <?php echo $post->is_exam; ?></p>
+            <div class="lecture_room_body">
+            <div class="lecture_room_body_left">
+                <p>No of Tables: <?php echo $post->no_of_tables; ?></p>
+                <p>No of Chairs: <?php echo $post->no_of_chairs; ?></p>
+                <p>No of Boards: <?php echo $post->no_of_boards; ?></p>
+                <p>No of Projectors: <?php echo $post->no_of_projectors; ?></p>
+                <p>No of Computers: <?php echo $post->no_of_computers; ?></p>
+                <p>Is AC: <?php echo $post->is_ac; ?></p>
+                <p>Is Wifi: <?php echo $post->is_wifi; ?></p>
+                <p>Is Media: <?php echo $post->is_media; ?></p>
+            </div>
+
+            <div class="lecture_room_body_right">
+                <p>Is Lecture: <?php echo $post->is_lecture; ?></p>
+                <p>Is Lab: <?php echo $post->is_lab; ?></p>
+                <p>Is Tutorial: <?php echo $post->is_tutorial; ?></p>
+                <p>Is Meeting: <?php echo $post->is_meeting; ?></p>
+                <p>Is Seminar: <?php echo $post->is_seminar; ?></p>
+                <p>Is Exam: <?php echo $post->is_exam; ?></p>
+            </div>
+            </div>
         </div>
-        </div>
-    </div>
     </div>
 
     

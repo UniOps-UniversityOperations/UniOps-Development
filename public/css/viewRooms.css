@@ -3,7 +3,7 @@
   background-color: #f0f0f0;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 20px;
   margin: 20px;
 }
 
@@ -22,6 +22,7 @@
   margin-top: 20px;
   padding: 10px;
   border-top: 1px solid #ccc; /* Optional: Add a border between header and body */
+  border-radius: 30px;
 }
 
 /* Style for the individual information paragraphs in single row */
@@ -41,13 +42,14 @@
 
 /* Style for the view button */
 .view_button {
-  background-color: #1848A0;
+  background-color: var(--Border-color);
   color: white;
   border: none;
   padding: 10px 20px;
   margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 10px;
 }
 
 /* Change the background color on hover */
@@ -64,6 +66,7 @@
   margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 10px;
 }
 
 /* Change the background color on hover */
@@ -79,6 +82,7 @@
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 10px;
 }
 
 /* Change the background color on hover */
@@ -91,6 +95,7 @@
   background-color: var(--Border-color);
   color: white;
   cursor: pointer;
+  border-radius: 50px;
   }
 
 
@@ -102,19 +107,24 @@
 }
 
 .create_button{
-  background-color: #1848A0;
+  background-color: var(--Border-color);
   color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 10px;
 }
 
 .create_button:hover {
   background-color: #0f2c61;
 }
 
-/* Centered container styles */
+
+
+
+
+
 .centered_container {
   display: flex;
   flex-direction: column;
@@ -126,14 +136,16 @@
 /* Style for room type counts */
 .room_type_counts {
   display: flex;
-  flex-wrap: wrap; /* Allow tiles to wrap to the next line */
+  flex-wrap: nowrap; /* Prevent tiles from wrapping to the next line */
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+  width: 100%; /* Ensure the container stretches along the width */
 }
 
 /* Style for each count tile */
 .count_tile {
+  flex-grow: 1; /* Make the tiles stretch along the width */
   border: 1px solid #ccc;
   border-radius: 5px;
   margin: 10px;
@@ -151,6 +163,12 @@
 .count_column {
   margin-bottom: 5px;
 }
+
+
+
+
+
+
 
 /* Style for each room type count */
 .room_type_counts p {
@@ -210,6 +228,7 @@
 .search-container {
   margin-top: 20px;
   position: relative;
+  padding-left: 25px;
 }
 
 /* Style for the search input */
@@ -217,7 +236,8 @@
   padding: 10px;
   width: 300px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-right: 10px;
   font-size: 16px;
 }
+

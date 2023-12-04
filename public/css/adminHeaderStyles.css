@@ -9,9 +9,9 @@ font-family: "Arial";
 }
 :root {
 --background-color1: #fafaff;
---background-color2: #ffffff;
+--background-color2: #010127;
 --background-color3: #ededed;
---background-color4: #cad7fda4;
+--background-color4: #DCDCE2;
 --primary-color: #1848A0;
 --secondary-color: #1848A0;
 --Border-color: #1e58c4;
@@ -163,12 +163,13 @@ transition: all 0.1s ease-in-out;
 }
 .nav-option:hover {
 border-left: 5px solid #a2a2a2;
-background-color: #dadada;
+background-color: #030369;
 cursor: pointer;
 }
 .nav-img {
 height: 30px;
 margin-right: 20px;
+padding-right: 10px;
 }
 
 .nav-upper-options {
@@ -183,7 +184,7 @@ gap: 30px;
     text-decoration: none; 
     display: flex; 
     align-items: center; 
-	color: black;
+	color: #DCDCE2;
 }
 
 
@@ -209,3 +210,4 @@ border-radius: 4px;
 .user_name{
     position: relative;
 }
+
