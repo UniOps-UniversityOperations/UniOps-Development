@@ -1,17 +1,16 @@
 <?php
+class M_Student {
+    private $db;
 
-class M_Student extends Database {
-    public function_construct(){
+    public function __construct(){
         $this->db = new Database();
     }
 
-    public function viewprofile(){
-        $id = $_SESSION['user_id'];
-        $sql = "SELECT * FROM students WHERE stud_id = :id";
-        $this->query($sql);
-        $this->bind(':id',$id);
-        return $this->single();
-
-
+    public function viewProfile(){
+        $uid = $_SESSION['user_id'];
+        $this->db->query("SELECT * FROM users WHERE user_id = :user_id");
+        $this->db->bind(':user_id', $uid);
+        return $this->db->single();
     }
 }
+?>

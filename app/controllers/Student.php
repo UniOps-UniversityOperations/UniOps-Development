@@ -11,9 +11,9 @@
             $this->view('V_Student', $data);
         }
 
-        public function viewprofie(){
+        public function viewprofile(){
             $M_student = $this->model("M_student");
-            $stud_detail = $M_student->vieprofile();
+            $stud_detail = $M_student->viewprofile();
             $this->view('studentviews/viewprofile',$stud_detail);
     
         }
