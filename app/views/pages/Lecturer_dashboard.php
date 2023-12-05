@@ -18,41 +18,7 @@
                     <th>Lecture</th>
                     <th>Place</th>
                 </tr>
-                <tr>
-                    <td>8.00-10.00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>10.00-12.00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                <td>12.00-1.00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-                <tr>
-                    <td>1.00-3.00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3.00-5.00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+
             </table>
 
     </div>
