@@ -68,16 +68,6 @@
 
     </div>
 
-    <div class="right-section">
-        <!--Buttons for functionalities. -->
-        <button class='student-buttons'>Check Availability of Lecture Rooms</button>
-        <button class='student-buttons'>Check Availability of Labaratories</button>
-        <button class='student-buttons'>Check Availability of Meeting Rooms</button>
-        <button class='student-buttons'>View Time Table</button>
-        <button class='student-buttons'>View Profile</button>
-        <button class='student-buttons'>Log Out</button>
-    </div>
-
 </main>
 
 <?php require APPROOT.'\views\includes\studentFooter.php'?>
