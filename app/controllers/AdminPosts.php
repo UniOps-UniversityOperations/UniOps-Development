@@ -57,7 +57,7 @@
                     
                     'user_idError' => '',
                 ];
-                $this->view('AdminPosts/v_addUser', $data);
+                $this->view('adminPosts/v_addUser', $data);
             }
                 
 
@@ -70,7 +70,7 @@
                 'title' => 'View Users',
                 'posts' => $posts
             ];
-            $this->view('Pages/administrator_dashboard', $data);
+            $this->view('pages/administrator_dashboard', $data);
         }
 
         //Update User
@@ -107,7 +107,7 @@
                     'password' => $post->password,
                     'role' => $post->role,
                 ];
-                $this->view('AdminPosts/v_updateUser', $data);
+                $this->view('adminPosts/v_updateUser', $data);
             }
         }
 
@@ -161,7 +161,7 @@
                     if($this->R_postModel->createRoom($data)){
                         //flash('post_message', 'Room Added');
                         //redirect('pages/administrator_dashboard');
-                        redirect('AdminPosts/viewRooms');
+                        redirect('adminPosts/viewRooms');
                     }else{
                         die('Something went wrong');
                     }
@@ -195,7 +195,7 @@
                     
                     'idError' => '',
                 ];
-                $this->view('AdminPosts/v_createRoom', $data);
+                $this->view('adminPosts/v_createRoom', $data);
             }  
         }
 
@@ -206,7 +206,7 @@
                 'title' => 'View Rooms',
                 'posts' => $posts
             ];
-            $this->view('AdminPosts/v_viewRooms', $data);
+            $this->view('adminPosts/v_viewRooms', $data);
         }
 
         public function updateRoom($postId){
@@ -272,7 +272,7 @@
                     'is_seminar' => $post->is_seminar,         
                     'is_exam' => $post->is_exam,
                 ];
-                $this->view('AdminPosts/v_updateRoom', $data);
+                $this->view('adminPosts/v_updateRoom', $data);
             }
                
         }
