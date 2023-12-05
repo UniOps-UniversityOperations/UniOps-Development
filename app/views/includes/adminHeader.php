@@ -26,8 +26,8 @@
 		<div class="message">
 			<!--User ID & User name-->
 			<h5><?php echo $_SESSION['user_id'] . " - " .  $_SESSION['username']; ?></h5>
-			<img src="<?php echo URLROOT;?>/images/bell.png" class="icn" alt="bell">
-			<div class="dp"><img src="<?php echo URLROOT;?>/images/profile_picture.png" class="dpicn" alt="dp"></div>
+			<img src="<?php echo URLROOT;?>/images/bell.svg" class="icn" alt="bell">
+			<div class="dp"><img src="<?php echo URLROOT;?>/images/profile_picture.svg" class="dpicn" alt="dp"></div>
 		</div>
 
 	</header>

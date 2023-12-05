@@ -7,11 +7,6 @@
   margin: 20px;
 }
 
-/* Style for the lecture room header */
-.lecture_room_header h1 {
-  font-size: 24px;
-  margin: 0;
-}
 
 /* Style for the lecture room body single row */
 .lecture_room_body_single_row {
@@ -26,8 +21,15 @@
 }
 
 /* Style for the individual information paragraphs in single row */
-.lecture_room_body_single_row p {
+.header_item {
   font-size: 16px;
+  margin: 5px 0;
+  flex: 1; /* Equal flex distribution for each paragraph */
+}
+
+.header_title{
+  font-size: 20px;
+  font-weight: bold;
   margin: 5px 0;
   flex: 1; /* Equal flex distribution for each paragraph */
 }
@@ -147,9 +149,10 @@
 .count_tile {
   flex-grow: 1; /* Make the tiles stretch along the width */
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 20px;
   margin: 10px;
   background-color: #f0f0f0;
+  padding: 20px;
 }
 
 /* Style for each count row */
@@ -166,16 +169,16 @@
 
 
 
-
-
-
-
 /* Style for each room type count */
 .room_type_counts p {
-  font-size: 20px;
+  font-size: 25px;
   margin: 0;
   font-weight: bold;
+  text-align: center; /* Add text-align property to center the text */
+  color: #333; /* Add a color property if you want to change the text color */
+  /* Add any other styles you want to apply */
 }
+
 
 
 /* Style for the right sidebar */
