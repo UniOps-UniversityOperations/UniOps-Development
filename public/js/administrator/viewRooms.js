@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var roomName = lectureRoom.dataset.roomName.toLowerCase();
 
             // Toggle the visibility based on the search term
-            // lectureRoom.style.display = roomName.includes(searchTerm) ? 'block' : 'none';
+            lectureRoom.style.display = roomName.includes(searchTerm) ? 'block' : 'none';
         });
     });
 
