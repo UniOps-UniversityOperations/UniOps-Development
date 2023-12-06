@@ -16,7 +16,7 @@
   align-items: center; /* Center vertically */
   margin-top: 20px;
   padding: 10px;
-  border-top: 1px solid #ccc; /* Optional: Add a border between header and body */
+  border-top: 5px solid #ccc; /* Optional: Add a border between header and body */
   border-radius: 30px;
 }
 
@@ -102,9 +102,8 @@
 
 
 .create_room_button {
-  position: absolute;
-  top: 30px;
-  right: 30px;
+  display: flex;
+  justify-content: flex-end;
 
 }
 
@@ -229,9 +228,9 @@
 
 /* Style for the search container */
 .search-container {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   position: relative;
-  padding-left: 25px;
+  /* padding-left: 25px; */
 }
 
 /* Style for the search input */
@@ -244,3 +243,115 @@
   font-size: 16px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.wrapper {
+  display: flex;
+}
+
+/* Main content area with custom scrollbar */
+.main {
+  flex-grow: 1;
+  overflow-y: scroll; /* Allow scrolling */
+}
+
+/* Custom scrollbar styles */
+.main::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+  display: none;
+}
+
+.main::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0; /* Color of the scrollbar thumb */
+  border-radius: 6px; /* Rounded corners of the thumb */
+}
+
+.main::-webkit-scrollbar-track {
+  background-color: #f0f0f0; /* Color of the scrollbar track */
+}
+
+
+.side-panel-toggle {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+
+  color: #ffffff;
+  background: var(--Border-color);
+  border: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.side-panel-toggle:hover {
+  background: #0f2c61;
+}
+
+.sp-icon-close {
+  display: none !important;
+}
+
+.side-panel {
+  /* display: none; */
+  width: 500px;
+  width: 0;
+  height: 90vh;
+  flex-shrink: 0;
+  color: #000000;
+  background: #f0f0f0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  border-radius: 0 20px 20px 20px;
+  transition: all 0.1s ease-out;
+  overflow: hidden;
+}
+
+
+.side-panel-open .side-panel {
+  /* display: initial; */
+  width: 500px;
+}
+
+.side-panel.side-panel-close{
+  display: none;
+}
+
+.side-panel-open .sp-icon-open {
+  display: none !important;
+}
+
+.side-panel-open .sp-icon-close {
+  display: initial !important;
+}
+
+
+.topic{
+  font-size: 34px;
+  font-weight: bold;
+  margin: -40px 0;
+  flex: 1; /* Equal flex distribution for each paragraph */
+  padding-bottom: 30px;
+}
+
+@media only screen and (max-width: 1600px) {
+  .lecture_room_header {
+    flex-direction: column;
+  }
+  /* .side-panel-open .side-panel {
+    width: 200px;
+} */
+}
