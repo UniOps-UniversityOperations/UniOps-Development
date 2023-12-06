@@ -24,9 +24,10 @@
 		</div>
 
 		<div class="message">
+			<h5><?php echo $_SESSION['user_id'] . " - " .  $_SESSION['username']; ?></h5>
 			<div class="circle"></div>
-			<img src="<?php echo URLROOT;?>/images/bell.png" class="icn" alt="bell">
-			<div class="dp"><img src="<?php echo URLROOT;?>/images/profile_picture.png" class="dpicn" alt="dp"></div>
+			<img src="<?php echo URLROOT;?>/images/bell.svg" class="icn" alt="bell">
+			<div class="dp"><img src="<?php echo URLROOT;?>/images/profile_picture.svg" class="dpicn" alt="dp"></div>
 		</div>
 
 	</header>
@@ -38,14 +39,14 @@
 
 					<div class="nav-option option1">
 						<a href="<?php echo URLROOT;?>/Pages/Lecturer_dashboard/">
-							<img src= "<?php echo URLROOT;?>/images/dashboard_icon.png" class="nav-img" alt="dashboard">
+							<img src= "<?php echo URLROOT;?>/images/dashboard_icon.svg" class="nav-img" alt="dashboard">
 							<h3> Dashboard</h3>
 						</a>
 					</div>
 
 					<div class="option2 nav-option">
 						<a href="<?php echo URLROOT;?>/Lecturer/viewRooms/">
-							<img src="<?php echo URLROOT;?>/images/room.png" class="nav-img" alt="Rooms">
+							<img src="<?php echo URLROOT;?>/images/room.svg" class="nav-img" alt="Rooms">
 							<h3> Rooms</h3>
 						</a>
 					</div>
@@ -66,7 +67,7 @@
 
 					<div class="nav-option logout">
 						<a href="<?php echo URLROOT;?>/Users/login/">
-							<img src="<?php echo URLROOT;?>/images/logout.png" class="nav-img" alt="logout">
+							<img src="<?php echo URLROOT;?>/images/logout.svg" class="nav-img" alt="logout">
 							<h3> Logout</h3>
 						</a>
 					</div>

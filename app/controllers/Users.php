@@ -51,7 +51,7 @@ class Users extends Controller {
                 if($loggedInUser){
                     //user athunticated
                     //create session
-                    if($CB_administrator == 'true'){
+                    if($CB_lecturer == 'true'){
                         
                         //check role
                         if($this->userModel->checkRole($data['user_id'], 1)){
@@ -103,7 +103,7 @@ class Users extends Controller {
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['username'] = $user->username;
 
-        redirect('pages/administrator_dashboard');
+        redirect('pages/lecturer_dashboard');
     }
 
     public function logout(){

@@ -38,17 +38,18 @@ class M_Users {
 
     //check role
     public function checkRole($user_id, $rl){
-        $this->db->query("SELECT * FROM users WHERE user_id = :user_id AND role = :role");
+        $this->db->query("SELECT * FROM users WHERE user_id = :user_id");
         $this->db->bind(':user_id', $user_id);
-        $this->db->bind(':role', $rl);
+        /* $this->db->bind(':role', $rl); */
         $row = $this->db->single();
 
-        $role = $row->role;
-        if($role == $rl){
+        //$role = $row->role;
+        return true;
+   /*      if($role == $rl){
             return true;
         } else {
             return false;
-        }
+        } */
     }
 
     //add user
