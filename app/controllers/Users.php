@@ -103,7 +103,7 @@ class Users extends Controller {
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['username'] = $user->username;
 
-        redirect('pages/administrator_dashboard');
+        redirect('AdminPosts/viewUsers');
     }
 
     public function logout(){

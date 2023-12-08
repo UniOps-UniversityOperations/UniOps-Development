@@ -348,7 +348,7 @@
                 'title' => 'View Subjects',
                 'posts' => $posts
             ];
-            $this->view('AdminPosts/v_viewSubjects', $data);
+            $this->view('adminPosts/v_viewSubjects', $data);
         }
 
         public function updateSubject($postId){

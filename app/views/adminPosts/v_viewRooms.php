@@ -111,26 +111,47 @@
         <div class="side-panel">
             <?php
 
-            // print_r($test);
-
-            // print_r($lec_room);
-            // die;
                 foreach ($lec_room as $post) {
                     echo "<div class='side_item'>";
                     ?>
 
-                        <div class="lecture_room_body_left">
-                            <p>No of Tables: <?php echo $post->no_of_tables; ?></p>
-                            <p>No of Chairs: <?php echo $post->no_of_chairs; ?></p>
-                            <p>No of Boards: <?php echo $post->no_of_boards; ?></p>
-                            <p>No of Projectors: <?php echo $post->no_of_projectors; ?></p>
-                            <p>No of Computers: <?php echo $post->no_of_computers; ?></p>
+                        <div class="sidebar_header">
+                            <h3 class="header_text"><?php echo $post->name; ?></h3>
+                        
+                        </div>
+
+                        <div class="sidebar_body_top">
+                            <div class="sidebar_top_left">
+                                <p><b>ID / Code</b></p> 
+                                <p><b>Type</b></p>
+                                <p><b>Capacity</b></p>
+                                <p><b>Availability</b></p> 
+                                <p><b>No of Tables</b></p> 
+                                <p><b>No of Chairs</b></p> 
+                                <p><b>No of Boards</b></p> 
+                                <p><b>No of Projectors</b></p>
+                                <p><b>No of Computers</b></p>
+                            </div>
+
+                            <div class="sidebar_top_right">
+                                <p> <b> : </b> <?php echo $post->id; ?></p>
+                                <p> <b> : </b> <?php echo $post->type; ?></p>
+                                <p> <b> : </b> <?php echo $post->capacity; ?></p>
+                                <p> <b> : </b> <?php echo $post->current_availability; ?></p>
+                                <p> <b> : </b> <?php echo $post->no_of_tables; ?></p>
+                                <p> <b> : </b> <?php echo $post->no_of_chairs; ?></p>
+                                <p> <b> : </b> <?php echo $post->no_of_boards; ?></p>
+                                <p> <b> : </b> <?php echo $post->no_of_projectors; ?></p>
+                                <p> <b> : </b> <?php echo $post->no_of_computers; ?></p>
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="sidebar_body_bottom">
                             <p>Is AC: <?php echo $post->is_ac; ?></p>
                             <p>Is Wifi: <?php echo $post->is_wifi; ?></p>
                             <p>Is Media: <?php echo $post->is_media; ?></p>
-                        </div>
-
-                        <div class="lecture_room_body_right">
                             <p>Is Lecture: <?php echo $post->is_lecture; ?></p>
                             <p>Is Lab: <?php echo $post->is_lab; ?></p>
                             <p>Is Tutorial: <?php echo $post->is_tutorial; ?></p>
@@ -145,16 +166,6 @@
             ?>
 
         </div>
-
-        <style>
-            .side_item{
-                display: none;
-            }
-
-            .side_item.active{
-                display:block;
-            }
-        </style>
     
         </div>
 
