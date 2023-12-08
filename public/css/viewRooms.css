@@ -43,15 +43,21 @@
 }
 
 /* Style for the view button */
-.view_button {
+
+ .view_button {
   background-color: var(--Border-color);
-  color: white;
   border: none;
-  padding: 10px 20px;
-  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
   border-radius: 10px;
+}
+
+.view_icon{
+  padding-top: 5px;
+  width: 30px;
 }
 
 /* Change the background color on hover */
@@ -62,13 +68,18 @@
 /* Style for the update button */
 .update_button {
   background-color: #4CAF50;
-  color: white;
   border: none;
-  padding: 10px 20px;
-  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
   border-radius: 10px;
+}
+
+.update_icon{
+  padding-top: 5px;
+  width: 30px;
 }
 
 /* Change the background color on hover */
@@ -79,12 +90,17 @@
 /* Style for the delete button */
 .delete_button {
   background-color: #f44336;
-  color: white;
   border: none;
-  padding: 10px 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
   border-radius: 10px;
+}
+
+.delete_icon{
+  padding-top: 5px;
+  width: 30px;
 }
 
 /* Change the background color on hover */
@@ -283,7 +299,7 @@
   /* display: none; */
   width: 500px;
   width: 0;
-  height: 90vh;
+  height: 87vh;
   flex-shrink: 0;
   color: #000000;
   background: #f0f0f0;
@@ -299,7 +315,7 @@
 
 .side-panel-open .side-panel {
   /* display: initial; */
-  width: 500px;
+  width: 450px;
 }
 
 .side-panel.side-panel-close{
@@ -321,9 +337,10 @@
   margin: -40px 0;
   flex: 1; /* Equal flex distribution for each paragraph */
   padding-bottom: 30px;
+  padding-left: 20px;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1000px) {
   .lecture_room_header {
     flex-direction: column;
   }
@@ -333,7 +350,7 @@
 }
 
 .sidebar_header{
-  width: 394px;
+  width: 380px;
   height: 140px; 
   flex-shrink: 0;
   border-radius: 20px;
@@ -353,23 +370,20 @@
   color: #D2D2D6;
 }
 
+.sidebar_body{
+  line-height: 1.5;
+  margin-left: 15px;
+}
+
  /* Style for the left side of the side bar body */
  .sidebar_body_top {
   flex: 1;
   padding: 10px;
   padding-top: 30px;
-  line-height: 1.5;
   font-size: larger;
   align-items: flex-start; 
   display: flex;
   justify-content: space-between;
-  margin-left: 15px;
-}
-
-/* Style for the right side of the lecture room body */
-.sidebar_body_bottom {
-  flex: 1;
-  padding: 10px;
 }
 
 .side_item{
@@ -392,4 +406,27 @@
 .sidebar_top_left p,
 .sidebar_top_right p {
     margin: 0; /* Remove default margin to avoid extra space */
+}
+
+.sidebar_body_bottom {
+  flex: 1;
+  padding: 10px;
+  font-size: larger;
+  align-items: flex-start; 
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar_bottom_left_part1,
+.sidebar_bottom_right_part1,
+.sidebar_bottom_left_part2,
+.sidebar_bottom_right_part2{
+  flex: 1;
+}
+
+.sidebar_bottom_left_part1 p,
+.sidebar_bottom_right_part1 p,
+.sidebar_bottom_left_part2 p,
+.sidebar_bottom_right_part2 p{
+  margin: 0; /* Remove default margin to avoid extra space */
 }

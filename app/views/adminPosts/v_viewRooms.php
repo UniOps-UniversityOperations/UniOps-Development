@@ -74,16 +74,35 @@
                     <!-- Idle view -->
                     <div class="idle-view">
                             <div class="lecture_room_header">
-                                <h3 class="header_title"><?php echo $post->name; ?> (<?php echo $post->type; ?> room)</h3>
+                                <h3 class="header_title"><?php echo $post->name; ?></h3>
                                 <p class="header_item"><b>ID / Code:</b> <?php echo $post->id; ?></p>
                                 <p class="header_item"><b>Type:</b> <?php echo $post->type; ?></p>
                                 <p class="header_item"><b>Capacity:</b> <?php echo $post->capacity; ?></p>
                                 <p class="header_item"><b>Availability:</b> <?php echo $post->current_availability; ?></p>
                                 
                                 <div class="action_buttons">
-                                <button class="view_button">View</button>
+                                    <!-- <button class="view_button">View</button>
                                     <a href="<?php echo URLROOT; ?>/AdminPosts/updateRoom/<?php echo $post->id ?>"><button class="update_button">Update</button></a>
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRoom/<?php echo $post->id ?>"><button class="delete_button">Delete</button></a>
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRoom/<?php echo $post->id ?>"><button class="delete_button">Delete</button></a> -->
+
+                                    <button class="view_button">
+                                        <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
+                                    </button>
+                                    
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateRoom/<?php echo $post->id ?>">
+                                        <button class="update_button">
+                                            <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
+
+                                        </button>
+                                    </a>
+                                    
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRoom/<?php echo $post->id ?>">
+                                        <button class="delete_button">
+                                            <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Delete Icon" class="delete_icon">
+                                        </button>
+                                    </a>
+
+
                                 </div>
                             </div>  
                     </div>
@@ -119,45 +138,76 @@
                             <h3 class="header_text"><?php echo $post->name; ?></h3>
                         
                         </div>
+                        
+                        <div class="sidebar_body">
+                            <div class="sidebar_body_top">
+                                <div class="sidebar_top_left">
+                                    <p><b>ID / Code</b></p> 
+                                    <p><b>Type</b></p>
+                                    <p><b>Capacity</b></p>
+                                    <p><b>Availability</b></p> 
+                                    <p><b>No of Tables</b></p> 
+                                    <p><b>No of Chairs</b></p> 
+                                    <p><b>No of Boards</b></p> 
+                                    <p><b>No of Projectors</b></p>
+                                    <p><b>No of Computers</b></p>
+                                </div>
 
-                        <div class="sidebar_body_top">
-                            <div class="sidebar_top_left">
-                                <p><b>ID / Code</b></p> 
-                                <p><b>Type</b></p>
-                                <p><b>Capacity</b></p>
-                                <p><b>Availability</b></p> 
-                                <p><b>No of Tables</b></p> 
-                                <p><b>No of Chairs</b></p> 
-                                <p><b>No of Boards</b></p> 
-                                <p><b>No of Projectors</b></p>
-                                <p><b>No of Computers</b></p>
+                                <div class="sidebar_top_right">
+                                    <p> <b> : </b> <?php echo $post->id; ?></p>
+                                    <p> <b> : </b> <?php echo $post->type; ?></p>
+                                    <p> <b> : </b> <?php echo $post->capacity; ?></p>
+                                    <p> <b> : </b> <?php echo $post->current_availability; ?></p>
+                                    <p> <b> : </b> <?php echo $post->no_of_tables; ?></p>
+                                    <p> <b> : </b> <?php echo $post->no_of_chairs; ?></p>
+                                    <p> <b> : </b> <?php echo $post->no_of_boards; ?></p>
+                                    <p> <b> : </b> <?php echo $post->no_of_projectors; ?></p>
+                                    <p> <b> : </b> <?php echo $post->no_of_computers; ?></p>
+                                </div>
                             </div>
+                        
 
-                            <div class="sidebar_top_right">
-                                <p> <b> : </b> <?php echo $post->id; ?></p>
-                                <p> <b> : </b> <?php echo $post->type; ?></p>
-                                <p> <b> : </b> <?php echo $post->capacity; ?></p>
-                                <p> <b> : </b> <?php echo $post->current_availability; ?></p>
-                                <p> <b> : </b> <?php echo $post->no_of_tables; ?></p>
-                                <p> <b> : </b> <?php echo $post->no_of_chairs; ?></p>
-                                <p> <b> : </b> <?php echo $post->no_of_boards; ?></p>
-                                <p> <b> : </b> <?php echo $post->no_of_projectors; ?></p>
-                                <p> <b> : </b> <?php echo $post->no_of_computers; ?></p>
+                            <div class="sidebar_body_bottom">
+                                <div class="sidebar_bottom_left_part1">
+                                    <p><b>AC</b></p>
+                                    <p><b>Wifi</b></p>
+                                    <p><b>Media</b></p>
+                                    <p><b>Lecture</b></p>
+                                    <p><b>Lab</b></p>
+                                </div>
+
+                                <div class="sidebar_bottom_right_part1">
+                                    <p><?php echo $post->is_ac ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_wifi ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_media ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_lecture ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_lab ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                </div>
+
+                                <div class="sidebar_bottom_left_part2">
+                                    <p><b>Tutorial</b></p>
+                                    <p><b>Meeting</b></p>
+                                    <p><b>Seminar</b></p>
+                                    <p><b>Exam</b></p>
+                                </div>
+
+                                <div class="sidebar_bottom_right_part2">
+                                    <p><?php echo $post->is_tutorial ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_meeting ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_seminar ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_exam ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                </div>
+
+                                <!-- <p>Is AC: <?php echo $post->is_ac; ?></p>
+                                <p>Is Wifi: <?php echo $post->is_wifi; ?></p>
+                                <p>Is Media: <?php echo $post->is_media; ?></p>
+                                <p>Is Lecture: <?php echo $post->is_lecture; ?></p>
+                                <p>Is Lab: <?php echo $post->is_lab; ?></p>
+                                <p>Is Tutorial: <?php echo $post->is_tutorial; ?></p>
+                                <p>Is Meeting: <?php echo $post->is_meeting; ?></p>
+                                <p>Is Seminar: <?php echo $post->is_seminar; ?></p>
+                                <p>Is Exam: <?php echo $post->is_exam; ?></p> -->
                             </div>
-
-                            
-                        </div>
-
-                        <div class="sidebar_body_bottom">
-                            <p>Is AC: <?php echo $post->is_ac; ?></p>
-                            <p>Is Wifi: <?php echo $post->is_wifi; ?></p>
-                            <p>Is Media: <?php echo $post->is_media; ?></p>
-                            <p>Is Lecture: <?php echo $post->is_lecture; ?></p>
-                            <p>Is Lab: <?php echo $post->is_lab; ?></p>
-                            <p>Is Tutorial: <?php echo $post->is_tutorial; ?></p>
-                            <p>Is Meeting: <?php echo $post->is_meeting; ?></p>
-                            <p>Is Seminar: <?php echo $post->is_seminar; ?></p>
-                            <p>Is Exam: <?php echo $post->is_exam; ?></p>
                         </div>
                     <?php
                     echo "</div>";
