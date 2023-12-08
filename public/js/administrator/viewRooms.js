@@ -10,6 +10,18 @@ document.addEventListener('DOMContentLoaded', function () {
     var viewButtons = document.querySelectorAll('.view_button');
     var searchInput = document.getElementById('search');
     var clearSearch = document.getElementById('clear-search');
+    var filterType = document.getElementById('filter-type');
+
+
+    filterType.addEventListener('change', function () {
+        var selectedType = this.value.toLowerCase();
+
+        // Show/hide lecture rooms based on the selected type
+        document.querySelectorAll('.lecture_room').forEach(function (lectureRoom) {
+            var roomType = lectureRoom.dataset.roomType.toLowerCase();
+            lectureRoom.style.display = roomType.includes(selectedType) ? 'block' : 'none';
+        });
+    });
 
 
     viewButtons.forEach(function (viewButton) {
@@ -50,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
             lectureRoom.style.display = 'block'; // Show all rooms
         });
     });
+
+
+    
 });
 
 document.querySelectorAll(".side-panel-toggle").forEach(element => {

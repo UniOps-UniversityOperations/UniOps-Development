@@ -47,7 +47,20 @@
                         <input type="text" id="search" placeholder="Search by room name..." >
                         <span class="clear-icon" id="clear-search">&#10006;</span>
                     </div>
-        
+
+                    <div class="filter-container">
+                        <label for="filter-type">Filter by Type:</label>
+                        <select id="filter-type">
+                            <option value="">All Types</option>
+                            <?php
+                            // Populate the dropdown with unique room types
+                            foreach (array_keys($roomTypes) as $type) {
+                                echo "<option value=\"$type\">$type</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
                     <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createRoom">
                             <button class="create_button">Create Room</button>
@@ -69,7 +82,7 @@
 
             <?php foreach($data['posts'] as $post) : ?>
 
-                <div class="lecture_room" data-room-name="<?php echo $post->name; ?>">
+                <div class="lecture_room" data-room-name="<?php echo $post->name; ?>" data-room-type="<?php echo $post->type; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
@@ -252,6 +265,7 @@
         });
     });
 </script>
+
 
 
 
