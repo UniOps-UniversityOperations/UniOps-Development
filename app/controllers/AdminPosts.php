@@ -404,7 +404,8 @@
 
 
         //CRUD for Lecturer
-
+        
+        //Create Lecturer
         public function createLecturer(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -413,29 +414,34 @@
 
                     'title' => 'Create Lecturer',
 
-                    'l_name' => trim($_POST['l_name']),
+                    'l_code' => trim($_POST['l_code']),
                     'l_email' => trim($_POST['l_email']),
-                    'l_sub1_code' => trim($_POST['l_sub1_code']),
-                    'l_sub2_code' => trim($_POST['l_sub2_code']),
-                    'l_sub3_code' => trim($_POST['l_sub3_code']),
-                    'l_exp1_code' => trim($_POST['l_exp1_code']),
-                    'l_exp2_code' => trim($_POST['l_exp2_code']),
+                    'l_fullName' => trim($_POST['l_fullName']),
+                    'l_nameWithInitials' => trim($_POST['l_nameWithInitials']),
+                    'l_gender' => trim($_POST['l_gender']),
+                    'l_dob' => trim($_POST['l_dob']),
+                    'l_contactNumber' => trim($_POST['l_contactNumber']),
                     'l_exp3_code' => trim($_POST['l_exp3_code']),
-                    'l_second_examinar_s_code' => trim($_POST['l_second_examinar_s_code']),
-                    'l_is_exam_supervisor' => isset($_POST['l_is_exam_supervisor']) ? '1' : '0',
+                    'l_address' => trim($_POST['l_address']),
+                    'l_department' => trim($_POST['l_department']),
+                    'l_positionRank' => trim($_POST['l_positionRank']),
+                    'l_dateOfJoin' => trim($_POST['l_dateOfJoin']),
+                    'l_qualifications' => trim($_POST['l_qualifications']),
+                    'l_isExamSupervisor' => isset($_POST['l_isExamSupervisor']) ? '1' : '0',
+                    'l_isSecondExaminar' => isset($_POST['l_isSecondExaminar']) ? '1' : '0',
                     
-                    'l_nameError' => '',
+                    'l_codeError' => '',
                 ];
 
-                if(empty($data['l_name'])){
-                    $data['l_nameError'] = 'Please enter Lecturer Name';
+                if(empty($data['l_code'])){
+                    $data['l_codeError'] = 'Please enter Lecturer Code';
                 }
 
-                if(empty($data['l_nameError'])){
+                if(empty($data['l_codeError'])){
                     if($this->L_postModel->createLecturer($data)){
                         //flash('post_message', 'Lecturer Added');
                         //redirect('pages/administrator_dashboard');
-                        redirect('AdminPosts/viewLecturers');
+                        redirect('adminPosts/viewLecturers');
                     }else{
                         die('Something went wrong');
                     }
@@ -448,20 +454,24 @@
 
                     'title' => 'Create Lecturer',
 
-                    'l_name' => '',
+                    'l_code' => '',
                     'l_email' => '',
-                    'l_sub1_code' => '',
-                    'l_sub2_code' => '',
-                    'l_sub3_code' => '',
-                    'l_exp1_code' => '',
-                    'l_exp2_code' => '',
-                    'l_exp3_code' => '',
-                    'l_second_examinar_s_code' => '',
-                    'l_is_exam_supervisor' => '',
-                    
-                    'l_nameError' => '',
+                    'l_fullName' => '',
+                    'l_nameWithInitials' => '',
+                    'l_gender' => '',
+                    'l_dob' => '',
+                    'l_contactNumber' => '',
+                    'address' => '',
+                    'l_department' => '',
+                    'l_positionRank' => '',
+                    'l_dateOfJoin' => '',
+                    'l_qualifications' => '',
+                    'l_isExamSupervisor' => '',
+                    'l_isSecondExaminar' => '',
+
+                    'l_codeError' => '',
                 ];
-                $this->view('AdminPosts/v_createLecturer', $data);
+                $this->view('adminPosts/v_createLecturer', $data);
             }  
         }
 
@@ -472,7 +482,7 @@
                 'title' => 'View Lecturers',
                 'posts' => $posts
             ];
-            $this->view('AdminPosts/v_viewLecturers', $data);
+            $this->view('adminPosts/v_viewLecturers', $data);
         }
 
         public function updateLecturer($postId){
