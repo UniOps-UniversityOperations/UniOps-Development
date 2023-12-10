@@ -211,15 +211,6 @@
                                     <p><?php echo $post->is_exam ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
                                 </div>
 
-                                <!-- <p>Is AC: <?php echo $post->is_ac; ?></p>
-                                <p>Is Wifi: <?php echo $post->is_wifi; ?></p>
-                                <p>Is Media: <?php echo $post->is_media; ?></p>
-                                <p>Is Lecture: <?php echo $post->is_lecture; ?></p>
-                                <p>Is Lab: <?php echo $post->is_lab; ?></p>
-                                <p>Is Tutorial: <?php echo $post->is_tutorial; ?></p>
-                                <p>Is Meeting: <?php echo $post->is_meeting; ?></p>
-                                <p>Is Seminar: <?php echo $post->is_seminar; ?></p>
-                                <p>Is Exam: <?php echo $post->is_exam; ?></p> -->
                             </div>
                         </div>
                     <?php

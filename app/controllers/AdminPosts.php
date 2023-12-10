@@ -460,7 +460,7 @@
                     'l_gender' => '',
                     'l_dob' => '',
                     'l_contactNumber' => '',
-                    '_address' => '',
+                    'l_address' => '',
                     'l_department' => '',
                     'l_positionRank' => '',
                     'l_dateOfJoin' => '',
@@ -493,23 +493,26 @@
                     'title' => 'Update Lecturer',
                     'postId' => $postId,
 
-                    'l_id' => trim($_POST['l_id']), //added
-                    'l_name' => trim($_POST['l_name']),
+                    'l_id' => trim($_POST['l_id']),
+                    'l_code' => trim($_POST['l_code']),
                     'l_email' => trim($_POST['l_email']),
-                    'l_sub1_code' => trim($_POST['l_sub1_code']),
-                    'l_sub2_code' => trim($_POST['l_sub2_code']),
-                    'l_sub3_code' => trim($_POST['l_sub3_code']),
-                    'l_exp1_code' => trim($_POST['l_exp1_code']),
-                    'l_exp2_code' => trim($_POST['l_exp2_code']),
-                    'l_exp3_code' => trim($_POST['l_exp3_code']),
-                    'l_second_examinar_s_code' => trim($_POST['l_second_examinar_s_code']),
-                    'l_is_exam_supervisor' => isset($_POST['l_is_exam_supervisor']) ? '1' : '0',
-                    
+                    'l_fullName' => trim($_POST['l_fullName']),
+                    'l_nameWithInitials' => trim($_POST['l_nameWithInitials']),
+                    'l_gender' => trim($_POST['l_gender']),
+                    'l_dob' => trim($_POST['l_dob']),
+                    'l_contactNumber' => trim($_POST['l_contactNumber']),
+                    'l_address' => trim($_POST['l_address']),
+                    'l_department' => trim($_POST['l_department']),
+                    'l_positionRank' => trim($_POST['l_positionRank']),
+                    'l_dateOfJoin' => trim($_POST['l_dateOfJoin']),
+                    'l_qualifications' => trim($_POST['l_qualifications']),
+                    'l_isExamSupervisor' => isset($_POST['l_isExamSupervisor']) ? '1' : '0',
+                    'l_isSecondExaminar' => isset($_POST['l_isSecondExaminar']) ? '1' : '0',                    
                 ];
 
                 if(1){
                     if($this->L_postModel->updateLecturer($data)){
-                        redirect('AdminPosts/viewLecturers');
+                        redirect('adminPosts/viewLecturers');
                     }else{
                         die('Something went wrong');
                     }
@@ -520,18 +523,22 @@
                     'title' => 'Update Lecturer',
 
                     'l_id' => $post->l_id, //added
-                    'l_name' => $post->l_name,
+                    'l_code' => $post->l_code,
                     'l_email' => $post->l_email,
-                    'l_sub1_code' => $post->l_sub1_code,
-                    'l_sub2_code' => $post->l_sub2_code,
-                    'l_sub3_code' => $post->l_sub3_code,
-                    'l_exp1_code' => $post->l_exp1_code,
-                    'l_exp2_code' => $post->l_exp2_code,
-                    'l_exp3_code' => $post->l_exp3_code,
-                    'l_second_examinar_s_code' => $post->l_second_examinar_s_code,
-                    'l_is_exam_supervisor' => $post->l_is_exam_supervisor,
+                    'l_fullName' => $post->l_fullName,
+                    'l_nameWithInitials' => $post->l_nameWithInitials,
+                    'l_gender' => $post->l_gender,
+                    'l_dob' => $post->l_dob,
+                    'l_contactNumber' => $post->l_contactNumber,
+                    'l_address' => $post->l_address,
+                    'l_department' => $post->l_department,
+                    'l_positionRank' => $post->l_positionRank,
+                    'l_dateOfJoin' => $post->l_dateOfJoin,
+                    'l_qualifications' => $post->l_qualifications,
+                    'l_isExamSupervisor' => $post->l_isExamSupervisor,
+                    'l_isSecondExaminar' => $post->l_isSecondExaminar,
                 ];
-                $this->view('AdminPosts/v_updateLecturer', $data);
+                $this->view('adminPosts/v_updateLecturer', $data);
             }
         }
 

@@ -401,6 +401,8 @@
 .sidebar_top_left,
 .sidebar_top_right {
     flex: 1;
+    word-wrap: break-word;
+    width: 15ch;
 }
 
 .sidebar_top_left p,
@@ -434,7 +436,7 @@
 /* Add this CSS code to your stylesheet */
 
 .filter-container {
-  margin-right: 800px; /* Adjust the margin as needed */;
+  margin-right: 600px; /* Adjust the margin as needed */;
 }
 
 label {
