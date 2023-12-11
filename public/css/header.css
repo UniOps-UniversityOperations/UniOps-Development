@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 header{
     background-color: #b1cce0;
     width: auto;
@@ -15,6 +16,26 @@ header{
   }
 
   
+=======
+header{
+/*     position :fixed;
+    top : 0; */
+    background-color: #b1cce0;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    flex : 0 0 auto;
+  }
+
+.header_img {
+      width: 120px;
+      height: auto;
+      margin-right: 20px;
+      padding-left: 50px;
+      padding-top: 2px;
+  }
+>>>>>>> 48dba3cc93c7356c9da093ed7d80ab3d87b56b6b
 =======
 header{
 /*     position :fixed;

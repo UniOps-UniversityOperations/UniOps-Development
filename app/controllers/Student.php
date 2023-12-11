@@ -41,4 +41,27 @@
               ];
               $this->view('Student/updateProfile', $data);
           } 
+    //Delete Profile
+        public function deleteProfile(){
+            //  $profile = $this->P_postModel->getRooms();
+            $data = [
+                'title' => 'Delete Profile',
+                //'posts' => $profile
+                'posts' => []
+            ];
+            $this->view('Student/deleteProfile', $data);
+        } 
+    
+
+    public function viewrooms(){
+        //  $profile = $this->P_postModel->getRooms();
+          $data = [
+              'title' => 'Manage rooms',
+              //'posts' => $profile
+              'posts' => []
+          ];
+          $this->view('Student/viewRooms', $data);
+      }
+
+
     }

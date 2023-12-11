@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 main {
     display: flex;
     height : 100%;
@@ -23,6 +24,32 @@ main {
 
 .timetable-container {
     flex : 1;
+=======
+main {
+    display: flex;
+    height : 100%;
+    flex : 1;
+}
+
+.right-section {
+    background-color: #D9D9D9;
+    padding : 0px 15px;
+    flex: 1;
+    display : flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.left-section {
+    padding : 5px 10px;
+    flex : 8;
+    display: flex;
+    flex-direction: column;
+}
+
+.timetable-container {
+    flex : 1;
+>>>>>>> 48dba3cc93c7356c9da093ed7d80ab3d87b56b6b
 =======
 main {
     display: flex;

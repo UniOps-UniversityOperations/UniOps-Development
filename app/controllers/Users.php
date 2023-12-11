@@ -121,8 +121,12 @@ class Users extends Controller {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
  
+=======
+    
+>>>>>>> 48dba3cc93c7356c9da093ed7d80ab3d87b56b6b
 =======
     
 >>>>>>> 48dba3cc93c7356c9da093ed7d80ab3d87b56b6b
