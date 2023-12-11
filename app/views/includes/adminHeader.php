@@ -7,8 +7,8 @@
 		content="IE=edge">
 	<meta name="viewport"content="width=device-width, initial-scale=1.0">
 	<title>Admin Dashboard</title>
-	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/adminHeaderStyles.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/<?php echo $style ;?>.css">
+	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/administrator/adminHeaderStyles.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/administrator/<?php echo $style ;?>.css">
 </head>
 
 <body>
