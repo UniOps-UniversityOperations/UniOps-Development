@@ -2,6 +2,14 @@
 
 <?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
 
+<div class="sidebar"  id="eventdetailspanel">
+    <div class="sidebar-content">
+        <h2>Event Details</h2>
+        <p id="event-details">Some Data</p>
+    </div>
+
+</div>
+
 <h1>View Rooms</h1>
 
 <div class="content">
@@ -97,6 +105,7 @@
 </div><!--Closing div for the room schedules --> 
 
 <script src="<?php echo URLROOT;?>/js/generaterounds.js"></script>
+<script src="<?php echo URLROOT;?>/js/sidebar.js"></script>
 
 
 <?php require APPROOT . '/views/includes/lecturerFooter.php'; ?>

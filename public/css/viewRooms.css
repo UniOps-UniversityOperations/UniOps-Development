@@ -155,3 +155,34 @@ background-color: var(--Border-color);
 color: white;
 cursor: pointer;
 }
+
+/*Styiling Side Bar */
+.sidebar {
+  margin-top: 70px;
+  position: fixed;
+  top: 0;
+  right: -300px; /* Initially hidden */
+  width: 300px;
+  height: calc(100vh - 70px);
+  background-color: #f4f4f4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: right 0.5s ease-in-out;
+}
+
+.sidebar-content {
+  padding: 20px;
+}
+
+.sidebar.sidebar-open {
+  right: 0px; /* Adjust based on sidebar width */
+}
+
+/*CSS for content area adjustment */
+.main {
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  transition: margin-right 0.5s ease-in-out; /* Smooth transition for content adjustment */
+}
+
+.main.content-shifted {
+  margin-right: 300px; /* Adjust based on sidebar width */
+}
