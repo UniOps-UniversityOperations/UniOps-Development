@@ -553,6 +553,24 @@
 
         //CRUD for Instructor
 
+            //     Structure of the database table:
+            // 1	i_id Primary	int(11)				
+            // 2	i_code	varchar(50)		
+            // 3	i_email	varchar(50)		
+            // 4	i_fullName	varchar(50)		
+            // 5	i_nameWithInitials	varchar(50)	
+            // 6	i_gender	char(1)
+            // 7	i_dob	date		
+            // 8	i_contactNumber	varchar(20)	
+            // 9	i_address	varchar(255)		
+            // 10	i_department	varchar(50)		
+            // 11	i_positionRank	varchar(50)		
+            // 12	i_dateOfJoin	date	
+            // 13	i_qualifications	text	
+            // 14	i_isExamInvigilator	tinyint(4)	
+            // 15	i_isDeleted	tinyint(4)	
+
+
         public function createInstructor(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -561,27 +579,33 @@
 
                     'title' => 'Create Instructor',
 
-                    'i_name' => trim($_POST['i_name']),
+                    'i_code' => trim($_POST['i_code']),
                     'i_email' => trim($_POST['i_email']),
-                    'i_sub1_code' => trim($_POST['i_sub1_code']),
-                    'i_sub2_code' => trim($_POST['i_sub2_code']),
-                    'i_sub3_code' => trim($_POST['i_sub3_code']),
-                    'i_exp1_code' => trim($_POST['i_exp1_code']),
-                    'i_exp2_code' => trim($_POST['i_exp2_code']),
-                    'i_exp3_code' => trim($_POST['i_exp3_code']),
+                    'i_fullName' => trim($_POST['i_fullName']),
+                    'i_nameWithInitials' => trim($_POST['i_nameWithInitials']),
+                    'i_gender' => trim($_POST['i_gender']),
+                    'i_dob' => trim($_POST['i_dob']),
+                    'i_contactNumber' => trim($_POST['i_contactNumber']),
+                    'i_address' => trim($_POST['i_address']),
+                    'i_department' => trim($_POST['i_department']),
+                    'i_positionRank' => trim($_POST['i_positionRank']),
+                    'i_dateOfJoin' => trim($_POST['i_dateOfJoin']),
+                    'i_qualifications' => trim($_POST['i_qualifications']),
+                    'i_isExamInvigilator' => isset($_POST['i_isExamInvigilator']) ? '1' : '0',
+
                     
-                    'i_nameError' => '',
+                    'i_codeError' => '',
                 ];
 
-                if(empty($data['i_name'])){
-                    $data['i_nameError'] = 'Please enter Instructor Name';
+                if(empty($data['i_code'])){
+                    $data['i_codeError'] = 'Please enter Instructor Name';
                 }
 
-                if(empty($data['i_nameError'])){
+                if(empty($data['i_codeError'])){
                     if($this->I_postModel->createInstructor($data)){
                         //flash('post_message', 'Instructor Added');
                         //redirect('pages/administrator_dashboard');
-                        redirect('AdminPosts/viewInstructors');
+                        redirect('adminPosts/viewInstructors');
                     }else{
                         die('Something went wrong');
                     }
@@ -594,18 +618,22 @@
 
                     'title' => 'Create Instructor',
 
-                    'i_name' => '',
+                    'i_code' => '',
                     'i_email' => '',
-                    'i_sub1_code' => '',
-                    'i_sub2_code' => '',
-                    'i_sub3_code' => '',
-                    'i_exp1_code' => '',
-                    'i_exp2_code' => '',
-                    'i_exp3_code' => '',
-                    
-                    'i_nameError' => '',
+                    'i_fullName' => '',
+                    'i_nameWithInitials' => '',
+                    'i_gender' => '',
+                    'i_dob' => '',
+                    'i_contactNumber' => '',
+                    'i_address' => '',
+                    'i_department' => '',
+                    'i_positionRank' => '',
+                    'i_dateOfJoin' => '',
+                    'i_qualifications' => '',
+                    'i_isExamInvigilator' => '',
+
                 ];
-                $this->view('AdminPosts/v_createInstructor', $data);
+                $this->view('adminPosts/v_createInstructor', $data);
             }  
         }
 
@@ -616,7 +644,7 @@
                 'title' => 'View Instructors',
                 'posts' => $posts
             ];
-            $this->view('AdminPosts/v_viewInstructors', $data);
+            $this->view('adminPosts/v_viewInstructors', $data);
         }
 
         public function updateInstructor($postId){

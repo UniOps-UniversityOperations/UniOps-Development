@@ -39,7 +39,7 @@
 
                 <div class="table-head">
                     <div class="search-container">
-                        <input type="text" id="search" placeholder="Search by room name..." >
+                        <input type="text" id="search" placeholder="Search by Lecturer name..." >
                         <span class="clear-icon" id="clear-search">&#10006;</span>
                     </div>
 
