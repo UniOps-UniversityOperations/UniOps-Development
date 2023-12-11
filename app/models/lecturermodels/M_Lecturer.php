@@ -17,6 +17,19 @@ class M_Lecturer {
         if($result){
             return $result;
         } else {
+            return "";
+        }
+    }
+
+    public function viewBookings($room_id) {
+        $this->db->query("SELECT * FROM roombookings WHERE r_id = :room_id AND booking_date = :today ORDER BY start_time");
+        $today = date("Y-m-d");
+        $this->db->bind(':room_id',$room_id);
+        $this->db->bind(':today',$today);
+        $result = $this->db->resultSet();
+        if($result){
+            return $result;
+        } else {
             return "Empty";
         }
     }
