@@ -66,7 +66,7 @@
 					</div>
 
 					<div class="nav-option option5">
-					<a href="<?php echo URLROOT;?>/Users/viewprofile/">
+					<a href="<?php echo URLROOT;?>/Student/viewProfile/">
 						<img src="<?php echo URLROOT;?>/images/student.jpg" class="nav-img" alt="View Profile">
 						<h3>View Profile</h3>
 					</a>

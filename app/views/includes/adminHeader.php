@@ -24,7 +24,8 @@
 		</div>
 
 		<div class="message">
-			<div class="circle"></div>
+			<!--User ID & User name-->
+			<h5><?php echo $_SESSION['user_id'] . " - " .  $_SESSION['username']; ?></h5>
 			<img src="<?php echo URLROOT;?>/images/bell.png" class="icn" alt="bell">
 			<div class="dp"><img src="<?php echo URLROOT;?>/images/profile_picture.png" class="dpicn" alt="dp"></div>
 		</div>
@@ -51,27 +52,34 @@
 					</div>
 
 					<div class="nav-option option3">
-						<a href="<?php echo URLROOT;?>/Users/login/">
-							<img src="<?php echo URLROOT;?>/images/lecturer.png" class="nav-img" alt="Lecturers">
-							<h3> Lecturers</h3>
+						<a href="<?php echo URLROOT;?>/AdminPosts/viewSubjects/">
+							<img src="<?php echo URLROOT;?>/images/subject.png" class="nav-img" alt="Subject">
+							<h3> Subject</h3>
 						</a>
 					</div>
 
 					<div class="nav-option option4">
-						<a href="<?php echo URLROOT;?>/Users/login/">
+						<a href="<?php echo URLROOT;?>/AdminPosts/viewLecturers/">
+							<img src="<?php echo URLROOT;?>/images/lecturer.png" class="nav-img" alt="Lecturer">
+							<h3> Lecturer</h3>
+						</a>
+					</div>
+
+					<div class="nav-option option5">
+						<a href="<?php echo URLROOT;?>/AdminPosts/viewInstructors/">
 							<img src="<?php echo URLROOT;?>/images/instructor.svg" Class="nav-img" alt="Instructor">
 							<h3> Instructor</h3>
 						</a>
 					</div>
 
-					<div class="nav-option option5">
+					<div class="nav-option option6">
 					<a href="<?php echo URLROOT;?>/Users/login/">
 						<img src="<?php echo URLROOT;?>/images/student.jpg" class="nav-img" alt="Student">
 						<h3> Student</h3>
 					</a>
 					</div>
 
-					<div class="nav-option option6">
+					<div class="nav-option option7">
 						<a href="<?php echo URLROOT;?>/Users/login/">
 							<img src="<?php echo URLROOT;?>/images/database.png" class="nav-img" alt="Database">
 							<h3> Database</h3>

@@ -206,3 +206,6 @@ color: white;
 border-radius: 4px;
 }
 
+.user_name{
+    position: relative;
+}

@@ -52,8 +52,17 @@ class Users extends Controller {
                     //user athunticated
                     //create session
                     if($CB_administrator == 'true'){
-                        //redirect('pages/administrator_dashboard');
-                        $this->createUserSession($loggedInUser);
+                        
+                        //check role
+                        if($this->userModel->checkRole($data['user_id'], 1)){
+                            $this->createUserSession($loggedInUser);
+                        }else{
+                            $data['passwordError'] = 'Role incorrect';
+                            //redirect to login
+                            $this->view('v_login', $data);
+                        }
+
+                        //$this->createUserSession($loggedInUser);
                     }else if($CB_lecturer == 'true'){
                         die('lecturer');
                     }else if($CB_instructor == 'true'){
@@ -111,6 +120,10 @@ class Users extends Controller {
             return false;
         }
     }
+<<<<<<< HEAD
 
  
+=======
+    
+>>>>>>> 48dba3cc93c7356c9da093ed7d80ab3d87b56b6b
 }

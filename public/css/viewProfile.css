@@ -1,0 +1,79 @@
+/* Style for the lecture profile container */
+.lecture_profile {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+/* Style for the lecture profile header */
+.lecture_profile_header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Style for the lecture profile body */
+.lecture_profile_body {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Style for the left side of the lecture profile body */
+.lecture_profile_body_left {
+  flex: 1;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+/* Style for the right side of the lecture profile body */
+.lecture_profile_body_right {
+  flex: 1;
+  padding: 10px;
+}
+
+/* Style for the individual information paragraphs */
+.lecture_profile_body p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Optional: Style for boolean values (e.g., Is AC, Is Wifi) */
+.lecture_profile_body p:contains("Is") {
+  color: #007acc;
+}
+
+/* Style for the lecture profile header */
+.lecture_profile_header {
+display: flex;
+justify-content: space-between;
+align-items: center; /* Center vertically */
+}
+
+/* Style for the update button */
+.update_button {
+background-color: #4CAF50;
+color: white;
+border: none;
+padding: 10px 20px;
+margin-right: 10px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+/* Change the background color on hover */
+.update_button:hover {
+background-color: #45a049;
+}
+
+
+
+ .option4 {
+border-left: 5px solid #010058af;
+background-color: var(--Border-color);
+color: white;
+cursor: pointer;
+}
+
+

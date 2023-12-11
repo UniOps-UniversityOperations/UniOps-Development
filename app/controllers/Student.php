@@ -11,10 +11,34 @@
             $this->view('V_Student', $data);
         }
 
-        public function viewprofile(){
-            $M_student = $this->model("M_student");
-            $stud_detail = $M_student->viewprofile();
-            $this->view('studentviews/viewprofile',$stud_detail);
-    
+        //show Student Profile
+        public function viewProfile(){
+          //  $profile = $this->P_postModel->getRooms();
+            $data = [
+                'title' => 'View Profile',
+                //'posts' => $profile
+                'posts' => []
+            ];
+            $this->view('Student/viewProfile', $data);
         }
+
+        // //show all users
+        // public function viewUsers(){
+        //     $posts = $this->U_postModel->getUsers();
+        //     $data = [
+        //         'title' => 'View Users',
+        //         'posts' => $posts
+        //     ];
+        //     $this->view('Pages/administrator_dashboard', $data);
+        // }
+//Update Profile
+        public function updateProfile(){
+            //  $profile = $this->P_postModel->getRooms();
+              $data = [
+                  'title' => 'Update Profile',
+                  //'posts' => $profile
+                  'posts' => []
+              ];
+              $this->view('Student/updateProfile', $data);
+          } 
     }
