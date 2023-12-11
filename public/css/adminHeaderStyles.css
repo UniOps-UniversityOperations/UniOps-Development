@@ -9,9 +9,9 @@ font-family: "Arial";
 }
 :root {
 --background-color1: #fafaff;
---background-color2: #ffffff;
+--background-color2: #010127;
 --background-color3: #ededed;
---background-color4: #cad7fda4;
+--background-color4: #DCDCE2;
 --primary-color: #1848A0;
 --secondary-color: #1848A0;
 --Border-color: #1e58c4;
@@ -76,9 +76,7 @@ top: 8px;
 }
 
 .dp {
-height: 40px;
-width: 40px;
-background-color: #626262;
+background-color: #ffffff;
 border-radius: 50%;
 display: flex;
 align-items: center;
@@ -101,7 +99,7 @@ height: calc(100vh - 70px);
 width: 100%;
 overflow-y: scroll;
 overflow-x: hidden;
-padding: 40px 30px 30px 30px;
+padding: 40px 15px 30px 15px;
 }
 
 .main::-webkit-scrollbar-thumb {
@@ -129,7 +127,8 @@ width: 250px;
 background-color: var(--background-color2);
 position: absolute;
 top: 0px;
-left: 00;
+left: 0px;
+bottom: 0px;
 box-shadow: 1px 1px 10px rgba(198, 189, 248, 0.825);
 display: flex;
 flex-direction: column;
@@ -163,12 +162,13 @@ transition: all 0.1s ease-in-out;
 }
 .nav-option:hover {
 border-left: 5px solid #a2a2a2;
-background-color: #dadada;
+background-color: #030369;
 cursor: pointer;
 }
 .nav-img {
 height: 30px;
 margin-right: 20px;
+padding-right: 10px;
 }
 
 .nav-upper-options {
@@ -183,7 +183,7 @@ gap: 30px;
     text-decoration: none; 
     display: flex; 
     align-items: center; 
-	color: black;
+	color: #DCDCE2;
 }
 
 
@@ -209,3 +209,4 @@ border-radius: 4px;
 .user_name{
     position: relative;
 }
+

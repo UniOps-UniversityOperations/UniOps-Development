@@ -3,6 +3,7 @@
     background-color: var(--Border-color);
     color: white;
     cursor: pointer;
+    border-radius: 50px;
     }
 
 .option1:hover {

@@ -13,12 +13,16 @@
                 <a href="<?php echo URLROOT;?>/Student/updateprofile/"><button class="update_button">Update</button></a>
             </div>
 
+            <div class="action_buttons">
+                <a href="<?php echo URLROOT;?>/Student/deleteprofile/"><button class="update_button">Delete</button></a>
+            </div>
+
         </div>
         <div class="student_profile_body">
             <div class="student_profile_body_left">
-                <p>Email address: </p>
-                <p>Country: </p>
-                <p>City/town: </p>
+                <p>ID: </p>
+                <p>Full Name: </p>
+                <p>Name With Initia: </p>
                 <p>Index Number: </p>
                 <p>Registration Number: </p>
                 <p>Index Number: </p>
