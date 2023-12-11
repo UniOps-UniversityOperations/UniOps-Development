@@ -64,7 +64,6 @@
         <!-- Checkeck boxes -->
 
         <fieldset>
-            
             <label>
             <input type="checkbox" class="inline"  id="i_isExamInvigilator" name="i_isExamInvigilator" value="true">
             i_isExamInvigilator</label>

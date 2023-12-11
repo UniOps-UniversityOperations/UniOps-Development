@@ -78,14 +78,14 @@
                                         <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
                                     </button>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateInstructor/<?php echo $post->l_id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateInstructor/<?php echo $post->i_id ?>">
                                         <button class="update_button">
                                             <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
 
                                         </button>
                                     </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteInstructor/<?php echo $post->l_id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteInstructor/<?php echo $post->i_id ?>">
                                         <button class="delete_button">
                                             <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
                                         </button>

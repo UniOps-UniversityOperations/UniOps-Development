@@ -656,21 +656,25 @@
                     'title' => 'Update Instructor',
                     'postId' => $postId,
 
-                    'i_id' => trim($_POST['i_id']), //added
-                    'i_name' => trim($_POST['i_name']),
+                    'i_id' => trim($_POST['i_id']),
+                    'i_code' => trim($_POST['i_code']), 
                     'i_email' => trim($_POST['i_email']),
-                    'i_sub1_code' => trim($_POST['i_sub1_code']),
-                    'i_sub2_code' => trim($_POST['i_sub2_code']),
-                    'i_sub3_code' => trim($_POST['i_sub3_code']),
-                    'i_exp1_code' => trim($_POST['i_exp1_code']),
-                    'i_exp2_code' => trim($_POST['i_exp2_code']),
-                    'i_exp3_code' => trim($_POST['i_exp3_code']),
-                    
+                    'i_fullName' => trim($_POST['i_fullName']),
+                    'i_nameWithInitials' => trim($_POST['i_nameWithInitials']),
+                    'i_gender' => trim($_POST['i_gender']),
+                    'i_dob' => trim($_POST['i_dob']),
+                    'i_contactNumber' => trim($_POST['i_contactNumber']),
+                    'i_address' => trim($_POST['i_address']),
+                    'i_department' => trim($_POST['i_department']),
+                    'i_positionRank' => trim($_POST['i_positionRank']),
+                    'i_dateOfJoin' => trim($_POST['i_dateOfJoin']),
+                    'i_qualifications' => trim($_POST['i_qualifications']),
+                    'i_isExamInvigilator' => isset($_POST['i_isExamInvigilator']) ? '1' : '0',    
                 ];
 
                 if(1){
                     if($this->I_postModel->updateInstructor($data)){
-                        redirect('AdminPosts/viewInstructors');
+                        redirect('adminPosts/viewInstructors');
                     }else{
                         die('Something went wrong');
                     }
@@ -680,23 +684,30 @@
                 $data = [
                     'title' => 'Update Instructor',
 
-                    'i_id' => $post->i_id, //added
-                    'i_name' => $post->i_name,
+                    'i_id' => $post->i_id,
+                    'i_code' => $post->i_code,
                     'i_email' => $post->i_email,
-                    'i_sub1_code' => $post->i_sub1_code,
-                    'i_sub2_code' => $post->i_sub2_code,
-                    'i_sub3_code' => $post->i_sub3_code,
-                    'i_exp1_code' => $post->i_exp1_code,
-                    'i_exp2_code' => $post->i_exp2_code,
-                    'i_exp3_code' => $post->i_exp3_code,
+                    'i_fullName' => $post->i_fullName,
+                    'i_nameWithInitials' => $post->i_nameWithInitials,
+                    'i_gender' => $post->i_gender,
+                    'i_dob' => $post->i_dob,
+                    'i_contactNumber' => $post->i_contactNumber,
+                    'i_address' => $post->i_address,
+                    'i_department' => $post->i_department,
+                    'i_positionRank' => $post->i_positionRank,
+                    'i_dateOfJoin' => $post->i_dateOfJoin,
+                    'i_qualifications' => $post->i_qualifications,
+                    'i_isExamInvigilator' => $post->i_isExamInvigilator,                    
                 ];
-                $this->view('AdminPosts/v_updateInstructor', $data);
+                $this->view('adminPosts/v_updateInstructor', $data);
             }
         }
+        
+        //Delete Instructor
 
         public function deleteInstructor($postId){
             if($this->I_postModel->deleteInstructor($postId)){
-                redirect('AdminPosts/viewInstructors');
+                redirect('adminPosts/viewInstructors');
             }else{
                 die('Something went wrong');
             }
