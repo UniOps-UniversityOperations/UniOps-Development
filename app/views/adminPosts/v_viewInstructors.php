@@ -61,7 +61,7 @@
 
             <?php foreach($data['posts'] as $post) : ?>
 
-                <div class="lecture_room" data-room-name="<?php echo $post->l_nameWithInitials; ?>" data-room-type="<?php echo $post->type; ?>">
+                <div class="lecture_room" data-room-name="<?php echo $post->i_fullName; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
@@ -229,6 +229,21 @@
                                             <?php endforeach; ?>
                                         </td>
                                     </tr>
+
+                                    <tr>
+                                        <td><b>Lecture Hours</b></td>
+                                        <td><b>: </b><?php echo $post->i_lectureHrs; ?></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Tutorial Hours</b></td>
+                                        <td><b>: </b><?php echo $post->i_tutorialHrs; ?></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Practical Hours</b></td>
+                                        <td><b>: </b><?php echo $post->i_practicalHrs; ?></td>
+                                    </tr>
                                         
                                 </table>
 
@@ -257,7 +272,7 @@
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="<?php echo URLROOT;?>/js/administrator/viewRooms.js"></script>
+<script src="<?php echo URLROOT;?>/js/administrator/viewInstructors.js"></script>
 <script>
     $(document).ready(function(){
         $(".lecture_room .view_button").click(function(){
@@ -312,5 +327,9 @@
 	12	i_dateOfJoin	date	
 	13	i_qualifications	text	
 	14	i_isExamInvigilator	tinyint(4)	
-	15	i_isDeleted	tinyint(4)			 -->
+	15	i_isDeleted	tinyint(4)
+    16  i_lectureHrs int(11)
+    17  i_tutorialHrs int(11)
+    18  i_practicalHrs int(11)
+-->
 

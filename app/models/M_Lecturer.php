@@ -168,5 +168,6 @@ class M_Lecturer{
     l_qualifications
     l_isExamSupervisor 
     l_isSecondExaminar 
+    l_lectureHrs
 */
 

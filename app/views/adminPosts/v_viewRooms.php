@@ -3,9 +3,6 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
-
-
-
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!-- <div class="wrapper side-panel-open"> -->

@@ -31,7 +31,7 @@
             </label>
 
             <label class="lable" for="l_dob">Lecturer Date Of Birth:
-            <input type="text" id="l_dob" name="l_dob" placeholder="l_dob" value="<?php $data["l_dob"];?>" required>
+            <input type="date" id="l_dob" name="l_dob" placeholder="l_dob" value="<?php $data["l_dob"];?>" required>
             </label>
 
             <label class="lable" for="l_contactNumber">Lecturer Contact Number:
@@ -51,7 +51,7 @@
             </label>
 
             <label class="lable" for="l_dateOfJoin">Lecturer Date Of Join:
-            <input type="text" id="l_dateOfJoin" name="l_dateOfJoin" placeholder="l_dateOfJoin" value="<?php $data["l_dateOfJoin"];?>" required>
+            <input type="date" id="l_dateOfJoin" name="l_dateOfJoin" placeholder="l_dateOfJoin" value="<?php $data["l_dateOfJoin"];?>" required>
             </label>
 
             <label class="lable" for="l_qualifications">Lecturer Qualifications:

@@ -289,6 +289,20 @@
 
         //CRUD for Subject
 
+                // Structure of the database table:
+                // sub_id
+                // sub_code
+                // sub_name
+                // sub_credits
+                // sub_year
+                // sub_semester
+                // sub_stream
+                // sub_isCore
+                // sub_isHaveLecture
+                // sub_isHaveTutorial
+                // sub_isHavePractical
+                // sub_isDeleted
+
         public function createSubject(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -297,21 +311,25 @@
 
                     'title' => 'Create Subject',
 
-                    's_code' => trim($_POST['s_code']),
-                    's_name' => trim($_POST['s_name']),
-                    's_credits' => trim($_POST['s_credits']),
-                    's_year' => trim($_POST['s_year']),
-                    's_semester' => trim($_POST['s_semester']),
-                    's_type' => trim($_POST['s_type']),
-                    
-                    's_codeError' => '',
+                    'sub_code' => trim($_POST['sub_code']),
+                    'sub_name' => trim($_POST['sub_name']),
+                    'sub_credits' => trim($_POST['sub_credits']),
+                    'sub_year' => trim($_POST['sub_year']),
+                    'sub_semester' => trim($_POST['sub_semester']),
+                    'sub_stream' => trim($_POST['sub_stream']),
+                    'sub_isCore' => isset($_POST['sub_isCore']) ? '1' : '0',
+                    'sub_isHaveLecture' => isset($_POST['sub_isHaveLecture']) ? '1' : '0',
+                    'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
+                    'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0',
+
+                    'sub_codeError' => ''
                 ];
 
-                if(empty($data['s_code'])){
-                    $data['s_codeError'] = 'Please enter Subject Code';
+                if(empty($data['sub_code'])){
+                    $data['sub_codeError'] = 'Please enter Subject Code';
                 }
 
-                if(empty($data['s_codeError'])){
+                if(empty($data['sub_codeError'])){
                     if($this->S_postModel->createSubject($data)){
                         //flash('post_message', 'Subject Added');
                         //redirect('pages/administrator_dashboard');
@@ -320,7 +338,7 @@
                         die('Something went wrong');
                     }
                 }else{
-                    $this->view('posts/v_createSubject', $data);
+                    $this->view('adminPosts/v_createSubject', $data);
 
                 }
             }  else{
@@ -328,16 +346,20 @@
 
                     'title' => 'Create Subject',
 
-                    's_code' => '',
-                    's_name' => '',
-                    's_credits' => '',
-                    's_year' => '',
-                    's_semester' => '',
-                    's_type' => '',
-                    
-                    's_codeError' => '',
+                    'sub_code' => '',
+                    'sub_name' => '',
+                    'sub_credits' => '',
+                    'sub_year' => '',
+                    'sub_semester' => '',
+                    'sub_stream' => '',
+                    'sub_isCore' => '',
+                    'sub_isHaveLecture' => '',
+                    'sub_isHaveTutorial' => '',
+                    'sub_isHavePractical' => '',
+
+                    'sub_codeError' => ''
                 ];
-                $this->view('AdminPosts/v_createSubject', $data);
+                $this->view('adminPosts/v_createSubject', $data);
             }  
         }
 
@@ -360,14 +382,17 @@
                     'title' => 'Update Subject',
                     'postId' => $postId,
 
-                    's_id' => trim($_POST['s_id']), //added
-                    's_code' => trim($_POST['s_code']),
-                    's_name' => trim($_POST['s_name']),
-                    's_credits' => trim($_POST['s_credits']),
-                    's_year' => trim($_POST['s_year']),
-                    's_semester' => trim($_POST['s_semester']),
-                    's_type' => trim($_POST['s_type']),
-                    
+                    'sub_id' => trim($_POST['sub_id']),
+                    'sub_code' => trim($_POST['sub_code']),
+                    'sub_name' => trim($_POST['sub_name']),
+                    'sub_credits' => trim($_POST['sub_credits']),
+                    'sub_year' => trim($_POST['sub_year']),
+                    'sub_semester' => trim($_POST['sub_semester']),
+                    'sub_stream' => trim($_POST['sub_stream']),
+                    'sub_isCore' => isset($_POST['sub_isCore']) ? '1' : '0',
+                    'sub_isHaveLecture' => isset($_POST['sub_isHaveLecture']) ? '1' : '0',
+                    'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
+                    'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0'                    
                 ];
 
                 if(1){
@@ -382,15 +407,19 @@
                 $data = [
                     'title' => 'Update Subject',
 
-                    's_id' => $post->s_id, //added
-                    's_code' => $post->s_code,
-                    's_name' => $post->s_name,
-                    's_credits' => $post->s_credits,
-                    's_year' => $post->s_year,
-                    's_semester' => $post->s_semester,
-                    's_type' => $post->s_type,
+                    'sub_id' => $post->sub_id,
+                    'sub_code' => $post->sub_code,
+                    'sub_name' => $post->sub_name,
+                    'sub_credits' => $post->sub_credits,
+                    'sub_year' => $post->sub_year,
+                    'sub_semester' => $post->sub_semester,
+                    'sub_stream' => $post->sub_stream,
+                    'sub_isCore' => $post->sub_isCore,
+                    'sub_isHaveLecture' => $post->sub_isHaveLecture,
+                    'sub_isHaveTutorial' => $post->sub_isHaveTutorial,
+                    'sub_isHavePractical' => $post->sub_isHavePractical
                 ];
-                $this->view('AdminPosts/v_updateSubject', $data);
+                $this->view('adminPosts/v_updateSubject', $data);
             }
         }
 

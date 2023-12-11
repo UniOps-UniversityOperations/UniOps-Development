@@ -3,9 +3,6 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
-
-
-
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!-- <div class="wrapper side-panel-open"> -->
@@ -62,7 +59,7 @@
 
             <?php foreach($data['posts'] as $post) : ?>
 
-                <div class="lecture_room" data-room-name="<?php echo $post->l_nameWithInitials; ?>" data-room-type="<?php echo $post->type; ?>">
+                <div class="lecture_room" data-room-name="<?php echo $post->l_fullName; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
@@ -230,6 +227,11 @@
                                             <?php endforeach; ?>
                                         </td>
                                     </tr>
+
+                                    <tr>
+                                        <td><b>Lecture Hours</b></td>
+                                        <td><b>: </b><?php echo $post->l_lectureHrs; ?></td>  
+                                    </tr>
                                         
                                 </table>
 
@@ -260,7 +262,7 @@
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="<?php echo URLROOT;?>/js/administrator/viewRooms.js"></script>
+<script src="<?php echo URLROOT;?>/js/administrator/viewLectures.js"></script>
 <script>
     $(document).ready(function(){
         $(".lecture_room .view_button").click(function(){
@@ -318,5 +320,6 @@
     l_qualifications (TEXT)
     l_isExamSupervisor (BOOLEAN)
     l_isSecondExaminar (BOOLEAN)
+    l_lectureHrs (INT)
 
 -->
