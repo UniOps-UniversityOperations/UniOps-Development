@@ -742,6 +742,20 @@
             }
         }
 
+        // Crud of the Assets (Database)
+
+        /* 
+            the structure of the assets table
+
+            a_id
+            a_code
+            a_type
+            a_addedDate
+            a_isInUse
+            a_isDeleted
+        */
+
+
 
     }
 
