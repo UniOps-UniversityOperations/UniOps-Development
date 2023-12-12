@@ -65,11 +65,12 @@ body {
     min-width: 300px;
   }
   
-  .option2 {
+  .option3 {
     border-left: 5px solid #010058af;
     background-color: var(--Border-color);
     color: white;
     cursor: pointer;
+    border-radius: 50px;
     }
   
     .create_button{

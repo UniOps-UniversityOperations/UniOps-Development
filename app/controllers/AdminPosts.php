@@ -8,9 +8,117 @@
             $this->S_postModel = $this->model('M_Subject');
             $this->L_postModel = $this->model('M_Lecturer');
             $this->I_postModel = $this->model('M_Instructor');
+            $this->U_postModel = $this->model('M_Users');
         }
 
+        //CRUD for User
+        
+        //Add User
+        public function addUser(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+                $data = [
+
+                    'title' => 'Add User',
+
+                    'user_id' => trim($_POST['user_id']),
+                    'username' => trim($_POST['username']),
+                    'password' => trim($_POST['password']),
+                    'role' => trim($_POST['role']),
+                    
+                    'user_idError' => '',
+                ];
+
+                if(empty($data['user_id'])){
+                    $data['user_idError'] = 'Please enter User ID';
+                }
+
+                if(empty($data['user_idError'])){
+                    if($this->U_postModel->addUser($data)){
+                        //flash('post_message', 'User Added');
+                        //redirect('pages/administrator_dashboard');
+                        redirect('Pages/administrator_dashboard');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }else{
+                    $this->view('posts/v_addUser', $data);
+                }
+            }else{
+                $data = [
+
+                    'title' => 'Add User',
+
+                    'user_id' => '',
+                    'username' => '',
+                    'password' => '',
+                    'role' => '',
+                    
+                    'user_idError' => '',
+                ];
+                $this->view('adminPosts/v_addUser', $data);
+            }
+                
+
+        }
+
+        //show all users
+        public function viewUsers(){
+            $posts = $this->U_postModel->getUsers();
+            $data = [
+                'title' => 'View Users',
+                'posts' => $posts
+            ];
+            $this->view('pages/administrator_dashboard', $data);
+        }
+
+        //Update User
+        public function updateUser($postId){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+
+                    'title' => 'Update User',
+                    'postId' => $postId,
+
+                    'user_id' => trim($_POST['user_id']),
+                    'username' => trim($_POST['username']),
+                    'password' => trim($_POST['password']),
+                    'role' => trim($_POST['role']),
+                    
+                ];
+
+                if(1){
+                    if($this->U_postModel->updateUser($data)){
+                        redirect('AdminPosts/viewUsers');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }
+            }else{
+                $post = $this->U_postModel->getUserById($postId);
+                $data = [
+                    'title' => 'Update User',
+
+                    'user_id' => $post->user_id,
+                    'username' => $post->username,
+                    'password' => $post->password,
+                    'role' => $post->role,
+                ];
+                $this->view('adminPosts/v_updateUser', $data);
+            }
+        }
+
+        //Delete User
+        public function deleteUser($postId){
+            if($this->U_postModel->deleteUser($postId)){
+                redirect('AdminPosts/viewUsers');
+            }else{
+                die('Something went wrong');
+            }
+        }
 
         //CRUD for Room
 
@@ -53,7 +161,7 @@
                     if($this->R_postModel->createRoom($data)){
                         //flash('post_message', 'Room Added');
                         //redirect('pages/administrator_dashboard');
-                        redirect('AdminPosts/viewRooms');
+                        redirect('adminPosts/viewRooms');
                     }else{
                         die('Something went wrong');
                     }
@@ -87,7 +195,7 @@
                     
                     'idError' => '',
                 ];
-                $this->view('AdminPosts/v_createRoom', $data);
+                $this->view('adminPosts/v_createRoom', $data);
             }  
         }
 
@@ -98,7 +206,7 @@
                 'title' => 'View Rooms',
                 'posts' => $posts
             ];
-            $this->view('AdminPosts/v_viewRooms', $data);
+            $this->view('adminPosts/v_viewRooms', $data);
         }
 
         public function updateRoom($postId){
@@ -164,7 +272,7 @@
                     'is_seminar' => $post->is_seminar,         
                     'is_exam' => $post->is_exam,
                 ];
-                $this->view('AdminPosts/v_updateRoom', $data);
+                $this->view('adminPosts/v_updateRoom', $data);
             }
                
         }
@@ -181,6 +289,20 @@
 
         //CRUD for Subject
 
+                // Structure of the database table:
+                // sub_id
+                // sub_code
+                // sub_name
+                // sub_credits
+                // sub_year
+                // sub_semester
+                // sub_stream
+                // sub_isCore
+                // sub_isHaveLecture
+                // sub_isHaveTutorial
+                // sub_isHavePractical
+                // sub_isDeleted
+
         public function createSubject(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -189,21 +311,25 @@
 
                     'title' => 'Create Subject',
 
-                    's_code' => trim($_POST['s_code']),
-                    's_name' => trim($_POST['s_name']),
-                    's_credits' => trim($_POST['s_credits']),
-                    's_year' => trim($_POST['s_year']),
-                    's_semester' => trim($_POST['s_semester']),
-                    's_type' => trim($_POST['s_type']),
-                    
-                    's_codeError' => '',
+                    'sub_code' => trim($_POST['sub_code']),
+                    'sub_name' => trim($_POST['sub_name']),
+                    'sub_credits' => trim($_POST['sub_credits']),
+                    'sub_year' => trim($_POST['sub_year']),
+                    'sub_semester' => trim($_POST['sub_semester']),
+                    'sub_stream' => trim($_POST['sub_stream']),
+                    'sub_isCore' => isset($_POST['sub_isCore']) ? '1' : '0',
+                    'sub_isHaveLecture' => isset($_POST['sub_isHaveLecture']) ? '1' : '0',
+                    'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
+                    'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0',
+
+                    'sub_codeError' => ''
                 ];
 
-                if(empty($data['s_code'])){
-                    $data['s_codeError'] = 'Please enter Subject Code';
+                if(empty($data['sub_code'])){
+                    $data['sub_codeError'] = 'Please enter Subject Code';
                 }
 
-                if(empty($data['s_codeError'])){
+                if(empty($data['sub_codeError'])){
                     if($this->S_postModel->createSubject($data)){
                         //flash('post_message', 'Subject Added');
                         //redirect('pages/administrator_dashboard');
@@ -212,7 +338,7 @@
                         die('Something went wrong');
                     }
                 }else{
-                    $this->view('posts/v_createSubject', $data);
+                    $this->view('adminPosts/v_createSubject', $data);
 
                 }
             }  else{
@@ -220,16 +346,20 @@
 
                     'title' => 'Create Subject',
 
-                    's_code' => '',
-                    's_name' => '',
-                    's_credits' => '',
-                    's_year' => '',
-                    's_semester' => '',
-                    's_type' => '',
-                    
-                    's_codeError' => '',
+                    'sub_code' => '',
+                    'sub_name' => '',
+                    'sub_credits' => '',
+                    'sub_year' => '',
+                    'sub_semester' => '',
+                    'sub_stream' => '',
+                    'sub_isCore' => '',
+                    'sub_isHaveLecture' => '',
+                    'sub_isHaveTutorial' => '',
+                    'sub_isHavePractical' => '',
+
+                    'sub_codeError' => ''
                 ];
-                $this->view('AdminPosts/v_createSubject', $data);
+                $this->view('adminPosts/v_createSubject', $data);
             }  
         }
 
@@ -240,7 +370,7 @@
                 'title' => 'View Subjects',
                 'posts' => $posts
             ];
-            $this->view('AdminPosts/v_viewSubjects', $data);
+            $this->view('adminPosts/v_viewSubjects', $data);
         }
 
         public function updateSubject($postId){
@@ -252,14 +382,17 @@
                     'title' => 'Update Subject',
                     'postId' => $postId,
 
-                    's_id' => trim($_POST['s_id']), //added
-                    's_code' => trim($_POST['s_code']),
-                    's_name' => trim($_POST['s_name']),
-                    's_credits' => trim($_POST['s_credits']),
-                    's_year' => trim($_POST['s_year']),
-                    's_semester' => trim($_POST['s_semester']),
-                    's_type' => trim($_POST['s_type']),
-                    
+                    'sub_id' => trim($_POST['sub_id']),
+                    'sub_code' => trim($_POST['sub_code']),
+                    'sub_name' => trim($_POST['sub_name']),
+                    'sub_credits' => trim($_POST['sub_credits']),
+                    'sub_year' => trim($_POST['sub_year']),
+                    'sub_semester' => trim($_POST['sub_semester']),
+                    'sub_stream' => trim($_POST['sub_stream']),
+                    'sub_isCore' => isset($_POST['sub_isCore']) ? '1' : '0',
+                    'sub_isHaveLecture' => isset($_POST['sub_isHaveLecture']) ? '1' : '0',
+                    'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
+                    'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0'                    
                 ];
 
                 if(1){
@@ -274,15 +407,19 @@
                 $data = [
                     'title' => 'Update Subject',
 
-                    's_id' => $post->s_id, //added
-                    's_code' => $post->s_code,
-                    's_name' => $post->s_name,
-                    's_credits' => $post->s_credits,
-                    's_year' => $post->s_year,
-                    's_semester' => $post->s_semester,
-                    's_type' => $post->s_type,
+                    'sub_id' => $post->sub_id,
+                    'sub_code' => $post->sub_code,
+                    'sub_name' => $post->sub_name,
+                    'sub_credits' => $post->sub_credits,
+                    'sub_year' => $post->sub_year,
+                    'sub_semester' => $post->sub_semester,
+                    'sub_stream' => $post->sub_stream,
+                    'sub_isCore' => $post->sub_isCore,
+                    'sub_isHaveLecture' => $post->sub_isHaveLecture,
+                    'sub_isHaveTutorial' => $post->sub_isHaveTutorial,
+                    'sub_isHavePractical' => $post->sub_isHavePractical
                 ];
-                $this->view('AdminPosts/v_updateSubject', $data);
+                $this->view('adminPosts/v_updateSubject', $data);
             }
         }
 
@@ -296,7 +433,8 @@
 
 
         //CRUD for Lecturer
-
+        
+        //Create Lecturer
         public function createLecturer(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -305,29 +443,33 @@
 
                     'title' => 'Create Lecturer',
 
-                    'l_name' => trim($_POST['l_name']),
+                    'l_code' => trim($_POST['l_code']),
                     'l_email' => trim($_POST['l_email']),
-                    'l_sub1_code' => trim($_POST['l_sub1_code']),
-                    'l_sub2_code' => trim($_POST['l_sub2_code']),
-                    'l_sub3_code' => trim($_POST['l_sub3_code']),
-                    'l_exp1_code' => trim($_POST['l_exp1_code']),
-                    'l_exp2_code' => trim($_POST['l_exp2_code']),
-                    'l_exp3_code' => trim($_POST['l_exp3_code']),
-                    'l_second_examinar_s_code' => trim($_POST['l_second_examinar_s_code']),
-                    'l_is_exam_supervisor' => isset($_POST['l_is_exam_supervisor']) ? '1' : '0',
+                    'l_fullName' => trim($_POST['l_fullName']),
+                    'l_nameWithInitials' => trim($_POST['l_nameWithInitials']),
+                    'l_gender' => trim($_POST['l_gender']),
+                    'l_dob' => trim($_POST['l_dob']),
+                    'l_contactNumber' => trim($_POST['l_contactNumber']),
+                    'l_address' => trim($_POST['l_address']),
+                    'l_department' => trim($_POST['l_department']),
+                    'l_positionRank' => trim($_POST['l_positionRank']),
+                    'l_dateOfJoin' => trim($_POST['l_dateOfJoin']),
+                    'l_qualifications' => trim($_POST['l_qualifications']),
+                    'l_isExamSupervisor' => isset($_POST['l_isExamSupervisor']) ? '1' : '0',
+                    'l_isSecondExaminar' => isset($_POST['l_isSecondExaminar']) ? '1' : '0',
                     
-                    'l_nameError' => '',
+                    'l_codeError' => '',
                 ];
 
-                if(empty($data['l_name'])){
-                    $data['l_nameError'] = 'Please enter Lecturer Name';
+                if(empty($data['l_code'])){
+                    $data['l_codeError'] = 'Please enter Lecturer Code';
                 }
 
-                if(empty($data['l_nameError'])){
+                if(empty($data['l_codeError'])){
                     if($this->L_postModel->createLecturer($data)){
                         //flash('post_message', 'Lecturer Added');
                         //redirect('pages/administrator_dashboard');
-                        redirect('AdminPosts/viewLecturers');
+                        redirect('adminPosts/viewLecturers');
                     }else{
                         die('Something went wrong');
                     }
@@ -340,20 +482,24 @@
 
                     'title' => 'Create Lecturer',
 
-                    'l_name' => '',
+                    'l_code' => '',
                     'l_email' => '',
-                    'l_sub1_code' => '',
-                    'l_sub2_code' => '',
-                    'l_sub3_code' => '',
-                    'l_exp1_code' => '',
-                    'l_exp2_code' => '',
-                    'l_exp3_code' => '',
-                    'l_second_examinar_s_code' => '',
-                    'l_is_exam_supervisor' => '',
-                    
-                    'l_nameError' => '',
+                    'l_fullName' => '',
+                    'l_nameWithInitials' => '',
+                    'l_gender' => '',
+                    'l_dob' => '',
+                    'l_contactNumber' => '',
+                    'l_address' => '',
+                    'l_department' => '',
+                    'l_positionRank' => '',
+                    'l_dateOfJoin' => '',
+                    'l_qualifications' => '',
+                    'l_isExamSupervisor' => '',
+                    'l_isSecondExaminar' => '',
+
+                    'l_codeError' => '',
                 ];
-                $this->view('AdminPosts/v_createLecturer', $data);
+                $this->view('adminPosts/v_createLecturer', $data);
             }  
         }
 
@@ -364,7 +510,7 @@
                 'title' => 'View Lecturers',
                 'posts' => $posts
             ];
-            $this->view('AdminPosts/v_viewLecturers', $data);
+            $this->view('adminPosts/v_viewLecturers', $data);
         }
 
         public function updateLecturer($postId){
@@ -376,23 +522,26 @@
                     'title' => 'Update Lecturer',
                     'postId' => $postId,
 
-                    'l_id' => trim($_POST['l_id']), //added
-                    'l_name' => trim($_POST['l_name']),
+                    'l_id' => trim($_POST['l_id']),
+                    'l_code' => trim($_POST['l_code']),
                     'l_email' => trim($_POST['l_email']),
-                    'l_sub1_code' => trim($_POST['l_sub1_code']),
-                    'l_sub2_code' => trim($_POST['l_sub2_code']),
-                    'l_sub3_code' => trim($_POST['l_sub3_code']),
-                    'l_exp1_code' => trim($_POST['l_exp1_code']),
-                    'l_exp2_code' => trim($_POST['l_exp2_code']),
-                    'l_exp3_code' => trim($_POST['l_exp3_code']),
-                    'l_second_examinar_s_code' => trim($_POST['l_second_examinar_s_code']),
-                    'l_is_exam_supervisor' => isset($_POST['l_is_exam_supervisor']) ? '1' : '0',
-                    
+                    'l_fullName' => trim($_POST['l_fullName']),
+                    'l_nameWithInitials' => trim($_POST['l_nameWithInitials']),
+                    'l_gender' => trim($_POST['l_gender']),
+                    'l_dob' => trim($_POST['l_dob']),
+                    'l_contactNumber' => trim($_POST['l_contactNumber']),
+                    'l_address' => trim($_POST['l_address']),
+                    'l_department' => trim($_POST['l_department']),
+                    'l_positionRank' => trim($_POST['l_positionRank']),
+                    'l_dateOfJoin' => trim($_POST['l_dateOfJoin']),
+                    'l_qualifications' => trim($_POST['l_qualifications']),
+                    'l_isExamSupervisor' => isset($_POST['l_isExamSupervisor']) ? '1' : '0',
+                    'l_isSecondExaminar' => isset($_POST['l_isSecondExaminar']) ? '1' : '0',                    
                 ];
 
                 if(1){
                     if($this->L_postModel->updateLecturer($data)){
-                        redirect('AdminPosts/viewLecturers');
+                        redirect('adminPosts/viewLecturers');
                     }else{
                         die('Something went wrong');
                     }
@@ -403,18 +552,22 @@
                     'title' => 'Update Lecturer',
 
                     'l_id' => $post->l_id, //added
-                    'l_name' => $post->l_name,
+                    'l_code' => $post->l_code,
                     'l_email' => $post->l_email,
-                    'l_sub1_code' => $post->l_sub1_code,
-                    'l_sub2_code' => $post->l_sub2_code,
-                    'l_sub3_code' => $post->l_sub3_code,
-                    'l_exp1_code' => $post->l_exp1_code,
-                    'l_exp2_code' => $post->l_exp2_code,
-                    'l_exp3_code' => $post->l_exp3_code,
-                    'l_second_examinar_s_code' => $post->l_second_examinar_s_code,
-                    'l_is_exam_supervisor' => $post->l_is_exam_supervisor,
+                    'l_fullName' => $post->l_fullName,
+                    'l_nameWithInitials' => $post->l_nameWithInitials,
+                    'l_gender' => $post->l_gender,
+                    'l_dob' => $post->l_dob,
+                    'l_contactNumber' => $post->l_contactNumber,
+                    'l_address' => $post->l_address,
+                    'l_department' => $post->l_department,
+                    'l_positionRank' => $post->l_positionRank,
+                    'l_dateOfJoin' => $post->l_dateOfJoin,
+                    'l_qualifications' => $post->l_qualifications,
+                    'l_isExamSupervisor' => $post->l_isExamSupervisor,
+                    'l_isSecondExaminar' => $post->l_isSecondExaminar,
                 ];
-                $this->view('AdminPosts/v_updateLecturer', $data);
+                $this->view('adminPosts/v_updateLecturer', $data);
             }
         }
 
@@ -429,6 +582,24 @@
 
         //CRUD for Instructor
 
+            //     Structure of the database table:
+            // 1	i_id Primary	int(11)				
+            // 2	i_code	varchar(50)		
+            // 3	i_email	varchar(50)		
+            // 4	i_fullName	varchar(50)		
+            // 5	i_nameWithInitials	varchar(50)	
+            // 6	i_gender	char(1)
+            // 7	i_dob	date		
+            // 8	i_contactNumber	varchar(20)	
+            // 9	i_address	varchar(255)		
+            // 10	i_department	varchar(50)		
+            // 11	i_positionRank	varchar(50)		
+            // 12	i_dateOfJoin	date	
+            // 13	i_qualifications	text	
+            // 14	i_isExamInvigilator	tinyint(4)	
+            // 15	i_isDeleted	tinyint(4)	
+
+
         public function createInstructor(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -437,27 +608,33 @@
 
                     'title' => 'Create Instructor',
 
-                    'i_name' => trim($_POST['i_name']),
+                    'i_code' => trim($_POST['i_code']),
                     'i_email' => trim($_POST['i_email']),
-                    'i_sub1_code' => trim($_POST['i_sub1_code']),
-                    'i_sub2_code' => trim($_POST['i_sub2_code']),
-                    'i_sub3_code' => trim($_POST['i_sub3_code']),
-                    'i_exp1_code' => trim($_POST['i_exp1_code']),
-                    'i_exp2_code' => trim($_POST['i_exp2_code']),
-                    'i_exp3_code' => trim($_POST['i_exp3_code']),
+                    'i_fullName' => trim($_POST['i_fullName']),
+                    'i_nameWithInitials' => trim($_POST['i_nameWithInitials']),
+                    'i_gender' => trim($_POST['i_gender']),
+                    'i_dob' => trim($_POST['i_dob']),
+                    'i_contactNumber' => trim($_POST['i_contactNumber']),
+                    'i_address' => trim($_POST['i_address']),
+                    'i_department' => trim($_POST['i_department']),
+                    'i_positionRank' => trim($_POST['i_positionRank']),
+                    'i_dateOfJoin' => trim($_POST['i_dateOfJoin']),
+                    'i_qualifications' => trim($_POST['i_qualifications']),
+                    'i_isExamInvigilator' => isset($_POST['i_isExamInvigilator']) ? '1' : '0',
+
                     
-                    'i_nameError' => '',
+                    'i_codeError' => '',
                 ];
 
-                if(empty($data['i_name'])){
-                    $data['i_nameError'] = 'Please enter Instructor Name';
+                if(empty($data['i_code'])){
+                    $data['i_codeError'] = 'Please enter Instructor Name';
                 }
 
-                if(empty($data['i_nameError'])){
+                if(empty($data['i_codeError'])){
                     if($this->I_postModel->createInstructor($data)){
                         //flash('post_message', 'Instructor Added');
                         //redirect('pages/administrator_dashboard');
-                        redirect('AdminPosts/viewInstructors');
+                        redirect('adminPosts/viewInstructors');
                     }else{
                         die('Something went wrong');
                     }
@@ -470,18 +647,22 @@
 
                     'title' => 'Create Instructor',
 
-                    'i_name' => '',
+                    'i_code' => '',
                     'i_email' => '',
-                    'i_sub1_code' => '',
-                    'i_sub2_code' => '',
-                    'i_sub3_code' => '',
-                    'i_exp1_code' => '',
-                    'i_exp2_code' => '',
-                    'i_exp3_code' => '',
-                    
-                    'i_nameError' => '',
+                    'i_fullName' => '',
+                    'i_nameWithInitials' => '',
+                    'i_gender' => '',
+                    'i_dob' => '',
+                    'i_contactNumber' => '',
+                    'i_address' => '',
+                    'i_department' => '',
+                    'i_positionRank' => '',
+                    'i_dateOfJoin' => '',
+                    'i_qualifications' => '',
+                    'i_isExamInvigilator' => '',
+
                 ];
-                $this->view('AdminPosts/v_createInstructor', $data);
+                $this->view('adminPosts/v_createInstructor', $data);
             }  
         }
 
@@ -492,7 +673,7 @@
                 'title' => 'View Instructors',
                 'posts' => $posts
             ];
-            $this->view('AdminPosts/v_viewInstructors', $data);
+            $this->view('adminPosts/v_viewInstructors', $data);
         }
 
         public function updateInstructor($postId){
@@ -504,21 +685,25 @@
                     'title' => 'Update Instructor',
                     'postId' => $postId,
 
-                    'i_id' => trim($_POST['i_id']), //added
-                    'i_name' => trim($_POST['i_name']),
+                    'i_id' => trim($_POST['i_id']),
+                    'i_code' => trim($_POST['i_code']), 
                     'i_email' => trim($_POST['i_email']),
-                    'i_sub1_code' => trim($_POST['i_sub1_code']),
-                    'i_sub2_code' => trim($_POST['i_sub2_code']),
-                    'i_sub3_code' => trim($_POST['i_sub3_code']),
-                    'i_exp1_code' => trim($_POST['i_exp1_code']),
-                    'i_exp2_code' => trim($_POST['i_exp2_code']),
-                    'i_exp3_code' => trim($_POST['i_exp3_code']),
-                    
+                    'i_fullName' => trim($_POST['i_fullName']),
+                    'i_nameWithInitials' => trim($_POST['i_nameWithInitials']),
+                    'i_gender' => trim($_POST['i_gender']),
+                    'i_dob' => trim($_POST['i_dob']),
+                    'i_contactNumber' => trim($_POST['i_contactNumber']),
+                    'i_address' => trim($_POST['i_address']),
+                    'i_department' => trim($_POST['i_department']),
+                    'i_positionRank' => trim($_POST['i_positionRank']),
+                    'i_dateOfJoin' => trim($_POST['i_dateOfJoin']),
+                    'i_qualifications' => trim($_POST['i_qualifications']),
+                    'i_isExamInvigilator' => isset($_POST['i_isExamInvigilator']) ? '1' : '0',    
                 ];
 
                 if(1){
                     if($this->I_postModel->updateInstructor($data)){
-                        redirect('AdminPosts/viewInstructors');
+                        redirect('adminPosts/viewInstructors');
                     }else{
                         die('Something went wrong');
                     }
@@ -528,27 +713,49 @@
                 $data = [
                     'title' => 'Update Instructor',
 
-                    'i_id' => $post->i_id, //added
-                    'i_name' => $post->i_name,
+                    'i_id' => $post->i_id,
+                    'i_code' => $post->i_code,
                     'i_email' => $post->i_email,
-                    'i_sub1_code' => $post->i_sub1_code,
-                    'i_sub2_code' => $post->i_sub2_code,
-                    'i_sub3_code' => $post->i_sub3_code,
-                    'i_exp1_code' => $post->i_exp1_code,
-                    'i_exp2_code' => $post->i_exp2_code,
-                    'i_exp3_code' => $post->i_exp3_code,
+                    'i_fullName' => $post->i_fullName,
+                    'i_nameWithInitials' => $post->i_nameWithInitials,
+                    'i_gender' => $post->i_gender,
+                    'i_dob' => $post->i_dob,
+                    'i_contactNumber' => $post->i_contactNumber,
+                    'i_address' => $post->i_address,
+                    'i_department' => $post->i_department,
+                    'i_positionRank' => $post->i_positionRank,
+                    'i_dateOfJoin' => $post->i_dateOfJoin,
+                    'i_qualifications' => $post->i_qualifications,
+                    'i_isExamInvigilator' => $post->i_isExamInvigilator,                    
                 ];
-                $this->view('AdminPosts/v_updateInstructor', $data);
+                $this->view('adminPosts/v_updateInstructor', $data);
             }
         }
+        
+        //Delete Instructor
 
         public function deleteInstructor($postId){
             if($this->I_postModel->deleteInstructor($postId)){
-                redirect('AdminPosts/viewInstructors');
+                redirect('adminPosts/viewInstructors');
             }else{
                 die('Something went wrong');
             }
         }
+
+        // Crud of the Assets (Database)
+
+        /* 
+            the structure of the assets table
+
+            a_id
+            a_code
+            a_type
+            a_addedDate
+            a_isInUse
+            a_isDeleted
+        */
+
+
 
     }
 
