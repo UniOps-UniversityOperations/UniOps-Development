@@ -10,7 +10,7 @@
 
             <fieldset>
 
-                <label class="lable" for="sub_code">Subject ID:
+                <label class="lable" for="sub_id">Subject ID:
                 <input type="text" id="sub_id" name="sub_id" placeholder="sub_id" value="<?php echo $data["sub_id"];?>" required>
                 </label>
 

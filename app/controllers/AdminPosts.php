@@ -9,6 +9,7 @@
             $this->L_postModel = $this->model('M_Lecturer');
             $this->I_postModel = $this->model('M_Instructor');
             $this->U_postModel = $this->model('M_Users');
+            $this->A_postModel = $this->model('M_Asset');
         }
 
         //CRUD for User
@@ -755,7 +756,108 @@
             a_isDeleted
         */
 
+        public function viewAssets(){
+            $posts = $this->A_postModel->getAssets();
+            $data = [
+                'title' => 'View Assets',
+                'posts' => $posts
+            ];
+            $this->view('adminPosts/v_viewAssets', $data);
+        }
 
+        //Create Asset
+        public function createAsset(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'title' => 'Create Asset',
+
+                    'a_code' => trim($_POST['a_code']),
+                    'a_type' => trim($_POST['a_type']),
+                    'a_addedDate' => trim($_POST['a_addedDate']),
+                    'a_isInUse' => isset($_POST['a_isInUse']) ? '1' : '0',
+
+                    'a_codeError' => '',
+                ];
+
+                if(empty($data['a_code'])){
+                    $data['a_codeError'] = 'Please enter Asset Code';
+                }
+
+                if(empty($data['a_codeError'])){
+                    if($this->A_postModel->createAsset($data)){
+                        //flash('post_message', 'Asset Added');
+                        //redirect('pages/administrator_dashboard');
+                        redirect('adminPosts/viewAssets');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }else{
+                    $this->view('posts/v_createAsset', $data);
+
+                }
+            }  else{
+                $data = [
+                    'title' => 'Create Asset',
+
+                    'a_code' => '',
+                    'a_type' => '',
+                    'a_addedDate' => '',
+                    'a_isInUse' => '',
+
+                    'a_codeError' => '',
+                ];
+                $this->view('adminPosts/v_createAsset', $data);
+            }  
+        }
+
+        //Update Asset
+        public function updateAsset($postId){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'title' => 'Update Asset',
+                    'postId' => $postId,
+
+                    'a_id' => trim($_POST['a_id']),
+                    'a_code' => trim($_POST['a_code']),
+                    'a_type' => trim($_POST['a_type']),
+                    'a_addedDate' => trim($_POST['a_addedDate']),
+                    'a_isInUse' => isset($_POST['a_isInUse']) ? '1' : '0',
+                ];
+
+                if(1){
+                    if($this->A_postModel->updateAsset($data)){
+                        redirect('adminPosts/viewAssets');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }
+            }else{
+                $post = $this->A_postModel->getAssetById($postId);
+                $data = [
+                    'title' => 'Update Asset',
+
+                    'a_id' => $post->a_id,
+                    'a_code' => $post->a_code,
+                    'a_type' => $post->a_type,
+                    'a_addedDate' => $post->a_addedDate,
+                    'a_isInUse' => $post->a_isInUse,
+                ];
+                $this->view('adminPosts/v_updateAsset', $data);
+            }
+        }
+
+        //Delete Asset
+        public function deleteAsset($postId){
+            if($this->A_postModel->deleteAsset($postId)){
+                redirect('adminPosts/viewAssets');
+            }else{
+                die('Something went wrong');
+            }
+        }
 
     }
 

@@ -81,7 +81,7 @@
 					</div>
 
 					<div class="nav-option option7">
-						<a href="<?php echo URLROOT;?>/Users/login/">
+					<a href="<?php echo URLROOT;?>/AdminPosts/viewAssets/">
 							<img src="<?php echo URLROOT;?>/images/database.svg" class="nav-img" alt="Database">
 							<h3>  Database</h3>
 						</a>
