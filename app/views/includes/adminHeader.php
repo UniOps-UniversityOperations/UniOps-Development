@@ -85,6 +85,13 @@
 						</a>
 					</div>
 
+					<div class="option8 nav-option">
+						<a href="<?php echo URLROOT;?>/Timetables/viewTimetables/">
+							<img src="<?php echo URLROOT;?>/images/room.png" class="nav-img" alt="Timetables">
+							<h3> Timetables</h3>
+						</a>
+					</div>
+
 					<div class="nav-option logout">
 						<a href="<?php echo URLROOT;?>/Users/login/">
 							<img src="<?php echo URLROOT;?>/images/logout.png" class="nav-img" alt="logout">
