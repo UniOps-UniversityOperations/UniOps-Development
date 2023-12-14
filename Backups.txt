@@ -1,0 +1,46 @@
+<!--
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var viewButtons = document.querySelectorAll('.view_button');
+    var searchInput = document.getElementById('search');
+
+    viewButtons.forEach(function (viewButton) {
+        viewButton.addEventListener('click', function () {
+            // Your existing view button logic
+        });
+    });
+
+    searchInput.addEventListener('input', function () {
+        var searchTerm = searchInput.value.toLowerCase();
+
+        document.querySelectorAll('.lecture_room').forEach(function (lectureRoom) {
+            var roomName = lectureRoom.dataset.roomName.toLowerCase();
+
+            // Toggle the visibility based on the search term
+            lectureRoom.style.display = roomName.includes(searchTerm) ? 'block' : 'none';
+        });
+    });
+});
+</script>
+
+-->
+
+<!--
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var viewButtons = document.querySelectorAll('.view_button');
+
+        viewButtons.forEach(function (viewButton) {
+        viewButton.addEventListener('click', function () {
+            var lectureRoom = this.closest('.lecture_room');
+            var idleView = lectureRoom.querySelector('.idle-view');
+            var detailedView = lectureRoom.querySelector('.detailed-view');
+            
+            // Toggle the visibility of idle and detailed views
+            idleView.style.display = idleView.style.display === 'none' ? 'block' : 'none';
+            detailedView.style.display = detailedView.style.display === 'none' ? 'block' : 'none';
+        });
+        });
+    });
+    </script>
+-->
