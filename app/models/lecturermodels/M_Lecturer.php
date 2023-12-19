@@ -2,16 +2,18 @@
 
 class M_Lecturer {
     private $db;
+    private $uid;
 
     public function __construct(){
         $this->db = new Database();
+        $this->uid = $_SESSION['user_id'];
+
     }
 
     public function getTimeTable($current_Day) {
         $current_day = $current_Day;
-        $uid = $_SESSION['user_id'];
-        $this->db->query("SELECT * FROM lecturertimetables WHERE lecturer_id = :uid AND day_of_week = :current_day ORDER BY start_time");
-        $this->db->bind(':uid',$uid);
+        $this->db->query("SELECT * FROM lecturertimetables WHERE l_code = :uid AND day_of_week = :current_day ORDER BY start_time");
+        $this->db->bind(':uid',$this->uid);
         $this->db->bind(':current_day',$current_day);
         $result = $this->db->resultSet();
         if($result){
@@ -27,6 +29,17 @@ class M_Lecturer {
         $this->db->bind(':room_id',$room_id);
         $this->db->bind(':today',$today);
         $result = $this->db->resultSet();
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
+        }
+    }
+
+    public function viewProfile() {
+        $this->db->query("SELECT * FROM lecturers WHERE l_email = :uid");
+        $this->db->bind(':uid',$this->uid);
+        $result = $this->db->single();
         if($result){
             return $result;
         } else {

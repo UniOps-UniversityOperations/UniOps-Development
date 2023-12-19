@@ -1,6 +1,6 @@
 <?php $style = "Lecturer_dashboard"; ?>
 
-<?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
+<?php require APPROOT . '/views/includes/LecturerHeader.php';?>
 
 <h1>Lecturer Dashboard </h1>
 <br>

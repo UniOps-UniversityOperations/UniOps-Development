@@ -2,19 +2,16 @@
 
     class Lecturer extends Controller{
 
-        public function __construct(){
+      public $lecturerModel;
 
-        }
+      public function __construct(){
+        $this->lecturerModel = $this->model('lecturermodels/M_Lecturer');
+      }
 
         //show Lecturer Profile
         public function viewProfile(){
-          //  $profile = $this->P_postModel->getRooms();
-            $data = [
-                'title' => 'View Profile',
-                //'posts' => $profile
-                'posts' => []
-            ];
-            $this->view('Lecturer/v_viewProfile', $data);
+          $data = $this->lecturerModel->viewProfile();
+          $this->view('Lecturer/v_viewProfile', $data);
         }
 
         public function updateProfile(){
@@ -28,8 +25,7 @@
           }
 
           public function viewrooms(){
-            $lecturerModel = $this->model('lecturermodels/M_Lecturer');
-            $data = $lecturerModel->viewBookings('E401');
+            $data = $this->lecturerModel->viewBookings('E401');
             $this->view('Lecturer/v_viewrooms', $data);
           }
 

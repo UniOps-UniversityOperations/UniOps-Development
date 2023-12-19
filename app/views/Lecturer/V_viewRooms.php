@@ -35,15 +35,7 @@
 <div class="room-schedule">
     <div class="navigatedays">
         <p class="day"><?php echo date('l')?></p>
-        <div class="left-arrow">
-            <img src= "<?php echo URLROOT;?>/images/leftarrow.svg" alt="Lefi Arrow">
-        </div>
-        <div class="rounds-container">
-
-        </div>
-        <div class="right-arrow">
-            <img src= "<?php echo URLROOT;?>/images/rightarrow.svg" alt="Right Arrow">
-        </div>
+        <input type="date">
 
     </div>
     <div class="bookings">
