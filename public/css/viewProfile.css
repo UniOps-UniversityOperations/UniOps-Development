@@ -1,79 +1,85 @@
-/* Style for the lecture profile container */
-.lecture_profile {
-  background-color: #f0f0f0;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 20px;
-}
-
-/* Style for the lecture profile header */
-.lecture_profile_header h1 {
-  font-size: 24px;
-  margin: 0;
-}
-
-/* Style for the lecture profile body */
-.lecture_profile_body {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-/* Style for the left side of the lecture profile body */
-.lecture_profile_body_left {
-  flex: 1;
-  padding: 10px;
-  border-right: 1px solid #ccc;
-}
-
-/* Style for the right side of the lecture profile body */
-.lecture_profile_body_right {
-  flex: 1;
-  padding: 10px;
-}
-
-/* Style for the individual information paragraphs */
-.lecture_profile_body p {
-  font-size: 16px;
-  margin: 5px 0;
-}
-
-/* Optional: Style for boolean values (e.g., Is AC, Is Wifi) */
-.lecture_profile_body p:contains("Is") {
-  color: #007acc;
-}
-
-/* Style for the lecture profile header */
-.lecture_profile_header {
-display: flex;
-justify-content: space-between;
-align-items: center; /* Center vertically */
-}
-
-/* Style for the update button */
-.update_button {
-background-color: #4CAF50;
-color: white;
-border: none;
-padding: 10px 20px;
-margin-right: 10px;
-cursor: pointer;
-transition: background-color 0.3s;
-}
-
-/* Change the background color on hover */
-.update_button:hover {
-background-color: #45a049;
-}
-
-
-
- .option4 {
+.option4 {
 border-left: 5px solid #010058af;
 background-color: var(--Border-color);
 color: white;
 cursor: pointer;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+}
 
+.general-info {
+  display : flex;
+  flex-grow: 1;
+  background-color: white;
+  flex-direction: column;
+}
+
+.general-info-body {
+  display: flex;
+  flex-direction: column;
+  flex :1;
+}
+
+.upper-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lower-section {
+  display: flex;
+  justify-content: space-between;
+  flex : 1
+}
+
+.upper-left {
+  flex :1;
+  display: flex;
+  justify-content: center;
+}
+
+.upper-right {
+  flex :1;
+}
+
+.lower-left {
+  flex :1;
+  margin-left: 20px;
+}
+
+.lower-right {
+  flex :1;
+}
+
+#profile_picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border : 3px solid white
+}
+
+#profile_picture:hover {
+  border-color: red;
+  transition: border-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.detail {
+  margin-top: 10px; /* Added margin-top to create space between item name and detail */
+  padding: 15px;
+  border: 2px solid #e74c3c; /* Border color */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #f2dede; /* Background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  color: #c0392b; /* Text color */
+}
