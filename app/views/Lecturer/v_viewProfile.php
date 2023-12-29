@@ -3,92 +3,73 @@
 
 <?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
 
-    <h1>Your Profile</h1>
+<div class="leftsection">
 
-    <div class="general-info">
+</div>
 
-        <div class="general-info-header">
-            <h1>User Info</h1>
-        </div>
-
-        <div class="general-info-body">
-
-            <div class="upper-section">
-
-                <div class="upper-left">
-
-                    <img src="<?php echo URLROOT;?>/profilepictures/profile.jpeg" alt="profile pic" id="profile_picture">
-
-                </div>
-
-                <div class="upper-right">
-
-                    <p class="item">Lecturer Code
-                        <span class="detail"><?php echo $data->l_code ?></span>
-                    </p>
-
-                    <p class="item">Full Name 
-                        <span class="detail"><?php echo $data->l_fullName ?></span>
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="lower-section">
-
-                <div class="lower-left">
-
-                    <p class="item">Email 
-                        <span class="detail"><?php echo $data->l_email ?></span>
-                    </p>
-
-                    <p class="item">Contact Number 
-                        <span class="detail"><?php echo $data->l_contactNumber ?></span>
-                    </p>
-
-                    <p class="item">Adress 
-                        <span class="detail"><?php echo $data->l_address ?></span>
-                    </p>
-
-                    <p class="item">Date of Birth
-                        <span class="detail"><?php echo $data->l_dob ?></span>
-                    </p>
-
-                    <p class="item">Gender
-                        <span class="detail"><?php echo $data->l_gender ?></span>
-                    </p>
-
-                </div>
-
-                <div class="lower-right">
-
-                    <p class="item">Name With Intials 
-                        <span class="detail"><?php echo $data->l_nameWithInitials ?></span>
-                    </p>
-
-                    <p class="item">Departement
-                        <span class="detail"><?php echo $data->l_departement ?></span>
-                    </p>
-
-                    <p class="item">Rank
-                        <span class="detail"><?php echo $data->l_positionRank ?></span>
-                    </p>
-
-                    <p class="item">Date of Join
-                        <span class="detail"><?php echo $data->l_dateOfJoin ?></span>
-                    </p>
-
-                    <p class="item">Qualifications
-                        <span class="detail"><?php echo $data->l_qualifications ?></span>
-                    </p>
-
-                </div>
-
-            </div>
-              
-        </div>
-    
+<div class="rightsection">
+    <div class="title">
+        <h2>User Details</h2>
     </div>
+
+    <div class="content">
+
+        <div class="subsection1">
+            <h3 class="subsectiontitle">Personal Details</h3>
+            <hr>
+            <div class="subsectioncontent">
+                <div class="subleft">
+                    <p>Full Name :</p>
+                    <?php echo $data->l_fullName ?>
+                    <p>Name with Initials : </p>
+                    <?php echo $data->l_nameWithInitials ?>
+                </div>
+                <div class="subright">
+                    <p>Date of Birth :</p>
+                    <?php echo $data->l_dob ?>
+                    <p>Address : </p>
+                    <?php echo $data->l_address ?>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="subsection2">
+            <h3 class="subsectiontitle">Contact Details</h3>
+            <hr>
+            <div class="subsectioncontent">
+                <div class="subleft">
+                    <p>Email :</p>
+                    <?php echo $data->l_email ?>
+                </div>
+                <div class="subright">
+                    <p>Contact Number :</p>
+                    <?php echo $data->l_contactNumber ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection3">
+            <h3 class="subsectiontitle">Workspace Details</h3>
+            <hr>
+            <div class="subsectioncontent">
+                <div class="subleft">
+                    <p>Rank :</p>
+                    <?php echo $data->l_positionRank ?>
+                    <p>Designation : </p>
+                    <?php echo $data->l_nameWithInitials ?>
+                </div>
+                <div class="subright">
+                    <p>Lecturer Code :</p>
+                    <?php echo $data->l_code ?>
+                    <p>Date Joined : </p>
+                    <?php echo $data->l_dateOfJoin ?>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
 
 <?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>
