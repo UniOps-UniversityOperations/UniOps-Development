@@ -56,6 +56,7 @@
                     }
                 </style>
 
+            <?php $test = $lec_room = []; ?>
 
             <?php foreach($data['posts'] as $post) : ?>
 
@@ -97,6 +98,7 @@
                     <!-- Detailed view -->
 
                             <?php
+                             $test[] = $post->l_code;
                              $lec_room[] = $post;
                             ?>
                     

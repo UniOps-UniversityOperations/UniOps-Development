@@ -8,8 +8,6 @@
         <!-- <div class="wrapper side-panel-open"> -->
         <div class="wrapper">
         <div class="main">
-            <h1 class="topic">Adminitsrator / Rooms</h1>
-
             <?php
                 // Count the number of rooms for each type
                 $roomTypes = [];
@@ -22,61 +20,73 @@
                     }
                 }
                 ?>
-
-                <div class="centered_container">
-                    <div class="room_type_counts">
-                        <?php
-                        // Display the count for each type
-                        foreach ($roomTypes as $type => $count) {
-                            echo "<div class='count_tile'>";
-                            echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p>Number of \"$type rooms\":</p></div>";
-                            echo "<div class='count_column'><p>$count</p></div>";
-                            echo "</div>";
-                            echo "</div>";
-                        }
-                        ?>
-                    </div>
-                </div>
-
-                <div class="table-head">
-                    <div class="search-container">
-                        <input type="text" id="search" placeholder="Search by room name..." >
-                        <span class="clear-icon" id="clear-search">&#10006;</span>
-                    </div>
-
-                    <div class="filter-container">
-                        <label for="filter-type">Filter by Type:</label>
-                        <select id="filter-type">
-                            <option value="">All Types</option>
+            
+                <div class="top">
+                <h1 class="topic">Adminitsrator / Rooms</h1>
+                    <div class="centered_container">
+                        <div class="room_type_counts">
                             <?php
-                            // Populate the dropdown with unique room types
-                            foreach (array_keys($roomTypes) as $type) {
-                                echo "<option value=\"$type\">$type</option>";
+                            // Display the count for each type
+                            foreach ($roomTypes as $type => $count) {
+                                echo "<div class='count_tile'>";
+                                echo "<div class='count_row'>";
+                                echo "<div class='count_column'><p>Number of \"$type rooms\":</p></div>";
+                                echo "<div class='count_column'><p>$count</p></div>";
+                                echo "</div>";
+                                echo "</div>";
                             }
                             ?>
-                        </select>
+                        </div>
                     </div>
 
-                    <div class="create_room_button">
-                        <a href="<?php echo URLROOT;?>/AdminPosts/createRoom">
-                            <button class="create_button">Create Room</button>
-                        </a>
+                    <div class="table-head">
+                        <div class="search-container">
+                            <input type="text" id="search" placeholder="Search by room name..." >
+                            <span class="clear-icon" id="clear-search">&#10006;</span>
+                        </div>
+
+                        <div class="filter-container">
+                            <label for="filter-type">Filter by Type:</label>
+                            <select id="filter-type">
+                                <option value="">All Types</option>
+                                <?php
+                                // Populate the dropdown with unique room types
+                                foreach (array_keys($roomTypes) as $type) {
+                                    echo "<option value=\"$type\">$type</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="create_room_button">
+                            <a href="<?php echo URLROOT;?>/AdminPosts/createRoom">
+                                <button class="create_button">Create Room</button>
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <style>
-                    .table-head{
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        margin: 20px
-                    }
-                </style>
+                    <style>
+                        .table-head{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin: 20px
+                        }
+                    </style>
 
 
-            <?php $test = $lec_room = []; ?>
+                <?php $test = $lec_room = []; ?>
 
+                <div class="title_bar">
+                    <p class="title_item"><b>Name</b></p>
+                    <p class="title_item"><b>ID</b></p>
+                    <p class="title_item"><b>Type</b></p>
+                    <p style="padding-right: 200px;" class="title_item"><b>Capacity</b></p>
+                </div> 
+            
+            </div>
+            
+            <div class="list">
             <?php foreach($data['posts'] as $post) : ?>
 
                 <div class="lecture_room" data-room-name="<?php echo $post->name; ?>" data-room-type="<?php echo $post->type; ?>">
@@ -88,7 +98,7 @@
                                 <p class="header_item"><b>ID / Code:</b> <?php echo $post->id; ?></p>
                                 <p class="header_item"><b>Type:</b> <?php echo $post->type; ?></p>
                                 <p class="header_item"><b>Capacity:</b> <?php echo $post->capacity; ?></p>
-                                <p class="header_item"><b>Availability:</b> <?php echo $post->current_availability; ?></p>
+                                <!-- <p class="header_item"><b>Availability:</b> <?php echo $post->current_availability; ?></p> -->
                                 
                                 <div class="action_buttons">
                                     <!-- <button class="view_button">View</button>
@@ -129,6 +139,7 @@
                 </div>
                 
             <?php endforeach; ?>
+            </div>
 
 
         </div>
