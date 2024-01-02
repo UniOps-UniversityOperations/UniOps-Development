@@ -74,10 +74,10 @@
 					</div>
 
 					<div class="nav-option option6">
-					<a href="<?php echo URLROOT;?>/Student/viewStudent/">
-						<img src="<?php echo URLROOT;?>/images/student.svg" class="nav-img" alt="Student">
-						<h3> Student</h3>
-					</a>
+						<a href="<?php echo URLROOT;?>/Student/viewStudent/">
+							<img src="<?php echo URLROOT;?>/images/student.svg" class="nav-img" alt="Student">
+							<h3> Student</h3>
+						</a>
 					</div>
 
 					<div class="nav-option option7">
