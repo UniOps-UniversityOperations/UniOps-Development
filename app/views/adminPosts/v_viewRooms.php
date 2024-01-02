@@ -30,7 +30,7 @@
                             foreach ($roomTypes as $type => $count) {
                                 echo "<div class='count_tile'>";
                                 echo "<div class='count_row'>";
-                                echo "<div class='count_column'><p>Number of \"$type rooms\":</p></div>";
+                                echo "<div class='count_column'><p># $type rooms:</p></div>";
                                 echo "<div class='count_column'><p>$count</p></div>";
                                 echo "</div>";
                                 echo "</div>";
@@ -81,7 +81,7 @@
                     <p class="title_item"><b>Name</b></p>
                     <p class="title_item"><b>ID</b></p>
                     <p class="title_item"><b>Type</b></p>
-                    <p style="padding-right: 200px;" class="title_item"><b>Capacity</b></p>
+                    <p style="padding-right: 220px;" class="title_item"><b>Capacity</b></p>
                 </div> 
             
             </div>
@@ -95,9 +95,9 @@
                     <div class="idle-view">
                             <div class="lecture_room_header">
                                 <h3 class="header_title"><?php echo $post->name; ?></h3>
-                                <p class="header_item"><b>ID / Code:</b> <?php echo $post->id; ?></p>
-                                <p class="header_item"><b>Type:</b> <?php echo $post->type; ?></p>
-                                <p class="header_item"><b>Capacity:</b> <?php echo $post->capacity; ?></p>
+                                <p class="header_item"><?php echo $post->id; ?></p>
+                                <p class="header_item"><?php echo $post->type; ?></p>
+                                <p class="header_item"><?php echo $post->capacity; ?></p>
                                 <!-- <p class="header_item"><b>Availability:</b> <?php echo $post->current_availability; ?></p> -->
                                 
                                 <div class="action_buttons">

@@ -9,19 +9,19 @@
 
         <!-- input feilds -->
         <fieldset>
-        <label class="lable" for="id">Room ID:
+        <label class="lable" for="id">ID:
         <input type="text" id="id" name="id" placeholder="id" value="<?php echo $data["id"];?>" required>
         </label>
 
-        <label class="lable" for="name">Room Name:
+        <label class="lable" for="name">Name / Code: :
         <input type="text" id="name" name="name" placeholder="name" value="<?php echo $data["name"];?>" required>
         </label>
 
-        <label class="lable" for="type">Room Type:
+        <label class="lable" for="type">Type:
         <input type="text" id="type" name="type" placeholder="type" value="<?php echo $data["type"];?>" required>
         </label>
 
-        <label class="lable" for="capacity">Room Capacity:
+        <label class="lable" for="capacity">Capacity:
         <input type="text" id="capacity" name="capacity" placeholder="capacity" value="<?php echo $data["capacity"];?>" required>
         </label>
 
