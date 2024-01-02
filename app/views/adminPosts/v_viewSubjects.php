@@ -8,7 +8,6 @@
         <!-- <div class="wrapper side-panel-open"> -->
         <div class="wrapper">
         <div class="main">
-            <h1 class="topic">Adminitsrator / Subjects</h1>
 
             <?php
                 // Count the number of rooms for each year
@@ -23,6 +22,8 @@
                 }
             ?>
 
+            <div class="top">
+            <h1 class="topic">Adminitsrator / Subjects</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
@@ -30,7 +31,7 @@
                         foreach ($roomYears as $year => $count) {
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p>Number of \"year $year subjects\":</p></div>";
+                            echo "<div class='count_column'><p># year $year subjects:</p></div>";
                             echo "<div class='count_column'><p>$count</p></div>";
                             echo "</div>";
                             echo "</div>";
@@ -75,8 +76,18 @@
                 </style>
 
 
-            <?php $test = $lec_room = []; ?>
+                <div class="title_bar">
+                    <p class="title_item"><b>Code</b></p>
+                    <p class="title_item"><b>Name</b></p>
+                    <p class="title_item"><b>Stream</b></p>
+                    <p class="title_item"><b>Year</b></p>
+                    <p style="padding-right: 220px;" class="title_item"><b>Credits</b></p>
+                </div> 
+            </div>
 
+            <?php $test = $lec_room = []; ?>
+            
+            <div class="list">
             <?php foreach($data['posts'] as $post) : ?>
 
                 <div class="lecture_room" data-room-name="<?php echo $post->sub_name; ?>" data-room-type="<?php echo $post->sub_year; ?>">
@@ -85,10 +96,10 @@
                     <div class="idle-view">
                             <div class="lecture_room_header">
                                 <h3 class="header_title"><?php echo $post->sub_code; ?></h3>
-                                <p class="header_item"><b>Name:</b> <?php echo $post->sub_name; ?></p>
-                                <p class="header_item"><b>Stream:</b> <?php echo $post->sub_stream; ?></p>
-                                <p class="header_item"><b>Year:</b> <?php echo $post->sub_year; ?></p>
-                                <p class="header_item"><b>Credits:</b> <?php echo $post->sub_credits; ?></p>
+                                <p class="header_item"><?php echo $post->sub_name; ?></p>
+                                <p class="header_item"><?php echo $post->sub_stream; ?></p>
+                                <p class="header_item"><?php echo $post->sub_year; ?></p>
+                                <p class="header_item"></b> <?php echo $post->sub_credits; ?></p>
                                 
                                 <div class="action_buttons">
 
@@ -126,6 +137,7 @@
                 </div>
                 
             <?php endforeach; ?>
+            </div>
 
 
         </div>

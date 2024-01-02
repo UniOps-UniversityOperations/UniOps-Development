@@ -465,3 +465,42 @@ select:hover, select:focus {
 select {
   transition: border-color 0.3s ease-in-out;
 }
+
+
+.title_bar{
+  background-color: var(--Border-color);
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+}
+
+.title_item {
+  font-size: 22px;
+  margin: 5px 0;
+  flex: 1; /* Equal flex distribution for each paragraph */
+}
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* Ensure it's on top of other elements */
+}
+
+.list {
+    max-height: 56vh;
+    overflow-y: scroll; /* Enable vertical scrolling if the content exceeds the max height */
+    margin-top: 40px;
+}
+
+.list::-webkit-scrollbar {
+    width: 0.5em; /* Set the width of the scrollbar */
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Hide the thumb */
+}
