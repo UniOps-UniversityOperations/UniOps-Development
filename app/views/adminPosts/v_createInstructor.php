@@ -3,7 +3,7 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
-<h1>Create New Lecturer</h1>
+<h1>Add New Lecturer</h1>
 
 <div class="content">
     <form action="<?php echo URLROOT;?>/adminPosts/createInstructor/" method="post">

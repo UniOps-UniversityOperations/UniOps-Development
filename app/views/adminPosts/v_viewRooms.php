@@ -60,7 +60,7 @@
 
                         <div class="create_room_button">
                             <a href="<?php echo URLROOT;?>/AdminPosts/createRoom">
-                                <button class="create_button">Create Room</button>
+                                <button class="create_button">Add Room</button>
                             </a>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                 <?php $test = $lec_room = []; ?>
 
                 <div class="title_bar">
-                    <p class="title_item"><b>Name</b></p>
+                    <p style="padding-left: 30px;" class="title_item"><b>Name</b></p>
                     <p class="title_item"><b>ID</b></p>
                     <p class="title_item"><b>Type</b></p>
                     <p style="padding-right: 220px;" class="title_item"><b>Capacity</b></p>
@@ -87,13 +87,17 @@
             </div>
             
             <div class="list">
-            <?php foreach($data['posts'] as $post) : ?>
+            <?php 
+            //counter variable for row numbers
+            $i = 1;
+            foreach($data['posts'] as $post) : ?>
 
                 <div class="lecture_room" data-room-name="<?php echo $post->name; ?>" data-room-type="<?php echo $post->type; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
                             <div class="lecture_room_header">
+                                <p class="row_num"><?php echo $i++; ?></p>
                                 <h3 class="header_title"><?php echo $post->name; ?></h3>
                                 <p class="header_item"><?php echo $post->id; ?></p>
                                 <p class="header_item"><?php echo $post->type; ?></p>
@@ -198,11 +202,11 @@
                                 </div>
 
                                 <div class="sidebar_bottom_right_part1">
-                                    <p><?php echo $post->is_ac ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_wifi ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_media ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_lecture ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_lab ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_ac ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_wifi ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_media ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_lecture ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_lab ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
                                 </div>
 
                                 <div class="sidebar_bottom_left_part2">
@@ -213,10 +217,10 @@
                                 </div>
 
                                 <div class="sidebar_bottom_right_part2">
-                                    <p><?php echo $post->is_tutorial ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_meeting ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_seminar ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_exam ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_tutorial ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_meeting ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_seminar ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_exam ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
                                 </div>
 
                             </div>

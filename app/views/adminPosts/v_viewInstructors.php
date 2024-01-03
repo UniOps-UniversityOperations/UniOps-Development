@@ -44,7 +44,7 @@
 
                     <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createInstructor">
-                            <button class="create_button">Create Instructor</button>
+                            <button class="create_button">Add Instructor</button>
                         </a>
                     </div>
                 </div>

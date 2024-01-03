@@ -61,7 +61,7 @@
 
                     <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createSubject">
-                            <button class="create_button">Create subject</button>
+                            <button class="create_button">Add subject</button>
                         </a>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
 
 
                 <div class="title_bar">
-                    <p class="title_item"><b>Code</b></p>
+                    <p style="padding-left: 30px;" class="title_item"><b>Code</b></p>
                     <p class="title_item"><b>Name</b></p>
                     <p class="title_item"><b>Stream</b></p>
                     <p class="title_item"><b>Year</b></p>
@@ -88,13 +88,17 @@
             <?php $test = $lec_room = []; ?>
             
             <div class="list">
-            <?php foreach($data['posts'] as $post) : ?>
+            <?php 
+            //counter variable for row numbers
+            $i = 1;
+            foreach($data['posts'] as $post) : ?>
 
                 <div class="lecture_room" data-room-name="<?php echo $post->sub_name; ?>" data-room-type="<?php echo $post->sub_year; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
                             <div class="lecture_room_header">
+                                <p class="row_num"><?php echo $i++; ?></p>
                                 <h3 class="header_title"><?php echo $post->sub_code; ?></h3>
                                 <p class="header_item"><?php echo $post->sub_name; ?></p>
                                 <p class="header_item"><?php echo $post->sub_stream; ?></p>
@@ -189,10 +193,10 @@
                                 </div>
 
                                 <div class="sidebar_bottom_right_part1">
-                                    <p><?php echo $post->sub_isCore ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->sub_isHaveLecture ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->sub_isHaveTutorial ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->sub_isHavePractical ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->sub_isCore ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->sub_isHaveLecture ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->sub_isHaveTutorial ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->sub_isHavePractical ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
                                 </div>
 
                             </div>

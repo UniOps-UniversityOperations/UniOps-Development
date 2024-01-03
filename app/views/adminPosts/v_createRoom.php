@@ -3,7 +3,7 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
-<h1>Create New Room</h1><br>
+<h1>Add New Room</h1><br>
 
 <div class="content">
     <form action="<?php echo URLROOT;?>/adminPosts/createRoom" method="post">

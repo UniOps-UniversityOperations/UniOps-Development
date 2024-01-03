@@ -503,3 +503,9 @@ select {
 .list::-webkit-scrollbar-thumb {
   background-color: transparent; /* Hide the thumb */
 }
+
+.row_num{
+  font-size: 20px;
+  margin: 5px 0;
+  padding-right: 20px;
+}

@@ -2,7 +2,7 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
-<h1>Create New Subject</h1><br>
+<h1>Add New Subject</h1><br>
 
 <div class="content">
     <form action="<?php echo URLROOT;?>/adminPosts/createSubject" method="post">

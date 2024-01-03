@@ -60,7 +60,7 @@
 
                     <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createAsset">
-                            <button class="create_button">Create Asset</button>
+                            <button class="create_button">Add Asset</button>
                         </a>
                     </div>
                 </div>
