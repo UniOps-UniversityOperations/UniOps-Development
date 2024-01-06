@@ -11,11 +11,11 @@
         <!-- input feilds -->
 
         <label class="lable" for="sub_code">Code:
-        <input type="text" id="sub_code" name="sub_code" placeholder="sub_code" value="<?php $data["sub_code"];?>" required>
+        <input type="text" id="sub_code" name="sub_code" placeholder="sub_code" value="<?php $data["sub_code"];?>" oninput="this.value = this.value.toUpperCase();" required>
         </label>
 
         <label class="lable" for="sub_name">Name:
-        <input type="text" id="sub_name" name="sub_name" placeholder="sub_name" value="<?php $data["sub_name"];?>" required>
+        <input type="text" id="sub_name" name="sub_name" placeholder="sub_name" value="<?php $data["sub_name"];?>" oninput="this.value = this.value.toUpperCase();" required>
         </label>
 
         <label class="label" for="credit_type">Credit:

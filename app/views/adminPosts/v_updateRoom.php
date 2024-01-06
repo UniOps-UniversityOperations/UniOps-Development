@@ -14,11 +14,17 @@
         </label>
 
         <label class="lable" for="name">Name / Code: :
-        <input type="text" id="name" name="name" placeholder="name" value="<?php echo $data["name"];?>" required>
+        <input type="text" id="name" name="name" placeholder="name" value="<?php echo strtoupper($data["name"]); ?>" oninput="this.value = this.value.toUpperCase();" required>
         </label>
 
         <label class="lable" for="type">Type:
-        <input type="text" id="type" name="type" placeholder="type" value="<?php echo $data["type"];?>" required>
+        <select id="type" name="type" required>
+            <option value="LECTUER" <?php echo ($data["type"] == 'LECTUER') ? 'selected' : ''; ?>>LECTUER</option>
+            <option value="LAB" <?php echo ($data["type"] == 'LAB') ? 'selected' : ''; ?>>LAB</option>
+            <option value="MEEING" <?php echo ($data["type"] == 'MEEING') ? 'selected' : ''; ?>>MEEING</option>
+            <option value="COMMON" <?php echo ($data["type"] == 'COMMON') ? 'selected' : ''; ?>>COMMON</option>
+            <option value="OTHER" <?php echo ($data["type"] == 'OTHER') ? 'selected' : ''; ?>>OTHER</option>
+        </select>
         </label>
 
         <label class="lable" for="capacity">Capacity:

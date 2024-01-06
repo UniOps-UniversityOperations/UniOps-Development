@@ -166,7 +166,6 @@
                             <div class="sidebar_body_top">
                                 <div class="sidebar_top_left">
                                     <p><b>Subject Code</b></p>
-                                    <p><b>Subject Name</b></p>
                                     <p><b>Number of Credits</b></p>
                                     <p><b>Year</b></p>
                                     <p><b>Semester</b></p>
@@ -175,7 +174,6 @@
 
                                 <div class="sidebar_top_right">
                                     <p> <b> : </b> <?php echo $post->sub_code; ?></p>
-                                    <p> <b> : </b> <?php echo $post->sub_name; ?></p>
                                     <p> <b> : </b> <?php echo $post->sub_credits; ?></p>
                                     <p> <b> : </b> <?php echo $post->sub_year; ?></p>
                                     <p> <b> : </b> <?php echo $post->sub_semester; ?></p>

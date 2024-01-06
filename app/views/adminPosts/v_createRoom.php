@@ -16,11 +16,17 @@
         </label>
 
         <label class="lable" for="name">Name / Code:
-        <input type="text" id="name" name="name" placeholder="name" value="<?php $data["name"];?>" required>
+        <input type="text" id="name" name="name" placeholder="name" value="<?php $data["name"];?>" oninput="this.value = this.value.toUpperCase();" required>
         </label>
 
-        <label class="lable" for="type">Type (lecture, lab, meeting):
-        <input type="text" id="type" name="type" placeholder="type" value="<?php $data["type"];?>" required>
+        <label class="label" for="room_type">Credit:
+            <select id="type" name="type" required>
+                <option value="LECTUER">LECTUER</option>
+                <option value="LAB">LAB</option>
+                <option value="MEEING">MEEING</option>
+                <option value="COMMON">COMMON</option>
+                <option value="OTHER">OTHER</option>
+            </select>
         </label>
 
         <label class="lable" for="capacity">Capacity:
