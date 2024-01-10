@@ -1,17 +1,6 @@
 body {
     margin: 0;
-    padding: 0;
-}
-
-.title {
-    width: 85%;
-    margin: 10px auto 25px auto;
-    height: 10%;
-}
-
-h1 {
-    font-size: 35px;
-    
+    padding: 20px 20px 20px 20px;
 }
 
 .add {
@@ -23,9 +12,6 @@ h1 {
     padding: 10px;
     display: flex;
     justify-content: space-between;
-    margin: 0;
-    align-items: center;
-    padding: 4px;
 
 }
 
@@ -53,47 +39,29 @@ td {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 85%;
+    max-width: 900px;
     margin: 40px auto 0 auto;
 }
 
 table {
     width: 100%;
     margin-bottom: 50px;
-    margin-top: 50px;
-}
-
-select {
-    width: 180px;
-    height: 25px;
-    margin: 0;
-    border-style: none;
-    border-radius: 6px;
-    padding-left: 5px;
 }
 
 .form-div {
     display: flex;
     justify-content: space-around;
-    max-width: 85%;
-    margin: 0 auto 0 auto;
-    
 }
 
 .add-div {
-    width: 45%;
+    width: 40%;
     max-width: 400px;
     display: flex;
     flex-direction: column;
-    line-height: 10px;
-    /* background-image: linear-gradient(#1848A0, #00BDFF); */
-    background-color: #ccced2;
-    padding: 25px;
-    border-radius: 20px;
 }
 
 .btn {
-    background-color: #839cc9;
+    background-color: blueviolet;
     height: fit-content;
     border: none;
     padding: 10px;
@@ -101,6 +69,4 @@ select {
     width: 50%;
     align-self: self-end;
     max-width: max-content;
-    margin-top: 20px;
-    margin-right: 10px;
 }

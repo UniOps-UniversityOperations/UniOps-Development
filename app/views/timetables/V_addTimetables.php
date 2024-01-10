@@ -2,12 +2,7 @@
     <link rel="stylesheet" href="/public/css/add.css">
 </head>
 
-<?php require_once '../../config/config.php' ?>
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
-
-<div class="title">
-    <h1>Add Timetable</h1>
-</div>
+<h1>Add Timetable</h1>
 
 <div class="form-div">
     <div class="add-div">
@@ -58,9 +53,9 @@
     <div class="add-div">
         <form action=""  class="add">
             <div class="enter-details">
-                <label for="course-code">Course Code</label>
-                <select id="course-code" name="course-code">
-                    <option value="scs1205">SCS 1205</option>
+                <label for="semester">Course Code</label>
+                <select name="semester">
+                    <option value="first-semester">First Semester</option>
                 </select>
             </div>
             <div class="enter-details">

@@ -74,23 +74,16 @@
 					</div>
 
 					<div class="nav-option option6">
-					<a href="<?php echo URLROOT;?>/Users/login/">
-						<img src="<?php echo URLROOT;?>/images/student.svg" class="nav-img" alt="Student">
-						<h3> Student</h3>
-					</a>
-					</div>
-
-					<div class="nav-option option7">
-					<a href="<?php echo URLROOT;?>/AdminPosts/viewAssets/">
-							<img src="<?php echo URLROOT;?>/images/database.svg" class="nav-img" alt="Database">
-							<h3>  Database</h3>
+						<a href="<?php echo URLROOT;?>/Student/viewStudent/">
+							<img src="<?php echo URLROOT;?>/images/student.svg" class="nav-img" alt="Student">
+							<h3> Student</h3>
 						</a>
 					</div>
 
-					<div class="option8 nav-option">
-						<a href="<?php echo URLROOT;?>/Timetables/viewTimetables/">
-							<img src="<?php echo URLROOT;?>/images/room.png" class="nav-img" alt="Timetables">
-							<h3> Timetables</h3>
+					<div class="nav-option option7">
+						<a href="<?php echo URLROOT;?>/Users/login/">
+							<img src="<?php echo URLROOT;?>/images/database.svg" class="nav-img" alt="Database">
+							<h3>  Database</h3>
 						</a>
 					</div>
 
