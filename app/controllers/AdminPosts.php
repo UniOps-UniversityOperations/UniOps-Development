@@ -9,14 +9,10 @@
             $this->L_postModel = $this->model('M_Lecturer');
             $this->I_postModel = $this->model('M_Instructor');
             $this->U_postModel = $this->model('M_Users');
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
             $this->A_postModel = $this->model('M_Asset');
-=======
->>>>>>> 2797c4de99ab682e39a45434c6addaef5b83d6d6
-=======
-            $this->A_postModel = $this->model('M_Asset');
->>>>>>> d4ac6d754ecdcef8a2696c81aed569f0b3febe45
+
         }
 
         //CRUD for User
@@ -772,8 +768,6 @@
             $this->view('adminPosts/v_viewAssets', $data);
         }
 
-<<<<<<< HEAD
-=======
         //Create Asset
         public function createAsset(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -868,6 +862,5 @@
             }
         }
 
->>>>>>> d4ac6d754ecdcef8a2696c81aed569f0b3febe45
     }
 
