@@ -41,6 +41,16 @@
     justify-content: space-between;
     align-items: center; /* Center vertically */
   }
+
+  .topic{
+    font-size: 34px;
+    font-weight: bold;
+    margin: -40px 0;
+    flex: 1; /* Equal flex distribution for each paragraph */
+    padding-bottom: 30px;
+    padding-left: 20px;
+  }
+  
   
   /* Style for the view button */
   
@@ -108,7 +118,7 @@
     background-color: #d32f2f;
   }
   
-  .option7 {
+  .option4 {
     border-left: 5px solid #010058af;
     background-color: var(--Border-color);
     color: white;
@@ -246,10 +256,6 @@
     font-size: 16px;
   }
   
-  .wrapper {
-    display: flex;
-  }
-  
   /* Main content area with custom scrollbar */
   .main {
     flex-grow: 1;
@@ -271,200 +277,6 @@
     background-color: #f0f0f0; /* Color of the scrollbar track */
   }
   
-  
-  .side-panel-toggle {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-  
-    color: #ffffff;
-    background: var(--Border-color);
-    border: none;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    cursor: pointer;
-  }
-  
-  .side-panel-toggle:hover {
-    background: #0f2c61;
-  }
-  
-  .sp-icon-close {
-    display: none !important;
-  }
-  
-  .side-panel {
-    /* display: none; */
-    width: 500px;
-    width: 0;
-    height: 87vh;
-    flex-shrink: 0;
-    color: #000000;
-    background: #f0f0f0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-    border-radius: 0 20px 20px 20px;
-    transition: all 0.1s ease-out;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  
-  
-  .side-panel-open .side-panel {
-    /* display: initial; */
-    width: 450px;
-  }
-  
-  .side-panel.side-panel-close{
-    display: none;
-  }
-  
-  .side-panel-open .sp-icon-open {
-    display: none !important;
-  }
-  
-  .side-panel-open .sp-icon-close {
-    display: initial !important;
-  }
-  
-  
-  .topic{
-    font-size: 34px;
-    font-weight: bold;
-    margin: -40px 0;
-    flex: 1; /* Equal flex distribution for each paragraph */
-    padding-bottom: 30px;
-    padding-left: 20px;
-  }
-  
-  @media only screen and (max-width: 1000px) {
-    .lecture_room_header {
-      flex-direction: column;
-    }
-    /* .side-panel-open .side-panel {
-      width: 200px;
-  } */
-  }
-  
-  .sidebar_header{
-    width: 380px;
-    height: 140px; 
-    flex-shrink: 0;
-    border-radius: 20px;
-    background-color: #010127;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .header_text{
-    font-size: 34px;
-    font-weight: bold;
-    flex: 1; /* Equal flex distribution for each paragraph */
-    margin-left: 45px;
-    text-align: left;
-    color: #D2D2D6;
-  }
-  
-  .sidebar_body{
-    line-height: 1.5;
-    margin-left: 15px;
-  }
-  
-   /* Style for the left side of the side bar body */
-   .sidebar_body_top {
-    flex: 1;
-    padding: 10px;
-    padding-top: 30px;
-    font-size: larger;
-    align-items: flex-start; 
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .side_item{
-      display: none;
-  }
-  
-  .side_item.active{
-      display:block;
-      margin-right: -10px;
-      margin-top: 45px;
-      margin-left: -10px;
-  }
-  
-  
-  .sidebar_top_left,
-  .sidebar_top_right {
-      flex: 1;
-      word-wrap: break-word;
-      width: 15ch;
-  }
-  
-  .sidebar_top_left p,
-  .sidebar_top_right p {
-      margin: 0; /* Remove default margin to avoid extra space */
-  }
-  
-  .sidebar_body_bottom {
-    flex: 1;
-    padding: 10px;
-    font-size: larger;
-    align-items: flex-start; 
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .sidebar_bottom_left_part1,
-  .sidebar_bottom_right_part1,
-  .sidebar_bottom_left_part2,
-  .sidebar_bottom_right_part2{
-    flex: 1;
-  }
-  
-  .sidebar_bottom_left_part1 p,
-  .sidebar_bottom_right_part1 p,
-  .sidebar_bottom_left_part2 p,
-  .sidebar_bottom_right_part2 p{
-    margin: 0; /* Remove default margin to avoid extra space */
-  }
-  
-  /* Add this CSS code to your stylesheet */
-  
-  .filter-container {
-    margin-right: 600px; /* Adjust the margin as needed */;
-  }
-  
-  label {
-    margin-right: 10px; /* Adjust the margin as needed */
-  }
-  
-  select {
-    padding: 8px; /* Adjust the padding as needed */
-    font-size: 14px; /* Adjust the font size as needed */
-    border: 1px solid #ccc; /* Adjust the border color as needed */
-    border-radius: 4px; /* Adjust the border-radius as needed */
-    cursor: pointer;
-  }
-  
-  /* Style for the "All Types" option */
-  option {
-    font-weight: bold; /* Make the "All Types" option bold */
-  }
-  
-  /* Style for the selected option */
-  select:hover, select:focus {
-    border-color: #333; /* Change border color on hover/focus */
-  }
-  
-  /* Optional: Add a subtle transition effect */
-  select {
-    transition: border-color 0.3s ease-in-out;
-  }
   
 
 .title_bar{
@@ -491,22 +303,32 @@
   z-index: 100; /* Ensure it's on top of other elements */
 }
 
-.list {
-    max-height: 56vh;
-    overflow-y: scroll; /* Enable vertical scrolling if the content exceeds the max height */
-    margin-top: 40px;
-}
 
-.list::-webkit-scrollbar {
-    width: 0.5em; /* Set the width of the scrollbar */
-}
-
-.list::-webkit-scrollbar-thumb {
-  background-color: transparent; /* Hide the thumb */
-}
 
 .row_num{
   font-size: 20px;
   margin: 5px 0;
   padding-right: 20px;
+}
+
+
+.container {
+  display: flex;
+  margin-top: 60px;
+  
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Optional: Add some styling for better visualization */
+.column:nth-child(1) {
+  background-color: #DCDCE2;
+}
+
+.column:nth-child(2) {
+  background-color: #DCDCE2;
 }

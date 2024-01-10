@@ -165,11 +165,18 @@ border-left: 5px solid #a2a2a2;
 background-color: #030369;
 cursor: pointer;
 }
+
 .nav-img {
 height: 30px;
 margin-right: 20px;
 padding-right: 10px;
 }
+
+.bellw{
+    height: 30px;
+    margin-right: 10px;
+    padding-right: 10px;
+    }
 
 .nav-upper-options {
 display: flex;

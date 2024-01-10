@@ -10,6 +10,7 @@
             $this->I_postModel = $this->model('M_Instructor');
             $this->U_postModel = $this->model('M_Users');
             $this->A_postModel = $this->model('M_Asset');
+            $this->RS_postModel = $this->model('M_requestedSubjects');
         }
 
         //CRUD for User
@@ -857,6 +858,16 @@
             }else{
                 die('Something went wrong');
             }
+        }
+
+
+        //Assign Subjects to Lecturer
+        public function assignSubjects($postId){
+            $posts = $this->RS_postModel->getSubjects($postId);
+            $data = [
+                'posts' => $posts
+            ];
+            $this->view('adminPosts/v_assignSubjects', $data);
         }
 
     }

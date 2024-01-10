@@ -65,6 +65,21 @@
   background-color: #0f2c61;
 }
 
+.assign_button{
+  background-color: var(--Border-color);
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+}
+
+.assign_button:hover {
+  background-color: #0f2c61;
+}
+
 /* Style for the update button */
 .update_button {
   background-color: #4CAF50;
