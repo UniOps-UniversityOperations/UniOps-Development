@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="create_room_button">
-                        <a href="<?php echo URLROOT;?>/Student/createStudent">
+                        <a href="<?php echo URLROOT;?>/AdminPosts/createStudent">
                             <button class="create_button">Create Student</button>
                         </a>
                     </div>
@@ -76,14 +76,14 @@
                                         <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
                                     </button>
                                     
-                                    <a href="<?php echo URLROOT; ?>/Student/updateStudent/<?php echo $post->s_id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateStudent/<?php echo $post->s_id ?>">
                                         <button class="update_button">
                                             <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
 
                                         </button>
                                     </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/Student/deleteStudent/<?php echo $post->s_id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteStudent/<?php echo $post->s_id ?>">
                                         <button class="delete_button">
                                             <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
                                         </button>

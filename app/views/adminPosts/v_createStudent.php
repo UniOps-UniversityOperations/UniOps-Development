@@ -2,15 +2,17 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
-<h1>Update Student</h1>
+<h1>Create New Student</h1>
 
 <div class="content">
-    <form action="<?php echo URLROOT;?>/Student/updateStudent/<?php echo $data["s_id"];?>" method="POST">
+    <form action="<?php echo URLROOT;?>/AdminPosts/createStudent/" method="post">
 
-    <fieldset>
-        <label class="lable" for="s_id">Student ID:
+        <!-- input feilds -->
+
+        <fieldset>
+        <!-- <label class="lable" for="s_id">Student ID:
         <input type="text" id="s_id" name="s_id" placeholder="s_id" value="<?php echo $data["s_id"];?>" required>
-        </label>
+        </label> -->
 
         <label class="lable" for="s_email">Student Email:
         <input type="email" id="s_email" name="s_email" placeholder="s_email" value="<?php echo $data["s_email"];?>" required>
@@ -51,19 +53,18 @@
         <label class="lable" for="s_semester">Semester:
         <input type="text" id="s_semester" name="s_semester" placeholder="s_semester" value="<?php echo $data["s_semester"];?>" required>
         </label>
-
+        
     </fieldset>
 
-    <fieldset>
-        <label class="lable" for="s_isDeleted">
-        <input type="checkbox" class="inline" id="s_isDeleted" name="s_isDeleted" value="1" <?php echo $data["s_isDeleted"] == 1 ? 'checked' : '';?>>
-        Is Deleted</label>
-    </fieldset>
 
-    <button type="submit" class="create_button">UPDATE</button>
+        <!-- Buttons -->
+        <button type="submit" class="create_button">Create Student</button>
+
 
     </form>
 </div>
+
+
 
 <!-- Footer Section -->
 <?php require APPROOT . '/views/includes/adminFooter.php'; ?>
