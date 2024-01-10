@@ -6,6 +6,10 @@
             //echo 'This is the posts controller';
             $this->S_postModel = $this->model('M_Student');
             $this->U_postModel = $this->model('M_Users');
+
+
+
+            
         }
 
         //CRUD for User
