@@ -224,6 +224,9 @@
                 if(1){
                     if($this->S_postModel->updateStudent($data)){
                         redirect('student/viewStudent');
+
+
+                        
                     }else{
                         die('Something went wrong');
                     }
