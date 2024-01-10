@@ -11,10 +11,14 @@
             <fieldset>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <label class="lable" for="sub_id">Subject ID:
 =======
                 <label class="lable" for="sub_code">Subject ID:
 >>>>>>> 2797c4de99ab682e39a45434c6addaef5b83d6d6
+=======
+                <label class="lable" for="sub_id">Subject ID:
+>>>>>>> d4ac6d754ecdcef8a2696c81aed569f0b3febe45
                 <input type="text" id="sub_id" name="sub_id" placeholder="sub_id" value="<?php echo $data["sub_id"];?>" required>
                 </label>
 
