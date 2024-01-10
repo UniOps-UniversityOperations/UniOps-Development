@@ -90,7 +90,7 @@
         <input type="checkbox" class="inline" id="is_exam" name="is_exam" value="1" <?php echo $data["is_exam"] == 1 ? 'checked' : '';?>>
         Is available for Exam</label>
 
-        <button type="submit" class="create_button" >Create Room</button>
+        <button type="submit" class="create_button" >UPDATE</button>
         </fieldset>
     </form>
 </div>

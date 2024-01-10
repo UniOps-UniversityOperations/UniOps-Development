@@ -1,6 +1,9 @@
 <?php
 
 class Users extends Controller {
+
+    protected $userModel = null;
+
     public function __construct(){
         $this->userModel = $this->model('M_Users');
     }
@@ -103,7 +106,7 @@ class Users extends Controller {
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['username'] = $user->username;
 
-        redirect('pages/administrator_dashboard');
+        redirect('AdminPosts/viewUsers');
     }
 
     public function logout(){
@@ -120,14 +123,5 @@ class Users extends Controller {
             return false;
         }
     }
-// <<<<<<< HEAD
-// <<<<<<< HEAD
-
- 
-// =======
     
-// >>>>>>> 48dba3cc93c7356c9da093ed7d80ab3d87b56b6b
-// =======
-    
-// >>>>>>> 48dba3cc93c7356c9da093ed7d80ab3d87b56b6b
 }
