@@ -11,6 +11,7 @@
             $this->U_postModel = $this->model('M_Users');
             $this->A_postModel = $this->model('M_Asset');
             $this->RS_postModel = $this->model('M_requestedSubjects');
+            $this->AS_postModel = $this->model('M_assignedSubjects');
         }
 
         //CRUD for User
@@ -863,11 +864,33 @@
 
         //Assign Subjects to Lecturer
         public function assignSubjects($postId){
-            $posts = $this->RS_postModel->getSubjects($postId);
+            $postsRS = $this->RS_postModel->getSubjects($postId);
+            $postsAS = $this->AS_postModel->getSubjects($postId);
+            $subjects = $this->S_postModel->getSubjects();
             $data = [
-                'posts' => $posts
+                'postsRS' => $postsRS,
+                'postsAS' => $postsAS,
+                'subjects' => $subjects,
             ];
             $this->view('adminPosts/v_assignSubjects', $data);
+        }
+
+        public function addToAssignSubjects($sub_code, $lecturer_code){
+            // die($sub_code . "and" . $lecturer_code);
+            //add subject to the requestedSubjects table
+            if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                redirect('AdminPosts/assignSubjects/' . $lecturer_code);
+        }
+        }
+
+        public function deleteRowAS($lecturer_code, $subject_code){
+            //die($lecturer_code . " and " . $subject_code);
+            if($this->AS_postModel->deleteRowAS($lecturer_code, $subject_code)){
+                redirect('AdminPosts/assignSubjects/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
+            }
         }
 
     }

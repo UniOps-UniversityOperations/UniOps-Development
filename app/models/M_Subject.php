@@ -116,6 +116,9 @@ class M_Subject{
     
     }
 
+
+    //getthe year and steram of the subject to he assign subjects page by sub_code
+
 }
 
 

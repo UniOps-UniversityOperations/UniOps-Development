@@ -4,7 +4,8 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 20px;
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   
@@ -47,6 +48,15 @@
     font-weight: bold;
     margin: -40px 0;
     flex: 1; /* Equal flex distribution for each paragraph */
+    padding-bottom: 30px;
+    padding-left: 20px;
+  }
+
+  .topic2{
+    font-weight: bold;
+    margin: -40px 0;
+    flex: 1; /* Equal flex distribution for each paragraph */
+    padding-top: 10px;
     padding-bottom: 30px;
     padding-left: 20px;
   }
@@ -146,11 +156,6 @@
   .create_button:hover {
     background-color: #0f2c61;
   }
-  
-  
-  
-  
-  
   
   .centered_container {
     display: flex;
@@ -284,7 +289,8 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -331,4 +337,63 @@
 
 .column:nth-child(2) {
   background-color: #DCDCE2;
+}
+
+.hr{
+  border: 1px solid #1848A0;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Style for the pop-up form */
+.popup-form {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+  background-color: #1848A0;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #1848A0;
+}
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #1848A0;
 }

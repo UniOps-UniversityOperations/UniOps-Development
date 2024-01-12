@@ -116,7 +116,6 @@
                                     <a href="<?php echo URLROOT; ?>/AdminPosts/updateRoom/<?php echo $post->id ?>" title="Edit Details">
                                         <button class="update_button">
                                             <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
-
                                         </button>
                                     </a>
                                     
