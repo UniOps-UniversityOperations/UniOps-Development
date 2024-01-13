@@ -83,30 +83,36 @@
   /* Change the background color on hover */
   .view_button:hover {
     background-color: #0f2c61;
-  }
-  
-  /* Style for the update button */
-  .update_button {
+  } 
+
+  .update_button{
     background-color: #4CAF50;
+    color: white;
     border: none;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 20px;
+    padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 10px;
   }
   
-  .update_icon{
-    padding-top: 5px;
-    width: 30px;
-  }
-  
-  /* Change the background color on hover */
   .update_button:hover {
     background-color: #45a049;
   }
+
+  .force{
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+  }
   
+  .force:hover {
+    background-color: #d32f2f;
+  }
+
   /* Style for the delete button */
   .delete_button {
     background-color: #f44336;

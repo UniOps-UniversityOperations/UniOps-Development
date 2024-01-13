@@ -28,46 +28,8 @@ class M_assignedSubjects{
 
     //add a subject to the assignedSubjects table
     public function add($sub_code, $lecturer_code){
-        // // Check if there is a deleted row with the same subject_code and lecturer_code
-        // $this->db->query('UPDATE assignedSubjects SET isDeleted = 0 WHERE subject_code = :sub_code AND lecturer_code = :lecturer_code AND isDeleted = 1');
-        // $this->db->bind(':sub_code', $sub_code);
-        // $this->db->bind(':lecturer_code', $lecturer_code);
-
-        // if ($this->db->execute()) {
-        //     // If there was a deleted row, it has been updated
-        //     return true;
-        // } else {
-        //     // If no row was updated, insert a new row
-        //     $this->db->query('INSERT INTO assignedSubjects (subject_code, lecturer_code) SELECT :sub_code, :lecturer_code WHERE NOT EXISTS (SELECT * FROM assignedSubjects WHERE subject_code = :sub_code AND lecturer_code = :lecturer_code)');
-        //     $this->db->bind(':sub_code', $sub_code);
-        //     $this->db->bind(':lecturer_code', $lecturer_code);
-
-        //     if ($this->db->execute()) {
-        //         // If a new row was inserted
-        //         return true;
-        //     } else {
-        //         // If the insert failed
-        //         return false;
-        //     }
-        // }
-
-        // Ccall search() to check if there is a deleted row with the same subject_code and lecturer_code
-        $results = $this->search($sub_code, $lecturer_code);
-
-        if($results){
-            //Update the deleted row
-            $this->db->query('UPDATE assignedSubjects SET isDeleted = 0 WHERE subject_code = :sub_code AND lecturer_code = :lecturer_code AND isDeleted = 1');
-            $this->db->bind(':sub_code', $sub_code);
-            $this->db->bind(':lecturer_code', $lecturer_code);
-            
-            if($this->db->execute()){
-                return true;
-            }else{
-                return false;
-            }
-
-        }else{
-            // Try to insert a new row first
+               
+            // insert a new row first
             $this->db->query('INSERT INTO assignedSubjects (subject_code, lecturer_code) VALUES (:sub_code, :lecturer_code)');
             $this->db->bind(':sub_code', $sub_code);
             $this->db->bind(':lecturer_code', $lecturer_code);
@@ -78,22 +40,43 @@ class M_assignedSubjects{
             } else {
                 return false;
             }
-        }
-
-        
-
-
-
     }
 
     public function deleteRowAS($lecturer_code, $subject_code){
-        $this->db->query('UPDATE assignedSubjects SET isDeleted = 1 WHERE lecturer_code = :lecturer_code AND subject_code = :subject_code');
+        //delete the entire row
+        $this->db->query('DELETE FROM assignedSubjects WHERE lecturer_code = :lecturer_code AND subject_code = :subject_code');
         $this->db->bind(':lecturer_code', $lecturer_code);
         $this->db->bind(':subject_code', $subject_code);
 
-        if($this->db->execute()){
+        if ($this->db->execute()) {
+            // If a new row was inserted
             return true;
-        }else{
+        } else {
+            return false;
+        }
+        
+    }
+
+    //get subject details for assign table
+    public function getSubjectDetails(){
+        $this->db->query('SELECT subjects.*, assignedSubjects.subject_code, assignedSubjects.lecturer_code 
+                            FROM subjects 
+                            LEFT JOIN assignedSubjects ON subjects.sub_code = assignedSubjects.subject_code
+                            WHERE subjects.sub_isDeleted = 0');
+        $results = $this->db->resultSet();
+        return $results;
+
+    }
+
+    public function forceAssignLecturers($sub_code, $lecturer_code){
+        $this->db->query('UPDATE assignedSubjects SET lecturer_code = :lecturer_code WHERE subject_code = :sub_code');
+        $this->db->bind(':lecturer_code', $lecturer_code);
+        $this->db->bind(':sub_code', $sub_code);
+
+        if ($this->db->execute()) {
+            // If a new row was inserted
+            return true;
+        } else {
             return false;
         }
     }

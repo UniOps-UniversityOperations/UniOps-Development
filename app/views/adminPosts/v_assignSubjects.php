@@ -193,6 +193,9 @@
                     <th>Credits</th>
                     <th>Stream</th>
                     <th></th>
+                    <th> Can Assign </th>
+                    <th> Assigned To </th>
+                    <th> Force Assign </th>
                 </tr>
             </thead>
             <!-- Code	Name	Year	Semester	Credits	Stream -->
@@ -206,19 +209,42 @@
                         <td><?php echo $subject->sub_semester; ?></td>
                         <td><?php echo $subject->sub_credits; ?></td>
                         <td><?php echo $subject->sub_stream; ?></td>
-                        <td>
-                        <!-- send 2 prameters (sub_code, lecturer_code) -->
-                        <form action="<?php echo URLROOT;?>/AdminPosts/addToAssignSubjects/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
-                            <input type="submit" value="SELECT">
-                        </form> 
-
-                        </td>
+                        <?php if ($subject->subject_code){ 
+                            if($subject->lecturer_code == $data['postId']){ ?>
+                                <td>assigned</td>
+                                <td><span style='color: red;'>&#10008;</span></td>
+                                <td><?php echo $subject->lecturer_code; ?></td>
+                                <td>-</td>
+                            <?php }else{ ?>
+                                <td>anavalable</td>
+                                <td><span style='color: red;'>&#10008;</span></td>
+                                <td><?php echo $subject->lecturer_code; ?></td>
+                                <td>
+                                    <form action="<?php echo URLROOT;?>/AdminPosts/forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
+                                        <input class="force" type="submit" value="SELECT">
+                                    </form>
+                                <td>
+                            <?php } ?>
+                        
+                            
+                        <?php }else{ ?>
+                            <td>
+                                <!-- send 2 prameters (sub_code, lecturer_code) -->
+                                <form action="<?php echo URLROOT;?>/AdminPosts/addToAssignSubjects/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
+                                    <input class="update_button" type="submit" value="SELECT">
+                                </form> 
+                            </td>
+                                <td><span style='color: green;'>&#10004;</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                        <?php }?>
+                        
                     </tr>
                 <?php endforeach; ?>
         </table> 
     <!-- submitbutton toa url -->
     <form action="">
-        <input type="submit" value="CANCEL">
+        <input class="create_button" type="submit" value="CANCEL">
     </form>
     </div>
 

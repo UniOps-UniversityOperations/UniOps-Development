@@ -867,7 +867,7 @@
         public function assignSubjects($postId){
             $postsRS = $this->RS_postModel->getSubjects($postId);
             $postsAS = $this->AS_postModel->getSubjects($postId);
-            $subjects = $this->S_postModel->getSubjects();
+            $subjects = $this->AS_postModel->getSubjectDetails();
             $variables = $this->V_postModel->ASPage();
             
             if(!$postsRS){
@@ -889,7 +889,10 @@
             //add subject to the requestedSubjects table
             if($this->AS_postModel->add($sub_code, $lecturer_code)){
                 redirect('AdminPosts/assignSubjects/' . $lecturer_code);
-        }
+            }
+            else{
+                die('Something went wrong');
+            }
         }
 
         public function deleteRowAS($lecturer_code, $subject_code){
@@ -902,5 +905,13 @@
             }
         }
 
+        public function forceAssignLecturers($sub_code, $lecturer_code){
+            if($this->AS_postModel->forceAssignLecturers($sub_code, $lecturer_code)){
+                redirect('AdminPosts/assignSubjects/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
     }
 
