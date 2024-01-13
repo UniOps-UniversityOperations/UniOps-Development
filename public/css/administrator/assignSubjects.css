@@ -397,3 +397,161 @@
   font-weight: bold;
   color: #1848A0;
 }
+
+  /* Style for the add button */
+  .add_button {
+    background-color: #4CAF50;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+  }
+  
+  .add_icon{
+    padding-top: 5px;
+    width: 30px;
+  }
+  
+  /* Change the background color on hover */
+  .add_button:hover {
+    background-color: #45a049;
+  }
+
+  .pie_chart{
+    flex-grow: 1; /* Make the tiles stretch along the width */
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    font-family: "Open Sans", Arial;
+    background: #EEE;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    height: 600px;
+  }
+  @keyframes bake-pie {
+    from {
+      transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+  }
+  
+  .pie-chart {
+    font-family: "Open Sans", Arial;
+    width: 400px;
+    margin: 100px auto;
+    text-align: center;
+    scale: 1.7;
+  }
+  
+  .pie-chart__wrapper {
+    width: 400px;
+    margin: 30px auto;
+    text-align: center;
+  }
+  
+  .pie-chart__pie,
+  .pie-chart__legend {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .pie-chart__pie {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin: 10px auto 35px;
+  }
+  
+  .pie-chart__pie::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    background: #EEE;
+    border-radius: 50%;
+    top: 50px;
+    left: 50px;
+  }
+  
+  .pie-chart__pie::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    box-shadow: 0 0 3px 4px rgba(0, 0, 0, 0.1);
+    margin: 220px auto;
+  }
+  
+  .slice {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    clip: rect(0px, 200px, 200px, 100px);
+    animation: bake-pie 1s;
+  }
+  
+  .slice span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    clip: rect(0px, 200px, 200px, 100px);
+  }
+  
+  .pie-chart__legend {
+    display: block;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    background: #FFF;
+    padding: 0.75em 0.75em 0.05em;
+    font-size: 13px;
+    box-shadow: 1px 1px 0 #DDD, 2px 2px 0 #BBB;
+    text-align: left;
+    width: 65%;
+  }
+  
+  .pie-chart__legend li {
+    height: 1.25em;
+    margin-bottom: 0.7em;
+    padding-left: 0.5em;
+    border-left: 1.25em solid black;
+  }
+  
+  .pie-chart__legend em {
+    font-style: normal;
+  }
+  
+  .pie-chart__legend span {
+    float: right;
+  }
+  
+  .pie-charts {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  @media (max-width: 500px) {
+    .pie-charts {
+      flex-direction: column;
+    }
+  }
+  
+  .chart_name{
+    font-size: 25px;
+    padding-top: 20px;
+  }

@@ -46,6 +46,85 @@ document.addEventListener('DOMContentLoaded', function () {
         streamFilter.addEventListener("change", filterRows);
         yearFilter.addEventListener("change", filterRows);
         semesterFilter.addEventListener("change", filterRows);
-    
+
 });
 
+function sliceSize(dataNum, dataTotal) {
+    return (dataNum / dataTotal) * 360;
+}
+
+function addSlice(id, sliceSize, pieElement, offset, sliceID, color) {
+    var slice = document.createElement('div');
+    slice.className = 'slice ' + sliceID;
+    slice.innerHTML = '<span></span>';
+    pieElement.appendChild(slice);
+
+    offset = offset - 1;
+    var sizeRotation = -179 + sliceSize;
+
+    slice.style.transform = 'rotate(' + offset + 'deg) translate3d(0,0,0)';
+    slice.querySelector('span').style.cssText = 'transform: rotate(' + sizeRotation + 'deg) translate3d(0,0,0); background-color: ' + color;
+}
+
+function iterateSlices(id, sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+    var maxSize = 179;
+    var sliceID = 's' + dataCount + '-' + sliceCount;
+
+    if (sliceSize <= maxSize) {
+        addSlice(id, sliceSize, pieElement, offset, sliceID, color);
+    } else {
+        addSlice(id, maxSize, pieElement, offset, sliceID, color);
+        iterateSlices(id, sliceSize - maxSize, pieElement, offset + maxSize, dataCount, sliceCount + 1, color);
+    }
+}
+
+function createPie(id) {
+    var listData = [];
+    var listTotal = 0;
+    var offset = 0;
+    var i = 0;
+    var pieElement = document.querySelector(id + ' .pie-chart__pie');
+    var dataElement = document.querySelector(id + ' .pie-chart__legend');
+
+    var color = [
+        'cornflowerblue',
+        'navy'
+    ];
+
+    color = shuffle(color);
+
+    dataElement.querySelectorAll('span').forEach(function (span) {
+        listData.push(Number(span.innerHTML));
+    });
+
+    for (i = 0; i < listData.length; i++) {
+        listTotal += listData[i];
+    }
+
+    for (i = 0; i < listData.length; i++) {
+        var size = sliceSize(listData[i], listTotal);
+        iterateSlices(id, size, pieElement, offset, i, 0, color[i]);
+        dataElement.querySelector('li:nth-child(' + (i + 1) + ')').style.borderColor = color[i];
+        offset += size;
+    }
+}
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
+
+    return a;
+}
+
+function createPieCharts() {
+    createPie('.pieID--micro-skills');
+    createPie('.pieID--categories');
+    createPie('.pieID--operations');
+}
+
+createPieCharts();

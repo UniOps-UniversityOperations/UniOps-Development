@@ -12,6 +12,7 @@
             $this->A_postModel = $this->model('M_Asset');
             $this->RS_postModel = $this->model('M_requestedSubjects');
             $this->AS_postModel = $this->model('M_assignedSubjects');
+            $this->V_postModel = $this->model('M_variables');
         }
 
         //CRUD for User
@@ -867,10 +868,18 @@
             $postsRS = $this->RS_postModel->getSubjects($postId);
             $postsAS = $this->AS_postModel->getSubjects($postId);
             $subjects = $this->S_postModel->getSubjects();
+            $variables = $this->V_postModel->ASPage();
+            
+            if(!$postsRS){
+                $postsRS = "null";
+            }
+
             $data = [
+                'postId' => $postId,
                 'postsRS' => $postsRS,
                 'postsAS' => $postsAS,
                 'subjects' => $subjects,
+                'variables' => $variables,
             ];
             $this->view('adminPosts/v_assignSubjects', $data);
         }
