@@ -149,7 +149,7 @@
     <div class="popup-form">
 
 
-        <div class="filters">
+        <div class="filters filter-container">
             <label for="streamFilter">Stream:</label>
             <select id="streamFilter">
                 <option value="">All</option>
@@ -183,69 +183,80 @@
             </select>
         </div>
 
-        <table class="styled-table">
-            <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Year</th>
-                    <th>Semester</th>
-                    <th>Credits</th>
-                    <th>Stream</th>
-                    <th></th>
-                    <th> Can Assign </th>
-                    <th> Assigned To </th>
-                    <th> Force Assign </th>
-                </tr>
-            </thead>
-            <!-- Code	Name	Year	Semester	Credits	Stream -->
-            <tbody>        
-                <?php $i = 0;
-                foreach($data['subjects'] as $subject) : ?>
+        <a href="" id="clear-search" class="clear-icon">&#10006;</a>
+        
+        <div class="table-wrapper">
+            <table class="styled-table">
+                <thead>
                     <tr>
-                        <td><?php echo $subject->sub_code; ?></td>
-                        <td><?php echo $subject->sub_name; ?></td>
-                        <td><?php echo $subject->sub_year; ?></td>
-                        <td><?php echo $subject->sub_semester; ?></td>
-                        <td><?php echo $subject->sub_credits; ?></td>
-                        <td><?php echo $subject->sub_stream; ?></td>
-                        <?php if ($subject->subject_code){ 
-                            if($subject->lecturer_code == $data['postId']){ ?>
-                                <td>assigned</td>
-                                <td><span style='color: red;'>&#10008;</span></td>
-                                <td><?php echo $subject->lecturer_code; ?></td>
-                                <td>-</td>
-                            <?php }else{ ?>
-                                <td>anavalable</td>
-                                <td><span style='color: red;'>&#10008;</span></td>
-                                <td><?php echo $subject->lecturer_code; ?></td>
-                                <td>
-                                    <form action="<?php echo URLROOT;?>/AdminPosts/forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
-                                        <input class="force" type="submit" value="SELECT">
-                                    </form>
-                                <td>
-                            <?php } ?>
-                        
-                            
-                        <?php }else{ ?>
-                            <td>
-                                <!-- send 2 prameters (sub_code, lecturer_code) -->
-                                <form action="<?php echo URLROOT;?>/AdminPosts/addToAssignSubjects/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
-                                    <input class="update_button" type="submit" value="SELECT">
-                                </form> 
-                            </td>
-                                <td><span style='color: green;'>&#10004;</span></td>
-                            <td>-</td>
-                            <td>-</td>
-                        <?php }?>
-                        
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Year</th>
+                        <th>Semester</th>
+                        <th>Credits</th>
+                        <th>Stream</th>
+                        <th></th>
+                        <th> Can Assign </th>
+                        <th> Assigned To </th>
                     </tr>
-                <?php endforeach; ?>
-        </table> 
+                </thead>
+                <!-- Code	Name	Year	Semester	Credits	Stream -->
+                <tbody>        
+                    <?php $i = 0;
+                    foreach($data['subjects'] as $subject) : ?>
+                        <tr>
+                            <td><?php echo $subject->sub_code; ?></td>
+                            <td><?php echo $subject->sub_name; ?></td>
+                            <td><?php echo $subject->sub_year; ?></td>
+                            <td><?php echo $subject->sub_semester; ?></td>
+                            <td><?php echo $subject->sub_credits; ?></td>
+                            <td><?php echo $subject->sub_stream; ?></td>
+                            <?php if ($subject->subject_code){ 
+                                if($subject->lecturer_code == $data['postId']){ ?>
+                                    <td style='color: gray;'><b>Assigned</b></td>
+                                    <td>
+                                        <form>
+                                            <input class="dummy_btn" type="submit" value="UNAVAILABLE" disabled>
+                                        </form>
+                                    </td>
+                                    <td><?php echo $subject->lecturer_code; ?></td>
+                                <?php }else{ ?>
+                                    <td><span style='color: red;'><b>Unavailable</b></span></td>
+                                    <td>
+                                        <form action="<?php echo URLROOT;?>/AdminPosts/forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
+                                            <input class="force" type="submit" value="FORCE">
+                                        </form>
+                                    </td>
+                                    <td><?php echo $subject->lecturer_code; ?></td>
+                                <?php } ?>
+                            
+                                
+                            <?php }else{ ?>
+                                <td style="color: green;"><b>Available</b></td>
+                                <td>
+                                    <!-- send 2 prameters (sub_code, lecturer_code) -->
+                                    <form action="<?php echo URLROOT;?>/AdminPosts/addToAssignSubjects/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
+                                        <input class="update_button" type="submit" value="SELECT">
+                                    </form> 
+                                </td>
+                                <td>-</td>
+                            <?php }?>
+                            
+                        </tr>
+                    <?php endforeach; ?>
+            </table> 
+        </div>
     <!-- submitbutton toa url -->
     <form action="">
         <input class="create_button" type="submit" value="CANCEL">
     </form>
+    
+    <div class="legend">
+        <p><b><span style='color: green;'>Available</span></b> - can be assigned.</p>
+        <p><b><span style='color: red;'>Unavailable</span></b> - can't be assigned to this lecturer but can be forced (remove the current lecturer and assign to this lecturer).</p>
+        <p><b><span style='color: gray;'>Assigned</span></b> - already assigned to this lecturer.</p>
+    </div>
+    
     </div>
 
 </div>

@@ -93,6 +93,8 @@
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 10px;
+    width: 130px;
+    font-weight: bold;
   }
   
   .update_button:hover {
@@ -107,6 +109,8 @@
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 10px;
+    width: 130px;
+    font-weight: bold;
   }
   
   .force:hover {
@@ -132,6 +136,18 @@
   /* Change the background color on hover */
   .delete_button:hover {
     background-color: #d32f2f;
+  }
+
+  .dummy_btn{
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    width: 130px;
+    font-weight: bold;
   }
   
   .option4 {
@@ -238,7 +254,16 @@
     margin-top: 20px;
   }
   
-  
+  .clear-icon{
+    position: absolute;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    cursor: pointer;
+    font-size: 20px;
+    color: #333; /* Set the color of the clear icon */
+    text-decoration: none;
+  }
+
   /* Add this to your CSS file */
   #clear-search {
     cursor: pointer;
@@ -363,8 +388,29 @@
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  max-height: 800px; /* Set your desired height here */
 }
 
+.table-wrapper {
+  max-height: 600px; /* Set your desired height for the table body */
+  overflow-y: auto; /* Make the table body scrollable */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Customize the scrollbar */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: #1848A0; /* Set the color of the scrollbar thumb */
+  border-radius: 5px; /* Roundness of the scroll thumb */
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background-color: #fff; /* Set the color of the scrollbar track */
+}
 
 .styled-table {
   border-collapse: collapse;
@@ -373,12 +419,16 @@
   font-family: sans-serif;
   min-width: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-top: 0px;
 }
 
 .styled-table thead tr {
   background-color: #1848A0;
   color: #ffffff;
   text-align: left;
+  position: sticky;
+  top: 0; /* Stick to the top of the container */
+  z-index: 1;
 }
 
 .styled-table th,
@@ -561,3 +611,38 @@
     font-size: 25px;
     padding-top: 20px;
   }
+
+  .filter-container {
+    margin-right: 500px; /* Adjust the margin as needed */;
+  }
+  
+  label {
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  
+  select {
+    padding: 8px; /* Adjust the padding as needed */
+    font-size: 14px; /* Adjust the font size as needed */
+    border: 1px solid #ccc; /* Adjust the border color as needed */
+    border-radius: 4px; /* Adjust the border-radius as needed */
+    cursor: pointer;
+  }
+  
+  /* Style for the "All Types" option */
+  option {
+    font-weight: bold; /* Make the "All Types" option bold */
+  }
+  
+  /* Style for the selected option */
+  select:hover, select:focus {
+    border-color: #333; /* Change border color on hover/focus */
+  }
+  
+  /* Optional: Add a subtle transition effect */
+  select {
+    transition: border-color 0.3s ease-in-out;
+  }
+
+.legend{
+  margin-top: 5px;
+}
