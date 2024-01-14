@@ -109,59 +109,10 @@
                     <p id="lec_hrs"> lec_hrs </p>
                 </div>
             </div>
+            
 
             <div class="pie_chart">
-                <?php
-                    $lecturer_max_lec_hrs = $data['variables'][0]->v_value;
-                    $lec_hrs_per_credit = $data['variables'][1]->v_value;
-
-                    //CALCLATE ASSIGNED SUBJECTS_CREDITS
-                    $assigned_subjects_credits = 0;
-                    foreach($data['postsAS'] as $post) {
-                        $assigned_subjects_credits += $post->sub_credits;
-                    }
-
-                    //number of assigned lecture hours
-                    $assigned_subjects_lec_hrs = $assigned_subjects_credits * $lec_hrs_per_credit;
-
-                    //precentage of assigned_subjects_lec_hrs
-                    $assigned_subjects_credits_precentage = ($assigned_subjects_lec_hrs / $lecturer_max_lec_hrs) * 100;
-                ?>
-
-                <script>document.getElementById("num_credits").innerHTML = <?php echo $assigned_subjects_credits ?>;</script>
-                <script>document.getElementById("lec_hrs").innerHTML = <?php echo $assigned_subjects_lec_hrs ?>;</script>
-                
-                <div class="wrapper">
-                    <p class="chart_name"><b>Work Load - Lecture Hours</b></p>
-                        <div class="pieID--micro-skills pie-chart--wrapper">
-                        <div class="pie-chart">
-                            <div class="pie-chart__pie"></div>
-                            <ul class="pie-chart__legend">
-                            <li>
-                                <!-- assigned_subjects_credits_precentage -->
-                                <em>Assigned (%)</em>
-                                <span><?php echo $assigned_subjects_credits_precentage; ?></span>
-                            </li>
-                            <li>
-                                <!-- 100 - assigned_subjects_credits_precentage -->
-                                <em>Remaining (%)</em>
-                                <span><?php echo 100 - $assigned_subjects_credits_precentage; ?></span>
-                            </li>
-                            </ul>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- print lecturer_max_lec_hrs -->
-                <p>lecturer_max_lec_hrs: <?php echo $data['variables'][0]->v_value; ?></p>
-                <!-- print lec_hrs_per_credit -->
-                <p>lec_hrs_per_credit: <?php echo $data['variables'][1]->v_value; ?></p>
-                <!-- print assigned_subjects -->
-                <p>assigned_subjects_credits: <?php echo $assigned_subjects_credits; ?></p>
-                <!-- print assigned_subjects_credits_precentage -->
-                <p>assigned_subjects_credits_precentage: <?php echo $assigned_subjects_credits_precentage; ?></p>
-                <!-- print assigned_subjects_lec_hrs -->
-                <p>assigned_subjects_lec_hrs: <?php echo $assigned_subjects_lec_hrs; ?></p>
+                <p>Pie Chart</p>
 
             </div>
   </div>
@@ -215,9 +166,12 @@
                         <th>Semester</th>
                         <th>Credits</th>
                         <th>Stream</th>
+                        <th> Lecture </th>
                         <th></th>
-                        <th> Can Assign </th>
-                        <th> Assigned To </th>
+                        <th> Practical </th>
+                        <th></th>
+                        <th> Tutorial </th>
+                        <th></th>
                     </tr>
                 </thead>
                 <!-- Code	Name	Year	Semester	Credits	Stream -->
@@ -231,36 +185,33 @@
                             <td><?php echo $subject->sub_semester; ?></td>
                             <td><?php echo $subject->sub_credits; ?></td>
                             <td><?php echo $subject->sub_stream; ?></td>
-                            <?php if ($subject->subject_code){ 
-                                if($subject->lecturer_code == $data['postId']){ ?>
-                                    <td style='color: gray;'><b>Assigned</b></td>
-                                    <td>
-                                        <form>
-                                            <input class="dummy_btn" type="submit" value="UNAVAILABLE" disabled>
-                                        </form>
-                                    </td>
-                                    <td><?php echo $subject->lecturer_code; ?></td>
-                                <?php }else{ ?>
-                                    <td><span style='color: red;'><b>Unavailable</b></span></td>
-                                    <td>
-                                        <form action="<?php echo URLROOT;?>/AdminPosts/forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
-                                            <input class="force" type="submit" value="FORCE">
-                                        </form>
-                                    </td>
-                                    <td><?php echo $subject->lecturer_code; ?></td>
+                            <td>
+                                <?php if(!$subject->sub_isHaveLecture){ ?>
+                                    <p>No Lecture</p>
+                                <?php }else { ?>
+                                    <p>Yes</p>
                                 <?php } ?>
+                            </td>
+                            <td>-</td>
+                            <td>
+                                <?php if(!$subject->sub_isHavePractical){ ?>
+                                    <p>No Practical</p>
+                                <?php }else { ?>
+                                    <p>Yes</p>
+                                <?php } ?>
+                            </td>
+                            <td>-</td>
+                            <td>
+                                <?php if(!$subject->sub_isHaveTutorial){ ?>
+                                    <p>No Tutorial</p>
+                                <?php }else { ?>
+                                    <p>Yes</p>
+                                <?php } ?>
+                            </td>
+                            <td>-</td>
+
+
                             
-                                
-                            <?php }else{ ?>
-                                <td style="color: green;"><b>Available</b></td>
-                                <td>
-                                    <!-- send 2 prameters (sub_code, lecturer_code) -->
-                                    <form action="<?php echo URLROOT;?>/AdminPosts/addToAssignSubjects/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
-                                        <input class="update_button" type="submit" value="SELECT">
-                                    </form> 
-                                </td>
-                                <td>-</td>
-                            <?php }?>
                             
                         </tr>
                     <?php endforeach; ?>

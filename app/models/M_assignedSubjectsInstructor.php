@@ -32,7 +32,14 @@ class M_assignedSubjectsInstructor{
         
     }
 
-
+    public function getSubjectDetails(){
+        $this->db->query('SELECT subjects.*, assignedSubjectsInstructor.subject_code, assignedSubjectsInstructor.instructor_code 
+                            FROM subjects 
+                            LEFT JOIN assignedSubjectsInstructor ON subjects.sub_code = assignedSubjectsInstructor.subject_code
+                            WHERE subjects.sub_isDeleted = 0');
+        $results = $this->db->resultSet();
+        return $results;
+    }
 
 
 
