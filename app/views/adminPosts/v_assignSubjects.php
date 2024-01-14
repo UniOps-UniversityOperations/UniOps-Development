@@ -16,11 +16,13 @@
             <h2 style='color: #010127'>Requeted Subjects by the lecturer</h2>
 
             <div class="title_bar">
-                <p style="padding-left: 30px;" class="title_item"><b>Subject Code</b></p>
+                <p style="padding-left: 20px;" class="title_item"><b>Subject Code</b></p>
+                <p class="title_item"><b>Credits</b></p>
                 <p class="title_item"><b>Year</b></p>
                 <p class="title_item"><b>Stream</b></p>
             </div>
 
+            <div class="list">
             <?php 
             $i = 1;
 
@@ -33,11 +35,13 @@
                     <div class="lecture_room_header">
                         <p class="row_num"><?php echo $i++; ?></p>
                         <p class="header_title"><?php echo $post->subject_code; ?></p>
+                        <p class="header_title"><?php echo $post->sub_credits; ?></p>
                         <p class="header_title"><?php echo $post->sub_year; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
                     </div>
                 </div>
             <?php endforeach;} ?>
+            </div>
 
             <!-- horizontal line -->
             <hr class="hr">
@@ -45,11 +49,13 @@
             <h2 style='color: #010127'>Assign Subjects</h2>
 
             <div class="title_bar">
-                <p style="padding-left: 30px;" class="title_item"><b>Subject Code</b></p>
+                <p style="padding-left: 20px;" class="title_item"><b>Subject Code</b></p>
+                <p class="title_item"><b>Credits</b></p>
                 <p class="title_item"><b>Year</b></p>
                 <p style="padding-right: 60px;" class="title_item"><b>Stream</b></p>
             </div>
 
+            <div class="list">
             <?php 
             $i = 1;
             foreach($data['postsAS'] as $post) : ?>
@@ -57,6 +63,7 @@
                     <div class="lecture_room_header">
                         <p class="row_num"><?php echo $i++; ?></p>
                         <p class="header_title"><?php echo $post->subject_code; ?></p>
+                        <p class="header_title"><?php echo $post->sub_credits; ?></p>
                         <p class="header_title"><?php echo $post->sub_year; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
 
@@ -68,6 +75,7 @@
                     </div>
                 </div>
             <?php endforeach; ?>
+            </div>
 
             <a href="" title="Add Row">
                 <button class="add_button">

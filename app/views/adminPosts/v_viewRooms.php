@@ -78,10 +78,10 @@
                 <?php $test = $lec_room = []; ?>
 
                 <div class="title_bar">
-                    <p style="padding-left: 30px;" class="title_item"><b>Name</b></p>
+                    <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
                     <p class="title_item"><b>ID</b></p>
                     <p class="title_item"><b>Type</b></p>
-                    <p style="padding-right: 220px;" class="title_item"><b>Capacity</b></p>
+                    <p style="padding-right: 210px;" class="title_item"><b>Capacity</b></p>
                 </div> 
             
             </div>

@@ -76,7 +76,7 @@
                 </style>
 
                 <div class="title_bar">
-                    <p style="padding-left: 30px;" class="title_item"><b>Code</b></p>
+                    <p style="padding-left: 25px;" class="title_item"><b>Code</b></p>
                     <p class="title_item"><b>Type</b></p>
                     <p class="title_item"><b>Added Date</b></p>
                     <p style="padding-right: 140px;" class="title_item"><b>Is in use</b></p>

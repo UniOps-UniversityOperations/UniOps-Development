@@ -77,11 +77,11 @@
 
 
                 <div class="title_bar">
-                    <p style="padding-left: 30px;" class="title_item"><b>Code</b></p>
+                    <p style="padding-left: 25px;" class="title_item"><b>Code</b></p>
                     <p class="title_item"><b>Name</b></p>
                     <p class="title_item"><b>Stream</b></p>
                     <p class="title_item"><b>Year</b></p>
-                    <p style="padding-right: 220px;" class="title_item"><b>Credits</b></p>
+                    <p style="padding-right: 210px;" class="title_item"><b>Credits</b></p>
                 </div> 
             </div>
 

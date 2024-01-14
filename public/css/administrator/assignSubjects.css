@@ -1,11 +1,11 @@
 /* Style for the lecture room container */
 .lecture_room {
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 15px;
     border: 1px solid #ccc;
-    border-radius: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    border-radius: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
   
   
@@ -317,11 +317,12 @@
 
 .title_bar{
   background-color: var(--Border-color);
-  padding: 20px;
+  padding: 15px;
   border: 1px solid #ccc;
-  border-radius: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  border-radius: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 6px;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -645,4 +646,18 @@
 
 .legend{
   margin-top: 5px;
+}
+
+.list {
+  max-height: 33vh;
+  overflow-y: scroll; /* Enable vertical scrolling if the content exceeds the max height */
+  margin-top: -20px;
+}
+
+.list::-webkit-scrollbar {
+  width: 0.5em; /* Set the width of the scrollbar */
+}
+
+.list::-webkit-scrollbar-thumb {
+background-color: transparent; /* Hide the thumb */
 }

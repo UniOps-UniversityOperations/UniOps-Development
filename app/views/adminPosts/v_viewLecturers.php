@@ -57,11 +57,11 @@
                 </style>
 
                 <div class="title_bar">
-                    <p style="padding-left: 30px;" class="title_item"><b>Name</b></p>
+                    <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
                     <p class="title_item"><b>Code</b></p>
                     <p class="title_item"><b>Email</b></p>
                     <p class="title_item"><b>Contact</b></p>
-                    <p style="padding-right: 220px;" class="title_item"><b>Department</b></p>
+                    <p style="padding-right: 280px;" class="title_item"><b>Department</b></p>
                 </div> 
             
             </div>

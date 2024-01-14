@@ -1,11 +1,11 @@
 /* Style for the lecture room container */
 .lecture_room {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    margin: 20px;
-  }
+  background-color: #f0f0f0;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  margin: 15px;
+}
   
   
   /* Style for the lecture room body single row */
@@ -467,17 +467,20 @@
   }
   
 
-.title_bar{
-  background-color: var(--Border-color);
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  margin: 20px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* Center vertically */
-}
+  .title_bar{
+    background-color: var(--Border-color);
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 17px;
+    margin-right: 23px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center vertically */
+  }
 
 .title_item {
   font-size: 22px;
