@@ -91,6 +91,13 @@
                                     <button class="view_button" title="View More">
                                         <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
                                     </button>
+
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/assignSubjectsInstructor/<?php echo $post->i_code ?>" title="Assign Subjects">
+                                        <button class="assign_button">
+                                            <img src="<?php echo URLROOT;?>/images/assign.svg" alt="Assign" class="update_icon">
+
+                                        </button>
+                                    </a>
                                     
                                     <a href="<?php echo URLROOT; ?>/AdminPosts/updateInstructor/<?php echo $post->i_id ?>" title="Edit Details">
                                         <button class="update_button">

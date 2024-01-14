@@ -12,6 +12,8 @@
             $this->A_postModel = $this->model('M_Asset');
             $this->RS_postModel = $this->model('M_requestedSubjects');
             $this->AS_postModel = $this->model('M_assignedSubjects');
+            $this->RSI_postModel = $this->model('M_requestedSubjectsInstructor');
+            $this->ASI_postModel = $this->model('M_assignedSubjectsInstructor');
             $this->V_postModel = $this->model('M_variables');
         }
 
@@ -913,5 +915,37 @@
                 die('Something went wrong');
             }
         }
+
+        public function assignSubjectsInstructor($postId){
+            $postsRS = $this->RSI_postModel->getSubjects($postId);
+            $postsAS = $this->ASI_postModel->getSubjects($postId);
+            // $subjects = $this->AS_postModel->getSubjectDetails();
+            // $variables = $this->V_postModel->ASPage();
+            
+            if(!$postsRS){
+                $postsRS = "null";
+            }
+
+            $data = [
+                'postId' => $postId,
+                'postsRS' => $postsRS,
+                'postsAS' => $postsAS,
+                // 'subjects' => $subjects,
+                // 'variables' => $variables,
+            ];
+            $this->view('adminPosts/v_assignSubjectsInstructor', $data);
+        }
+
+        public function deleteRowASI($instructor_code, $subject_code){
+            //die($lecturer_code . " and " . $subject_code);
+            if($this->ASI_postModel->deleteRowASI($instructor_code, $subject_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        
     }
 

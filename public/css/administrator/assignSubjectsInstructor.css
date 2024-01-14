@@ -1,0 +1,665 @@
+/* Style for the lecture room container */
+.lecture_room {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  
+  /* Style for the lecture room body single row */
+  .lecture_room_body_single_row {
+    display: flex;
+    flex-wrap: wrap; /* Allows content to wrap to the next line if it doesn't fit */
+    justify-content: space-between;
+    align-items: center; /* Center vertically */
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 5px solid #ccc; /* Optional: Add a border between header and body */
+    border-radius: 30px;
+  }
+  
+  /* Style for the individual information paragraphs in single row */
+  .header_item {
+    font-size: 16px;
+    margin: 5px 0;
+    flex: 1; /* Equal flex distribution for each paragraph */
+  }
+  
+  .header_title{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+    flex: 1; /* Equal flex distribution for each paragraph */
+  }
+  
+    
+    /* Style for the lecture room header */
+  .lecture_room_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center vertically */
+  }
+
+  .topic{
+    font-size: 34px;
+    font-weight: bold;
+    margin: -40px 0;
+    flex: 1; /* Equal flex distribution for each paragraph */
+    padding-bottom: 30px;
+    padding-left: 20px;
+  }
+
+  .topic2{
+    font-weight: bold;
+    margin: -40px 0;
+    flex: 1; /* Equal flex distribution for each paragraph */
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+  }
+  
+  
+  /* Style for the view button */
+  
+   .view_button {
+    background-color: var(--Border-color);
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+  }
+  
+  .view_icon{
+    padding-top: 5px;
+    width: 30px;
+  }
+  
+  /* Change the background color on hover */
+  .view_button:hover {
+    background-color: #0f2c61;
+  } 
+
+  .update_button{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    width: 130px;
+    font-weight: bold;
+  }
+  
+  .update_button:hover {
+    background-color: #45a049;
+  }
+
+  .force{
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    width: 130px;
+    font-weight: bold;
+  }
+  
+  .force:hover {
+    background-color: #d32f2f;
+  }
+
+  /* Style for the delete button */
+  .delete_button {
+    background-color: #f44336;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+  }
+  
+  .delete_icon{
+    padding-top: 5px;
+    width: 30px;
+  }
+  
+  /* Change the background color on hover */
+  .delete_button:hover {
+    background-color: #d32f2f;
+  }
+
+  .dummy_btn{
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    width: 130px;
+    font-weight: bold;
+  }
+  
+  .option5 {
+    border-left: 5px solid #010058af;
+    background-color: var(--Border-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 50px;
+    }
+  
+  
+  .create_room_button {
+    display: flex;
+    justify-content: flex-end;
+  
+  }
+  
+  .create_button{
+    background-color: var(--Border-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+  }
+  
+  .create_button:hover {
+    background-color: #0f2c61;
+  }
+  
+  .centered_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Style for room type counts */
+  .room_type_counts {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent tiles from wrapping to the next line */
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%; /* Ensure the container stretches along the width */
+  }
+  
+  /* Style for each count tile */
+  .count_tile {
+    flex-grow: 1; /* Make the tiles stretch along the width */
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  /* Style for each count row */
+  .count_row {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  /* Style for count column */
+  .count_column {
+    margin-bottom: 5px;
+  }
+  
+  
+  
+  /* Style for each room type count */
+  .room_type_counts p {
+    font-size: 25px;
+    margin: 0;
+    font-weight: bold;
+    text-align: center; /* Add text-align property to center the text */
+    color: #333; /* Add a color property if you want to change the text color */
+    /* Add any other styles you want to apply */
+  }
+  
+  
+  
+  /* Style for the right sidebar */
+  #rightSidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #f0f0f0;
+    border-left: 1px solid #ccc;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+   /* Style for the lecture room body */
+   .lecture_room_body {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .clear-icon{
+    position: absolute;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    cursor: pointer;
+    font-size: 20px;
+    color: #333; /* Set the color of the clear icon */
+    text-decoration: none;
+  }
+
+  /* Add this to your CSS file */
+  #clear-search {
+    cursor: pointer;
+  }
+  
+  /* Add any other existing styles you may have */
+  #clear-search:hover {
+    color: red;
+  }
+  
+  
+  /* Style for the search container */
+  .search-container {
+    /* margin-top: 20px; */
+    position: relative;
+    /* padding-left: 25px; */
+  }
+  
+  /* Style for the search input */
+  #search {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  /* Main content area with custom scrollbar */
+  .main {
+    flex-grow: 1;
+    overflow-y: scroll; /* Allow scrolling */
+  }
+  
+  /* Custom scrollbar styles */
+  .main::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+    display: none;
+  }
+  
+  .main::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners of the thumb */
+  }
+  
+  .main::-webkit-scrollbar-track {
+    background-color: #f0f0f0; /* Color of the scrollbar track */
+  }
+  
+  
+
+.title_bar{
+  background-color: var(--Border-color);
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 6px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+}
+
+.title_item {
+  font-size: 22px;
+  margin: 5px 0;
+  flex: 1; /* Equal flex distribution for each paragraph */
+}
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* Ensure it's on top of other elements */
+}
+
+
+
+.row_num{
+  font-size: 20px;
+  margin: 5px 0;
+  padding-right: 20px;
+}
+
+
+.container {
+  display: flex;
+  margin-top: 60px;
+  
+}
+
+.column {
+  /* flex: 1; */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Optional: Add some styling for better visualization */
+.column:nth-child(1) {
+  width: 70%;
+  background-color: #DCDCE2;
+}
+
+.column:nth-child(2) {
+  width: 30%;
+  background-color: #DCDCE2;
+}
+
+.hr{
+  border: 1px solid #1848A0;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Style for the pop-up form */
+.popup-form {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  max-height: 800px; /* Set your desired height here */
+}
+
+.table-wrapper {
+  max-height: 600px; /* Set your desired height for the table body */
+  overflow-y: auto; /* Make the table body scrollable */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Customize the scrollbar */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: #1848A0; /* Set the color of the scrollbar thumb */
+  border-radius: 5px; /* Roundness of the scroll thumb */
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background-color: #fff; /* Set the color of the scrollbar track */
+}
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-top: 0px;
+}
+
+.styled-table thead tr {
+  background-color: #1848A0;
+  color: #ffffff;
+  text-align: left;
+  position: sticky;
+  top: 0; /* Stick to the top of the container */
+  z-index: 1;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #1848A0;
+}
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #1848A0;
+}
+
+  /* Style for the add button */
+  .add_button {
+    background-color: #4CAF50;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+  }
+  
+  .add_icon{
+    padding-top: 5px;
+    width: 30px;
+  }
+  
+  /* Change the background color on hover */
+  .add_button:hover {
+    background-color: #45a049;
+  }
+
+  .pie_chart{
+    flex-grow: 1; /* Make the tiles stretch along the width */
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    font-family: "Open Sans", Arial;
+    background: #EEE;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    height: 600px;
+  }
+  @keyframes bake-pie {
+    from {
+      transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+  }
+  
+  .pie-chart {
+    font-family: "Open Sans", Arial;
+    width: 400px;
+    margin: 100px auto;
+    text-align: center;
+    scale: 1.7;
+  }
+  
+  .pie-chart__wrapper {
+    width: 400px;
+    margin: 30px auto;
+    text-align: center;
+  }
+  
+  .pie-chart__pie,
+  .pie-chart__legend {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .pie-chart__pie {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin: 10px auto 35px;
+  }
+  
+  .pie-chart__pie::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    background: #EEE;
+    border-radius: 50%;
+    top: 50px;
+    left: 50px;
+  }
+  
+  .pie-chart__pie::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    box-shadow: 0 0 3px 4px rgba(0, 0, 0, 0.1);
+    margin: 220px auto;
+  }
+  
+  .slice {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    clip: rect(0px, 200px, 200px, 100px);
+    animation: bake-pie 1s;
+  }
+  
+  .slice span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    clip: rect(0px, 200px, 200px, 100px);
+  }
+  
+  .pie-chart__legend {
+    display: block;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    background: #FFF;
+    padding: 0.75em 0.75em 0.05em;
+    font-size: 13px;
+    box-shadow: 1px 1px 0 #DDD, 2px 2px 0 #BBB;
+    text-align: left;
+    width: 65%;
+  }
+  
+  .pie-chart__legend li {
+    height: 1.25em;
+    margin-bottom: 0.7em;
+    padding-left: 0.5em;
+    border-left: 1.25em solid black;
+  }
+  
+  .pie-chart__legend em {
+    font-style: normal;
+  }
+  
+  .pie-chart__legend span {
+    float: right;
+  }
+  
+  .pie-charts {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  @media (max-width: 500px) {
+    .pie-charts {
+      flex-direction: column;
+    }
+  }
+  
+  .chart_name{
+    font-size: 25px;
+    padding-top: 20px;
+  }
+
+  .filter-container {
+    margin-right: 500px; /* Adjust the margin as needed */;
+  }
+  
+  label {
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  
+  select {
+    padding: 8px; /* Adjust the padding as needed */
+    font-size: 14px; /* Adjust the font size as needed */
+    border: 1px solid #ccc; /* Adjust the border color as needed */
+    border-radius: 4px; /* Adjust the border-radius as needed */
+    cursor: pointer;
+  }
+  
+  /* Style for the "All Types" option */
+  option {
+    font-weight: bold; /* Make the "All Types" option bold */
+  }
+  
+  /* Style for the selected option */
+  select:hover, select:focus {
+    border-color: #333; /* Change border color on hover/focus */
+  }
+  
+  /* Optional: Add a subtle transition effect */
+  select {
+    transition: border-color 0.3s ease-in-out;
+  }
+
+.legend{
+  margin-top: 5px;
+}
+
+.list {
+  max-height: 33vh;
+  overflow-y: scroll; /* Enable vertical scrolling if the content exceeds the max height */
+  margin-top: -20px;
+}
+
+.list::-webkit-scrollbar {
+  width: 0.5em; /* Set the width of the scrollbar */
+}
+
+.list::-webkit-scrollbar-thumb {
+background-color: transparent; /* Hide the thumb */
+}

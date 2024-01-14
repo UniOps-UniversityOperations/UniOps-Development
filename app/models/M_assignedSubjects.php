@@ -11,7 +11,7 @@ class M_assignedSubjects{
         $this->db->query('SELECT assignedSubjects.*, subjects.sub_year, subjects.sub_stream, subjects.sub_credits 
                             FROM assignedSubjects 
                             INNER JOIN subjects ON assignedSubjects.subject_code = subjects.sub_code 
-                            WHERE assignedSubjects.isDeleted = 0 AND assignedSubjects.lecturer_code = :code');
+                            WHERE assignedSubjects.lecturer_code = :code');
         $this->db->bind(':code', $code);
         $results = $this->db->resultSet();
         return $results;
