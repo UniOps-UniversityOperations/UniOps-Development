@@ -75,9 +75,9 @@
                         <p class="header_title"><?php echo $post->sub_credits; ?></p>
                         <p class="header_title"><?php echo $post->sub_year; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
-                        <p class="header_title"><?php echo $post->lecture ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
-                        <p class="header_title"><?php echo $post->practical ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
-                        <p class="header_title"><?php echo $post->tutorial  ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
+                        <p class="header_title"><?php echo $post->lecturer_code ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
+                        <p class="header_title"><?php echo $post->p_instructor_code ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
+                        <p class="header_title"><?php echo $post->t_instructor_code  ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
 
                         <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRowASI/<?php echo $data['postId']; ?>/<?php echo $post->subject_code; ?>" title="Delete">
                             <button class="delete_button">
@@ -185,30 +185,114 @@
                             <td><?php echo $subject->sub_semester; ?></td>
                             <td><?php echo $subject->sub_credits; ?></td>
                             <td><?php echo $subject->sub_stream; ?></td>
-                            <td>
+                            
                                 <?php if(!$subject->sub_isHaveLecture){ ?>
-                                    <p>No Lecture</p>
+                                    <td>
+                                    <p style='color: gray;'><b>No Lecture</b></p>
+                                    </td>
+                                    <td>
+                                        <form>
+                                            <input class="dummy_btn" type="submit" value="NULL" disabled>
+                                        </form>
+                                    </td>
                                 <?php }else { ?>
-                                    <p>Yes</p>
+                                        <?php if(!$subject->lecturer_code){ ?>
+                                            <td>
+                                                <p style='color: green;'><b>Avaliable</b></p>
+                                            </td>
+                                            <td>
+                                                <form action="" method="POST"> <!-- add action -->
+                                                    <input class="update_button" type="submit" value="SELECT">
+                                                </form> 
+                                            </td>
+                                        <?php } else if($subject->lecturer_code == $data['postId']) { ?>
+                                            <td>
+                                                <p style='color: gray;'><b>Assigned</b></p>
+                                            </td>
+                                            <td>
+                                                <form>
+                                                    <input class="dummy_btn" type="submit" value="UNAVAILABLE" disabled>
+                                                </form>
+                                            </td>
+                                        <?php } else { ?>
+                                            <td>
+                                                <p style='color: red;'><b>Unavailable</b></p>
+                                                
+                                            </td>
+                                            <td>
+                                                <form action="" method="POST"> <!-- add action -->
+                                                    <input class="force" type="submit" value="FORCE">
+                                                </form>
+                                            </td>
+                                        <?php } ?>
                                 <?php } ?>
-                            </td>
-                            <td>-</td>
-                            <td>
+                            
                                 <?php if(!$subject->sub_isHavePractical){ ?>
-                                    <p>No Practical</p>
+                                    <td>
+                                        <p style='color: gray;'><b>No Practical</b></p>
+                                    </td>
+                                    <td>
+                                        <form>
+                                            <input class="dummy_btn" type="submit" value="NULL" disabled>
+                                        </form>
+                                    </td>
                                 <?php }else { ?>
-                                    <p>Yes</p>
+                                    <?php if(!$subject->p_instructor_code){ ?>
+                                            <td>
+                                                <p style='color: green;'><b>Avaliable</b></p>
+                                            </td>
+                                            <td>--link--</td>
+                                        <?php } else if($subject->p_instructor_code == $data['postId']) { ?>
+                                            <td>
+                                                <p style='color: gray;'><b>Assigned</b></p>
+                                            </td>
+                                            <td>
+                                                <form>
+                                                    <input class="dummy_btn" type="submit" value="UNAVAILABLE" disabled>
+                                                </form>
+                                            </td>
+                                        <?php } else { ?>
+                                            <td>
+                                                <p style='color: red;'><b>Unavailable</b></p>
+                                                
+                                            </td>
+                                            <td>--link--</td>
+                                        <?php } ?>
                                 <?php } ?>
-                            </td>
-                            <td>-</td>
-                            <td>
+                            
                                 <?php if(!$subject->sub_isHaveTutorial){ ?>
-                                    <p>No Tutorial</p>
+                                    <td>
+                                        <p style='color: gray;'><b>No Tutorial</b></p>
+                                    </td>
+                                    <td>
+                                        <form>
+                                            <input class="dummy_btn" type="submit" value="NULL" disabled>
+                                        </form>
+                                    </td>
                                 <?php }else { ?>
-                                    <p>Yes</p>
+                                    <?php if(!$subject->t_instructor_code){ ?>
+                                            <td>
+                                                <p style='color: green;'><b>Avaliable</b></p>
+                                            </td>
+                                            <td>--link--</td>
+                                        <?php } else if($subject->t_instructor_code == $data['postId']) { ?>
+                                            <td>
+                                                <p style='color: gray;'><b>Assigned</b></p>
+                                            </td>
+                                            <td>
+                                                <form>
+                                                    <input class="dummy_btn" type="submit" value="UNAVAILABLE" disabled>
+                                                </form>
+                                            </td>
+                                        <?php } else { ?>
+                                            <td>
+                                                <p style='color: red;'><b>Unavailable</b></p>
+                                                
+                                            </td>
+                                            <td>--link--</td>
+                                        <?php } ?>
                                 <?php } ?>
-                            </td>
-                            <td>-</td>
+                            
 
 
                             
@@ -226,6 +310,7 @@
         <p><b><span style='color: green;'>Available</span></b> - can be assigned.</p>
         <p><b><span style='color: red;'>Unavailable</span></b> - can't be assigned to this lecturer but can be forced (remove the current lecturer and assign to this lecturer).</p>
         <p><b><span style='color: gray;'>Assigned</span></b> - already assigned to this lecturer.</p>
+        <p><b><span style='color: gray;'>NULL</span></b> - no such optiion for this subject.</p>
     </div>
     
     </div>
