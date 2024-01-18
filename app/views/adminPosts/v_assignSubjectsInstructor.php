@@ -61,7 +61,7 @@
                 <p class="title_item"><b>Stream</b></p>
                 <p class="title_item"><b>Lecture</b></p>
                 <p class="title_item"><b>Practical</b></p>
-                <p style="padding-right: 60px;" class="title_item"><b>Tutorial</b></p>
+                <p class="title_item"><b>Tutorial</b></p>
             </div>
 
             <div class="list">
@@ -71,19 +71,65 @@
                 <div class="lecture_room">
                     <div class="lecture_room_header">
                         <p class="row_num"><?php echo $i++; ?></p>
-                        <p class="header_title"><?php echo $post->subject_code; ?></p>
+                        <p class="header_title"><?php echo $post->sub_code; ?></p>
                         <p class="header_title"><?php echo $post->sub_credits; ?></p>
                         <p class="header_title"><?php echo $post->sub_year; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
-                        <p class="header_title"><?php echo $post->lecturer_code ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
-                        <p class="header_title"><?php echo $post->p_instructor_code ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
-                        <p class="header_title"><?php echo $post->t_instructor_code  ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
+                        
+                        <div class="combined_delete header_title">
+                            <?php if($post->lecturer_code == $data['postId']){ ?>
+                                <p class="header_title"> <span style='color: green;'>&#10004;</span> </p>
+                                <a href="<?php echo URLROOT; ?>/AdminPosts/i_deleteRowAS/<?php echo $data['postId']; ?>/<?php echo $post->sub_code; ?>" title="Delete">
+                                    <button class="delete_button">
+                                        <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                                    </button>
+                                </a>
+                             <?php } else { ?>
+                                <p class="header_title"> <span style='color: red;'>&#10008;</span> </p>
+                                <a href="" title="Delete">
+                                    <button class="delete_button_disabled">
+                                        <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                                    </button>
+                                </a>
+                            <?php } ?>
+                        </div>
 
-                        <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRowASI/<?php echo $data['postId']; ?>/<?php echo $post->subject_code; ?>" title="Delete">
-                            <button class="delete_button">
-                                <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
-                            </button>
-                        </a>
+                        <div class="combined_delete header_title">
+                            <?php if($post->p_instructor_code == $data['postId']){ ?>
+                                <p class="header_title"> <span style='color: green;'>&#10004;</span> </p>
+                                <a href="<?php echo URLROOT; ?>/AdminPosts/i_deleteRow_p/<?php echo $data['postId']; ?>/<?php echo $post->sub_code; ?>" title="Delete">
+                                    <button class="delete_button">
+                                        <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                                    </button>
+                                </a>
+                             <?php } else { ?>
+                                <p class="header_title"> <span style='color: red;'>&#10008;</span> </p>
+                                <a href="" title="Delete">
+                                    <button class="delete_button_disabled">
+                                        <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                                    </button>
+                                </a>
+                            <?php } ?>
+                        </div>
+
+                        <div class="combined_delete header_title">
+                            <?php if($post->t_instructor_code == $data['postId']){ ?>
+                                <p class="header_title"> <span style='color: green;'>&#10004;</span> </p>
+                                <a href="<?php echo URLROOT; ?>/AdminPosts/i_deleteRow_t/<?php echo $data['postId']; ?>/<?php echo $post->sub_code; ?>" title="Delete">
+                                    <button class="delete_button">
+                                        <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                                    </button>
+                                </a>
+                             <?php } else { ?>
+                                <p class="header_title"> <span style='color: red;'>&#10008;</span> </p>
+                                <a href="" title="Delete">
+                                    <button class="delete_button_disabled">
+                                        <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                                    </button>
+                                </a>
+                            <?php } ?>
+                        </div>
+
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -201,7 +247,7 @@
                                                 <p style='color: green;'><b>Avaliable</b></p>
                                             </td>
                                             <td>
-                                                <form action="" method="POST"> <!-- add action -->
+                                                <form action="<?php echo URLROOT;?>/AdminPosts/i_addToAssignSubjects/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
                                                     <input class="update_button" type="submit" value="SELECT">
                                                 </form> 
                                             </td>
@@ -220,7 +266,7 @@
                                                 
                                             </td>
                                             <td>
-                                                <form action="" method="POST"> <!-- add action -->
+                                                <form action="<?php echo URLROOT;?>/AdminPosts/i_forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
                                                     <input class="force" type="submit" value="FORCE">
                                                 </form>
                                             </td>
@@ -241,7 +287,11 @@
                                             <td>
                                                 <p style='color: green;'><b>Avaliable</b></p>
                                             </td>
-                                            <td>--link--</td>
+                                            <td>
+                                                <form action="<?php echo URLROOT;?>/AdminPosts/i_addToAssignPractical/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
+                                                    <input class="update_button" type="submit" value="SELECT">
+                                                </form> 
+                                            </td>
                                         <?php } else if($subject->p_instructor_code == $data['postId']) { ?>
                                             <td>
                                                 <p style='color: gray;'><b>Assigned</b></p>
@@ -256,7 +306,11 @@
                                                 <p style='color: red;'><b>Unavailable</b></p>
                                                 
                                             </td>
-                                            <td>--link--</td>
+                                            <td>
+                                                <form action="<?php echo URLROOT;?>/AdminPosts/i_forceAssignPractical/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
+                                                    <input class="force" type="submit" value="FORCE">
+                                                </form>
+                                            </td>
                                         <?php } ?>
                                 <?php } ?>
                             
@@ -274,7 +328,11 @@
                                             <td>
                                                 <p style='color: green;'><b>Avaliable</b></p>
                                             </td>
-                                            <td>--link--</td>
+                                            <td>
+                                                <form action="<?php echo URLROOT;?>/AdminPosts/i_addToAssignTutorial/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
+                                                    <input class="update_button" type="submit" value="SELECT">
+                                                </form> 
+                                            </td>
                                         <?php } else if($subject->t_instructor_code == $data['postId']) { ?>
                                             <td>
                                                 <p style='color: gray;'><b>Assigned</b></p>
@@ -289,7 +347,11 @@
                                                 <p style='color: red;'><b>Unavailable</b></p>
                                                 
                                             </td>
-                                            <td>--link--</td>
+                                            <td>
+                                                <form action="<?php echo URLROOT;?>/AdminPosts/i_forceAssignTutorial/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
+                                                    <input class="force" type="submit" value="FORCE">
+                                                </form>
+                                            </td>
                                         <?php } ?>
                                 <?php } ?>
                             

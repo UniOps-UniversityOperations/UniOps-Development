@@ -126,6 +126,7 @@
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 10px;
+    margin-right: 70px;
   }
   
   .delete_icon{
@@ -136,6 +137,17 @@
   /* Change the background color on hover */
   .delete_button:hover {
     background-color: #d32f2f;
+  }
+
+  .delete_button_disabled{
+    background-color: gray;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    margin-right: 70px;
   }
 
   .dummy_btn{
@@ -662,4 +674,9 @@
 
 .list::-webkit-scrollbar-thumb {
 background-color: transparent; /* Hide the thumb */
+}
+
+.combined_delete {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
 }

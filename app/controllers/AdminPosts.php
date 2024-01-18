@@ -963,18 +963,101 @@
             }
         }
 
-        // Search if exist a row for a subject and a instructor
-        public function searchRowASI($instructor_code, $subject_code){
-            //die($lecturer_code . " and " . $subject_code);
-            if($this->ASI_postModel->searchRowASI($instructor_code, $subject_code)){
-                return true;
-            } else{
-                return false;
+        //assign lecture...
+
+        public function i_addToAssignSubjects($sub_code, $lecturer_code){
+            // die($sub_code . "and" . $lecturer_code);
+            //add subject to the requestedSubjects table
+            if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
             }
         }
 
-        
+        public function i_deleteRowAS($lecturer_code, $subject_code){
+            //die($lecturer_code . " and " . $subject_code);
+            if($this->AS_postModel->deleteRowAS($lecturer_code, $subject_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
 
+        public function i_forceAssignLecturers($sub_code, $lecturer_code){
+            if($this->AS_postModel->forceAssignLecturers($sub_code, $lecturer_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+        
+        //assign practical...
+
+        public function i_addToAssignPractical($sub_code, $instructor_code){
+            // die($sub_code . "and" . $lecturer_code);
+            //add subject to the requestedSubjects table
+            if($this->ASI_postModel->add_p($sub_code, $instructor_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function i_deleteRow_p($instructor_code, $subject_code){
+            // die($instructor_code . " and " . $subject_code);
+            if($this->ASI_postModel->deleteRow_p($instructor_code, $subject_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function i_forceAssignPractical($sub_code, $instructor_code){
+            if($this->ASI_postModel->forceAssign_p($sub_code, $instructor_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        //assign tutorial...
+
+        public function i_addToAssignTutorial($sub_code, $instructor_code){
+            // die($sub_code . "and" . $lecturer_code);
+            //add subject to the requestedSubjects table
+            if($this->ASI_postModel->add_t($sub_code, $instructor_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function i_deleteRow_t($instructor_code, $subject_code){
+            // die($instructor_code . " and " . $subject_code);
+            if($this->ASI_postModel->deleteRow_t($instructor_code, $subject_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function i_forceAssignTutorial($sub_code, $instructor_code){
+            if($this->ASI_postModel->forceAssign_t($sub_code, $instructor_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
         
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     }
