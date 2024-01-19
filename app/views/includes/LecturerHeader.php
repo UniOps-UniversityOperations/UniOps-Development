@@ -53,14 +53,14 @@
 
 					<div class="nav-option option3">
 						<a href="<?php echo URLROOT;?>/Lecturer/reports/">
-							<img src="<?php echo URLROOT;?>/images/subject.png" class="nav-img" alt="Subject">
+							<img src="<?php echo URLROOT;?>/images/reports.svg" class="nav-img" alt="Subject">
 							<h3> Reports</h3>
 						</a>
 					</div>
 
 					<div class="nav-option option4">
 						<a href="<?php echo URLROOT;?>/Lecturer/ViewProfile/">
-							<img src="<?php echo URLROOT;?>/images/lecturer.png" class="nav-img" alt="Lecturer">
+							<img src="<?php echo URLROOT;?>/images/viewprofile.svg" class="nav-img" alt="Lecturer">
 							<h3> View Profile</h3>
 						</a>
 					</div>

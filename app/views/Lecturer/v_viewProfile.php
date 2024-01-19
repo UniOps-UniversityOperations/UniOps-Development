@@ -5,6 +5,14 @@
 
 <div class="leftsection">
 
+    <img src="<?php echo URLROOT;?>/images/default.jpeg" id="profilepicture">
+
+    <div><h2><?php echo $data->l_fullName ?></h2></div>
+
+    <div id="rank"><h3><?php echo $data->l_positionRank ?></h3></div>
+
+    <button class="updatebutton">Edit Details</button>
+
 </div>
 
 <div class="rightsection">

@@ -1,12 +1,28 @@
-<?php $style = "viewRooms"; ?> 
+<?php $style = "viewRooms"; 
+
+$data_json = json_encode($data);
+?> 
 
 <?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
 
-<div class="sidebar"  id="eventdetailspanel">
+<div class="sidebar"  id="room">
     <div class="sidebar-content">
-        <h2>Event Details</h2>
-        <p id="event-details">Some Data</p>
+        <h2 id="roomIdHeader">Room Details </h2>
+        <p class = "item-title">Number of Boards <span class = "item-value" id="boards"></span></p>
+        <p class = "item-title">Number of Computers <span class = "item-value" id="computers"></span></p>
+        <p class = "item-title">Is_AC <span class = "item-value" id="AC"></span></p>
+        <p class = "item-title">Is_WIFI <span class = "item-value" id="WI-FI"></span></p>
+        <p class = "item-title">Number of Projectors <span id="projectors"></span> </p>
+        <p class = "item-title">Is_Media <span class = "item-value" id="media"></span></p>
+        <p class = "item-title">Is_Lecture <span class = "item-value" id="lecture"></span></p>
+        <p class = "item-title">Is_Lab <span class = "item-value" id="lab"></span></p>
+        <p class = "item-title">Is_Tutorial <span class = "item-value" id="tutorial"></span></p>
+        <p class = "item-title">Is_Meeting <span class = "item-value" id="meeting"></span></p>
+        <p class = "item-title">Is_Seminar <span class = "item-value" id="seminar"></span></p>
+        <p class = "item-title">Is_Exam <span class = "item-value" id="exam"></span></p>
     </div>
+
+    <button class = "view" onclick="window.location.href='<?php echo URLROOT;?>/Lecturer/ViewRoom/';">View</button>
 
 </div>
 
@@ -27,76 +43,38 @@
     </div>
 </div>
 
-<div class="room-name">
-    <h2>E401</h2>
-    <p><?php echo date("d, F y")?></p>
+<div class="rooms">
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Capacity</th>
+                <th>No_Of_Tables</th>
+                <th>No_Of_Chairs</th>
+            </tr>
+        </thead>
+        <tbody id="tbody" data=<?php echo $data_json ; ?>>
+            <?php
+            foreach ($data as $row) {
+                echo '<tr id="'.$row->id.'">';
+                echo '<td>'.$row->id.'</td>';
+                echo '<td>'.$row->name.'</td>';
+                echo '<td>'.$row->type.'</td>';
+                echo '<td>'.$row->capacity.'</td>';
+                echo '<td>'.$row->no_of_tables.'</td>';
+                echo '<td>'.$row->no_of_chairs.'</td>';
+                echo '</tr>';
+            } ?>
+        </tbody>
+    </table>
+
 </div>
 
-<div class="room-schedule">
-    <div class="navigatedays">
-        <p class="day"><?php echo date('l')?></p>
-        <input type="date">
+</div>
 
-    </div>
-    <div class="bookings">
-    <?php
-    $previousEnd = '08:00:00';
-    if(!is_array($data)){
-        echo $data;
-    }
-    else{
-        //$halfwaypoints decide how many items go to left section and how many go to right section
-        $halfwayPoint = ceil(count($data)/2); 
-        foreach($data as $key => $booking ){
-            if($key == 0){//The item from 0 through to the halfwaypoint go to left side
-                echo "<div class='left-section'>";
-            }
-            else if($key==$halfwayPoint){ //Once the halfway point reaches we need to create the div for right hand side
-                //div closing tag for closing the leftside div and starting the right side
-                echo "</div>
-                    <div class = 'right-section'>
-                ";
-            }
-            
-            //This creates a free time slots if there's time between previous event's end and this event's start times
-            if($booking->start_time != $previousEnd){
-                echo "
-                    <div class='timeslot'>".
-                    $previousEnd." - ".
-                    $booking->start_time."
-                    <span class='event'>Free Slot</span>
-                    </div>
-                ";
-            }
-
-            //Showing the booked event along with the time slot
-            echo "
-                <div class='timeslot'>".
-                $booking->start_time." - ".
-                $booking->end_time."
-                <span class='event'>".$booking->event."</span>
-                </div>
-            ";
-            $previousEnd = $booking->end_time;
-        }
-
-        //Our websites shows the time slots untill 7pm
-        if($previousEnd != '17:00:00'){
-            echo "
-                <div class='timeslot'>".
-                $previousEnd." - 19:00:00
-                <span class='event'>Free Slot</span>
-                </div>
-            ";
-        }
-    }
-        ?>
-        </div><!--Closing div for the right section --> 
-</div><!--Closing div for the bookings--> 
-
-</div><!--Closing div for the room schedules --> 
-
-<script src="<?php echo URLROOT;?>/js/generaterounds.js"></script>
 <script src="<?php echo URLROOT;?>/js/sidebar.js"></script>
 
 
