@@ -114,6 +114,11 @@
 
 .styled-table tbody tr {
     border-bottom: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f0f0f0;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
@@ -124,9 +129,10 @@
     border-bottom: 2px solid #1848A0;
 }
 
-.styled-table tbody tr.active-row {
+.styled-table tbody tr.row-selected {
     font-weight: bold;
-    color: #1848A0;
+    background-color: #251b1b;
+    color: white;
 }
 
 .sidebar-content p {
@@ -179,3 +185,4 @@
   background-color: #251b1b;
   color: white;
 }
+

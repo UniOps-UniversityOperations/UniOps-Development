@@ -1,10 +1,9 @@
-let data = JSON.parse(document.getElementById("tbody").getAttribute('data'));
+let data = JSON.parse(document.getElementById('tbody').getAttribute('data'));
 
 const sidebar = document.querySelector('.sidebar');
 const main = document.querySelector('.main');
 
 function toggleSidebar() {
-  console.log("Inside togglesidebar");
     sidebar.classList.toggle('sidebar-open');
     main.classList.toggle('content-shifted');
     nav.classList.toggle("navclose");
@@ -38,11 +37,21 @@ const toggleButtons = document.querySelectorAll('tbody > tr');
 toggleButtons.forEach(toggleButton => {
     toggleButton.addEventListener('click',function()
     {
+
+      if(!sidebar.classList.contains('sidebar-open')) {
+        viewMore(toggleButton.id);
+      }
+
       toggleSidebar();
-      toggleButton.classList.toggle('row-selected');
-      viewMore(toggleButton.id);
-      console.log('e.target:', toggleButton.id);
-      console.log(data[0].id);
+
+      toggleButtons.forEach(toggleButton => {
+        toggleButton.classList.remove('row-selected')
+      })
+
+      if(sidebar.classList.contains('sidebar-open')) {
+        toggleButton.classList.toggle('row-selected');
+      }
+      
     })
 })
 

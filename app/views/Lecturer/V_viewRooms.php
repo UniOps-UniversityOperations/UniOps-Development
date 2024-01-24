@@ -1,7 +1,7 @@
 <?php $style = "viewRooms"; 
-
 $data_json = json_encode($data);
 ?> 
+
 
 <?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
 
@@ -56,7 +56,8 @@ $data_json = json_encode($data);
                 <th>No_Of_Chairs</th>
             </tr>
         </thead>
-        <tbody id="tbody" data=<?php echo $data_json ; ?>>
+        <tbody id="tbody" data="<?php echo htmlspecialchars($data_json, ENT_QUOTES, 'UTF-8'); ?>">
+
             <?php
             foreach ($data as $row) {
                 echo '<tr id="'.$row->id.'">';
