@@ -600,8 +600,19 @@
             }
         }
 
-        public function deleteLecturer($postId){
-            if($this->L_postModel->deleteLecturer($postId)){
+        /*
+            The deletion has to be from these tables:
+                subjects
+                assignedSubjects
+                requestedSubjects
+        */
+
+        public function deleteLecturer($postId, $lecturer_code){
+            // die("postID = " . $postId . "    lecturer_code = " . $lecturer_code);
+            if($this->L_postModel->deleteLecturer($postId) &&
+                $this->AS_postModel->deleteForLecturer($lecturer_code) &&
+                $this->RS_postModel->deleteForLecturer($lecturer_code)
+            ){
                 redirect('AdminPosts/viewLecturers');
             }else{
                 die('Something went wrong');

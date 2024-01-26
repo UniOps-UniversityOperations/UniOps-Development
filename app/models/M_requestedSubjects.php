@@ -35,4 +35,15 @@ class M_requestedSubjects{
             return false;
         }
     }
+
+    public function deleteForLecturer($lecturer_code){
+        $this->db->query('DELETE FROM requestedSubjects WHERE lecturer_code = :lecturer_code');
+        $this->db->bind(':lecturer_code', $lecturer_code);
+        if ($this->db->execute()) {
+            // If a new row was inserted
+            return true;
+        } else {
+            return false;
+        }
+    }
  }

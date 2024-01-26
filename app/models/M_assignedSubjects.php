@@ -92,4 +92,16 @@ class M_assignedSubjects{
             return false;
         }
     }
+
+    // delete all rows for a perticular lecturer
+    public function deleteForLecturer($lecturer_code){
+        $this->db->query('DELETE FROM assignedSubjects WHERE lecturer_code = :lecturer_code');
+        $this->db->bind(':lecturer_code', $lecturer_code);
+        if ($this->db->execute()) {
+            // If a new row was inserted
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

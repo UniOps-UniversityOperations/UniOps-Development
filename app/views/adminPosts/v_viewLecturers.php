@@ -105,7 +105,7 @@
                                         </button>
                                     </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteLecturer/<?php echo $post->l_id ?>" title="Delete">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteLecturer/<?php echo $post->l_id ?>/<?php echo $post->l_code; ?>" title="Delete">
                                         <button class="delete_button">
                                             <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
                                         </button>
