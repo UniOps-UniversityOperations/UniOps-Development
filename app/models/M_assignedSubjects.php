@@ -104,4 +104,16 @@ class M_assignedSubjects{
             return false;
         }
     }
+
+    //deleteForInstructor
+    public function deleteForInstructor($instructor_code){
+        $this->db->query('DELETE FROM assignedSubjects WHERE lecturer_code = :instructor_code');
+        $this->db->bind(':instructor_code', $instructor_code);
+        if ($this->db->execute()) {
+            // If a new row was inserted
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

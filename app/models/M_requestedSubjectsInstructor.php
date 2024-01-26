@@ -28,6 +28,18 @@ class M_requestedSubjectsInstructor{
         }
     }
 
+    //deleteForInstructor
+    public function deleteForInstructor($instructor_code){
+        $this->db->query('DELETE FROM requestedSubjectsInstructor WHERE instructor_code = :instructor_code');
+        $this->db->bind(':instructor_code', $instructor_code);
+        if ($this->db->execute()) {
+            // If a new row was inserted
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 

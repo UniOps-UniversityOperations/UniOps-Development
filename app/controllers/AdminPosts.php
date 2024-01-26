@@ -776,13 +776,29 @@
         
         //Delete Instructor
 
-        public function deleteInstructor($postId){
-            if($this->I_postModel->deleteInstructor($postId)){
+         /*
+            The deletion has to be from these tables:
+                subjects
+                assignedSubjects
+                i_assignedSubjects_practical
+                i_assignedSubjects_tutorial
+                requestedSubjectsInstructor
+        */
+
+        public function deleteInstructor($postId, $instructor_code){
+            // die("postID = " . $postId . "    instructor_code = " . $instructor_code);
+            if($this->I_postModel->deleteInstructor($postId) &&
+                $this->AS_postModel->deleteForInstructor($instructor_code) &&
+                $this->ASI_postModel->deleteForInstructor_p($instructor_code) &&
+                $this->ASI_postModel->deleteForInstructor_t($instructor_code) &&
+                $this->RSI_postModel->deleteForInstructor($instructor_code)
+            ){
                 redirect('adminPosts/viewInstructors');
             }else{
                 die('Something went wrong');
             }
         }
+        
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
         
@@ -958,6 +974,7 @@
         }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 // ----- For Instructor asign Subjects ------------------------------------------------------------------------------------------------------------------------------
 

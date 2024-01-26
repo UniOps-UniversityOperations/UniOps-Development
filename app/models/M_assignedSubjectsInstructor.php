@@ -192,6 +192,31 @@ class M_assignedSubjectsInstructor{
         }
     }
     
+    //deleteForInstructor_p
+    public function deleteForInstructor_p($p_instructor_code){
+        $this->db->query('DELETE FROM i_assignedSubjects_practical WHERE p_instructor_code = :p_instructor_code');
+        $this->db->bind(':p_instructor_code', $p_instructor_code);
+
+        if ($this->db->execute()) {
+            // If a new row was inserted
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //deleteForInstructor_t
+    public function deleteForInstructor_t($t_instructor_code){
+        $this->db->query('DELETE FROM i_assignedSubjects_tutorial WHERE t_instructor_code = :t_instructor_code');
+        $this->db->bind(':t_instructor_code', $t_instructor_code);
+
+        if ($this->db->execute()) {
+            // If a new row was inserted
+            return true;
+        } else {
+            return false;
+        }
+    }
     
 
 
