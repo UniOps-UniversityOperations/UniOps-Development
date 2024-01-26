@@ -3,45 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniOps Login</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/login.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="<?php echo URLROOT;?>/css/login.css">
 </head>
 <body>
-    
 
-    <div class="body"></div>
-		
-		<div class="container">
-            <div class="logo">  <!--TEh ccheck boxes-->
-                <img src="<?php echo URLROOT;?>/images/UniOps_logo.png" alt="UniOps" width="400px" height="auto">>
-        </div>
-		</div>
-		<br>
-		<div class="login">
-                <h1>Login</h1>
-				
-				
+    <div class="left-section">
 
-            <form action="" method="post">
-                <input type="text" placeholder="Username" name="user_id" <?php echo $data['user_id'];?>><br>
-                <span class="invalidFeedback"> Value = "<?php echo $data['user_idError']; ?>" </span><br>
-                
-                <input type="password" placeholder="password" name="password" <?php echo $data['password'];?>><br>
-                <span class="invalidFeedback"> Value = "<?php echo $data['passwordError']; ?>"</span><br>
+        <img src="<?php echo URLROOT;?>/images/loginimg.svg" class="login-img" alt="login Image">
 
-                <!--TEh ccheck boxes-->
-                <div class="checkboxes">
-                <label><input class="mutually-exclusive" type="checkbox" name="CB_administrator" value="true"> Administrator</label>
-                <label><input class="mutually-exclusive" type="checkbox" name="CB_lecturer" value="true"> Lecturer</label>
-                <label><input class="mutually-exclusive" type="checkbox" name="CB_instructor" value="true"> Instructor</label>
-                <label><input class="mutually-exclusive" type="checkbox" name="CB_student" value="true"> Student</label>
-                </div>
-                <button class="index_login_button" type="submit"name="submit">LOGIN</button>
-            </form>
+    </div>
 
-            <script src="<?php echo URLROOT;?>/js/login.js"></script>
-		</div>
+    <div class="right-section">
 
+        <h1>Sign In</h1>
+
+        <form action="<?php echo URLROOT; ?>/Users/login" method="post">
+            
+        <label for="username">User Name </label>
+        <input type="text" id="username" name="user_id">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+
+        <button type="submit">Login</button>
+
+        </form>
+
+    </div>
 
 </body>
 </html>

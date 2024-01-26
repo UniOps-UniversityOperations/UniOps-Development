@@ -1,6 +1,5 @@
 <?php
 
-    //echo 'Hello from Core.lib.php <br>';
     class Core{
         //The URL fromat --> /controller/method/params
 
@@ -9,13 +8,11 @@
         protected $params = [];
 
         public function __construct(){
-            /*$this->getURL();*/
-            //print_r($this->getURL());
 
             $url = $this->getURL();
             if(file_exists('../app/controllers/' . ucwords($url[0]) . '.php')){
                 //If exists, set as controller
-                $this->currentController = ucwords($url[0]); // Lecturere
+                $this->currentController = ucwords($url[0]); 
 
                 //unset the controller from the url
                 unset($url[0]);
@@ -46,7 +43,7 @@
         }
 
         public function getURL(){
-            /*echo $_GET['url'];*/
+
             if(isset($_GET['url'])){
                 $url = rtrim($_GET['url'], '/');
                 $url = filter_var($url, FILTER_SANITIZE_URL);

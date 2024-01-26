@@ -1,70 +1,51 @@
-@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
-
 body {
-    margin: 0;
-    padding: 0;
-    background: #F6F2EF;
-    color: #000000;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    min-height: 100vh; 
-}
-
-
-.header div span{
-	color: #5379fa !important;
-}
-.container {
-    display: flex; 
-    align-items: center; 
-}
-
-
-.login{
-    text-align: center;
-    padding: 10px;
-    border: #ccc 1px solid;
-    border-radius: 10px;
-    width: 400px;
-}
-
-.login input {
-    width: 60%; 
-    margin-bottom: 10px; 
-	padding: 10px;
-	border-radius: 10px;
-	border: 1px solid #ccc;
-}
-
-.index_login_button{
-    width: 60%; 
-    margin-bottom: 10px; 
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-}
-
-
-.logo {
-    text-align: center; 
-    padding: 20px;
-}
-
-
-.checkboxes label {
     display: flex;
+    font-size: 1.5em;
+}
+
+h1 {
+    padding-bottom: 30px;
+}
+
+.right-section {
+    flex : 1;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 5px;
+    justify-content: center;
 }
 
-.checkboxes input[type="checkbox"] {
-    margin-right: -100px; 
+img {
+    width: 100%;
+    height: 100vh;
 }
 
-.invalidFeedback {
-    color: red;
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 32px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
