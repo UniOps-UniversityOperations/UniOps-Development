@@ -87,11 +87,9 @@ function createPie(id) {
     var dataElement = document.querySelector(id + ' .pie-chart__legend');
 
     var color = [
-        'cornflowerblue',
-        'navy'
+        'navy',
+        'cornflowerblue'
     ];
-
-    color = shuffle(color);
 
     dataElement.querySelectorAll('span').forEach(function (span) {
         listData.push(Number(span.innerHTML));
@@ -109,22 +107,11 @@ function createPie(id) {
     }
 }
 
-function shuffle(a) {
-    var j, x, i;
-    for (i = a.length; i; i--) {
-        j = Math.floor(Math.random() * i);
-        x = a[i - 1];
-        a[i - 1] = a[j];
-        a[j] = x;
-    }
-
-    return a;
-}
-
 function createPieCharts() {
     createPie('.pieID--micro-skills');
     createPie('.pieID--categories');
     createPie('.pieID--operations');
+    createPie('.pieID--hello');
 }
 
 createPieCharts();

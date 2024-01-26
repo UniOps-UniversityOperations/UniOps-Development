@@ -376,13 +376,14 @@
 
 /* Optional: Add some styling for better visualization */
 .column:nth-child(1) {
-  width: 70%;
+  width: 65%;
   background-color: #DCDCE2;
 }
 
 .column:nth-child(2) {
-  width: 30%;
+  width: 35%;
   background-color: #DCDCE2;
+  margin-top: -90px;
 }
 
 .hr{
@@ -506,6 +507,7 @@
     font-weight: 300;
     height: 600px;
   }
+  
   @keyframes bake-pie {
     from {
       transform: rotate(0deg) translate3d(0, 0, 0);
@@ -514,10 +516,15 @@
   
   .pie-chart {
     font-family: "Open Sans", Arial;
-    width: 400px;
-    margin: 100px auto;
+    width: 267px;
+    margin: auto;
     text-align: center;
-    scale: 1.7;
+    scale: 1;
+
+  }
+
+  .wrapper{
+    padding-top: 20px;
   }
   
   .pie-chart__wrapper {
@@ -611,13 +618,13 @@
     float: right;
   }
   
-  .pie-charts {
+  .pie-charts1 {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: column; */
   }
   
   @media (max-width: 500px) {
-    .pie-charts {
+    .pie-charts1 {
       flex-direction: column;
     }
   }
@@ -676,7 +683,24 @@
 background-color: transparent; /* Hide the thumb */
 }
 
+.list2 {
+  height: 85vh;
+  overflow-y: scroll; /* Enable vertical scrolling if the content exceeds the max height */
+}
+
+.list2::-webkit-scrollbar {
+  width: 0.5em; /* Set the width of the scrollbar */
+}
+
+.list2::-webkit-scrollbar-thumb {
+background-color: transparent; /* Hide the thumb */
+}
+
 .combined_delete {
   display: flex;
   align-items: center; /* Align items vertically in the center */
+}
+
+.chart_name{
+  padding-top: 10px;
 }

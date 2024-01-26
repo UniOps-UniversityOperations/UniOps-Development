@@ -935,9 +935,9 @@
 
         public function assignSubjectsInstructor($postId){
             $postsRS = $this->RSI_postModel->getSubjects($postId);
-            $postsAS = $this->ASI_postModel->getSubjects($postId);
+            $postsASI = $this->ASI_postModel->getSubjects($postId);
             $subjects = $this->ASI_postModel->getSubjectDetails();
-            // $variables = $this->V_postModel->ASPage();
+            $variables = $this->V_postModel->getAll();
             
             if(!$postsRS){
                 $postsRS = "null";
@@ -946,9 +946,9 @@
             $data = [
                 'postId' => $postId,
                 'postsRS' => $postsRS,
-                'postsAS' => $postsAS,
+                'postsASI' => $postsASI,
                 'subjects' => $subjects,
-                // 'variables' => $variables,
+                'variables' => $variables,
             ];
             $this->view('adminPosts/v_assignSubjectsInstructor', $data);
         }

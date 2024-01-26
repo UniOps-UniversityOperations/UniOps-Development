@@ -14,6 +14,13 @@ class M_variables{
         return $results;
     }
 
+    //Get all data
+    public function getAll(){
+        $this->db->query('SELECT * FROM variables');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
 
 }
 

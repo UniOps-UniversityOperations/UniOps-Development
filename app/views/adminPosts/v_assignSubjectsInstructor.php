@@ -6,8 +6,8 @@
 
 <div class="main">
     <div class="top">
-            <h1 class="topic">Adminitsrator / Instructor / Assign Subjects </h1>
-            <h2 class="topic2">Lcturer Code: <?php echo $data['postId']; ?></h2>
+            <h1 class="topic">Adminitsrator / Instructors / Assign Subjects </h1>
+            <h2 class="topic2">Instructor Code: <?php echo $data['postId']; ?></h2>
     </div>        
 
     <div class="container">
@@ -67,7 +67,7 @@
             <div class="list">
             <?php 
             $i = 1;
-            foreach($data['postsAS'] as $post) : ?>
+            foreach($data['postsASI'] as $post) : ?>
                 <div class="lecture_room">
                     <div class="lecture_room_header">
                         <p class="row_num"><?php echo $i++; ?></p>
@@ -144,7 +144,7 @@
         </div>
 
         <div class="column">
-            <div class="room_type_counts">
+            <!-- <div class="room_type_counts">
                 <div class="count_tile">
                     <p># Total Credits</p>
                     <p id="num_credits"> num_credits </p>
@@ -154,13 +154,194 @@
                     <p># Lecture Hours</p>
                     <p id="lec_hrs"> lec_hrs </p>
                 </div>
-            </div>
+            </div> -->
             
 
-            <div class="pie_chart">
-                <p>Pie Chart</p>
+            <div class="pie_chart list2">
+            
+                <div class="wrapper">
+                <h1>Instructor Work Load</h1>
+                
+                    <div class="pie-charts1">
 
+                        <!-- Logic for pie chart 01 -->
+
+                        <?php
+                            $lecturer_max_lec_hrs = $data['variables'][0]->v_value;
+                            $lec_hrs_per_credit = $data['variables'][1]->v_value;
+
+                            //CALCLATE ASSIGNED SUBJECTS_CREDITS
+                            $assigned_subjects_credits = 0;
+                            foreach($data['postsASI'] as $post) {
+                                if($post->lecturer_code == $data['postId']){
+                                    $assigned_subjects_credits += $post->sub_credits;
+                                }
+                            }
+
+                            //number of assigned lecture hours
+                            $assigned_subjects_lec_hrs = $assigned_subjects_credits * $lec_hrs_per_credit;
+
+                            //precentage of assigned_subjects_lec_hrs
+                            $assigned_subjects_credits_precentage = ($assigned_subjects_lec_hrs / $lecturer_max_lec_hrs) * 100;
+                        ?>
+
+                        <div class=pie_row1>
+                        <div class="pieID--micro-skills pie-chart--wrapper">
+                        <h2 class="chart_name">Lectures</h2>
+                        
+                            <div class="pie-chart">
+                                <div class="pie-chart__pie"></div>
+                                
+                                <ul class="pie-chart__legend">
+                                <li>
+                                    <em>Assigned (%)</em>
+                                    <span><?php echo $assigned_subjects_credits_precentage ?></span>
+                                </li>
+                                <li>
+                                    <em>Remaining (%)</em>
+                                    <span><?php echo 100 - $assigned_subjects_credits_precentage ?></span>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+
+                        <!-- Logic for pie chart 02 -->
+
+                        <?php
+                            $instructor_max_practical_hrs = $data['variables'][4]->v_value;
+                            $practcal_hrs_per_credit = $data['variables'][2]->v_value;
+
+                            //CALCLATE ASSIGNED SUBJECTS_CREDITS
+                            $assigned_practical_credits = 0;
+                            foreach($data['postsASI'] as $post) {
+                                if($post->p_instructor_code == $data['postId']){
+                                    $assigned_practical_credits += $post->sub_credits;
+                                }
+                            }
+
+                            //number of assigned lecture hours
+                            $assigned_practical_hrs = $assigned_practical_credits * $practcal_hrs_per_credit;
+
+                            //precentage of assigned_subjects_lec_hrs
+                            $assigned_practical_credits_precentage = ($assigned_practical_hrs / $instructor_max_practical_hrs) * 100;
+                        ?>
+
+                        <div class="pieID--categories pie-chart--wrapper">
+                        <h2 class="chart_name">Practicals</h2>
+                        
+                        <div class="pie-chart">
+                            <div class="pie-chart__pie"></div>
+                            
+                            <ul class="pie-chart__legend">
+                            <li>
+                                <em>Assigned (%)</em>
+                                <span><?php echo $assigned_practical_credits_precentage ?></span>
+                            </li>
+                            <li>
+                                <em>Remaining (%)</em>
+                                <span><?php echo 100 - $assigned_practical_credits_precentage ?></span>
+                            </li>
+                            </ul>
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class=pie_row2>
+
+                        <!-- Logic for pie chart 03 -->
+
+                        <?php
+                            $instructor_max_tutorial_hrs = $data['variables'][5]->v_value;
+                            $tutorial_hrs_per_credit = $data['variables'][3]->v_value;
+
+                            //CALCLATE ASSIGNED SUBJECTS_CREDITS
+                            $assigned_tutorial_credits = 0;
+                            foreach($data['postsASI'] as $post) {
+                                if($post->t_instructor_code == $data['postId']){
+                                    $assigned_tutorial_credits += $post->sub_credits;
+                                }
+                            }
+
+                            //number of assigned lecture hours
+                            $assigned_tutorial_hrs = $assigned_tutorial_credits * $tutorial_hrs_per_credit;
+
+                            //precentage of assigned_subjects_lec_hrs
+                            $assigned_tutorial_credits_precentage = ($assigned_tutorial_hrs / $instructor_max_tutorial_hrs) * 100;
+                        ?>
+
+                        <div class="pieID--operations pie-chart--wrapper">
+                        <h2 class="chart_name">Tutorials</h2>
+                        
+                        <div class="pie-chart">
+                            <div class="pie-chart__pie"></div>
+                            
+                            <ul class="pie-chart__legend">
+                            <li>
+                                <em>Assigned (%)</em>
+                                <span><?php echo $assigned_tutorial_credits_precentage ?></span>
+                            </li>
+                            <li>
+                                <em>Remaining (%)</em>
+                                <span><?php echo 100 - $assigned_tutorial_credits_precentage ?></span>
+                            </li>
+                            </ul>
+                        </div>
+                        </div>
+                        
+                        <!-- Logic for pie chart 04 -->
+
+                        <?php
+                            $total_hrs = $assigned_subjects_lec_hrs + $assigned_practical_hrs + $assigned_tutorial_hrs;
+                            $max_hrs = $lecturer_max_lec_hrs + $instructor_max_practical_hrs + $instructor_max_tutorial_hrs;
+
+                            $total_hrs_precentage = ($total_hrs / $max_hrs) * 100;
+                        ?>
+
+                        <div class="pieID--hello pie-chart--wrapper">
+                        <h2 class="chart_name">__Total__</h2>
+                        
+                        <div class="pie-chart">
+                            <div class="pie-chart__pie"></div>
+                            
+                            <ul class="pie-chart__legend">
+                            <li>
+                                <em>Assigned (%)</em>
+                                <span><?php echo $total_hrs_precentage ?></span>
+                            </li>
+                            <li>
+                                <em>Remaining (%)</em>
+                                <span><?php echo 100 - $total_hrs_precentage ?></span>
+                            </li>
+                            </ul>
+                        </div>
+                        </div>
+                        </div>
+                    
+                    </div>
+
+                    
+                
+                </div>                
+                
+                <!-- print lecturer_max_lec_hrs -->
+                <p>lecturer_max_lec_hrs: <?php echo $data['variables'][0]->v_value; ?></p>
+                <!-- print lec_hrs_per_credit -->
+                <p>lec_hrs_per_credit: <?php echo $data['variables'][1]->v_value; ?></p>
+                <!-- print assigned_subjects_credits -->
+                <p>**assigned_subjects_credits: <?php echo $assigned_subjects_credits; ?></p>
+
+                <!-- print practcal_hrs_per_credit -->
+                <p>practcal_hrs_per_credit: <?php echo $data['variables'][2]->v_value; ?></p>
+                <!-- print tutorial_hrs_per_credit -->
+                <p>tutorial_hrs_per_credit: <?php echo $data['variables'][3]->v_value; ?></p>
+                <!-- print instructor_max_practical_hrs -->
+                <p>instructor_max_practical_hrs: <?php echo $data['variables'][4]->v_value; ?></p>
+                <!-- print instructor_max_tutorial_hrs -->
+                <p>instructor_max_tutorial_hrs: <?php echo $data['variables'][5]->v_value; ?></p>
             </div>
+
+            
   </div>
 
     <div class="popup-form">
