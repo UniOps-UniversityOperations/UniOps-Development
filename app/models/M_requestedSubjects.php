@@ -24,4 +24,15 @@ class M_requestedSubjects{
         $results = $this->db->resultSet();
         return $results;
     }
+    
+    public function deleteForSubject($subject_code){
+        $this->db->query('DELETE FROM requestedSubjects WHERE subject_code = :subject_code');
+        $this->db->bind(':subject_code', $subject_code);
+        if ($this->db->execute()) {
+            // If a new row was inserted
+            return true;
+        } else {
+            return false;
+        }
+    }
  }

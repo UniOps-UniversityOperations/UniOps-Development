@@ -433,8 +433,25 @@
             }
         }
 
-        public function deleteSubject($postId){
-            if($this->S_postModel->deleteSubject($postId)){
+        /*
+            The deletion has to be from these tables:
+                subjects
+                assignedSubjects
+                i_assignedSubjects_practical
+                i_assignedSubjects_tutorial
+                requestedSubjects
+                requestedSubjectsInstructor
+        */
+
+        public function deleteSubject($postId, $subject_code){
+            // die("postID = " . $postId . "    subject_code = " . $subject_code);
+            if($this->S_postModel->deleteSubject($postId) && 
+                $this->AS_postModel->deleteForSubject($subject_code) && 
+                $this->ASI_postModel->deleteForSubject_p($subject_code) &&
+                $this->ASI_postModel->deleteForSubject_t($subject_code) &&
+                $this->RS_postModel->deleteForSubject($subject_code) &&
+                $this->RSI_postModel->deleteForSubject($subject_code)
+                ){
                 redirect('AdminPosts/viewSubjects');
             }else{
                 die('Something went wrong');

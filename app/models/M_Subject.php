@@ -101,11 +101,11 @@ class M_Subject{
         return $row;
     }
 
+
     public function deleteSubject($id){
         $this->db->query('UPDATE subjects SET sub_isDeleted = 1 WHERE sub_id = :sub_id');
         //Bind values
         $this->db->bind(':sub_id', $id);
-
 
         //Execute function
         if($this->db->execute()){

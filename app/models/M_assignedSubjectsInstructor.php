@@ -166,6 +166,31 @@ class M_assignedSubjectsInstructor{
             return false;
         }
     }
+
+    public function deleteForSubject_p($p_subject_code){
+        $this->db->query('DELETE FROM i_assignedSubjects_practical WHERE p_subject_code = :p_subject_code');
+        $this->db->bind(':p_subject_code', $p_subject_code);
+
+        if ($this->db->execute()) {
+            // If a new row was inserted
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function deleteForSubject_t($t_subject_code){
+        $this->db->query('DELETE FROM i_assignedSubjects_tutorial WHERE t_subject_code = :t_subject_code');
+        $this->db->bind(':t_subject_code', $t_subject_code);
+
+        if ($this->db->execute()) {
+            // If a new row was inserted
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     
 
