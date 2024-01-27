@@ -26,6 +26,42 @@
 
         </div>
 
+        <div class="centered_container">
+            <div class="room_type_counts">
+                <div class='count_tile'>
+                    <p># Rooms </p> 
+                    <p><?php echo $data['r_count']->count; ?></p>
+                    </p>
+                </div>
+                <div class='count_tile'>
+                    <p># Subjects </p> 
+                    <p><?php echo $data['s_count']->count; ?></p>
+                    </p>
+                </div>
+                <div class='count_tile'>
+                    <p># Rooms </p> 
+                    <p><?php echo $data['r_count']->count; ?></p>
+                    </p>
+                </div>
+                <div class='count_tile'>
+                    <p># Rooms </p> 
+                    <p><?php echo $data['r_count']->count; ?></p>
+                    </p>
+                </div>
+                <div class='count_tile'>
+                    <p># Rooms </p> 
+                    <p><?php echo $data['r_count']->count; ?></p>
+                    </p>
+                </div>
+                <div class='count_tile'>
+                    <p># Rooms </p> 
+                    <p><?php echo $data['r_count']->count; ?></p>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
         <!--Table of Users-->
         <div>
             <table class="styled-table">

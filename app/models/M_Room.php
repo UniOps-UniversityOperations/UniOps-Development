@@ -159,6 +159,12 @@
             }
         }
 
+        public function getCount(){
+            $this->db->query('SELECT COUNT(*) AS count FROM rooms WHERE r_isDeleted = 0');
+            $row = $this->db->single();
+            return $row;
+        }
+
     }
 
 

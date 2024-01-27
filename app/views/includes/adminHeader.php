@@ -39,7 +39,7 @@
 
 					<div class="nav-option option1">
 						<!-- <a href="<?php echo URLROOT;?>/Pages/administrator_dashboard/"> -->
-						<a href="<?php echo URLROOT;?>/AdminPosts/viewUsers/">
+						<a href="<?php echo URLROOT;?>/AdminPosts/showDashboard/">
 							<img src= "<?php echo URLROOT;?>/images/dashboard_icon.svg" class="nav-img" alt="dashboard">
 							<h3> Dashboard</h3>
 						</a>

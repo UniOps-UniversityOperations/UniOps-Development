@@ -116,6 +116,12 @@ class M_Subject{
     
     }
 
+    public function getCount(){
+        $this->db->query('SELECT COUNT(*) AS count FROM subjects WHERE sub_isDeleted = 0');
+        $row = $this->db->single();
+        return $row;
+    }
+
 }
 
 

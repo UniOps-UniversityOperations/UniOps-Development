@@ -146,3 +146,31 @@ background-color: #0f2c61;
     padding: 15px;
     margin-right: 35px;
 }
+
+.centered_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Style for room type counts */
+  .room_type_counts {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent tiles from wrapping to the next line */
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%; /* Ensure the container stretches along the width */
+  }
+  
+  /* Style for each count tile */
+  .count_tile {
+    flex-grow: 1; /* Make the tiles stretch along the width */
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }

@@ -17,8 +17,25 @@
             $this->V_postModel = $this->model('M_variables');
         }
 
-//----- CRUD for User -----------------------------------------------------------------------------------------------------------------------------------
+
+
+//----- DashBoard-----------------------------------------------------------------------------------------------------------------------------------
     
+        //show all users
+        public function showDashboard(){
+            $posts = $this->U_postModel->getUsers();
+            $r_count = $this->R_postModel->getCount();
+            $s_count = $this->S_postModel->getCount();
+
+            $data = [
+                'title' => 'View Users',
+                'posts' => $posts,
+                'r_count' => $r_count,
+                's_count' => $s_count
+            ];
+            $this->view('pages/administrator_dashboard', $data);
+        }
+
         //Add User
         public function addUser(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -44,7 +61,7 @@
                     if($this->U_postModel->addUser($data)){
                         //flash('post_message', 'User Added');
                         //redirect('pages/administrator_dashboard');
-                        redirect('Pages/administrator_dashboard');
+                        redirect('AdminPosts/showDashboard');
                     }else{
                         die('Something went wrong');
                     }
@@ -69,16 +86,6 @@
 
         }
 
-        //show all users
-        public function viewUsers(){
-            $posts = $this->U_postModel->getUsers();
-            $data = [
-                'title' => 'View Users',
-                'posts' => $posts
-            ];
-            $this->view('pages/administrator_dashboard', $data);
-        }
-
         //Update User
         public function updateUser($postId){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -98,7 +105,7 @@
 
                 if(1){
                     if($this->U_postModel->updateUser($data)){
-                        redirect('AdminPosts/viewUsers');
+                        redirect('AdminPosts/showDashboard');
                     }else{
                         die('Something went wrong');
                     }
@@ -120,7 +127,7 @@
         //Delete User
         public function deleteUser($postId){
             if($this->U_postModel->deleteUser($postId)){
-                redirect('AdminPosts/viewUsers');
+                redirect('AdminPosts/showDashboard');
             }else{
                 die('Something went wrong');
             }
