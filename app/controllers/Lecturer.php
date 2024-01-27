@@ -19,8 +19,8 @@
       $this->view('Lecturer/v_viewrooms',$data);
     }
 
-    public function viewroom(){
-      $data = $this->lecturerModel->viewBookings('E401');
+    public function viewroombookings($date,$roomId){
+      $data = $this->lecturerModel->viewBookings($date,$roomId);
       $this->view('Lecturer/v_viewroom', $data);
     }
 

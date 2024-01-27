@@ -22,7 +22,7 @@ $data_json = json_encode($data);
         <p class = "item-title">Is_Exam <span class = "item-value" id="exam"></span></p>
     </div>
 
-    <button class = "view" onclick="window.location.href='<?php echo URLROOT;?>/Lecturer/ViewRoom/';">View</button>
+    <button class = "view" id="view">View</button>
 
 </div>
 

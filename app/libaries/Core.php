@@ -1,10 +1,10 @@
 <?php
 
     class Core{
-        //The URL fromat --> /controller/method/params
+        //The URL fromat --> /controller/method/param1/param2
 
-        protected $currentController = 'Pages';
-        protected $currentMethod = 'index';
+        protected $currentController = 'Users';
+        protected $currentMethod = 'login';
         protected $params = [];
 
         public function __construct(){
@@ -31,15 +31,18 @@
                         $this->currentMethod = $url[1];
                         unset($url[1]);
                     }
+  
                 }
+
+
 
                 //get params
                 $this->params = $url ? array_values($url) : [];
-
                 //call the method with params
                 call_user_func_array([$this->currentController, $this->currentMethod], $this->params); 
 
             }
+
         }
 
         public function getURL(){
