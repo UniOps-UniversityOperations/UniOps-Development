@@ -27,9 +27,9 @@ class M_Users {
         $this->db->bind(':user_id', $user_id);
         $row = $this->db->single();
 
-        $hashed_password = $row->password;
-        //if(password_verify($pwd, $hashed_password)){
-        if($pwd == $hashed_password){
+        $hashed_pwd = $row->pwd;
+        //if(pwd_verify($pwd, $hashed_pwd)){
+        if($pwd == $hashed_pwd){
             return $row;
         } else {
             return false;
@@ -53,11 +53,11 @@ class M_Users {
 
     //add user
     public function addUser($data){
-        $this->db->query("INSERT INTO users (user_id, username, password, role) VALUES (:user_id, :username, :password, :role)");
+        $this->db->query("INSERT INTO users (user_id, username, pwd, role) VALUES (:user_id, :username, :pwd, :role)");
         //bind values
         $this->db->bind(':user_id', $data['user_id']);
         $this->db->bind(':username', $data['username']);
-        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':pwd', $data['pwd']);
         $this->db->bind(':role', $data['role']);
 
         //execute
@@ -89,14 +89,14 @@ class M_Users {
         $this->db->query('UPDATE users SET
         user_id = :user_id,
         username = :username,
-        password = :password,
+        pwd = :pwd,
         role = :role
         WHERE user_id = :user_id
         ');
         //bind values
         $this->db->bind(':user_id', $data['user_id']);
         $this->db->bind(':username', $data['username']);
-        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':pwd', $data['pwd']);
         $this->db->bind(':role', $data['role']);
         //execute
         if($this->db->execute()){
@@ -124,6 +124,6 @@ class M_Users {
 /* User model Structure
     user_id
     username
-    password   
+    pwd   
     role
 */

@@ -18,13 +18,13 @@ class Users extends Controller {
 
             $data = [
                 'user_id' => trim($_POST['user_id']),
-                'password' => trim($_POST['password']),
+                'pwd' => trim($_POST['pwd']),
 
                 'user_idError' => '',
-                'passwordError' => ''
+                'pwdError' => ''
             ];
 
-            //validate usernamepassword
+            //validate usernamepwd
             if(empty($data['user_id'])){
                 $data['user_idError'] = 'Please enter username';
             }else{
@@ -37,15 +37,15 @@ class Users extends Controller {
                 }
             }
 
-            //validate password
-            if(empty($data['password'])){
-                $data['passwordError'] = 'Please enter password';
+            //validate pwd
+            if(empty($data['pwd'])){
+                $data['pwdError'] = 'Please enter pwd';
             }
 
             //if no errors login user
-            if(empty($data['user_idError']) && empty($data['passwordError']) ){
+            if(empty($data['user_idError']) && empty($data['pwdError']) ){
                 //log the user in
-                $loggedInUser = $this->userModel->login($data['user_id'], $data['password']);
+                $loggedInUser = $this->userModel->login($data['user_id'], $data['pwd']);
                 error_log('login');
 
                 if($loggedInUser){
@@ -57,7 +57,7 @@ class Users extends Controller {
                         if($this->userModel->checkRole($data['user_id'], 1)){
                             $this->createUserSession($loggedInUser);
                         }else{
-                            $data['passwordError'] = 'Role incorrect';
+                            $data['pwdError'] = 'Role incorrect';
                             //redirect to login
                             $this->view('v_login', $data);
                         }
@@ -74,7 +74,7 @@ class Users extends Controller {
                     }
 
                 }else{
-                    $data['passwordError'] = 'Password incorrect';
+                    $data['pwdError'] = 'pwd incorrect';
                     //redirect to login
                     $this->view('v_login', $data);
                 }
@@ -88,10 +88,10 @@ class Users extends Controller {
             //initial form
             $data = [
                 'user_id' => '',
-                'password' => '',
+                'pwd' => '',
 
                 'user_idError' => '',
-                'passwordError' => ''
+                'pwdError' => ''
             ];
 
             //load view

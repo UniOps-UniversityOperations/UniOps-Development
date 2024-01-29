@@ -26,8 +26,8 @@
                 <input type="text" placeholder="Username" name="user_id" <?php echo $data['user_id'];?>><br>
                 <span class="invalidFeedback"> Value = "<?php echo $data['user_idError']; ?>" </span><br>
                 
-                <input type="password" placeholder="password" name="password" <?php echo $data['password'];?>><br>
-                <span class="invalidFeedback"> Value = "<?php echo $data['passwordError']; ?>"</span><br>
+                <input type="pwd" placeholder="pwd" name="pwd" <?php echo $data['pwd'];?>><br>
+                <span class="invalidFeedback"> Value = "<?php echo $data['pwdError']; ?>"</span><br>
 
                 <!--TEh ccheck boxes-->
                 <div class="checkboxes">

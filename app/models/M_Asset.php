@@ -73,6 +73,12 @@ class M_Asset{
         }
     }
 
+    public function getCount(){
+        $this->db->query('SELECT COUNT(*) AS count FROM assets WHERE a_isDeleted = 0');
+        $row = $this->db->single();
+        return $row;
+    }
+
 
 }
 

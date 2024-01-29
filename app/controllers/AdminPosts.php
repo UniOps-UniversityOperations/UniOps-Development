@@ -26,12 +26,21 @@
             $posts = $this->U_postModel->getUsers();
             $r_count = $this->R_postModel->getCount();
             $s_count = $this->S_postModel->getCount();
+            $l_count = $this->L_postModel->getCount();
+            $i_count = $this->I_postModel->getCount();
+            // number of Students
+            $a_count = $this->A_postModel->getCount();
+            $vars = $this->V_postModel->getAll();
 
             $data = [
                 'title' => 'View Users',
                 'posts' => $posts,
                 'r_count' => $r_count,
-                's_count' => $s_count
+                's_count' => $s_count,
+                'l_count' => $l_count,
+                'i_count' => $i_count,
+                'a_count' => $a_count,
+                'vars' => $vars
             ];
             $this->view('pages/administrator_dashboard', $data);
         }
