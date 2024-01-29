@@ -17,8 +17,8 @@
             <input type="text" name="username" id="username" placeholder="username" value="<?php $data['username']; ?>" required>
             </label>
 
-            <label class="lable" for="password">Password:
-            <input type="password" name="password" id="password" placeholder="password" value="<?php $data['password']; ?>" required>
+            <label class="lable" for="pwd">pwd:
+            <input type="pwd" name="pwd" id="pwd" placeholder="pwd" value="<?php $data['pwd']; ?>" required>
             </label>
 
             <label class="lable" for="role">Role:

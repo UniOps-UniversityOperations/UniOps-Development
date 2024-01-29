@@ -219,3 +219,38 @@ background-color: #0f2c61;
     width: 30%;
     background-color: #DCDCE2;
 }
+
+.uses_top_bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+label {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+select {
+  padding: 8px; /* Adjust the padding as needed */
+  font-size: 14px; /* Adjust the font size as needed */
+  border: 1px solid #ccc; /* Adjust the border color as needed */
+  border-radius: 4px; /* Adjust the border-radius as needed */
+  cursor: pointer;
+}
+
+/* Style for the "All Types" option */
+option {
+  font-weight: bold; /* Make the "All Types" option bold */
+}
+
+/* Style for the selected option */
+select:hover, select:focus {
+  border-color: #333; /* Change border color on hover/focus */
+}
+
+/* Optional: Add a subtle transition effect */
+select {
+  transition: border-color 0.3s ease-in-out;
+}

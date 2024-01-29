@@ -56,7 +56,7 @@
 
                     'user_id' => trim($_POST['user_id']),
                     'username' => trim($_POST['username']),
-                    'password' => trim($_POST['password']),
+                    'pwd' => trim($_POST['pwd']),
                     'role' => trim($_POST['role']),
                     
                     'user_idError' => '',
@@ -84,7 +84,7 @@
 
                     'user_id' => '',
                     'username' => '',
-                    'password' => '',
+                    'pwd' => '',
                     'role' => '',
                     
                     'user_idError' => '',
@@ -107,7 +107,7 @@
 
                     'user_id' => trim($_POST['user_id']),
                     'username' => trim($_POST['username']),
-                    'password' => trim($_POST['password']),
+                    'pwd' => trim($_POST['pwd']),
                     'role' => trim($_POST['role']),
                     
                 ];
@@ -126,7 +126,7 @@
 
                     'user_id' => $post->user_id,
                     'username' => $post->username,
-                    'password' => $post->password,
+                    'pwd' => $post->pwd,
                     'role' => $post->role,
                 ];
                 $this->view('adminPosts/v_updateUser', $data);

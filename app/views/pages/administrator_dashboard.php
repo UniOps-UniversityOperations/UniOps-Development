@@ -59,7 +59,25 @@
         <div class="inner_container">
             <!--Table of Users-->
             <div class='inner_column'>
-            <h3 style='padding-bottom:10px;'>Users</h3>
+
+                <div class='uses_top_bar'>
+                    <h3 style='padding-bottom:10px;'>Users</h3>
+
+                    <div class="filters filter-container">
+                        <label for="streamFilter">Stream:</label>
+                        <select id="streamFilter">
+                            <option value="">All</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <?php foreach ($data['streams'] as $stream) : ?>
+                                <option value="<?php echo $stream; ?>"><?php echo $stream; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    
+                </div>
 
                 <div class="table-wrapper">
                     <table class="styled-table">
@@ -85,16 +103,16 @@
                                     <td><?php echo $user->pwd; ?></td>
                                     <td><?php switch($user->role){
                                         case 1:
-                                            echo "Administrator(1)";
+                                            echo 1;
                                             break;
                                         case 2:
-                                            echo "Lecturer(2)";
+                                            echo 2;
                                             break;
                                         case 3:
-                                            echo "Instructor(3)";
+                                            echo 3;
                                             break;
                                         case 4:
-                                            echo "Student(4)";
+                                            echo 3;
                                             break;
                                         default:
                                             echo "User";
@@ -124,16 +142,16 @@
                                     <td><?php echo $user->pwd; ?></td>
                                     <td><?php switch($user->role){
                                         case 1:
-                                            echo "Administrator(1)";
+                                            echo 1;
                                             break;
                                         case 2:
-                                            echo "Lecturer(2)";
+                                            echo 2;
                                             break;
                                         case 3:
-                                            echo "Instructor(3)";
+                                            echo 3;
                                             break;
                                         case 4:
-                                            echo "Student(4)";
+                                            echo 3;
                                             break;
                                         default:
                                             echo "User";
@@ -196,9 +214,6 @@
             </div>
 
         </div>
-
-
-
     </div>
 
     <div class="column">
@@ -207,6 +222,6 @@
 </div>
 
 
-
+<script src="<?php echo URLROOT;?>/js/administrator/administrator_dashboard.js"></script>
 
 <?php require APPROOT . '/views/includes/adminFooter.php'; ?>
