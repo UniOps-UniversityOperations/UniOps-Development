@@ -67,10 +67,10 @@
                         <label for="streamFilter">Stream:</label>
                         <select id="streamFilter">
                             <option value="">All</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+                            <option value="administator">Administator</option>
+                            <option value="lecturer">Lecturer</option>
+                            <option value="instructor">Instructor</option>
+                            <option value="student">Student</option>
                             <?php foreach ($data['streams'] as $stream) : ?>
                                 <option value="<?php echo $stream; ?>"><?php echo $stream; ?></option>
                             <?php endforeach; ?>
@@ -102,17 +102,17 @@
                                     <td><?php echo $user->username; ?></td>
                                     <td><?php echo $user->pwd; ?></td>
                                     <td><?php switch($user->role){
-                                        case 1:
-                                            echo 1;
+                                        case "a":
+                                            echo "administator";
                                             break;
-                                        case 2:
-                                            echo 2;
+                                        case "l":
+                                            echo "lecturer";
                                             break;
-                                        case 3:
-                                            echo 3;
+                                        case "i":
+                                            echo "instructor";
                                             break;
-                                        case 4:
-                                            echo 3;
+                                        case "s":
+                                            echo "student";
                                             break;
                                         default:
                                             echo "User";
@@ -141,17 +141,17 @@
                                     <td><?php echo $user->username; ?></td>
                                     <td><?php echo $user->pwd; ?></td>
                                     <td><?php switch($user->role){
-                                        case 1:
-                                            echo 1;
+                                       case "a":
+                                            echo "administator";
                                             break;
-                                        case 2:
-                                            echo 2;
+                                        case "l":
+                                            echo "lecturer";
                                             break;
-                                        case 3:
-                                            echo 3;
+                                        case "i":
+                                            echo "instructor";
                                             break;
-                                        case 4:
-                                            echo 3;
+                                        case "s":
+                                            echo "student";
                                             break;
                                         default:
                                             echo "User";
