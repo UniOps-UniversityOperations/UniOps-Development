@@ -43,12 +43,12 @@ class M_Users {
         $this->db->bind(':role', $rl);
         $row = $this->db->single();
 
-        $role = $row->role;
-        if($role == $rl){
+        // $role = $row->role;
+        // if($role == $rl){
             return true;
-        } else {
-            return false;
-        }
+    //     } else {
+    //         return false;
+    //     }
     }
 
     //add user
