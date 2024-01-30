@@ -511,3 +511,12 @@ select {
   margin: 5px 0;
   padding-right: 20px;
 }
+
+.image_section{
+  background-color: #3d6bc0;
+  height: 250px;
+  width: 360px;
+  margin-top: 650px;
+  position: absolute;
+  display: none;
+}

@@ -230,13 +230,21 @@
 
             ?>
 
+            <!-- the image section -->
+
+            <div class="image_section">
+                <p>image</p>
+            </div>
+
+            <!-- ----------------- -->
+
         </div>
-    
+
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="<?php echo URLROOT;?>/js/administrator/viewRooms.js"></script>
-<script>
+<!-- <script>
     $(document).ready(function(){
         $(".lecture_room .view_button").click(function(){
             
@@ -266,7 +274,7 @@
             }
         });
     });
-</script>
+</script> -->
 
 
 

@@ -105,4 +105,55 @@ document.querySelectorAll(".view_button").forEach(element => {
 });
 
 
+$(document).ready(function () {
+    // Function to update the visibility of image_section
+    function updateImageSectionVisibility() {
+        var index = $(".lecture_room .view_button").index(this);
+        // var isSidePanelOpen = $(".side-panel").hasClass("open");
+        // var isSideItemActive = $(".side_item.active");
+
+        $(".image_section").toggle(index);
+    }
+
+    $(".lecture_room .view_button").click(function () {
+        // get the index of the lecture_room div
+        var index = $(".lecture_room .view_button").index(this);
+
+        // toggle display block on index of side_item
+        $(".side_item").removeClass("active");
+        $(".side_item").eq(index).toggleClass("active");
+
+        // show or hide the image_section based on the active class
+        updateImageSectionVisibility();
+    });
+
+    // onclick .delete_button prevent default and confirm
+    $(".delete_button").click(function (e) {
+        e.preventDefault();
+        var c = confirm("Are you sure you want to delete this room?");
+        if (c) {
+            // get href from parent div
+            var href = $(this).parent().attr("href");
+            // follow the href
+            window.location.href = href;
+        }
+    });
+
+    // Toggle visibility when side panel is opened/closed
+    $(".side-panel-toggle").click(function () {
+        $(".side-panel").toggleClass("open");
+        updateImageSectionVisibility();
+    });
+
+    // Close side panel and remove image_section
+    $(".side-panel .sp-icon-close").click(function () {
+        $(".side-panel").removeClass("open");
+        $(".side_item.active").removeClass("active"); // remove active class from side_item
+        updateImageSectionVisibility();
+    });
+});
+
+
+
+
 
