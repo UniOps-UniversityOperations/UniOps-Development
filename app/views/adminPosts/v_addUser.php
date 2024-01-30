@@ -21,8 +21,13 @@
             <input type="pwd" name="pwd" id="pwd" placeholder="pwd" value="<?php $data['pwd']; ?>" required>
             </label>
 
-            <label class="lable" for="role">Role:
-            <input type="number" name="role" id="role" placeholder="role" value="<?php $data['role']; ?>" required>
+            <label class="label" for="role">Role:
+                <select id="role" name="role" required>
+                    <option value="a">Administator</option>
+                    <option value="l">Lecturer</option>
+                    <option value="i">Instructor</option>
+                    <option value="s">Student</option>
+                </select>
             </label>
            
             
@@ -35,3 +40,6 @@
 
 <!-- Footer Section -->
 <?php require APPROOT . '/views/includes/adminFooter.php'; ?>
+
+
+

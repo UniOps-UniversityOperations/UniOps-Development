@@ -42,7 +42,7 @@ body {
     min-height: 2em;
   }
   
-  input, textarea {
+  input, select, textarea {
     background-color: #ededed;
     border: 1px solid #1848A0;
     color: #000000;
