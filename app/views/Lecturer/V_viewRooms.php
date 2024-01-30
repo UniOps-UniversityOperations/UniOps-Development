@@ -31,11 +31,10 @@ $data_json = json_encode($data);
 <div class="content">
     <!--Tabs Section -->
     <div class="tabs-section">
-        <div class="tab" onclick="showTabContent('lecture-halls')">Lecture Halls</div>
+        <div class="tab" onclick="showTabContent('lecture-halls')">Lecture Rooms</div>
         <div class="tab" onclick="showTabContent('laboratories')">Laboratories</div>
         <div class="tab" onclick="showTabContent('meeting-rooms')">Meeting Rooms</div>
-        <div class="tab" onclick="showTabContent('exam-halls')">Exam Halls</div>
-        <div class="tab" onclick="showTabContent('auditorium')">Auditorium</div>
+        <div class="tab" onclick="showTabContent('exam-halls')">Other</div>
     </div>
     <div class="search-bar">
         <input type="text" placeholder="Type the Room Id" onkeyup="search(event)">

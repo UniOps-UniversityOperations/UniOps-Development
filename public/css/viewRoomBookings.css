@@ -45,12 +45,7 @@
   gap: 40px;
   border-bottom: 4px solid #000;
 }
-/* Style for the lecture room header */
-.lecture_room_header {
-display: flex;
-justify-content: space-between;
-align-items: center; /* Center vertically */
-}
+
 
 .room-name {
   display: flex;
@@ -74,7 +69,7 @@ align-items: center; /* Center vertically */
 }
 
 
-.bookings {
+#bookings {
   flex-grow: 1;
   display: flex;
   justify-content: space-between;
@@ -97,6 +92,7 @@ align-items: center; /* Center vertically */
   border-radius: 10px;
   margin-left: 40px;
   cursor: pointer;
+  width: 400px !important;
 }
 
 .timeslot {
@@ -151,4 +147,24 @@ cursor: pointer;
 
 .main.content-shifted {
   margin-right: 300px; /* Adjust based on sidebar width */
+}
+
+
+/*CSS to style the sidebar content */
+#datetime {
+  border-radius: 20px;
+  margin-bottom: 20px;
+  background-color: #000;
+  color: white;
+  width: 270px;
+  height: 65px;
+  text-align: center;
+  line-height: 2;
+}
+
+.sidebar-content p {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #1848A0;
 }

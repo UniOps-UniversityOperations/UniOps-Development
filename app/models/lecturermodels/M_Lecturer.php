@@ -34,9 +34,35 @@ class M_Lecturer {
     }
 
     public function viewBookings($date,$roomId) {
-        $this->db->query("SELECT * FROM roombookings WHERE r_id = :room_id AND booking_date = :dates ORDER BY start_time");
+
+        $sql = "SELECT
+        rb.r_id,
+        rb.start_time,
+        rb.end_time,
+        rb.event AS event,
+        NULL AS subject,
+        rb.booked_by AS booked_by
+        FROM roombookings rb
+        WHERE rb.r_id = :room_id and rb.booking_date = :dates
+        UNION ALL
+        SELECT
+        lb.r_id,
+        lb.start_time,
+        lb.end_time,
+        'Lecture' AS event,
+        lb.subject AS subject,
+        NULL AS booked_by
+        FROM lecturebookings lb
+        WHERE lb.r_id = :room_id and lb.day_of_week = :day_of_week
+        ORDER BY start_time
+        ";
+
+        $day = date("l",strtotime($date));
+
+        $this->db->query($sql);
         $this->db->bind(':room_id',$roomId);
         $this->db->bind(':dates',$date);
+        $this->db->bind(':day_of_week',$day);
         $result = $this->db->resultSet();
         if($result){
             return $result;
