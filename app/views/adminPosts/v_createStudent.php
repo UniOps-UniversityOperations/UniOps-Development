@@ -13,6 +13,10 @@
         <!-- <label class="lable" for="s_id">Student ID:
         <input type="text" id="s_id" name="s_id" placeholder="s_id" value="<?php echo $data["s_id"];?>" required>
         </label> -->
+        
+        <label class="lable" for="s_code">Student Code:
+        <input type="text" id="s_code" name="s_code" placeholder="s_code" value="<?php $data["s_code"];?>" required>
+        </label>
 
         <label class="lable" for="s_email">Student Email:
         <input type="email" id="s_email" name="s_email" placeholder="s_email" value="<?php echo $data["s_email"];?>" required>

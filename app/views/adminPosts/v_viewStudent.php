@@ -65,9 +65,9 @@
                     <div class="idle-view">
                             <div class="student_room_header">
                                 <h3 class="header_title"><?php echo $post->s_nameWithInitial; ?></h3>
+                                <p class="header_item"><b>Code:</b> <?php echo $post->s_code; ?></p>
                                 <p class="header_item"><b>Index Number:</b> <?php echo $post->s_indexNumber; ?></p>
                                 <p class="header_item"><b>Email:</b> <?php echo $post->s_email; ?></p>
-                                <p class="header_item"><b>Contact Number:</b> <?php echo $post->s_contactNumber; ?></p>
                                 <p class="header_item"><b>Stream:</b> <?php echo $post->s_stream; ?></p>
                                 
                                 <div class="action_buttons">
@@ -129,8 +129,8 @@
 
                                 <table class="sidebar_table">
                                     <tr>
-                                        <td><b>Index Number</b></td>
-                                        <td><b>: </b><?php echo $post->s_indexNumber; ?></td>
+                                        <td><b>Code</b></td>
+                                        <td><b>: </b><?php echo $post->s_code; ?></td>
                                     </tr>
 
                                     <tr>
@@ -161,6 +161,11 @@
                                                 <?= $chunk ?><br>
                                             <?php endforeach; ?>
                                         </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Index Number</b></td>
+                                        <td><b>: </b><?php echo $post->s_indexNumber ; ?></td>
                                     </tr>
 
                                     <tr>

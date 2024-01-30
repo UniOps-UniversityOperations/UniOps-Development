@@ -771,6 +771,7 @@
                     'title' => 'Create Student',
 
                     // 's_id' => trim($_POST['s_id']),
+                    's_code' => trim($_POST['s_code']),
                     's_fullName' => trim($_POST['s_fullName']),
                     's_nameWithInitial' => trim($_POST['s_nameWithInitial']),
                     's_regNumber' => trim($_POST['s_regNumber']),
@@ -786,8 +787,8 @@
                     's_codeError' => '',
                 ];
 
-                if(empty($data['s_fullName'])){
-                    $data['s_codeError'] = 'Please enter Student Code';
+                if(empty($data['s_code'])){
+                    $data['s_codeError'] = 'Please enter Student Name';
                 }
 
                 if(empty($data['s_codeError'])){
@@ -799,7 +800,7 @@
                         die('Something went wrong');
                     }
                 }else{
-                    $this->view('adminPosts/v_createStudent', $data);
+                    $this->view('posts/v_createStudent', $data);
 
                 }
             }  else{
@@ -807,7 +808,7 @@
 
                     'title' => 'Create Student',
 
-                    // 's_id' => '',
+                    's_code' => '',
                     's_fullName' => '',
                     's_nameWithInitial' => '',
                     's_regNumber' => '',
@@ -846,6 +847,7 @@
                     'postId' => $postId,
 
                     's_id' => trim($_POST['s_id']),
+                    's_code' => trim($_POST['s_code']),
                     's_fullName' => trim($_POST['s_fullName']),
                     's_nameWithInitial' => trim($_POST['s_nameWithInitial']),
                     's_regNumber' => trim($_POST['s_regNumber']),
@@ -872,6 +874,7 @@
                     'title' => 'Update Student',
 
                     's_id' => $post->s_id, //added
+                    's_code' => $post->s_code,
                     's_fullName' => $post->s_fullName,
                     's_nameWithInitial' => $post->s_nameWithInitial,
                     's_regNumber' => $post->s_regNumber,

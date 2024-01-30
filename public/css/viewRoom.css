@@ -1,0 +1,154 @@
+.main {
+    display: flex;
+    flex-direction : column;
+  }
+  
+  .tabs-section {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    background-color: #1848A0;
+    color: #DCDCE2;
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+  
+  .tab:hover {
+    background-color: #030369;
+  }
+  
+  .search-bar {
+    display : flex;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+  
+  .search-bar input {
+    height : 30px;
+    border-radius: 20px;
+  }
+  
+  .search-icon {
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    cursor: pointer;
+  }
+  
+  .content {
+    display : flex;
+    padding: 10px 20px 5px 0px;
+    margin-top: 20px;
+    gap: 40px;
+    border-bottom: 4px solid #000;
+  }
+  /* Style for the lecture room header */
+  .lecture_room_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+  }
+  
+  .room-name {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .room-name p{
+    align-self: flex-end;
+    margin-left: auto;
+    font-weight: bold;
+  }
+  
+  .room-schedule {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #ffffff; /* Set the background color to white */
+    border: 2px solid #3498db; /* Set the border to blue (#3498db) with a width of 2px */
+    padding: 10px; /* Add padding for better visual appearance */
+    flex-grow: 1;
+  }
+  
+  
+  .bookings {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  
+  .navigatedays {
+    display: flex;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+    justify-content: space-between;
+  }
+  
+  .event {
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #DCDCE2;
+    border-radius: 10px;
+    margin-left: 40px;
+    cursor: pointer;
+  }
+  
+  .timeslot {
+    margin-bottom: 80px;
+  }
+  
+  .left-section, .right-section {
+    flex-grow: 1;
+    display : flex;
+    flex-direction: column;
+    gap : 30px;
+  
+  }
+  
+  .right-section {
+    align-items: flex-end;
+  }
+  
+  .option2 {
+  border-left: 5px solid #010058af;
+  background-color: var(--Border-color);
+  color: white;
+  cursor: pointer;
+  }
+  
+  /*Styiling Side Bar */
+  .sidebar {
+    margin-top: 70px;
+    position: fixed;
+    top: 0;
+    right: -300px; /* Initially hidden */
+    width: 300px;
+    height: calc(100vh - 70px);
+    background-color: #f4f4f4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.5s ease-in-out;
+  }
+  
+  .sidebar-content {
+    padding: 20px;
+  }
+  
+  .sidebar.sidebar-open {
+    right: 0px; /* Adjust based on sidebar width */
+  }
+  
+  /*CSS for content area adjustment */
+  .main {
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    transition: margin-right 0.5s ease-in-out; /* Smooth transition for content adjustment */
+  }
+  
+  .main.content-shifted {
+    margin-right: 300px; /* Adjust based on sidebar width */
+  }

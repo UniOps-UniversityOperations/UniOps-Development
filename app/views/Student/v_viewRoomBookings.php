@@ -1,6 +1,14 @@
-<?php $style = "viewRooms"; ?> 
+<?php $style = "viewRoom"; ?> 
 
-<?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
+<?php require APPROOT . '/views/includes/studentHeader.php'; ?>
+
+<div class="sidebar"  id="eventdetailspanel">
+    <div class="sidebar-content">
+        <h2>Event Details</h2>
+        <p id="event-details">Some Data</p>
+    </div>
+
+</div>
 
 <h1>View Rooms</h1>
 
@@ -27,15 +35,7 @@
 <div class="room-schedule">
     <div class="navigatedays">
         <p class="day"><?php echo date('l')?></p>
-        <div class="left-arrow">
-            <img src= "<?php echo URLROOT;?>/images/leftarrow.svg" alt="Lefi Arrow">
-        </div>
-        <div class="rounds-container">
-
-        </div>
-        <div class="right-arrow">
-            <img src= "<?php echo URLROOT;?>/images/rightarrow.svg" alt="Right Arrow">
-        </div>
+        <input type="date">
 
     </div>
     <div class="bookings">
@@ -97,6 +97,7 @@
 </div><!--Closing div for the room schedules --> 
 
 <script src="<?php echo URLROOT;?>/js/generaterounds.js"></script>
+<script src="<?php echo URLROOT;?>/js/sidebar.js"></script>
 
 
-<?php require APPROOT . '/views/includes/lecturerFooter.php'; ?>
+<?php require APPROOT . '/views/includes/studentFooter.php'; ?>

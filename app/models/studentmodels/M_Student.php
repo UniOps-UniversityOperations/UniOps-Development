@@ -1,6 +1,6 @@
 <?php
 
-class M_Lecturer {
+class M_Student {
     private $db;
     private $uid;
 
@@ -12,7 +12,7 @@ class M_Lecturer {
 
     public function getTimeTable($current_Day) {
         $current_day = $current_Day;
-        $this->db->query("SELECT * FROM lecturertimetables WHERE l_code = :uid AND day_of_week = :current_day ORDER BY start_time");
+        $this->db->query("SELECT * FROM studenttimetable WHERE s_code = :uid AND day_of_week = :current_day ORDER BY start_time");
         $this->db->bind(':uid',$this->uid);
         $this->db->bind(':current_day',$current_day);
         $result = $this->db->resultSet();
@@ -40,6 +40,15 @@ class M_Lecturer {
         $this->db->query("SELECT * FROM lecturers WHERE l_email = :uid");
         $this->db->bind(':uid',$this->uid);
         $result = $this->db->single();
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
+        }
+    }
+    public function viewRooms() {
+        $this->db->query("SELECT * FROM rooms");
+        $result = $this->db->resultSet();
         if($result){
             return $result;
         } else {

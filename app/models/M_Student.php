@@ -6,6 +6,7 @@ class M_Student{
 
     public function __construct(){
         $this->db = new Database;
+        $this->uid = $_SESSION['user_id'];
     }
     
     //Create Student
@@ -74,7 +75,7 @@ class M_Student{
     }
 
 
-    //Update Student
+    //Up   date Student
 
     public function updateStudent($data){
         $this->db->query('UPDATE students SET
@@ -126,6 +127,53 @@ class M_Student{
             return true;
         }else{
             return false;
+        }
+    }
+
+    public function getTimeTable($current_Day) {
+        $this->db->query("SELECT s_year FROM students WHERE s_code = :uid");
+        $this->db->bind(':uid', $this->uid);
+        $studentYearResult = $this->db->resultSet();
+
+        if($studentYearResult) {
+            // $studentYear = $studentYearResult['s_code'];
+            $studentYear = reset($studentYearResult);
+            $current_day = $current_Day;
+            $this->db->query("SELECT * FROM studenttimetable WHERE s_year = :studentYear AND day_of_week = :current_day ORDER BY start_time");
+            $this->db->bind(':studentYear',$studentYear->s_year);
+            // $this->db->bind(':uid',$this->uid);
+            $this->db->bind(':current_day',$current_day);
+            $result = $this->db->resultSet();
+            if($result){
+                return $result;
+            } else {
+                return "";
+            }
+        }else{
+            return "";
+        }
+    }
+    
+
+    public function viewRooms() {
+        $this->db->query("SELECT * FROM rooms");
+        $result = $this->db->resultSet();
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
+        }
+    }
+
+    public function viewBookings($date,$roomId) {
+        $this->db->query("SELECT * FROM roombookings WHERE r_id = :room_id AND booking_date = :dates ORDER BY start_time");
+        $this->db->bind(':room_id',$roomId);
+        $this->db->bind(':dates',$date);
+        $result = $this->db->resultSet();
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
         }
     }
 
