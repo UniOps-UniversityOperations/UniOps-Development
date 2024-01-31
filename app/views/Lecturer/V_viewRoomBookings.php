@@ -44,7 +44,7 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
 <div class="room-schedule">
     <div class="navigatedays">
         <p class="day"><?php echo $date->format('l'); ?></p>
-        <form action="<?php echo URLROOT."/Lecturer/bookingDateSubmitted" ?>" method="post">
+        <form action="<?php echo URLROOT."/Lecturer/bookingDateSubmitted"; ?>" method="post" class = "date-selection-form">
             <input type="hidden" name="room_id" value="<?php echo basename($urlPath) ; ?>">
             <label for="dateInput">Select a Date: </label>
             <input type="date" id="dateInput" name="selectedDate" value="<?php echo $date->format('Y-m-d'); ?>" required>
@@ -53,6 +53,7 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
 
 
     </div>
+    <hr>
     <div id="bookings" data="<?php echo htmlspecialchars($data_json, ENT_QUOTES, 'UTF-8'); ?>">
     <?php
     $previousEnd = '08:00:00';

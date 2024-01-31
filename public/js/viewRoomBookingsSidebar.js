@@ -44,11 +44,11 @@ function viewMore(key) {
 function reserve() {
   sidebar.innerHTML = "<h1>Fill the Below Form for Reservations</h1>"+
   "<form action='' method='POST' id='reservation_form'>"+
-  "<label for='startTime'>Start Time:</label>"+
+  "<label for='startTime' class='reservation_label'>Start Time:</label>"+
   "<input type='time' id='startTime' name='startTime' required></input>"+
-  "<label for='endTime'>End Time:</label>"+
+  "<label for='endTime' class='reservation_label'>End Time:</label>"+
   "<input type='time' id='endTime' name='endTime' required>"+
-  "<label for='purpose'>Purpose:</label>"+
+  "<label for='purpose' class='reservation_label'>Purpose:</label>"+
   "<textarea id='purpose' name='purpose' rows='4' required></textarea>"+
   "<button id='reservation_submit'>Submit</submit>"
   "</form>";

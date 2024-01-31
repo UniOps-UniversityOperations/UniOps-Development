@@ -92,11 +92,20 @@
   border-radius: 10px;
   margin-left: 40px;
   cursor: pointer;
-  width: 400px !important;
+  max-width: 150px ;
+  flex-grow: 1;
 }
 
 .timeslot {
   margin-bottom: 80px;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.right-section .timeslot {
+  justify-content: flex-end;
 }
 
 .left-section, .right-section {
@@ -107,9 +116,6 @@
 
 }
 
-.right-section {
-  align-items: flex-end;
-}
 
 .option2 {
 border-left: 5px solid #010058af;
@@ -172,7 +178,6 @@ cursor: pointer;
 /*Request room for styles */
 
 #reservation_form {
-  /*max-width: 400px;*/
   margin: 20px auto;
   background-color: #fff;
   padding: 20px;
@@ -180,7 +185,7 @@ cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-label {
+.reservation_label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
@@ -211,4 +216,56 @@ textarea {
 
 #reservation_submit:hover {
   background-color: #45a049;
+}
+
+/*CSS for navigatedays Container Styling */
+.navigatedays {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.navigatedays p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.date-selection-form {
+  display: flex;
+  align-items: center;
+}
+
+.date-selection-form label {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.date-selection-form input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-right: 8px;
+}
+
+.date-selection-form button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.date-selection-form button:hover {
+  background-color: #45a049;
+}
+
+
+/*CSS FOR HR ELEMENT STYLING */ 
+hr {
+  margin-bottom: 40px;
+  height: 1px;
+  background-color: #ccc;
 }
