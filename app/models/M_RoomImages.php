@@ -26,9 +26,9 @@ class M_RoomImages{
         }
     }
 
-    public function getImages($r_id){
-        $this->db->query('SELECT * FROM roomImages WHERE r_id = :r_id');
-        $this->db->bind(':r_id', $r_id);
+    public function getImages(){
+        $this->db->query('SELECT * FROM roomImages');
+        // $this->db->bind(':r_id', $r_id);
         
         $results = $this->db->resultSet();
         return $results;

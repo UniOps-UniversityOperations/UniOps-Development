@@ -4,8 +4,29 @@
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
 <style>
+
+
+/* Styling Particular Image */
+/* .gallery-img {
+	width: 160px;
+	height: 125px;
+	cursor: pointer;
+	transition: transform 0.2s;
+} */
+/* onHover image will expand little bit */
+/* .gallery-img:hover {
+	transform: scale(1.1);
+	cursor: zoom-in;
+} */
+/* This section will be seen when we click on image */
+
 .database_images{
-    width: 500px;
+    width: 160px;
+	height: 125px;
+}
+.database_images:hover {
+	transform: scale(1.1);
+	cursor: zoom-in;
 }
 
 /* Styline the Heading of Image Gallery */
@@ -21,28 +42,17 @@
 }
 /* Styling gallery section where all images are */
 .gallery {
-	width: 90%;
-	margin:0 auto;
-	display:grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	grid-gap: 20px;
-	justify-content:center;
-	align-items: center; 
+	width: 360px;
+    height: 250px;
+    margin: 0 auto;
+    display: flex;
+    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+    /* grid-gap: 20px; */
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
 }
 
-/* Styling Particular Image */
-.gallery-img {
-	width: 200px;
-	height: 200px;
-	cursor: pointer;
-	transition: transform 0.2s;
-}
-/* onHover image will expand little bit */
-.gallery-img:hover {
-	transform: scale(1.1);
-	cursor: zoom-in;
-}
-/* This section will be seen when we click on image */
 .image-popup-container {
 	display: none;
 	position: fixed;
@@ -80,7 +90,7 @@ at middle of screen */
 }
 
 /* Making images more responsive for smaller size device */
-@media (max-width:670px) {
+/* @media (max-width:670px) {
 	.gallery{
 		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 		grid-gap: 10px;
@@ -93,12 +103,12 @@ at middle of screen */
 	.heading{
 		font-size: 20px;
 	}
-}
+} */
 
 </style>
 
 <script>
-    function showImage(imageSrc) {
+  function showImage(imageSrc) {
   let popupImage = document.getElementById("popupImage");
   popupImage.src = imageSrc;
   
@@ -130,13 +140,9 @@ at middle of screen */
 <div class="gallery">
 
     <?php foreach($data['posts'] as $post) : ?>
-
-    <div>
     <!-- <p class="row_num"><?php echo $i++; ?></p> -->
 
     <img class="database_images" class="gallery-img" onclick="showImage(src)" src="data:image/jpeg;base64,<?php echo base64_encode($post->data); ?>" alt="image">
-        
-    </div>
 
     <?php endforeach; ?>
         

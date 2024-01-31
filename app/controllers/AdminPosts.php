@@ -15,13 +15,14 @@
             $this->RSI_postModel = $this->model('M_requestedSubjectsInstructor');
             $this->ASI_postModel = $this->model('M_assignedSubjectsInstructor');
             $this->V_postModel = $this->model('M_variables');
+            $this->RI_postModel = $this->model('M_RoomImages');
         }
 
 
 
 //----- DashBoard-----------------------------------------------------------------------------------------------------------------------------------
     
-        //show all users
+        //show 
         public function showDashboard(){
             $posts = $this->U_postModel->getUsers();
             $r_count = $this->R_postModel->getCount();
@@ -227,9 +228,11 @@
         //show all rooms
         public function viewRooms(){
             $posts = $this->R_postModel->getRooms();
+            $images = $this->RI_postModel->getImages();
             $data = [
                 'title' => 'View Rooms',
-                'posts' => $posts
+                'posts' => $posts,
+                'images' => $images
             ];
             $this->view('adminPosts/v_viewRooms', $data);
         }

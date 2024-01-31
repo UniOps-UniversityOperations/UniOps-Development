@@ -22,7 +22,7 @@
                 ?>
             
                 <div class="top">
-                <h1 class="topic">Adminitsrator / Rooms</h1>
+                    <h1 class="topic">Adminitsrator / Rooms</h1>
                     <div class="centered_container">
                         <div class="room_type_counts">
                             <?php
@@ -75,16 +75,16 @@
                     </style>
 
 
-                <?php $test = $lec_room = []; ?>
+                    <?php $test = $lec_room = []; ?>
 
-                <div class="title_bar">
-                    <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
-                    <p class="title_item"><b>ID</b></p>
-                    <p class="title_item"><b>Type</b></p>
-                    <p style="padding-right: 210px;" class="title_item"><b>Capacity</b></p>
-                </div> 
+                    <div class="title_bar">
+                        <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
+                        <p class="title_item"><b>ID</b></p>
+                        <p class="title_item"><b>Type</b></p>
+                        <p style="padding-right: 210px;" class="title_item"><b>Capacity</b></p>
+                    </div> 
             
-            </div>
+                </div>
             
             <div class="list">
             <?php 
@@ -156,6 +156,7 @@
 
                 foreach ($lec_room as $post) {
                     echo "<div class='side_item'>";
+                    $id_ = $post->id;
                     ?>
 
                         <div class="sidebar_header">
@@ -223,27 +224,53 @@
                                 </div>
 
                             </div>
+
+                            <!-- the image section -->
+                            <div class="image_section">
+                                <!-- <div class="heading">
+                                    <h1>Images</h1>
+                                </div> -->
+
+                                <!-- Image Gallery section all image in one div -->
+                                <div class="gallery">
+                                    <?php $i = 0;
+                                    foreach($data['images'] as $image) :
+                                        if($image->r_id == $post->id && $i < 4){ ?>
+                                            <img class="database_images" class="gallery-img" onclick="showImage(src)" src="data:image/jpeg;base64,<?php echo base64_encode($image->data); ?>" alt="image">
+                                    <?php $i++; } endforeach;?>
+                                </div>
+                            </div>
+
+                            <!-- ----------------- -->
+
                         </div>
-                    <?php
-                    echo "</div>";
-                }
+                    <?php echo "</div>"; ?>
 
-            ?>
 
-            <!-- the image section -->
 
-            <div class="image_section">
-                <p>image</p>
-            </div>
+                            
 
-            <!-- ----------------- -->
+
+
+
+                <?php }?>
+
+            
 
         </div>
+
+            <!-- Image containter where image will show in big size -->
+            <div class="image-popup-container" id="imagePopup">
+                <span class="close-button" onclick="closeImage()">×</span>
+                <img src="" alt="Popup Image" id="popupImage">
+            </div>
 
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="<?php echo URLROOT;?>/js/administrator/viewRooms.js"></script>
+
+
 <!-- <script>
     $(document).ready(function(){
         $(".lecture_room .view_button").click(function(){
