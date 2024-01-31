@@ -29,17 +29,25 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
     </div>
 </div>
 
+<?php
+    $urlPath = $_SERVER['REQUEST_URI'];
+    $segments = explode('/', trim($urlPath, '/'));
+    $dateString = $segments[count($segments) - 2];
+    $date = new dateTime($dateString);
+?>
+
 <div class="room-name">
-    <h2><?php  if(is_array($data)){print_r($data[0]->r_id);} ?></h2>
-    <p><?php echo date("d, F y")?></p>
+    <h2><?php echo basename($urlPath) ;?></h2>
+    <p><?php echo $date->format('d, F Y'); ?></p>
 </div>
 
 <div class="room-schedule">
     <div class="navigatedays">
-        <p class="day"><?php echo date('l')?></p>
-        <form action="" method="post">
+        <p class="day"><?php echo $date->format('l'); ?></p>
+        <form action="<?php echo URLROOT."/Lecturer/bookingDateSubmitted" ?>" method="post">
+            <input type="hidden" name="room_id" value="<?php echo basename($urlPath) ; ?>">
             <label for="dateInput">Select a Date: </label>
-            <input type="date" id="dateInput" name="selectedDate" value="<?php echo date('Y-m-d'); ?>" required>
+            <input type="date" id="dateInput" name="selectedDate" value="<?php echo $date->format('Y-m-d'); ?>" required>
             <button type="submit">Submit</button>
         </form>
 

@@ -24,5 +24,13 @@
       $this->view('Lecturer/v_viewroomBookings', $data);
     }
 
+    public function bookingDateSubmitted() {
+      if($_SERVER['REQUEST_METHOD'] == "POST") {
+        $room_id = $_POST['room_id'];
+        $date = $_POST["selectedDate"];
+        redirect('Lecturer/viewroombookings/'.$date.'/'.$room_id);
+      }
+    }
+
   }
 
