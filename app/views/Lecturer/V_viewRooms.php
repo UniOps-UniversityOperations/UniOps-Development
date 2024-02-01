@@ -1,4 +1,4 @@
-<?php $style = "viewRooms"; 
+<?php $style = "lecturecss/viewRooms"; 
 $data_json = json_encode($data);
 ?> 
 

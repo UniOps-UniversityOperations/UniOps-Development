@@ -1,4 +1,4 @@
-<?php $style = "viewRoomBookings";
+<?php $style = "lecturecss/viewRoomBookings";
 $data_json = json_encode($data);
 /*This is a variable use to calculate all the slots that is gonna be displayed on the website(The total Number of 
 room bookings,lecture bookings and free slots)*/
