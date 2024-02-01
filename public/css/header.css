@@ -1,15 +1,13 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 header{
-/*     position :fixed;
-    top : 0; */
     background-color: #b1cce0;
-    width: 100%;
-    height: auto;
-    padding: 0;
-    margin: 0;
-    flex : 0 0 auto;
+    width: auto;
+    padding: 0px;
   }
 
-.header_img {
+  .header_img {
       width: 120px;
       height: auto;
       margin-right: 20px;

@@ -9,6 +9,9 @@
             $this->L_postModel = $this->model('M_Lecturer');
             $this->I_postModel = $this->model('M_Instructor');
             $this->U_postModel = $this->model('M_Users');
+            $this->S_postModel = $this->model('M_Student');
+
+
             $this->A_postModel = $this->model('M_Asset');
             $this->RS_postModel = $this->model('M_requestedSubjects');
             $this->AS_postModel = $this->model('M_assignedSubjects');
@@ -819,6 +822,162 @@
         }
         
 
+        // Crud for Student
+
+            //     Structure of the database table:
+            // 1	s_id Primary	int(11)					
+            // 3	s_email	varchar(50)		
+            // 4	s_fullName	varchar(50)		
+            // 5	s_nameWithInitials	varchar(50)	
+            // 7	s_dob	date		
+            // 8	s_contactNumber	varchar(20)	
+            // 9	s_stream	varchar(255)		
+            // 10	s_year	varchar(50)		
+            // 11	s_semester	varchar(50)		
+            // 12	s_isDeleted	date	
+        
+        //Create Student
+        public function createStudent(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+
+                    'title' => 'Create Student',
+
+                    // 's_id' => trim($_POST['s_id']),
+                    's_code' => trim($_POST['s_code']),
+                    's_fullName' => trim($_POST['s_fullName']),
+                    's_nameWithInitial' => trim($_POST['s_nameWithInitial']),
+                    's_regNumber' => trim($_POST['s_regNumber']),
+                    's_indexNumber' => trim($_POST['s_indexNumber']),
+                    's_email' => trim($_POST['s_email']),
+                    's_dob' => trim($_POST['s_dob']),
+                    's_contactNumber' => trim($_POST['s_contactNumber']),
+                    's_stream' => trim($_POST['s_stream']),
+                    's_year' => trim($_POST['s_year']),
+                    's_semester' => trim($_POST['s_semester']),
+                    // 's_isDeleted' => isset($_POST['s_isDeleted']) ? '1' : '0',
+                    
+                    's_codeError' => '',
+                ];
+
+                if(empty($data['s_code'])){
+                    $data['s_codeError'] = 'Please enter Student Name';
+                }
+
+                if(empty($data['s_codeError'])){
+                    if($this->S_postModel->createStudent($data)){
+                        //flash('post_message', 'Student Added');
+                        //redirect('pages/administrator_dashboard');
+                        redirect('adminPosts/viewStudent');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }else{
+                    $this->view('posts/v_createStudent', $data);
+
+                }
+            }  else{
+                $data = [
+
+                    'title' => 'Create Student',
+
+                    's_code' => '',
+                    's_fullName' => '',
+                    's_nameWithInitial' => '',
+                    's_regNumber' => '',
+                    's_indexNumber' => '',
+                    's_email' => '',
+                    's_dob' => '',
+                    's_contactNumber' => '',
+                    's_stream' => '',
+                    's_year' => '',
+                    's_semester' => '',
+                    // 's_isDeleted' => '',
+ 
+                    // 's_codeError' => '',
+                ];
+                $this->view('adminPosts/v_createStudent', $data);
+            }  
+        }
+
+        //show all students
+        public function viewStudent(){
+            $posts = $this->S_postModel->getStudent();
+            $data = [
+                'title' => 'View Student',
+                'posts' => $posts
+            ];
+            $this->view('adminPosts/v_viewStudent', $data);
+        }
+
+        public function updateStudent($postId){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+
+                    'title' => 'Update Student',
+                    'postId' => $postId,
+
+                    's_id' => trim($_POST['s_id']),
+                    's_code' => trim($_POST['s_code']),
+                    's_fullName' => trim($_POST['s_fullName']),
+                    's_nameWithInitial' => trim($_POST['s_nameWithInitial']),
+                    's_regNumber' => trim($_POST['s_regNumber']),
+                    's_indexNumber' => trim($_POST['s_indexNumber']),
+                    's_email' => trim($_POST['s_email']),
+                    's_dob' => trim($_POST['s_dob']),
+                    's_contactNumber' => trim($_POST['s_contactNumber']),
+                    's_stream' => trim($_POST['s_stream']),
+                    's_year' => trim($_POST['s_year']),
+                    's_semester' => trim($_POST['s_semester']),
+                    's_isDeleted' => isset($_POST['s_isDeleted']) ? '1' : '0',                   
+                ];
+
+                if(1){
+                    if($this->S_postModel->updateStudent($data)){
+                        redirect('adminPosts/viewStudent');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }
+            }else{
+                $post = $this->S_postModel->getStudentById($postId);
+                $data = [
+                    'title' => 'Update Student',
+
+                    's_id' => $post->s_id, //added
+                    's_code' => $post->s_code,
+                    's_fullName' => $post->s_fullName,
+                    's_nameWithInitial' => $post->s_nameWithInitial,
+                    's_regNumber' => $post->s_regNumber,
+                    's_indexNumber' => $post->s_indexNumber,
+                    's_email' => $post->s_email,
+                    's_dob' => $post->s_dob,
+                    's_contactNumber' => $post->s_contactNumber,
+                    's_stream' => $post->s_stream,
+                    's_year' => $post->s_year,
+                    's_semester' => $post->s_semester,
+                    's_isDeleted' => $post->s_isDeleted,
+            
+                ];
+                $this->view('adminPosts/v_updateStudent', $data);
+            }
+        }
+
+        public function deleteStudent($postId){
+            if($this->S_postModel->deleteStudent($postId)){
+                redirect('adminPosts/viewStudent');
+            }else{
+                die('Something went wrong');
+            }
+        }
+
+    
+
+        // Crud of the Assets (Database)
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
         
 
@@ -1126,3 +1285,4 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     }
 
+?>

@@ -58,9 +58,5 @@ toggleButtons.forEach(toggleButton => {
 document.getElementById("view").addEventListener("click",()=>{
   let roomId = document.getElementById("roomIdHeader").innerText;
   let currentDate = new Date().toISOString().split('T')[0];
-  window.location.href = urlroot + "/Lecturer/viewroombookings/"+currentDate+"/"+roomId;
+  window.location.href ="http://localhost/UniOps" + "/Student/viewroombookings/"+currentDate+"/"+roomId;
 })
-<<<<<<< HEAD
-=======
-
->>>>>>> dev

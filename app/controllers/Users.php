@@ -88,7 +88,7 @@ class Users extends Controller {
                 break;
 
             case "S":
-                redirect('pages/lecturer_dashboard');
+                redirect('pages/Student_dashboard');
                 break;
             endswitch;
     }

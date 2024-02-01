@@ -1,4 +1,5 @@
 <?php $style = "createSubject"; ?>
+<?php require_once '../../config/config.php' ?>
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
