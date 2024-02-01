@@ -9,7 +9,7 @@
             $this->L_postModel = $this->model('M_Lecturer');
             $this->I_postModel = $this->model('M_Instructor');
             $this->U_postModel = $this->model('M_Users');
-            $this->S_postModel = $this->model('M_Student');
+            $this->Stu_postModel = $this->model('M_Student');
 
 
             $this->A_postModel = $this->model('M_Asset');
@@ -821,8 +821,10 @@
             }
         }
         
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
 
-        // Crud for Student
+//----- Crud for Student ---------------------------------------------------------------------------------------------------------------------------------
 
             //     Structure of the database table:
             // 1	s_id Primary	int(11)					
@@ -867,7 +869,7 @@
                 }
 
                 if(empty($data['s_codeError'])){
-                    if($this->S_postModel->createStudent($data)){
+                    if($this->Stu_postModel->createStudent($data)){
                         //flash('post_message', 'Student Added');
                         //redirect('pages/administrator_dashboard');
                         redirect('adminPosts/viewStudent');
@@ -904,7 +906,7 @@
 
         //show all students
         public function viewStudent(){
-            $posts = $this->S_postModel->getStudent();
+            $posts = $this->Stu_postModel->getStudent();
             $data = [
                 'title' => 'View Student',
                 'posts' => $posts
@@ -937,14 +939,14 @@
                 ];
 
                 if(1){
-                    if($this->S_postModel->updateStudent($data)){
+                    if($this->Stu_postModel->updateStudent($data)){
                         redirect('adminPosts/viewStudent');
                     }else{
                         die('Something went wrong');
                     }
                 }
             }else{
-                $post = $this->S_postModel->getStudentById($postId);
+                $post = $this->Stu_postModel->getStudentById($postId);
                 $data = [
                     'title' => 'Update Student',
 
@@ -968,7 +970,7 @@
         }
 
         public function deleteStudent($postId){
-            if($this->S_postModel->deleteStudent($postId)){
+            if($this->Stu_postModel->deleteStudent($postId)){
                 redirect('adminPosts/viewStudent');
             }else{
                 die('Something went wrong');
