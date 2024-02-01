@@ -75,7 +75,7 @@ $data_json = json_encode($data);
 
 </div>
 
-<script src="<?php echo URLROOT;?>/js/sidebar.js"></script>
+<script src="<?php echo URLROOT;?>/js/lecturerjs/sidebar.js"></script>
 
 
 <?php require APPROOT . '/views/includes/lecturerFooter.php'; ?>

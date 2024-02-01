@@ -153,7 +153,7 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
 
 </div><!--Closing div for the room schedules --> 
 
-<script src="<?php echo URLROOT;?>/js/viewRoomBookingsSidebar.js"></script>
+<script src="<?php echo URLROOT;?>/js/lecturerjs/viewRoomBookingsSidebar.js"></script>
 
 
 <?php require APPROOT . '/views/includes/lecturerFooter.php'; ?>

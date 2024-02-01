@@ -72,7 +72,7 @@ toggleButtons.forEach(toggleButton => {
       toggleSidebar();
 
       toggleButtons.forEach(toggleButton => {
-        toggleButton.classList.remove('row-selected')
+        toggleButton.classList.remove('row-selected');
       })
 
       if(sidebar.classList.contains('sidebar-open')) {
