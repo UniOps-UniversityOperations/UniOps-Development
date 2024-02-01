@@ -111,6 +111,12 @@ class M_Lecturer{
         }
     }
 
+
+    public function getCount(){
+        $this->db->query('SELECT COUNT(*) AS count FROM lecturers WHERE l_isDeleted = 0');
+        $row = $this->db->single();
+        return $row;
+    }
 }
 
 
