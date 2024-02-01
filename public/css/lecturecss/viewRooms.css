@@ -1,0 +1,188 @@
+.main {
+    display: flex;
+    flex-direction : column;
+  }
+  
+  .tabs-section {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    background-color: #1848A0;
+    color: #DCDCE2;
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+  
+  .tab:hover {
+    background-color: #030369;
+  }
+  
+  .search-bar {
+    display : flex;
+    margin-left: auto;
+  }
+  
+  .search-bar input {
+    height : 30px;
+    border-radius: 20px;
+  }
+  
+  .search-icon {
+    width: 20px; 
+    height: 20px; 
+    cursor: pointer;
+  }
+  
+  .content {
+    display : flex;
+    padding: 10px 20px 5px 0px;
+    margin-top: 20px;
+    gap: 40px;
+    border-bottom: 4px solid #000;
+  }
+  
+.rooms {
+    background-color: #ffffff; 
+    border: 2px solid #3498db; 
+    padding: 10px; 
+    flex-grow: 1;
+  } 
+  
+  .option2 {
+  border-left: 5px solid #010058af;
+  background-color: var(--Border-color);
+  color: white;
+  cursor: pointer;
+  }
+  
+  /*Styiling Side Bar */
+  .sidebar {
+    margin-top: 70px;
+    position: fixed;
+    top: 0;
+    right: -300px; /* Initially hidden */
+    width: 300px;
+    height: calc(100vh - 70px);
+    background-color: #f4f4f4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.5s ease-in-out;
+  }
+  
+  .sidebar-content {
+    padding: 20px;
+  }
+  
+  .sidebar.sidebar-open {
+    right: 0px; /* Adjust based on sidebar width */
+  }
+  
+  /*CSS for content area adjustment */
+  .main {
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    transition: margin-right 0.5s ease-in-out; /* Smooth transition for content adjustment */
+  }
+  
+  .main.content-shifted {
+    margin-right: 300px; 
+  }
+
+  .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #1848A0;
+    color: #ffffff;
+    text-align: left;
+}
+/*Table styles */
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    width: 1000px;
+}
+
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #1848A0;
+}
+
+.styled-table tbody tr.row-selected {
+    font-weight: bold;
+    background-color: #251b1b;
+    color: white;
+}
+
+.sidebar-content p {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #1848A0;
+}
+
+.item-value {
+  color: black;
+}
+
+.view {
+  margin-left: 10px;
+  width: 280px;
+  height: 35px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid #3498db;
+  border-radius: 60px;
+  color: #ffffff;
+  background-color: #3498db;
+  transition: background-color 0.3s, color 0.3s;
+  text-align: center;
+}
+
+/* Hover effect */
+.view:hover {
+  background-color: #ffffff;
+  color: #3498db;
+} 
+
+#roomIdHeader {
+  border-radius: 20px;
+  margin-bottom: 20px;
+  background-color: #000;
+  color: white;
+  width: 270px;
+  height: 50px;
+  text-align: center;
+  line-height: 2;
+}
+
+.row-selected {
+  background-color: #251b1b;
+  color: white;
+}
+
