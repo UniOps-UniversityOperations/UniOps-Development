@@ -3,7 +3,7 @@
 
 
 	</div>
-	<script src="<?php echo URLROOT;?>/js/LecturerHeader.js"></script>
+	<script src="<?php echo URLROOT;?>/js/lecturerjs/LecturerHeader.js"></script>
 
 </body>
 </html>
