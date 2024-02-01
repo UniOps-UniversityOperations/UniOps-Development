@@ -1,0 +1,589 @@
+/* Style for the lecture room container */
+.lecture_room {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  margin: 15px;
+}
+
+/* Style for the lecture room body single row */
+.lecture_room_body_single_row {
+  display: flex;
+  flex-wrap: wrap; /* Allows content to wrap to the next line if it doesn't fit */
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+  margin-top: 20px;
+  padding: 10px;
+  border-top: 5px solid #ccc; /* Optional: Add a border between header and body */
+  border-radius: 30px;
+}
+
+/* Style for the individual information paragraphs in single row */
+.header_item {
+  font-size: 16px;
+  margin: 5px 0;
+  flex: 1; /* Equal flex distribution for each paragraph */
+}
+
+.header_title{
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0;
+  flex: 1; /* Equal flex distribution for each paragraph */
+}
+
+  
+  /* Style for the lecture room header */
+.lecture_room_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+}
+
+/* Style for the view button */
+
+ .view_button {
+  background-color: var(--Border-color);
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+}
+
+.view_icon{
+  padding-top: 5px;
+  width: 30px;
+}
+
+/* Change the background color on hover */
+.view_button:hover {
+  background-color: #0f2c61;
+}
+
+/* Style for the update button */
+.update_button {
+  background-color: #4CAF50;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+}
+
+.update_icon{
+  padding-top: 5px;
+  width: 30px;
+}
+
+/* Change the background color on hover */
+.update_button:hover {
+  background-color: #45a049;
+}
+
+/* Style for the delete button */
+.delete_button {
+  background-color: #f44336;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+}
+
+.delete_icon{
+  padding-top: 5px;
+  width: 30px;
+}
+
+/* Change the background color on hover */
+.delete_button:hover {
+  background-color: #d32f2f;
+}
+
+.option2 {
+  border-left: 5px solid #010058af;
+  background-color: var(--Border-color);
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+  }
+
+
+.create_room_button {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.create_button{
+  background-color: var(--Border-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+}
+
+.create_button:hover {
+  background-color: #0f2c61;
+}
+
+
+
+
+
+
+.centered_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Style for room type counts */
+.room_type_counts {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent tiles from wrapping to the next line */
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%; /* Ensure the container stretches along the width */
+}
+
+/* Style for each count tile */
+.count_tile {
+  flex-grow: 1; /* Make the tiles stretch along the width */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin: 10px;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+/* Style for each count row */
+.count_row {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* Style for count column */
+.count_column {
+  margin-bottom: 5px;
+}
+
+
+
+/* Style for each room type count */
+.room_type_counts p {
+  font-size: 25px;
+  margin: 0;
+  font-weight: bold;
+  text-align: center; /* Add text-align property to center the text */
+  color: #333; /* Add a color property if you want to change the text color */
+  /* Add any other styles you want to apply */
+}
+
+
+
+/* Style for the right sidebar */
+#rightSidebar {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #f0f0f0;
+  border-left: 1px solid #ccc;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+ /* Style for the lecture room body */
+ .lecture_room_body {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+
+/* Add this to your CSS file */
+#clear-search {
+  cursor: pointer;
+}
+
+/* Add any other existing styles you may have */
+#clear-search:hover {
+  color: red;
+}
+
+
+/* Style for the search container */
+.search-container {
+  /* margin-top: 20px; */
+  position: relative;
+  /* padding-left: 25px; */
+}
+
+/* Style for the search input */
+#search {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.wrapper {
+  display: flex;
+}
+
+/* Main content area with custom scrollbar */
+.main {
+  flex-grow: 1;
+  overflow-y: scroll; /* Allow scrolling */
+}
+
+/* Custom scrollbar styles */
+.main::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+  display: none;
+}
+
+.main::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0; /* Color of the scrollbar thumb */
+  border-radius: 6px; /* Rounded corners of the thumb */
+}
+
+.main::-webkit-scrollbar-track {
+  background-color: #f0f0f0; /* Color of the scrollbar track */
+}
+
+
+.side-panel-toggle {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+
+  color: #ffffff;
+  background: var(--Border-color);
+  border: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.side-panel-toggle:hover {
+  background: #0f2c61;
+}
+
+.sp-icon-close {
+  display: none !important;
+}
+
+.side-panel {
+  /* display: none; */
+  width: 500px;
+  width: 0;
+  height: 87vh;
+  flex-shrink: 0;
+  color: #000000;
+  background: #f0f0f0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  border-radius: 0 20px 20px 20px;
+  transition: all 0.1s ease-out;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+.side-panel-open .side-panel {
+  /* display: initial; */
+  width: 450px;
+}
+
+.side-panel.side-panel-close{
+  display: none;
+}
+
+.side-panel-open .sp-icon-open {
+  display: none !important;
+}
+
+.side-panel-open .sp-icon-close {
+  display: initial !important;
+}
+
+
+.topic{
+  font-size: 34px;
+  font-weight: bold;
+  margin: -40px 0;
+  flex: 1; /* Equal flex distribution for each paragraph */
+  padding-bottom: 30px;
+  padding-left: 20px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .lecture_room_header {
+    flex-direction: column;
+  }
+  /* .side-panel-open .side-panel {
+    width: 200px;
+} */
+}
+
+.sidebar_header{
+  width: 380px;
+  height: 140px; 
+  flex-shrink: 0;
+  border-radius: 20px;
+  background-color: #010127;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header_text{
+  font-size: 34px;
+  font-weight: bold;
+  flex: 1; /* Equal flex distribution for each paragraph */
+  margin-left: 45px;
+  text-align: left;
+  color: #D2D2D6;
+}
+
+.sidebar_body{
+  line-height: 1.5;
+  margin-left: 15px;
+}
+
+ /* Style for the left side of the side bar body */
+ .sidebar_body_top {
+  flex: 1;
+  padding: 10px;
+  padding-top: 30px;
+  font-size: larger;
+  align-items: flex-start; 
+  display: flex;
+  justify-content: space-between;
+}
+
+.side_item{
+    display: none;
+}
+
+.side_item.active{
+    display:block;
+    margin-right: -10px;
+    margin-top: 45px;
+    margin-left: -10px;
+}
+
+
+.sidebar_top_left,
+.sidebar_top_right {
+    flex: 1;
+    word-wrap: break-word;
+    width: 15ch;
+}
+
+.sidebar_top_left p,
+.sidebar_top_right p {
+    margin: 0; /* Remove default margin to avoid extra space */
+}
+
+.sidebar_body_bottom {
+  flex: 1;
+  padding: 10px;
+  font-size: larger;
+  align-items: flex-start; 
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar_bottom_left_part1,
+.sidebar_bottom_right_part1,
+.sidebar_bottom_left_part2,
+.sidebar_bottom_right_part2{
+  flex: 1;
+}
+
+.sidebar_bottom_left_part1 p,
+.sidebar_bottom_right_part1 p,
+.sidebar_bottom_left_part2 p,
+.sidebar_bottom_right_part2 p{
+  margin: 0; /* Remove default margin to avoid extra space */
+}
+
+/* Add this CSS code to your stylesheet */
+
+.filter-container {
+  margin-right: 600px; /* Adjust the margin as needed */;
+}
+
+label {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+select {
+  padding: 8px; /* Adjust the padding as needed */
+  font-size: 14px; /* Adjust the font size as needed */
+  border: 1px solid #ccc; /* Adjust the border color as needed */
+  border-radius: 4px; /* Adjust the border-radius as needed */
+  cursor: pointer;
+}
+
+/* Style for the "All Types" option */
+option {
+  font-weight: bold; /* Make the "All Types" option bold */
+}
+
+/* Style for the selected option */
+select:hover, select:focus {
+  border-color: #333; /* Change border color on hover/focus */
+}
+
+/* Optional: Add a subtle transition effect */
+select {
+  transition: border-color 0.3s ease-in-out;
+}
+
+.title_bar{
+  background-color: var(--Border-color);
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 17px;
+  margin-right: 23px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+}
+
+.title_item {
+  font-size: 22px;
+  margin: 5px 0;
+  flex: 1; /* Equal flex distribution for each paragraph */
+}
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* Ensure it's on top of other elements */
+}
+
+.list {
+    max-height: 56vh;
+    overflow-y: scroll; /* Enable vertical scrolling if the content exceeds the max height */
+    margin-top: 40px;
+}
+
+.list::-webkit-scrollbar {
+    width: 0.5em; /* Set the width of the scrollbar */
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Hide the thumb */
+}
+
+.row_num{
+  font-size: 20px;
+  margin: 5px 0;
+  padding-right: 20px;
+}
+
+.image_section{
+  /* background-color: #3d6bc0; */
+  height: 250px;
+  width: 360px;
+  margin-top: 5px;
+  margin-left: 18px;
+  position: absolute;
+  /* display: none; */
+}
+
+.database_images{
+  width: 160px;
+height: 125px;
+}
+.database_images:hover {
+transform: scale(1.1);
+cursor: zoom-in;
+}
+
+/* Styline the Heading of Image Gallery */
+.heading{ 
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+}
+/* Styling gallery section where all images are */
+.gallery {
+width: 360px;
+  height: 250px;
+  margin: 0 auto;
+  display: flex;
+  /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+  /* grid-gap: 20px; */
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.image-popup-container {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8);
+z-index: 150;
+}
+
+/* close button when we want to close the bigger image */
+.close-button {
+position: absolute;
+top: 80px;
+right: 50px;
+font-size:60px;
+color: #fff;
+cursor: pointer;
+}
+.close-button:hover{
+color: red;
+}
+
+/* when we click on the image it will expand in bigger size and will displayed 
+at middle of screen */
+#popupImage {
+display: block;
+max-width: 80%;
+max-height: 80%;
+margin: 0 auto;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}

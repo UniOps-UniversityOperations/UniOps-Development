@@ -6,13 +6,13 @@
   <link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/header.css">
   <link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/footer.css">
   <link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/body.css">
-
+  <link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/<?php echo $style ;?>.css">
     <style>
       body, p, h1 {
         font-family: Arial;
       }
     </style>
-  <title>UniOps</title>
+  <title> <?php echo $data['title']; ?> </title>
 </head>
 <body>
 
