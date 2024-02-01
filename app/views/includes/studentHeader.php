@@ -38,7 +38,7 @@
 				<div class="nav-upper-options">
 
 					<div class="nav-option option1">
-						<a href="<?php echo URLROOT;?>/Pages/Lecturer_dashboard/">
+						<a href="<?php echo URLROOT;?>/Pages/Student_dashboard/">
 							<img src= "<?php echo URLROOT;?>/images/dashboard_icon.svg" class="nav-img" alt="dashboard">
 							<h3> Dashboard</h3>
 						</a>
@@ -52,15 +52,15 @@
 					</div>
 
 					<div class="nav-option option3">
-						<a href="<?php echo URLROOT;?>/Lecturer/reports/">
-							<img src="<?php echo URLROOT;?>/images/subject.png" class="nav-img" alt="Subject">
+						<a href="<?php echo URLROOT;?>/Student/reports/">
+							<img src="<?php echo URLROOT;?>/images/reports.svg" class="nav-img" alt="Subject">
 							<h3> Reports</h3>
 						</a>
 					</div>
 
 					<div class="nav-option option4">
-						<a href="<?php echo URLROOT;?>/Lecturer/ViewProfile/">
-							<img src="<?php echo URLROOT;?>/images/lecturer.png" class="nav-img" alt="Lecturer">
+						<a href="<?php echo URLROOT;?>/Student/ViewProfile/">
+							<img src="<?php echo URLROOT;?>/images/viewprofile.svg" class="nav-img" alt="Student">
 							<h3> View Profile</h3>
 						</a>
 					</div>

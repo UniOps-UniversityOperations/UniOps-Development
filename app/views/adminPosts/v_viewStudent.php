@@ -19,7 +19,6 @@
                 }
             ?>
                 
-
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php

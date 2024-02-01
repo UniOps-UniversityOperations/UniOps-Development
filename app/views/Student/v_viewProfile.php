@@ -5,6 +5,15 @@
 
 <div class="leftsection">
 
+    <img src="<?php echo URLROOT;?>/images/default.jpeg" id="profilepicture">
+
+    <div><h2><?php echo $data->s_fullName ?></h2></div>
+
+    <div id="rank"><h3><?php echo $data->s_indexNumber ?></h3></div>
+
+    
+    <button class="updatebutton">Edit Details</button>
+
 </div>
 
 <div class="rightsection">
@@ -22,13 +31,13 @@
                     <p>Full Name :</p>
                     <?php echo $data->s_fullName ?>
                     <p>Name with Initials : </p>
-                    <?php echo $data->s_nameWithInitials ?>
+                    <?php echo $data->s_nameWithInitial ?>
                 </div>
                 <div class="subright">
                     <p>Date of Birth :</p>
                     <?php echo $data->s_dob ?>
-                    <p>Address : </p>
-                    <?php echo $data->s_address ?>
+                    <p>Registration Number : </p>
+                    <?php echo $data->s_regNumber ?>
                 </div>
             </div>
 
@@ -44,7 +53,7 @@
                 </div>
                 <div class="subright">
                     <p>Contact Number :</p>
-                    <?php echo $data->l_contactNumber ?>
+                    <?php echo $data->s_contactNumber ?>
                 </div>
             </div>
         </div>
@@ -54,16 +63,16 @@
             <hr>
             <div class="subsectioncontent">
                 <div class="subleft">
-                    <p>Rank :</p>
-                    <?php echo $data->l_positionRank ?>
+                    <p>Year :</p>
+                    <?php echo $data->s_year ?>
                     <p>Designation : </p>
-                    <?php echo $data->l_nameWithInitials ?>
+                    <?php echo $data->s_nameWithInitial ?>
                 </div>
                 <div class="subright">
-                    <p>Lecturer Code :</p>
-                    <?php echo $data->l_code ?>
-                    <p>Date Joined : </p>
-                    <?php echo $data->l_dateOfJoin ?>
+                    <p>Student Code :</p>
+                    <?php echo $data->s_code ?>
+                    <p>Stream : </p>
+                    <?php echo $data->s_stream ?>
                 </div>
             </div>
         </div>

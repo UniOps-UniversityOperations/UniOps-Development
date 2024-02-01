@@ -5,7 +5,7 @@
 
 <div class="content">
     <h1>Update Your Profile</h1>
-    <form action="<?php echo URLROOT;?>/Student/updateProfile/>" method="POST">
+    <form action="<?php echo URLROOT;?>/lecturer/updateRoom/>" method="POST">
 
         <!-- input feilds -->
         <fieldset>
@@ -15,19 +15,19 @@
         </label>
 
         <label class="lable" for="fname">First Name :
-        <input type="text" id="fname" name="fname" placeholder="fname" value="Sunil" required>
+        <input type="text" id="fname" name="fname" placeholder="fname" value="Kamal" required>
         </label>
 
         <label class="lable" for="lname">Last Name:
         <input type="text" id="lname" name="lname" placeholder="lname" value="Perera" required>
         </label>
 
-        <label class="lable" for="email">Email address :
-        <input type="text" id="email" name="email" placeholder="email" value="sunil123@gmaik]l.com" required>
+        <label class="lable" for="expertise">Expertise :
+        <input type="text" id="expertise" name="expertise" placeholder="expertise" value="Networking" required>
         </label>
 
-        <label class="lable" for="city">City/town:
-        <input type="text" id="city" name="city" placeholder="city" value="Colombo" required>
+        <label class="lable" for="Subjects Willing to teach">Subjects Willing to teach :
+        <input type="text" id="Subjects Willing to teach" name="Subjects Willing to teach" placeholder="Subjects Willing to teach" value="DSA" required>
         </label>
 
         </fieldset>

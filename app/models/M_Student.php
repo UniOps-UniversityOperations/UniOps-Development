@@ -3,6 +3,7 @@
 class M_Student{
 
     private $db;
+    // private $uid;
 
     public function __construct(){
         $this->db = new Database;
@@ -38,6 +39,7 @@ class M_Student{
         )');
 
         //Bind Values
+        $this->db->bind(':s_code', $data['s_code']);
         $this->db->bind(':s_fullName', $data['s_fullName']);
         $this->db->bind(':s_nameWithInitial', $data['s_nameWithInitial']);
         $this->db->bind(':s_regNumber', $data['s_regNumber']);
@@ -80,6 +82,7 @@ class M_Student{
     public function updateStudent($data){
         $this->db->query('UPDATE students SET
         s_id = :s_id,
+        s_code = :s_code,
         s_fullName = :s_fullName,
         s_nameWithInitial = :s_nameWithInitial,
         s_regNumber = :s_regNumber,
@@ -96,6 +99,7 @@ class M_Student{
 
         //Bind Values
         $this->db->bind(':s_id', $data['s_id']);
+        $this->db->bind(':s_code', $data['s_code']);
         $this->db->bind(':s_fullName', $data['s_fullName']);
         $this->db->bind(':s_nameWithInitial', $data['s_nameWithInitial']);
         $this->db->bind(':s_regNumber', $data['s_regNumber']);
@@ -131,7 +135,7 @@ class M_Student{
     }
 
     public function getTimeTable($current_Day) {
-        $this->db->query("SELECT s_year FROM students WHERE s_code = :uid");
+        $this->db->query("SELECT s_year FROM students WHERE s_email = :uid");
         $this->db->bind(':uid', $this->uid);
         $studentYearResult = $this->db->resultSet();
 
@@ -165,10 +169,59 @@ class M_Student{
         }
     }
 
+    // public function viewBookings($date,$roomId) {
+    //     $this->db->query("SELECT * FROM roombookings WHERE r_id = :room_id AND booking_date = :dates ORDER BY start_time");
+    //     $this->db->bind(':room_id',$roomId);
+    //     $this->db->bind(':dates',$date);
+    //     $result = $this->db->resultSet();
+    //     if($result){
+    //         return $result;
+    //     } else {
+    //         return "Empty";
+    //     }
+    // }
+
+    public function viewProfile() {
+        $this->db->query("SELECT * FROM students WHERE s_email = :uid");
+        $this->db->bind(':uid',$this->uid);
+        $result = $this->db->single();
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
+        }
+    }
+
     public function viewBookings($date,$roomId) {
-        $this->db->query("SELECT * FROM roombookings WHERE r_id = :room_id AND booking_date = :dates ORDER BY start_time");
+
+        $sql = "SELECT
+        rb.r_id,
+        rb.start_time,
+        rb.end_time,
+        rb.event AS event,
+        NULL AS subject,
+        rb.booked_by AS booked_by
+        FROM roombookings rb
+        WHERE rb.r_id = :room_id and rb.booking_date = :dates
+        UNION ALL
+        SELECT
+        lb.r_id,
+        lb.start_time,
+        lb.end_time,
+        'Lecture' AS event,
+        lb.subject AS subject,
+        NULL AS booked_by
+        FROM lecturebookings lb
+        WHERE lb.r_id = :room_id and lb.day_of_week = :day_of_week
+        ORDER BY start_time
+        ";
+
+        $day = date("l",strtotime($date));
+
+        $this->db->query($sql);
         $this->db->bind(':room_id',$roomId);
         $this->db->bind(':dates',$date);
+        $this->db->bind(':day_of_week',$day);
         $result = $this->db->resultSet();
         if($result){
             return $result;
@@ -176,6 +229,23 @@ class M_Student{
             return "Empty";
         }
     }
+
+    public function updateProfile($data) {
+        $this->db->query("UPDATE students SET s_email = :email WHERE s_id = :uid");
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':uid', $this->uid);
+
+        // Execute the query
+        if ($this->db->execute()) {
+            return true; // Update successful
+        } else {
+            return false; // Update failed
+        }
+    }
+
+    // ... existing code ...
+
+
 
 }
 
