@@ -1,0 +1,99 @@
+.option4 {
+border-left: 5px solid #010058af;
+background-color: var(--Border-color);
+color: white;
+cursor: pointer;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftsection {
+  display : flex;
+  flex-direction: column;
+  align-items: center;
+  flex : 0.5;
+  background-color: white;
+  margin-right: 15px;
+}
+
+.rightsection {
+  display: flex;
+  flex-direction: column;
+  flex : 1;
+  background-color: white ;
+  margin-left: 15px;
+}
+
+.content {
+  margin: 30px;
+}
+
+.title {
+  margin : 30px 30px 0px 30px;
+}
+
+hr {
+  border-color: blue;
+
+}
+
+.subsectiontitle {
+  color: blue;
+  font-weight: bold;
+}
+
+.subsectioncontent {
+  display: flex;
+}
+
+.subleft, .subright {
+  flex : 1;
+}
+
+.content {
+  flex: 1;
+  display : flex;
+  flex-direction: column;
+}
+
+.subsection1 {
+  flex: 0.75;
+}
+
+.subsection2 {
+  flex: 0.5;
+}
+
+.subsection3 {
+  flex : 1;
+}
+
+p {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#profilepicture {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width : 200px;
+  height :200px;
+  border-radius: 50%;
+}
+
+#rank {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.updatebutton {
+  color:white;
+  background-color: blue;
+  border: 0px;
+  padding: 5px 15px;
+  cursor: pointer;
+  border-radius: 15px;
+}

@@ -11,44 +11,6 @@ class M_Users {
         $this->db->query("SELECT * FROM users WHERE user_id = :user_id");
         $this->db->bind(':user_id', $user_id);
         return $this->db->single();
-
-        //check row count
-        if($this->db->rowCount() > 0){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    //login user
-    public function login($user_id, $pwd){
-        $this->db->query("SELECT * FROM users WHERE user_id = :user_id");
-        $this->db->bind(':user_id', $user_id);
-        $row = $this->db->single();
-
-        $hashed_pwd = $row->pwd;
-        //if(pwd_verify($pwd, $hashed_pwd)){
-        if($pwd == $hashed_pwd){
-            return $row;
-        } else {
-            return false;
-        }
-    }
-
-    //check role
-    public function checkRole($user_id, $rl){
-        $this->db->query("SELECT * FROM users WHERE user_id = :user_id AND role = :role");
-        $this->db->bind(':user_id', $user_id);
-        $this->db->bind(':role', $rl);
-        $row = $this->db->single();
-
-        // $role = $row->role;
-        // if($role == $rl){
-            return true;
-    //     } else {
-    //         return false;
-    //     }
     }
 
     //add user
