@@ -134,6 +134,13 @@ class M_Instructor{
             return false;
         }
     }
+
+
+    public function getCount(){
+        $this->db->query('SELECT COUNT(*) AS count FROM instructors WHERE i_isDeleted = 0');
+        $row = $this->db->single();
+        return $row;
+    }
 }
 
 /*

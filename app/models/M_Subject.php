@@ -101,10 +101,11 @@ class M_Subject{
         return $row;
     }
 
+
     public function deleteSubject($id){
-        $this->db->query('DELETE FROM subjects WHERE s_id = :s_id');
+        $this->db->query('UPDATE subjects SET sub_isDeleted = 1 WHERE sub_id = :sub_id');
         //Bind values
-        $this->db->bind(':s_id', $id);
+        $this->db->bind(':sub_id', $id);
 
         //Execute function
         if($this->db->execute()){
@@ -113,6 +114,12 @@ class M_Subject{
             return false;
         }
     
+    }
+
+    public function getCount(){
+        $this->db->query('SELECT COUNT(*) AS count FROM subjects WHERE sub_isDeleted = 0');
+        $row = $this->db->single();
+        return $row;
     }
 
 }

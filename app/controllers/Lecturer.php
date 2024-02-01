@@ -1,45 +1,36 @@
 <?php
 
-    class Lecturer extends Controller{
+  class Lecturer extends Controller{
 
-        public function __construct(){
-            //echo 'This is the posts controller';
-           // $this->R_postModel = $this->model('M_Room');
-            //$this->Report_postModel = $this->model('M_Subject');
-           // $this->P_postModel = $this->model('M_Lecturer');
-        }
+    public $lecturerModel;
 
-        //show Lecturer Profile
-        public function viewProfile(){
-          //  $profile = $this->P_postModel->getRooms();
-            $data = [
-                'title' => 'View Profile',
-                //'posts' => $profile
-                'posts' => []
-            ];
-            $this->view('Lecturer/v_viewProfile', $data);
-        }
-
-        public function updateProfile(){
-            //  $profile = $this->P_postModel->getRooms();
-              $data = [
-                  'title' => 'Update Profile',
-                  //'posts' => $profile
-                  'posts' => []
-              ];
-              $this->view('Lecturer/v_updateProfile', $data);
-          }
-
-          public function viewrooms(){
-            //  $profile = $this->P_postModel->getRooms();
-              $data = [
-                  'title' => 'Manage rooms',
-                  //'posts' => $profile
-                  'posts' => []
-              ];
-              $this->view('Lecturer/v_viewrooms', $data);
-          }
-
-
+    public function __construct(){
+      $this->lecturerModel = $this->model('lecturermodels/M_Lecturer');
     }
+
+    //show Lecturer Profile
+    public function viewProfile(){
+      $data = $this->lecturerModel->viewProfile();
+      $this->view('Lecturer/v_viewProfile', $data);
+    }
+
+    public function viewRooms() {
+      $data = $this->lecturerModel->viewRooms();
+      $this->view('Lecturer/v_viewrooms',$data);
+    }
+
+    public function viewroombookings($date,$roomId){
+      $data = $this->lecturerModel->viewBookings($date,$roomId);
+      $this->view('Lecturer/v_viewroomBookings', $data);
+    }
+
+    public function bookingDateSubmitted() {
+      if($_SERVER['REQUEST_METHOD'] == "POST") {
+        $room_id = $_POST['room_id'];
+        $date = $_POST["selectedDate"];
+        redirect('Lecturer/viewroombookings/'.$date.'/'.$room_id);
+      }
+    }
+
+  }
 

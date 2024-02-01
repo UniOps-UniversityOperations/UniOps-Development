@@ -3,7 +3,7 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
-<h1>Create New Room</h1><br>
+<h1>Add New Room</h1><br>
 
 <div class="content">
     <form action="<?php echo URLROOT;?>/adminPosts/createRoom" method="post">
@@ -11,16 +11,22 @@
     <fieldset>
         <!-- input feilds -->
 
-        <label class="lable" for="id">Room ID:
+        <label class="lable" for="id">ID:
         <input type="text" id="id" name="id" placeholder="id" value="<?php $data["id"];?>" required>
         </label>
 
-        <label class="lable" for="name">Room Name:
-        <input type="text" id="name" name="name" placeholder="name" value="<?php $data["name"];?>" required>
+        <label class="lable" for="name">Name / Code:
+        <input type="text" id="name" name="name" placeholder="name" value="<?php $data["name"];?>" oninput="this.value = this.value.toUpperCase();" required>
         </label>
 
-        <label class="lable" for="type">Room Type (lecture, lab, meeting):
-        <input type="text" id="type" name="type" placeholder="type" value="<?php $data["type"];?>" required>
+        <label class="label" for="room_type">Credit:
+            <select id="type" name="type" required>
+                <option value="LECTUER">LECTUER</option>
+                <option value="LAB">LAB</option>
+                <option value="MEEING">MEEING</option>
+                <option value="COMMON">COMMON</option>
+                <option value="OTHER">OTHER</option>
+            </select>
         </label>
 
         <label class="lable" for="capacity">Capacity:

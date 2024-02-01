@@ -1,0 +1,271 @@
+.main {
+  display: flex;
+  flex-direction : column;
+}
+
+.tabs-section {
+  display: flex;
+  gap: 20px;
+}
+
+.tab {
+  padding: 10px 20px;
+  background-color: #1848A0;
+  color: #DCDCE2;
+  cursor: pointer;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.tab:hover {
+  background-color: #030369;
+}
+
+.search-bar {
+  display : flex;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.search-bar input {
+  height : 30px;
+  border-radius: 20px;
+}
+
+.search-icon {
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
+  cursor: pointer;
+}
+
+.content {
+  display : flex;
+  padding: 10px 20px 5px 0px;
+  margin-top: 20px;
+  gap: 40px;
+  border-bottom: 4px solid #000;
+}
+
+
+.room-name {
+  display: flex;
+  padding: 20px;
+}
+
+.room-name p{
+  align-self: flex-end;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.room-schedule {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #ffffff; /* Set the background color to white */
+  border: 2px solid #3498db; /* Set the border to blue (#3498db) with a width of 2px */
+  padding: 10px; /* Add padding for better visual appearance */
+  flex-grow: 1;
+}
+
+
+#bookings {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.navigatedays {
+  display: flex;
+  margin-bottom: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  justify-content: space-between;
+}
+
+.event {
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #DCDCE2;
+  border-radius: 10px;
+  margin-left: 40px;
+  cursor: pointer;
+  max-width: 150px ;
+  flex-grow: 1;
+}
+
+.timeslot {
+  margin-bottom: 80px;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.right-section .timeslot {
+  justify-content: flex-end;
+}
+
+.left-section, .right-section {
+  flex-grow: 1;
+  display : flex;
+  flex-direction: column;
+  gap : 30px;
+
+}
+
+
+.option2 {
+border-left: 5px solid #010058af;
+background-color: var(--Border-color);
+color: white;
+cursor: pointer;
+}
+
+/*Styiling Side Bar */
+.sidebar {
+  margin-top: 70px;
+  position: fixed;
+  top: 0;
+  right: -300px; /* Initially hidden */
+  width: 300px;
+  height: calc(100vh - 70px);
+  background-color: #f4f4f4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: right 0.5s ease-in-out;
+}
+
+.sidebar-content {
+  padding: 20px;
+}
+
+.sidebar.sidebar-open {
+  right: 0px; /* Adjust based on sidebar width */
+}
+
+/*CSS for content area adjustment */
+.main {
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  transition: margin-right 0.5s ease-in-out; /* Smooth transition for content adjustment */
+}
+
+.main.content-shifted {
+  margin-right: 300px; /* Adjust based on sidebar width */
+}
+
+
+/*CSS to style the sidebar content */
+#datetime {
+  border-radius: 20px;
+  margin-bottom: 20px;
+  background-color: #000;
+  color: white;
+  width: 270px;
+  height: 65px;
+  text-align: center;
+  line-height: 2;
+}
+
+.sidebar-content p {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #1848A0;
+}
+
+/*Request room for styles */
+
+#reservation_form {
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.reservation_label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="time"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+#reservation_submit {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#reservation_submit:hover {
+  background-color: #45a049;
+}
+
+/*CSS for navigatedays Container Styling */
+.navigatedays {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.navigatedays p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.date-selection-form {
+  display: flex;
+  align-items: center;
+}
+
+.date-selection-form label {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.date-selection-form input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-right: 8px;
+}
+
+.date-selection-form button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.date-selection-form button:hover {
+  background-color: #45a049;
+}
+
+
+/*CSS FOR HR ELEMENT STYLING */ 
+hr {
+  margin-bottom: 40px;
+  height: 1px;
+  background-color: #ccc;
+}

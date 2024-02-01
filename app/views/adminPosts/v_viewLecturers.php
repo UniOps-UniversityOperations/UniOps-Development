@@ -8,7 +8,6 @@
         <!-- <div class="wrapper side-panel-open"> -->
         <div class="wrapper">
         <div class="main">
-            <h1 class="topic">Adminitsrator / Lecturers</h1>
 
             <!-- Have to look this later *************************************************************************************************************-->
             <?php
@@ -19,14 +18,15 @@
                 }
             ?>
                 
-
+                <div class="top">
+                <h1 class="topic">Adminitsrator / Lecturers</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
                         // Display the count for each type
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p>Number of Lecturers:</p></div>";
+                            echo "<div class='count_column'><p># Lecturers:</p></div>";
                             echo "<div class='count_column'><p>$count</p></div>";
                             echo "</div>";
                             echo "</div>"
@@ -42,7 +42,7 @@
 
                     <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createLecturer">
-                            <button class="create_button">Create Lecturer</button>
+                            <button class="create_button">Add Lecturer</button>
                         </a>
                     </div>
                 </div>
@@ -56,34 +56,56 @@
                     }
                 </style>
 
+                <div class="title_bar">
+                    <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
+                    <p class="title_item"><b>Code</b></p>
+                    <p class="title_item"><b>Email</b></p>
+                    <p class="title_item"><b>Contact</b></p>
+                    <p style="padding-right: 280px;" class="title_item"><b>Department</b></p>
+                </div> 
+            
+            </div>
 
-            <?php foreach($data['posts'] as $post) : ?>
+            <?php $test = $lec_room = []; ?>
+            
+            <div class="list">
+            <?php 
+            $i = 1;
+            foreach($data['posts'] as $post) : ?>
 
                 <div class="lecture_room" data-room-name="<?php echo $post->l_fullName; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
                             <div class="lecture_room_header">
+                                <p class="row_num"><?php echo $i++; ?></p>
                                 <h3 class="header_title"><?php echo $post->l_nameWithInitials; ?></h3>
-                                <p class="header_item"><b>Code:</b> <?php echo $post->l_code; ?></p>
-                                <p class="header_item"><b>Email:</b> <?php echo $post->l_email; ?></p>
-                                <p class="header_item"><b>Contact Number:</b> <?php echo $post->l_contactNumber; ?></p>
-                                <p class="header_item"><b>Department:</b> <?php echo $post->l_department; ?></p>
+                                <p class="header_item"><?php echo $post->l_code; ?></p>
+                                <p class="header_item"><?php echo $post->l_email; ?></p>
+                                <p class="header_item"><?php echo $post->l_contactNumber; ?></p>
+                                <p class="header_item"><?php echo $post->l_department; ?></p>
                                 
                                 <div class="action_buttons">
 
-                                    <button class="view_button">
+                                    <button class="view_button" title="View More">
                                         <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
                                     </button>
+
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/assignSubjects/<?php echo $post->l_code ?>" title="Assign Subjects">
+                                        <button class="assign_button">
+                                            <img src="<?php echo URLROOT;?>/images/assign.svg" alt="Assign" class="update_icon">
+
+                                        </button>
+                                    </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateLecturer/<?php echo $post->l_id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateLecturer/<?php echo $post->l_id ?>" title="Edit Details">
                                         <button class="update_button">
                                             <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
 
                                         </button>
                                     </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteLecturer/<?php echo $post->l_id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteLecturer/<?php echo $post->l_id ?>/<?php echo $post->l_code; ?>" title="Delete">
                                         <button class="delete_button">
                                             <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
                                         </button>
@@ -97,6 +119,7 @@
                     <!-- Detailed view -->
 
                             <?php
+                             $test[] = $post->l_code;
                              $lec_room[] = $post;
                             ?>
                     
@@ -104,7 +127,7 @@
                 </div>
                 
             <?php endforeach; ?>
-
+            </div>
 
         </div>
         <button class="side-panel-toggle" type="button">
@@ -245,8 +268,8 @@
                                 </div>
 
                                 <div class="sidebar_bottom_right_part1">
-                                    <p><?php echo $post->l_isExamSupervisor ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->l_isSecondExaminar ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->l_isExamSupervisor ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->l_isSecondExaminar ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
                                 </div>
 
                             </div>

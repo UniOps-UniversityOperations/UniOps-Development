@@ -85,3 +85,7 @@ body {
       .create_button:hover {
         background-color: #0f2c61;
       }
+
+.gender{
+  padding-left: 20px;
+}

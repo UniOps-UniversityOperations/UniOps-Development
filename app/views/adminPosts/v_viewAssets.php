@@ -8,7 +8,6 @@
         <!-- <div class="wrapper side-panel-open"> -->
         <div class="wrapper">
         <div class="main">
-            <h1 class="topic">Adminitsrator / Database</h1>
 
             <?php
                 // Count the number of rooms for each type
@@ -23,6 +22,8 @@
                 }
                 ?>
 
+                <div class="top">
+                <h1 class="topic">Adminitsrator / Database</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
@@ -60,7 +61,7 @@
 
                     <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createAsset">
-                            <button class="create_button">Create Asset</button>
+                            <button class="create_button">Add Asset</button>
                         </a>
                     </div>
                 </div>
@@ -74,21 +75,32 @@
                     }
                 </style>
 
+                <div class="title_bar">
+                    <p style="padding-left: 25px;" class="title_item"><b>Code</b></p>
+                    <p class="title_item"><b>Type</b></p>
+                    <p class="title_item"><b>Added Date</b></p>
+                    <p style="padding-right: 140px;" class="title_item"><b>Is in use</b></p>
+                </div> 
+
+                </div>
 
             <?php $test = $lec_room = []; ?>
 
-            <?php foreach($data['posts'] as $post) : ?>
+            <div class="list">
+            <?php 
+            $i = 1;
+            foreach($data['posts'] as $post) : ?>
 
                 <div class="lecture_room" data-room-name="<?php echo $post->a_code; ?>" data-room-type="<?php echo $post->a_type; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
                             <div class="lecture_room_header">
+                                <p class="row_num"><?php echo $i++; ?></p>
                                 <h3 class="header_title"><?php echo $post->a_code; ?></h3>
-                                <p class="header_item"><b>Type: </b><?php echo $post->a_type; ?></p>
-                                <p class="header_item"><b>Added Date: </b><?php echo $post->a_addedDate; ?></p>
-                                <p class="header_item"><b>Is In Use: </b><?php echo $post->a_isInUse ? "Yes" : "No"; ?></p>
-                                
+                                <p class="header_item"><?php echo $post->a_type; ?></p>
+                                <p class="header_item"><?php echo $post->a_addedDate; ?></p>
+                                <p class="header_item"><?php echo $post->a_isInUse ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
                                 <div class="action_buttons">
                     
                                     
@@ -113,6 +125,7 @@
                 </div>
                 
             <?php endforeach; ?>
+            </div>
 
 
         </div>

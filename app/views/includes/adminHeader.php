@@ -39,7 +39,7 @@
 
 					<div class="nav-option option1">
 						<!-- <a href="<?php echo URLROOT;?>/Pages/administrator_dashboard/"> -->
-						<a href="<?php echo URLROOT;?>/AdminPosts/viewUsers/">
+						<a href="<?php echo URLROOT;?>/AdminPosts/showDashboard/">
 							<img src= "<?php echo URLROOT;?>/images/dashboard_icon.svg" class="nav-img" alt="dashboard">
 							<h3> Dashboard</h3>
 						</a>
@@ -56,6 +56,13 @@
 						<a href="<?php echo URLROOT;?>/AdminPosts/viewSubjects/">
 							<img src="<?php echo URLROOT;?>/images/subject.svg" class="nav-img" alt="Subject">
 							<h3> Subject</h3>
+						</a>
+					</div>
+
+					<div class="nav-option timetable">
+						<a href="">
+							<img src="<?php echo URLROOT;?>/images/timetable.svg" class="nav-img" alt="Timetable">
+							<h3> Timetable</h3>
 						</a>
 					</div>
 
@@ -87,12 +94,13 @@
 						</a>
 					</div>
 
-					<div class="option8 nav-option">
-						<a href="<?php echo URLROOT;?>/Timetables/viewTimetables/">
-							<img src="<?php echo URLROOT;?>/images/room.png" class="nav-img" alt="Timetables">
-							<h3> Timetables</h3>
+					<div class="nav-option option8">
+					<a href="">
+							<img class="bellw" src="<?php echo URLROOT;?>/images/bellw.svg" alt="Notifications & Requests">
+							<h3> Notifications  & Requests</h3>
 						</a>
 					</div>
+
 
 					<div class="nav-option logout">
 						<a href="<?php echo URLROOT;?>/Users/login/">

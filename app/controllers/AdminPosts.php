@@ -13,11 +13,42 @@
 
 
             $this->A_postModel = $this->model('M_Asset');
-
+            $this->RS_postModel = $this->model('M_requestedSubjects');
+            $this->AS_postModel = $this->model('M_assignedSubjects');
+            $this->RSI_postModel = $this->model('M_requestedSubjectsInstructor');
+            $this->ASI_postModel = $this->model('M_assignedSubjectsInstructor');
+            $this->V_postModel = $this->model('M_variables');
+            $this->RI_postModel = $this->model('M_RoomImages');
         }
 
-        //CRUD for User
-        
+
+
+//----- DashBoard-----------------------------------------------------------------------------------------------------------------------------------
+    
+        //show 
+        public function showDashboard(){
+            $posts = $this->U_postModel->getUsers();
+            $r_count = $this->R_postModel->getCount();
+            $s_count = $this->S_postModel->getCount();
+            $l_count = $this->L_postModel->getCount();
+            $i_count = $this->I_postModel->getCount();
+            // number of Students
+            $a_count = $this->A_postModel->getCount();
+            $vars = $this->V_postModel->getAll();
+
+            $data = [
+                'title' => 'View Users',
+                'posts' => $posts,
+                'r_count' => $r_count,
+                's_count' => $s_count,
+                'l_count' => $l_count,
+                'i_count' => $i_count,
+                'a_count' => $a_count,
+                'vars' => $vars
+            ];
+            $this->view('pages/administrator_dashboard', $data);
+        }
+
         //Add User
         public function addUser(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -29,7 +60,7 @@
 
                     'user_id' => trim($_POST['user_id']),
                     'username' => trim($_POST['username']),
-                    'password' => trim($_POST['password']),
+                    'pwd' => trim($_POST['pwd']),
                     'role' => trim($_POST['role']),
                     
                     'user_idError' => '',
@@ -43,7 +74,7 @@
                     if($this->U_postModel->addUser($data)){
                         //flash('post_message', 'User Added');
                         //redirect('pages/administrator_dashboard');
-                        redirect('Pages/administrator_dashboard');
+                        redirect('AdminPosts/showDashboard');
                     }else{
                         die('Something went wrong');
                     }
@@ -57,7 +88,7 @@
 
                     'user_id' => '',
                     'username' => '',
-                    'password' => '',
+                    'pwd' => '',
                     'role' => '',
                     
                     'user_idError' => '',
@@ -66,16 +97,6 @@
             }
                 
 
-        }
-
-        //show all users
-        public function viewUsers(){
-            $posts = $this->U_postModel->getUsers();
-            $data = [
-                'title' => 'View Users',
-                'posts' => $posts
-            ];
-            $this->view('pages/administrator_dashboard', $data);
         }
 
         //Update User
@@ -90,14 +111,14 @@
 
                     'user_id' => trim($_POST['user_id']),
                     'username' => trim($_POST['username']),
-                    'password' => trim($_POST['password']),
+                    'pwd' => trim($_POST['pwd']),
                     'role' => trim($_POST['role']),
                     
                 ];
 
                 if(1){
                     if($this->U_postModel->updateUser($data)){
-                        redirect('AdminPosts/viewUsers');
+                        redirect('AdminPosts/showDashboard');
                     }else{
                         die('Something went wrong');
                     }
@@ -109,7 +130,7 @@
 
                     'user_id' => $post->user_id,
                     'username' => $post->username,
-                    'password' => $post->password,
+                    'pwd' => $post->pwd,
                     'role' => $post->role,
                 ];
                 $this->view('adminPosts/v_updateUser', $data);
@@ -119,13 +140,16 @@
         //Delete User
         public function deleteUser($postId){
             if($this->U_postModel->deleteUser($postId)){
-                redirect('AdminPosts/viewUsers');
+                redirect('AdminPosts/showDashboard');
             }else{
                 die('Something went wrong');
             }
         }
 
-        //CRUD for Room
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//----- CRUD for Room ------------------------------------------------------------------------------------------------------------------------------------
 
         public function createRoom(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -207,9 +231,11 @@
         //show all rooms
         public function viewRooms(){
             $posts = $this->R_postModel->getRooms();
+            $images = $this->RI_postModel->getImages();
             $data = [
                 'title' => 'View Rooms',
-                'posts' => $posts
+                'posts' => $posts,
+                'images' => $images
             ];
             $this->view('adminPosts/v_viewRooms', $data);
         }
@@ -290,9 +316,10 @@
             }
         }
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        //CRUD for Subject
+//----- CRUD for Subject -----------------------------------------------------------------------------------------------------------------------------------
 
                 // Structure of the database table:
                 // sub_id
@@ -428,16 +455,35 @@
             }
         }
 
-        public function deleteSubject($postId){
-            if($this->S_postModel->deleteSubject($postId)){
+        /*
+            The deletion has to be from these tables:
+                subjects
+                assignedSubjects
+                i_assignedSubjects_practical
+                i_assignedSubjects_tutorial
+                requestedSubjects
+                requestedSubjectsInstructor
+        */
+
+        public function deleteSubject($postId, $subject_code){
+            // die("postID = " . $postId . "    subject_code = " . $subject_code);
+            if($this->S_postModel->deleteSubject($postId) && 
+                $this->AS_postModel->deleteForSubject($subject_code) && 
+                $this->ASI_postModel->deleteForSubject_p($subject_code) &&
+                $this->ASI_postModel->deleteForSubject_t($subject_code) &&
+                $this->RS_postModel->deleteForSubject($subject_code) &&
+                $this->RSI_postModel->deleteForSubject($subject_code)
+                ){
                 redirect('AdminPosts/viewSubjects');
             }else{
                 die('Something went wrong');
             }
         }
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        //CRUD for Lecturer
+
+//----- CRUD for Lecturer --------------------------------------------------------------------------------------------------------------------------------
         
         //Create Lecturer
         public function createLecturer(){
@@ -576,16 +622,29 @@
             }
         }
 
-        public function deleteLecturer($postId){
-            if($this->L_postModel->deleteLecturer($postId)){
+        /*
+            The deletion has to be from these tables:
+                subjects
+                assignedSubjects
+                requestedSubjects
+        */
+
+        public function deleteLecturer($postId, $lecturer_code){
+            // die("postID = " . $postId . "    lecturer_code = " . $lecturer_code);
+            if($this->L_postModel->deleteLecturer($postId) &&
+                $this->AS_postModel->deleteForLecturer($lecturer_code) &&
+                $this->RS_postModel->deleteForLecturer($lecturer_code)
+            ){
                 redirect('AdminPosts/viewLecturers');
             }else{
                 die('Something went wrong');
             }
         }
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        //CRUD for Instructor
+
+//----- CRUD for Instructor --------------------------------------------------------------------------------------------------------------------------------
 
             //     Structure of the database table:
             // 1	i_id Primary	int(11)				
@@ -739,13 +798,29 @@
         
         //Delete Instructor
 
-        public function deleteInstructor($postId){
-            if($this->I_postModel->deleteInstructor($postId)){
+         /*
+            The deletion has to be from these tables:
+                subjects
+                assignedSubjects
+                i_assignedSubjects_practical
+                i_assignedSubjects_tutorial
+                requestedSubjectsInstructor
+        */
+
+        public function deleteInstructor($postId, $instructor_code){
+            // die("postID = " . $postId . "    instructor_code = " . $instructor_code);
+            if($this->I_postModel->deleteInstructor($postId) &&
+                $this->AS_postModel->deleteForInstructor($instructor_code) &&
+                $this->ASI_postModel->deleteForInstructor_p($instructor_code) &&
+                $this->ASI_postModel->deleteForInstructor_t($instructor_code) &&
+                $this->RSI_postModel->deleteForInstructor($instructor_code)
+            ){
                 redirect('adminPosts/viewInstructors');
             }else{
                 die('Something went wrong');
             }
         }
+        
 
         // Crud for Student
 
@@ -903,7 +978,10 @@
     
 
         // Crud of the Assets (Database)
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+        
 
+//----- Crud of the Assets (Database) -------------------------------------------------------------------------------------------------------------------- 
         /* 
             the structure of the assets table
 
@@ -1018,6 +1096,193 @@
             }
         }
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// ----- For Lecturer asign Subjects -----------------------------------------------------------------------------------------------------------------------------------
+        //Assign Subjects to Lecturer
+        public function assignSubjects($postId){
+            $postsRS = $this->RS_postModel->getSubjects($postId);
+            $postsAS = $this->AS_postModel->getSubjects($postId);
+            $subjects = $this->AS_postModel->getSubjectDetails();
+            $variables = $this->V_postModel->ASPage();
+            
+            if(!$postsRS){
+                $postsRS = "null";
+            }
+
+            $data = [
+                'postId' => $postId,
+                'postsRS' => $postsRS,
+                'postsAS' => $postsAS,
+                'subjects' => $subjects,
+                'variables' => $variables,
+            ];
+            $this->view('adminPosts/v_assignSubjects', $data);
+        }
+
+        public function addToAssignSubjects($sub_code, $lecturer_code){
+            // die($sub_code . "and" . $lecturer_code);
+            //add subject to the requestedSubjects table
+            if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                redirect('AdminPosts/assignSubjects/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function deleteRowAS($lecturer_code, $subject_code){
+            //die($lecturer_code . " and " . $subject_code);
+            if($this->AS_postModel->deleteRowAS($lecturer_code, $subject_code)){
+                redirect('AdminPosts/assignSubjects/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function forceAssignLecturers($sub_code, $lecturer_code){
+            if($this->AS_postModel->forceAssignLecturers($sub_code, $lecturer_code)){
+                redirect('AdminPosts/assignSubjects/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// ----- For Instructor asign Subjects ------------------------------------------------------------------------------------------------------------------------------
+
+        public function assignSubjectsInstructor($postId){
+            $postsRS = $this->RSI_postModel->getSubjects($postId);
+            $postsASI = $this->ASI_postModel->getSubjects($postId);
+            $subjects = $this->ASI_postModel->getSubjectDetails();
+            $variables = $this->V_postModel->getAll();
+            
+            if(!$postsRS){
+                $postsRS = "null";
+            }
+
+            $data = [
+                'postId' => $postId,
+                'postsRS' => $postsRS,
+                'postsASI' => $postsASI,
+                'subjects' => $subjects,
+                'variables' => $variables,
+            ];
+            $this->view('adminPosts/v_assignSubjectsInstructor', $data);
+        }
+
+        public function deleteRowASI($instructor_code, $subject_code){
+            //die($lecturer_code . " and " . $subject_code);
+            if($this->ASI_postModel->deleteRowASI($instructor_code, $subject_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        //assign lecture...
+
+        public function i_addToAssignSubjects($sub_code, $lecturer_code){
+            // die($sub_code . "and" . $lecturer_code);
+            //add subject to the requestedSubjects table
+            if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function i_deleteRowAS($lecturer_code, $subject_code){
+            //die($lecturer_code . " and " . $subject_code);
+            if($this->AS_postModel->deleteRowAS($lecturer_code, $subject_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function i_forceAssignLecturers($sub_code, $lecturer_code){
+            if($this->AS_postModel->forceAssignLecturers($sub_code, $lecturer_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+        
+        //assign practical...
+
+        public function i_addToAssignPractical($sub_code, $instructor_code){
+            // die($sub_code . "and" . $lecturer_code);
+            //add subject to the requestedSubjects table
+            if($this->ASI_postModel->add_p($sub_code, $instructor_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function i_deleteRow_p($instructor_code, $subject_code){
+            // die($instructor_code . " and " . $subject_code);
+            if($this->ASI_postModel->deleteRow_p($instructor_code, $subject_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function i_forceAssignPractical($sub_code, $instructor_code){
+            if($this->ASI_postModel->forceAssign_p($sub_code, $instructor_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        //assign tutorial...
+
+        public function i_addToAssignTutorial($sub_code, $instructor_code){
+            // die($sub_code . "and" . $lecturer_code);
+            //add subject to the requestedSubjects table
+            if($this->ASI_postModel->add_t($sub_code, $instructor_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function i_deleteRow_t($instructor_code, $subject_code){
+            // die($instructor_code . " and " . $subject_code);
+            if($this->ASI_postModel->deleteRow_t($instructor_code, $subject_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function i_forceAssignTutorial($sub_code, $instructor_code){
+            if($this->ASI_postModel->forceAssign_t($sub_code, $instructor_code)){
+                redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+        
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     }
 
 ?>

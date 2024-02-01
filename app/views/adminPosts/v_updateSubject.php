@@ -10,40 +10,48 @@
 
             <fieldset>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
                 <label class="lable" for="sub_id">Subject ID:
-=======
-                <label class="lable" for="sub_code">Subject ID:
->>>>>>> 2797c4de99ab682e39a45434c6addaef5b83d6d6
-=======
-                <label class="lable" for="sub_id">Subject ID:
->>>>>>> d4ac6d754ecdcef8a2696c81aed569f0b3febe45
                 <input type="text" id="sub_id" name="sub_id" placeholder="sub_id" value="<?php echo $data["sub_id"];?>" required>
                 </label>
 
-                <label class="lable" for="sub_code">Subject Code:
+                <label class="lable" for="sub_code">Code:
                 <input type="text" id="sub_code" name="sub_code" placeholder="sub_code" value="<?php echo $data["sub_code"];?>" required>
                 </label>
 
-                <label class="lable" for="sub_name">Subject Name:
+                <label class="lable" for="sub_name">Name:
                 <input type="text" id="sub_name" name="sub_name" placeholder="sub_name" value="<?php echo $data["sub_name"];?>" required>
                 </label>
 
-                <label class="lable" for="sub_credits">Subject Credits:
-                <input type="text" id="sub_credits" name="sub_credits" placeholder="sub_credits" value="<?php echo $data["sub_credits"];?>" required>
+                <label class="lable" for="sub_credits">Credits:
+                <select id="sub_credits" name="sub_credits" required>
+                    <option value="1" <?php echo ($data["sub_credits"] == '1') ? 'selected' : ''; ?>>1</option>
+                    <option value="2" <?php echo ($data["sub_credits"] == '2') ? 'selected' : ''; ?>>2</option>
+                    <option value="3" <?php echo ($data["sub_credits"] == '3') ? 'selected' : ''; ?>>3</option>
+                    <option value="4" <?php echo ($data["sub_credits"] == '4') ? 'selected' : ''; ?>>4</option>
+                </select>
                 </label>
 
-                <label class="lable" for="sub_year">Subject Year:
-                <input type="text" id="sub_year" name="sub_year" placeholder="sub_year" value="<?php echo $data["sub_year"];?>" required>
+                <label class="lable" for="sub_year">Year:
+                <select id="sub_year" name="sub_year" required>
+                    <option value="1" <?php echo ($data["sub_year"] == '1') ? 'selected' : ''; ?>>1</option>
+                    <option value="2" <?php echo ($data["sub_year"] == '2') ? 'selected' : ''; ?>>2</option>
+                    <option value="3" <?php echo ($data["sub_year"] == '3') ? 'selected' : ''; ?>>3</option>
+                    <option value="4" <?php echo ($data["sub_year"] == '4') ? 'selected' : ''; ?>>4</option>
+                </select>
                 </label>
 
                 <label class="lable" for="sub_semester">Subject Semester:
-                <input type="text" id="sub_semester" name="sub_semester" placeholder="sub_semester" value="<?php echo $data["sub_semester"];?>" required>
+                <select id="sub_semester" name="sub_semester" required>
+                    <option value="1" <?php echo ($data["sub_semester"] == '1') ? 'selected' : ''; ?>>1</option>
+                    <option value="2" <?php echo ($data["sub_semester"] == '2') ? 'selected' : ''; ?>>2</option>
+                </select>
                 </label>
 
                 <label class="lable" for="sub_stream">Subject Stream:
-                <input type="text" id="sub_stream" name="sub_stream" placeholder="sub_stream" value="<?php echo $data["sub_stream"];?>" required>
+                <select id="sub_stream" name="sub_stream" required>
+                    <option value="CS" <?php echo ($data["sub_stream"] == 'CS') ? 'selected' : ''; ?>>CS</option>
+                    <option value="IS" <?php echo ($data["sub_stream"] == 'IS') ? 'selected' : ''; ?>>IS</option>
+                </select>
                 </label>
 
             </fieldset>

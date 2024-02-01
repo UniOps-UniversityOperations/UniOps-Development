@@ -8,7 +8,6 @@
         <!-- <div class="wrapper side-panel-open"> -->
         <div class="wrapper">
         <div class="main">
-            <h1 class="topic">Adminitsrator / Subjects</h1>
 
             <?php
                 // Count the number of rooms for each year
@@ -23,6 +22,8 @@
                 }
             ?>
 
+            <div class="top">
+            <h1 class="topic">Adminitsrator / Subjects</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
@@ -30,7 +31,7 @@
                         foreach ($roomYears as $year => $count) {
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p>Number of \"year $year subjects\":</p></div>";
+                            echo "<div class='count_column'><p># year $year subjects:</p></div>";
                             echo "<div class='count_column'><p>$count</p></div>";
                             echo "</div>";
                             echo "</div>";
@@ -60,7 +61,7 @@
 
                     <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createSubject">
-                            <button class="create_button">Create subject</button>
+                            <button class="create_button">Add subject</button>
                         </a>
                     </div>
                 </div>
@@ -75,35 +76,49 @@
                 </style>
 
 
-            <?php $test = $lec_room = []; ?>
+                <div class="title_bar">
+                    <p style="padding-left: 25px;" class="title_item"><b>Code</b></p>
+                    <p class="title_item"><b>Name</b></p>
+                    <p class="title_item"><b>Stream</b></p>
+                    <p class="title_item"><b>Year</b></p>
+                    <p style="padding-right: 210px;" class="title_item"><b>Credits</b></p>
+                </div> 
+            </div>
 
-            <?php foreach($data['posts'] as $post) : ?>
+            <?php $test = $lec_room = []; ?>
+            
+            <div class="list">
+            <?php 
+            //counter variable for row numbers
+            $i = 1;
+            foreach($data['posts'] as $post) : ?>
 
                 <div class="lecture_room" data-room-name="<?php echo $post->sub_name; ?>" data-room-type="<?php echo $post->sub_year; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
                             <div class="lecture_room_header">
+                                <p class="row_num"><?php echo $i++; ?></p>
                                 <h3 class="header_title"><?php echo $post->sub_code; ?></h3>
-                                <p class="header_item"><b>Name:</b> <?php echo $post->sub_name; ?></p>
-                                <p class="header_item"><b>Stream:</b> <?php echo $post->sub_stream; ?></p>
-                                <p class="header_item"><b>Year:</b> <?php echo $post->sub_year; ?></p>
-                                <p class="header_item"><b>Credits:</b> <?php echo $post->sub_credits; ?></p>
+                                <p class="header_item"><?php echo $post->sub_name; ?></p>
+                                <p class="header_item"><?php echo $post->sub_stream; ?></p>
+                                <p class="header_item"><?php echo $post->sub_year; ?></p>
+                                <p class="header_item"></b> <?php echo $post->sub_credits; ?></p>
                                 
                                 <div class="action_buttons">
 
-                                    <button class="view_button">
+                                    <button class="view_button" title="View More">
                                         <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
                                     </button>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateSubject/<?php echo $post->sub_id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateSubject/<?php echo $post->sub_id ?>" title="Edit Details">
                                         <button class="update_button">
                                             <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
 
                                         </button>
                                     </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteSubject/<?php echo $post->sub_id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteSubject/<?php echo $post->sub_id; ?>/<?php echo $post->sub_code; ?>" title="Delete">
                                         <button class="delete_button">
                                             <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
                                         </button>
@@ -126,6 +141,7 @@
                 </div>
                 
             <?php endforeach; ?>
+            </div>
 
 
         </div>
@@ -150,7 +166,6 @@
                             <div class="sidebar_body_top">
                                 <div class="sidebar_top_left">
                                     <p><b>Subject Code</b></p>
-                                    <p><b>Subject Name</b></p>
                                     <p><b>Number of Credits</b></p>
                                     <p><b>Year</b></p>
                                     <p><b>Semester</b></p>
@@ -159,7 +174,6 @@
 
                                 <div class="sidebar_top_right">
                                     <p> <b> : </b> <?php echo $post->sub_code; ?></p>
-                                    <p> <b> : </b> <?php echo $post->sub_name; ?></p>
                                     <p> <b> : </b> <?php echo $post->sub_credits; ?></p>
                                     <p> <b> : </b> <?php echo $post->sub_year; ?></p>
                                     <p> <b> : </b> <?php echo $post->sub_semester; ?></p>
@@ -177,10 +191,10 @@
                                 </div>
 
                                 <div class="sidebar_bottom_right_part1">
-                                    <p><?php echo $post->sub_isCore ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->sub_isHaveLecture ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->sub_isHaveTutorial ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->sub_isHavePractical ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->sub_isCore ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->sub_isHaveLecture ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->sub_isHaveTutorial ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->sub_isHavePractical ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
                                 </div>
 
                             </div>

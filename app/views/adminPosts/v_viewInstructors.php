@@ -10,7 +10,6 @@
         <!-- <div class="wrapper side-panel-open"> -->
         <div class="wrapper">
         <div class="main">
-            <h1 class="topic">Adminitsrator / Instructors</h1>
 
             <!-- Have to look this later **************************************************************************************************************-->
             <?php
@@ -21,14 +20,15 @@
                 }
             ?>
                 
-
+                <div class="top">
+                <h1 class="topic">Adminitsrator / Instructors</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
                         // Display the count for each type
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p>Number of Instructors:</p></div>";
+                            echo "<div class='count_column'><p># Instructors:</p></div>";
                             echo "<div class='count_column'><p>$count</p></div>";
                             echo "</div>";
                             echo "</div>"
@@ -44,7 +44,7 @@
 
                     <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createInstructor">
-                            <button class="create_button">Create Instructor</button>
+                            <button class="create_button">Add Instructor</button>
                         </a>
                     </div>
                 </div>
@@ -58,34 +58,55 @@
                     }
                 </style>
 
+                    <div class="title_bar">
+                        <p style="padding-left: 30px;" class="title_item"><b>Name</b></p>
+                        <p class="title_item"><b>Code</b></p>
+                        <p class="title_item"><b>Email</b></p>
+                        <p class="title_item"><b>Contact</b></p>
+                        <p style="padding-right: 220px;" class="title_item"><b>Department</b></p>
+                    </div> 
 
-            <?php foreach($data['posts'] as $post) : ?>
+                </div>
+
+            
+            <div class="list">
+            <?php 
+            $i = 1;
+            foreach($data['posts'] as $post) : ?>
 
                 <div class="lecture_room" data-room-name="<?php echo $post->i_fullName; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
                             <div class="lecture_room_header">
+                                <p class="row_num"><?php echo $i++; ?></p>
                                 <h3 class="header_title"><?php echo $post->i_nameWithInitials; ?></h3>
-                                <p class="header_item"><b>Code:</b> <?php echo $post->i_code; ?></p>
-                                <p class="header_item"><b>Email:</b> <?php echo $post->i_email; ?></p>
-                                <p class="header_item"><b>Contact Number:</b> <?php echo $post->i_contactNumber; ?></p>
-                                <p class="header_item"><b>Department:</b> <?php echo $post->i_department; ?></p>
+                                <p class="header_item"><?php echo $post->i_code; ?></p>
+                                <p class="header_item"><?php echo $post->i_email; ?></p>
+                                <p class="header_item"><?php echo $post->i_contactNumber; ?></p>
+                                <p class="header_item"><?php echo $post->i_department; ?></p>
                                 
                                 <div class="action_buttons">
 
-                                    <button class="view_button">
+                                    <button class="view_button" title="View More">
                                         <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
                                     </button>
+
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/assignSubjectsInstructor/<?php echo $post->i_code ?>" title="Assign Subjects">
+                                        <button class="assign_button">
+                                            <img src="<?php echo URLROOT;?>/images/assign.svg" alt="Assign" class="update_icon">
+
+                                        </button>
+                                    </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateInstructor/<?php echo $post->i_id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateInstructor/<?php echo $post->i_id ?>" title="Edit Details">
                                         <button class="update_button">
                                             <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
 
                                         </button>
                                     </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteInstructor/<?php echo $post->i_id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteInstructor/<?php echo $post->i_id; ?>/<?php echo $post->i_code; ?>" title="Delete">
                                         <button class="delete_button">
                                             <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
                                         </button>
@@ -106,6 +127,7 @@
                 </div>
                 
             <?php endforeach; ?>
+            </div>
 
 
         </div>
@@ -256,7 +278,7 @@
                                 </div>
 
                                 <div class="sidebar_bottom_right_part1">
-                                    <p><?php echo $post->i_isExamInvigilator ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->i_isExamInvigilator ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
                                 </div>
 
                             </div>

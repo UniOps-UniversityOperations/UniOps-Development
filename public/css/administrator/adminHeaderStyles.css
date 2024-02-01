@@ -99,7 +99,7 @@ height: calc(100vh - 70px);
 width: 100%;
 overflow-y: scroll;
 overflow-x: hidden;
-padding: 40px 15px 30px 15px;
+padding: 20px 15px 30px 15px;
 }
 
 .main::-webkit-scrollbar-thumb {
@@ -165,11 +165,18 @@ border-left: 5px solid #a2a2a2;
 background-color: #030369;
 cursor: pointer;
 }
+
 .nav-img {
 height: 30px;
 margin-right: 20px;
 padding-right: 10px;
 }
+
+.bellw{
+    height: 30px;
+    margin-right: 10px;
+    padding-right: 10px;
+    }
 
 .nav-upper-options {
 display: flex;

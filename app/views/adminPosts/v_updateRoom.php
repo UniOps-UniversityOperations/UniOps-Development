@@ -9,19 +9,25 @@
 
         <!-- input feilds -->
         <fieldset>
-        <label class="lable" for="id">Room ID:
+        <label class="lable" for="id">ID:
         <input type="text" id="id" name="id" placeholder="id" value="<?php echo $data["id"];?>" required>
         </label>
 
-        <label class="lable" for="name">Room Name:
-        <input type="text" id="name" name="name" placeholder="name" value="<?php echo $data["name"];?>" required>
+        <label class="lable" for="name">Name / Code: :
+        <input type="text" id="name" name="name" placeholder="name" value="<?php echo strtoupper($data["name"]); ?>" oninput="this.value = this.value.toUpperCase();" required>
         </label>
 
-        <label class="lable" for="type">Room Type:
-        <input type="text" id="type" name="type" placeholder="type" value="<?php echo $data["type"];?>" required>
+        <label class="lable" for="type">Type:
+        <select id="type" name="type" required>
+            <option value="LECTUER" <?php echo ($data["type"] == 'LECTUER') ? 'selected' : ''; ?>>LECTUER</option>
+            <option value="LAB" <?php echo ($data["type"] == 'LAB') ? 'selected' : ''; ?>>LAB</option>
+            <option value="MEEING" <?php echo ($data["type"] == 'MEEING') ? 'selected' : ''; ?>>MEEING</option>
+            <option value="COMMON" <?php echo ($data["type"] == 'COMMON') ? 'selected' : ''; ?>>COMMON</option>
+            <option value="OTHER" <?php echo ($data["type"] == 'OTHER') ? 'selected' : ''; ?>>OTHER</option>
+        </select>
         </label>
 
-        <label class="lable" for="capacity">Room Capacity:
+        <label class="lable" for="capacity">Capacity:
         <input type="text" id="capacity" name="capacity" placeholder="capacity" value="<?php echo $data["capacity"];?>" required>
         </label>
 

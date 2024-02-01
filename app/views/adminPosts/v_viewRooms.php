@@ -8,8 +8,6 @@
         <!-- <div class="wrapper side-panel-open"> -->
         <div class="wrapper">
         <div class="main">
-            <h1 class="topic">Adminitsrator / Rooms</h1>
-
             <?php
                 // Count the number of rooms for each type
                 $roomTypes = [];
@@ -22,91 +20,106 @@
                     }
                 }
                 ?>
-
-                <div class="centered_container">
-                    <div class="room_type_counts">
-                        <?php
-                        // Display the count for each type
-                        foreach ($roomTypes as $type => $count) {
-                            echo "<div class='count_tile'>";
-                            echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p>Number of \"$type rooms\":</p></div>";
-                            echo "<div class='count_column'><p>$count</p></div>";
-                            echo "</div>";
-                            echo "</div>";
-                        }
-                        ?>
-                    </div>
-                </div>
-
-                <div class="table-head">
-                    <div class="search-container">
-                        <input type="text" id="search" placeholder="Search by room name..." >
-                        <span class="clear-icon" id="clear-search">&#10006;</span>
-                    </div>
-
-                    <div class="filter-container">
-                        <label for="filter-type">Filter by Type:</label>
-                        <select id="filter-type">
-                            <option value="">All Types</option>
+            
+                <div class="top">
+                    <h1 class="topic">Adminitsrator / Rooms</h1>
+                    <div class="centered_container">
+                        <div class="room_type_counts">
                             <?php
-                            // Populate the dropdown with unique room types
-                            foreach (array_keys($roomTypes) as $type) {
-                                echo "<option value=\"$type\">$type</option>";
+                            // Display the count for each type
+                            foreach ($roomTypes as $type => $count) {
+                                echo "<div class='count_tile'>";
+                                echo "<div class='count_row'>";
+                                echo "<div class='count_column'><p># $type rooms:</p></div>";
+                                echo "<div class='count_column'><p>$count</p></div>";
+                                echo "</div>";
+                                echo "</div>";
                             }
                             ?>
-                        </select>
+                        </div>
                     </div>
 
-                    <div class="create_room_button">
-                        <a href="<?php echo URLROOT;?>/AdminPosts/createRoom">
-                            <button class="create_button">Create Room</button>
-                        </a>
+                    <div class="table-head">
+                        <div class="search-container">
+                            <input type="text" id="search" placeholder="Search by room name..." >
+                            <span class="clear-icon" id="clear-search">&#10006;</span>
+                        </div>
+
+                        <div class="filter-container">
+                            <label for="filter-type">Filter by Type:</label>
+                            <select id="filter-type">
+                                <option value="">All Types</option>
+                                <?php
+                                // Populate the dropdown with unique room types
+                                foreach (array_keys($roomTypes) as $type) {
+                                    echo "<option value=\"$type\">$type</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="create_room_button">
+                            <a href="<?php echo URLROOT;?>/AdminPosts/createRoom">
+                                <button class="create_button">Add Room</button>
+                            </a>
+                        </div>
                     </div>
+
+                    <style>
+                        .table-head{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin: 20px
+                        }
+                    </style>
+
+
+                    <?php $test = $lec_room = []; ?>
+
+                    <div class="title_bar">
+                        <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
+                        <p class="title_item"><b>ID</b></p>
+                        <p class="title_item"><b>Type</b></p>
+                        <p style="padding-right: 210px;" class="title_item"><b>Capacity</b></p>
+                    </div> 
+            
                 </div>
-
-                <style>
-                    .table-head{
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        margin: 20px
-                    }
-                </style>
-
-
-            <?php $test = $lec_room = []; ?>
-
-            <?php foreach($data['posts'] as $post) : ?>
+            
+            <div class="list">
+            <?php 
+            //counter variable for row numbers
+            $i = 1;
+            foreach($data['posts'] as $post) : ?>
 
                 <div class="lecture_room" data-room-name="<?php echo $post->name; ?>" data-room-type="<?php echo $post->type; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
                             <div class="lecture_room_header">
+                                <p class="row_num"><?php echo $i++; ?></p>
                                 <h3 class="header_title"><?php echo $post->name; ?></h3>
-                                <p class="header_item"><b>ID / Code:</b> <?php echo $post->id; ?></p>
-                                <p class="header_item"><b>Type:</b> <?php echo $post->type; ?></p>
-                                <p class="header_item"><b>Capacity:</b> <?php echo $post->capacity; ?></p>
-                                <p class="header_item"><b>Availability:</b> <?php echo $post->current_availability; ?></p>
+                                <p class="header_item"><?php echo $post->id; ?></p>
+                                <p class="header_item"><?php echo $post->type; ?></p>
+                                <p class="header_item"><?php echo $post->capacity; ?></p>
+                                <!-- <p class="header_item"><b>Availability:</b> <?php echo $post->current_availability; ?></p> -->
                                 
                                 <div class="action_buttons">
                                     <!-- <button class="view_button">View</button>
                                     <a href="<?php echo URLROOT; ?>/AdminPosts/updateRoom/<?php echo $post->id ?>"><button class="update_button">Update</button></a>
                                     <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRoom/<?php echo $post->id ?>"><button class="delete_button">Delete</button></a> -->
 
-                                    <button class="view_button">
+                                    <button class="view_button" title="View More">
                                         <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
                                     </button>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateRoom/<?php echo $post->id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateRoom/<?php echo $post->id ?>" title="Edit Details">
                                         <button class="update_button">
                                             <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
-
                                         </button>
                                     </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRoom/<?php echo $post->id ?>">
+                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRoom/<?php echo $post->id ?>" title="Delete">
                                         <button class="delete_button">
                                             <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
                                         </button>
@@ -129,6 +142,7 @@
                 </div>
                 
             <?php endforeach; ?>
+            </div>
 
 
         </div>
@@ -142,6 +156,7 @@
 
                 foreach ($lec_room as $post) {
                     echo "<div class='side_item'>";
+                    $id_ = $post->id;
                     ?>
 
                         <div class="sidebar_header">
@@ -187,11 +202,11 @@
                                 </div>
 
                                 <div class="sidebar_bottom_right_part1">
-                                    <p><?php echo $post->is_ac ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_wifi ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_media ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_lecture ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_lab ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_ac ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_wifi ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_media ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_lecture ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_lab ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
                                 </div>
 
                                 <div class="sidebar_bottom_left_part2">
@@ -202,27 +217,61 @@
                                 </div>
 
                                 <div class="sidebar_bottom_right_part2">
-                                    <p><?php echo $post->is_tutorial ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_meeting ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_seminar ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                    <p><?php echo $post->is_exam ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
+                                    <p><?php echo $post->is_tutorial ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_meeting ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_seminar ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
+                                    <p><?php echo $post->is_exam ? "<b> : </b> <span style='color: green;'>&#10004;</span>" : "<b> : </b> <span style='color: red;'>&#10008;</span>"; ?></p>
                                 </div>
 
                             </div>
-                        </div>
-                    <?php
-                    echo "</div>";
-                }
 
-            ?>
+                            <!-- the image section -->
+                            <div class="image_section">
+                                <!-- <div class="heading">
+                                    <h1>Images</h1>
+                                </div> -->
+
+                                <!-- Image Gallery section all image in one div -->
+                                <div class="gallery">
+                                    <?php $i = 0;
+                                    foreach($data['images'] as $image) :
+                                        if($image->r_id == $post->id && $i < 4){ ?>
+                                            <img class="database_images" class="gallery-img" onclick="showImage(src)" src="data:image/jpeg;base64,<?php echo base64_encode($image->data); ?>" alt="image">
+                                    <?php $i++; } endforeach;?>
+                                </div>
+                            </div>
+
+                            <!-- ----------------- -->
+
+                        </div>
+                    <?php echo "</div>"; ?>
+
+
+
+                            
+
+
+
+
+                <?php }?>
+
+            
 
         </div>
-    
+
+            <!-- Image containter where image will show in big size -->
+            <div class="image-popup-container" id="imagePopup">
+                <span class="close-button" onclick="closeImage()">×</span>
+                <img src="" alt="Popup Image" id="popupImage">
+            </div>
+
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="<?php echo URLROOT;?>/js/administrator/viewRooms.js"></script>
-<script>
+
+
+<!-- <script>
     $(document).ready(function(){
         $(".lecture_room .view_button").click(function(){
             
@@ -252,7 +301,7 @@
             }
         });
     });
-</script>
+</script> -->
 
 
 

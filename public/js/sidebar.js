@@ -60,3 +60,7 @@ document.getElementById("view").addEventListener("click",()=>{
   let currentDate = new Date().toISOString().split('T')[0];
   window.location.href = urlroot + "/Lecturer/viewroombookings/"+currentDate+"/"+roomId;
 })
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
