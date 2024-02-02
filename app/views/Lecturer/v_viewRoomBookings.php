@@ -156,4 +156,4 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
 <script src="<?php echo URLROOT;?>/js/lecturerjs/viewRoomBookingsSidebar.js"></script>
 
 
-<?php require APPROOT . '/views/includes/lecturerFooter.php'; ?>
+<?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>

@@ -16,12 +16,12 @@
 
     public function viewRooms() {
       $data = $this->lecturerModel->viewRooms();
-      $this->view('Lecturer/v_viewrooms',$data);
+      $this->view('Lecturer/v_viewRooms',$data);
     }
 
     public function viewroombookings($date,$roomId){
       $data = $this->lecturerModel->viewBookings($date,$roomId);
-      $this->view('Lecturer/v_viewroomBookings', $data);
+      $this->view('Lecturer/v_viewRoomBookings', $data);
     }
 
     public function bookingDateSubmitted() {
