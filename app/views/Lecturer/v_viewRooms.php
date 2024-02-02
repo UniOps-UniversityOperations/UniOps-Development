@@ -78,4 +78,4 @@ $data_json = json_encode($data);
 <script src="<?php echo URLROOT;?>/js/lecturerjs/sidebar.js"></script>
 
 
-<?php require APPROOT . '/views/includes/lecturerFooter.php'; ?>
+<?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>

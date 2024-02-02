@@ -101,17 +101,17 @@
                                     <td><?php echo $user->user_id; ?></td>
                                     <td><?php echo $user->username; ?></td>
                                     <td><?php echo $user->pwd; ?></td>
-                                    <td><?php switch($user->role){
-                                        case "a":
+                                    <td><?php switch(strtoupper($user->role)){
+                                        case "A":
                                             echo "administator";
                                             break;
-                                        case "l":
+                                        case "L":
                                             echo "lecturer";
                                             break;
-                                        case "i":
+                                        case "I":
                                             echo "instructor";
                                             break;
-                                        case "s":
+                                        case "S":
                                             echo "student";
                                             break;
                                         default:

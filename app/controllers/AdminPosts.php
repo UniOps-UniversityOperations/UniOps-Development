@@ -508,6 +508,12 @@
                     'l_qualifications' => trim($_POST['l_qualifications']),
                     'l_isExamSupervisor' => isset($_POST['l_isExamSupervisor']) ? '1' : '0',
                     'l_isSecondExaminar' => isset($_POST['l_isSecondExaminar']) ? '1' : '0',
+
+                    //user
+                    'user_id' => trim($_POST['l_email']),
+                    'username' => trim($_POST['l_nameWithInitials']),
+                    'role' => 'L',
+                    'pwd' => trim($_POST['pwd']),
                     
                     'l_codeError' => '',
                 ];
@@ -517,7 +523,7 @@
                 }
 
                 if(empty($data['l_codeError'])){
-                    if($this->L_postModel->createLecturer($data)){
+                    if($this->L_postModel->createLecturer($data) && $this->U_postModel->addUser($data)){
                         //flash('post_message', 'Lecturer Added');
                         //redirect('pages/administrator_dashboard');
                         redirect('adminPosts/viewLecturers');
@@ -547,6 +553,12 @@
                     'l_qualifications' => '',
                     'l_isExamSupervisor' => '',
                     'l_isSecondExaminar' => '',
+
+                    //user
+                    'user_id' => '',
+                    'username' => '',
+                    'pwd' => '',
+                    'role' => '',
 
                     'l_codeError' => '',
                 ];
