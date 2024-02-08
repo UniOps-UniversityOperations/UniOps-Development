@@ -1,0 +1,53 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,td {
+    border: 1px solid #000;
+    padding : 10px;
+    text-align: center;
+}
+
+.title{
+    background-color: #99B9EB;
+}
+=======
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,td {
+    border: 1px solid #000;
+    padding : 10px;
+    text-align: center;
+}
+>>>>>>> 48dba3cc93c7356c9da093ed7d80ab3d87b56b6b
+=======
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,td {
+    border: 1px solid #000;
+    padding : 10px;
+    text-align: center;
+}
+>>>>>>> 48dba3cc93c7356c9da093ed7d80ab3d87b56b6b
+=======
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,td {
+    border: 1px solid #000;
+    padding : 10px;
+    text-align: center;
+}
+>>>>>>> dev

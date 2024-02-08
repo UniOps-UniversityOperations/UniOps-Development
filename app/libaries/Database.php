@@ -54,7 +54,8 @@ class Database {
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    //execute the prepared statement
+    //get multiple records as the statement
+   //execute the prepared statement
     public function execute() {
         return $this->stmt->execute();
     }
@@ -67,7 +68,7 @@ class Database {
 
     //get single record as the statement
     public function single() {
-        $this->execute()();
+        $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 

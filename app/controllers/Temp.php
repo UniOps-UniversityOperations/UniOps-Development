@@ -18,6 +18,7 @@ class Temp extends Controller {
             'title' => 'Temp',
             'temps' => $temps
         ];
+        echo 'Inside temp';
 
         $this->view('v_temp', $data);
     }
