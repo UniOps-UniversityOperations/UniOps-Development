@@ -1,17 +1,17 @@
 <!-- this variable is used to set the css file for this view -->
-<?php $style = "viewProfile"; ?> 
+<?php $style = "lecturecss/viewProfile"; ?> 
 
 <?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
 
 <div class="leftsection">
 
-    <img src="<?php echo URLROOT;?>/images/default.jpeg" id="profilepicture">
+    <img src="<?php echo URLROOT;?>/images/profilePictures/<?php echo $_SESSION['profilePicture']; ?>" id="profilepicture">
 
     <div><h2><?php echo $data->l_fullName ?></h2></div>
 
     <div id="rank"><h3><?php echo $data->l_positionRank ?></h3></div>
 
-    <button class="updatebutton">Edit Details</button>
+    <button class="updatebutton" onclick="editProfile('<?php echo URLROOT; ?>')">Edit Details</button>
 
 </div>
 
@@ -80,4 +80,5 @@
     
 </div>
 
+<script src="<?php echo URLROOT;?>/js/lecturerjs/viewProfile.js"></script>
 <?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>

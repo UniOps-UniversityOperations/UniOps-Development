@@ -14,6 +14,12 @@
       $this->view('Lecturer/v_viewProfile', $data);
     }
 
+    //Edit Profile
+    public function editProfile(){
+      $data = $this->lecturerModel->viewProfile();
+      $this->view('Lecturer/v_updateProfile',$data);
+    }
+
     public function viewRooms() {
       $data = $this->lecturerModel->viewRooms();
       $this->view('Lecturer/v_viewrooms',$data);

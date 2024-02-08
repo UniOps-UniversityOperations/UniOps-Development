@@ -7,7 +7,6 @@ class M_Lecturer {
     public function __construct(){
         $this->db = new Database();
         $this->uid = $_SESSION['user_id'];
-
     }
 
     public function getTimeTable($current_Day) {

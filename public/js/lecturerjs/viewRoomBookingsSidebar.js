@@ -41,16 +41,17 @@ function viewMore(key) {
   }
 }
 
-function reserve() {
+function reserve(start_time,end_time) {
+  console.log(start_time,end_time);
   sidebar.innerHTML = "<h1>Fill the Below Form for Reservations</h1>"+
   "<form action='' method='POST' id='reservation_form'>"+
   "<label for='startTime' class='reservation_label'>Start Time:</label>"+
-  "<input type='time' id='startTime' name='startTime' required></input>"+
+  "<input type='time' id='startTime' name='startTime' required min='" + start_time + "' max='" + end_time + "'>"+
   "<label for='endTime' class='reservation_label'>End Time:</label>"+
-  "<input type='time' id='endTime' name='endTime' required>"+
+  "<input type='time' id='endtTime' name='startTime' required min='" + start_time + "' max='" + end_time + "'>"+
   "<label for='purpose' class='reservation_label'>Purpose:</label>"+
   "<textarea id='purpose' name='purpose' rows='4' required></textarea>"+
-  "<button id='reservation_submit'>Submit</submit>"
+  "<button id='reservation_submit'>Submit</submit>"+
   "</form>";
 }
 
@@ -65,7 +66,7 @@ toggleButtons.forEach(toggleButton => {
         if(toggleButton.id){
             viewMore(toggleButton.id);
         }else {
-          reserve();
+          reserve(toggleButton.getAttribute('start_time'),toggleButton.getAttribute('end_time'));
         }  
       }
 
