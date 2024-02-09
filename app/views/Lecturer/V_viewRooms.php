@@ -30,16 +30,14 @@ $data_json = json_encode($data);
 
 <div class="content">
     <!--Tabs Section -->
-    <div class="tabs-section">
-        <div class="tab" onclick="showTabContent('lecture-halls')">Lecture Rooms</div>
-        <div class="tab" onclick="showTabContent('laboratories')">Laboratories</div>
-        <div class="tab" onclick="showTabContent('meeting-rooms')">Meeting Rooms</div>
-        <div class="tab" onclick="showTabContent('exam-halls')">Other</div>
-    </div>
     <div class="search-bar">
         <input type="text" placeholder="Type the Room Id" onkeyup="search(event)">
         <img src= "<?php echo URLROOT;?>/images/magnifyingglass.svg" class="search-icon" id="Search-Input" alt="Magnifying Glass">
     </div>
+    <div class="tabs-section">
+        <div id="tab" onclick="showTabContent('exam-halls')">View Booking Grid View</div>
+    </div>
+
 </div>
 
 <div class="rooms">

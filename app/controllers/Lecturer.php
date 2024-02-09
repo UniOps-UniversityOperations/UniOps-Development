@@ -38,5 +38,18 @@
       }
     }
 
+
+
+    public function viewBookingGrid() {
+      if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $dateSelected = $_POST['selectedDate'];
+      }
+      else {
+        $dateSelected = date('Y-m-d');
+      }
+      $data = $this->lecturerModel->viewBookingGrid($dateSelected);
+      $this->view('Lecturer/v_viewBookingGrid',$data);
+    }
+
   }
 

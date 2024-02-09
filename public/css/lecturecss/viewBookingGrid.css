@@ -1,0 +1,11 @@
+.option2 {
+    border-left: 5px solid #010058af;
+    background-color: var(--Border-color);
+    color: white;
+    cursor: pointer;
+}
+
+#scheduleGrid {
+    display: grid;
+    grid-template-columns: repeat(18,1fr);
+}

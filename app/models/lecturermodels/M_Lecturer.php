@@ -80,4 +80,57 @@ class M_Lecturer {
             return "Empty";
         }
     }
+
+    public function viewBookingGrid($dateSelected) {
+        $sql = "SELECT 
+        r.id,
+        r.name,
+        rb.booking_date AS date,
+        rb.start_time,
+        rb.end_time,
+        rb.event AS booking_name,
+        rb.booked_by,
+        'event' AS booking_type
+    FROM 
+        rooms r
+    LEFT JOIN 
+        roombookings rb ON r.id = rb.r_id
+    WHERE 
+        rb.booking_date = :dates
+    
+    UNION ALL
+    
+    SELECT 
+        r.id,
+        r.name,
+        lb.day_of_week AS date,
+        lb.start_time,
+        lb.end_time,
+        lb.subject AS booking_name,
+        lb.type AS booked_by,
+        'lecture' AS booking_type
+    FROM 
+        rooms r
+    LEFT JOIN 
+        lecturebookings lb ON r.id = lb.r_id 
+    WHERE 
+        lb.day_of_week = :day_of_week
+    ORDER BY 
+        id, start_time;
+    
+     
+        ";
+
+        $day = date("l",strtotime($dateSelected));
+
+        $this->db->query($sql);
+        $this->db->bind(':dates',$dateSelected);
+        $this->db->bind(':day_of_week',$day);
+        $result = $this->db->resultSet();
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
+        }
+    }
 }
