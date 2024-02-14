@@ -5,7 +5,90 @@
     cursor: pointer;
 }
 
+h1 {
+    margin-bottom: 30px;
+}
+
+/* Grid Styles starts here */
+
 #scheduleGrid {
     display: grid;
-    grid-template-columns: repeat(18,1fr);
+    grid-template-columns: repeat(14, 1fr);
+    grid-gap: 5px; /* Add gap between grid items */
+    margin: 40px 20px 20px 20px; /* Add margin for spacing */
 }
+
+.room-id {
+    border: 1px solid #ccc; /* Add a border to room IDs */
+    padding: 10px; /* Add padding for better visual separation */
+}
+
+.free_slot {
+    background-color: #aaffaa; /* Light green for free slots */
+    border: 1px solid #00aa00; /* Darker green border */
+    padding: 10px; /* Add padding for better visual appearance */
+}
+
+.booked {
+    background-color: #ffaaaa; /* Light red for booked slots */
+    border: 1px solid #aa0000; /* Darker red border */
+    padding: 10px; /* Add padding for better visual appearance */
+}
+
+/* Additional styling for the grid container */
+#scheduleGrid div {
+    text-align: center; /* Center the text inside each grid item */
+}
+
+/* Hover effect for better interactivity */
+#scheduleGrid div:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#scheduleGrid .time {
+    text-align: left;
+    padding-left: 0px;
+    font-weight: bold;
+    grid-column-gap: 0;
+}
+
+/* Grid Styles */
+
+
+/* Form Styling */
+
+.date-selection-form {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .date-selection-form label {
+    margin-right: 8px;
+    font-weight: bold;
+  }
+  
+  .date-selection-form input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-right: 8px;
+  }
+  
+  .date-selection-form button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .date-selection-form button:hover {
+    background-color: #45a049;
+  }
+
+  /* Form Styling ends here */

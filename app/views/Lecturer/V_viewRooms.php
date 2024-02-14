@@ -46,7 +46,6 @@ $data_json = json_encode($data);
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
                 <th>Type</th>
                 <th>Capacity</th>
                 <th>No_Of_Tables</th>
@@ -59,7 +58,6 @@ $data_json = json_encode($data);
             foreach ($data as $row) {
                 echo '<tr id="'.$row->id.'">';
                 echo '<td>'.$row->id.'</td>';
-                echo '<td>'.$row->name.'</td>';
                 echo '<td>'.$row->type.'</td>';
                 echo '<td>'.$row->capacity.'</td>';
                 echo '<td>'.$row->no_of_tables.'</td>';
