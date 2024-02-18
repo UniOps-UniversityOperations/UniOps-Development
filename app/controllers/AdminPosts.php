@@ -1176,6 +1176,8 @@
             $postsASI = $this->ASI_postModel->getSubjects($postId);
             $subjects = $this->ASI_postModel->getSubjectDetails();
             $variables = $this->V_postModel->getAll();
+            // get instructor name uing the postId(instructor code)
+            $instructorName = $this->I_postModel->getInstructorByCode($postId);
             
             if(!$postsRS){
                 $postsRS = "null";
@@ -1187,6 +1189,7 @@
                 'postsASI' => $postsASI,
                 'subjects' => $subjects,
                 'variables' => $variables,
+                'instructorName' => $instructorName
             ];
             $this->view('adminPosts/v_assignSubjectsInstructor', $data);
         }

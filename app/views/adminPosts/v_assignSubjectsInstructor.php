@@ -7,7 +7,7 @@
 <div class="main">
     <div class="top">
             <h1 class="topic">Adminitsrator / Instructors / Assign Subjects </h1>
-            <h2 class="topic2">Instructor Code: <?php echo $data['postId']; ?></h2>
+            <h2 class="topic2">Instructor: <?php echo $data['instructorName']->i_nameWithInitials; ?> (<?php echo $data['postId']; ?>)</h2>
     </div>        
 
     <div class="container">
@@ -19,6 +19,7 @@
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
                 <p class="title_item"><b>Credits</b></p>
                 <p class="title_item"><b>Year</b></p>
+                <p class="title_item"><b>Semester</b></p>
                 <p class="title_item"><b>Stream</b></p>
                 <p class="title_item"><b>Lecture</b></p>
                 <p class="title_item"><b>Practical</b></p>
@@ -40,6 +41,7 @@
                         <p class="header_title"><?php echo $post->subject_code; ?></p>
                         <p class="header_title"><?php echo $post->sub_credits; ?></p>
                         <p class="header_title"><?php echo $post->sub_year; ?></p>
+                        <p class="header_title"><?php echo $post->sub_semester; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
                         <p class="header_title"><?php echo $post->lecture ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
                         <p class="header_title"><?php echo $post->practical ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
@@ -58,10 +60,11 @@
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
                 <p class="title_item"><b>Credits</b></p>
                 <p class="title_item"><b>Year</b></p>
+                <p class="title_item"><b>Semester</b></p>
                 <p class="title_item"><b>Stream</b></p>
-                <p class="title_item"><b>Lecture</b></p>
-                <p class="title_item"><b>Practical</b></p>
-                <p class="title_item"><b>Tutorial</b></p>
+                <p style="padding-right: 25px;" class="title_item"><b>Lecture</b></p>
+                <p style="padding-right: 25px;" class="title_item"><b>Practical</b></p>
+                <p style="padding-right: 40px;" class="title_item"><b>Tutorial</b></p>
             </div>
 
             <div class="list">
@@ -74,6 +77,7 @@
                         <p class="header_title"><?php echo $post->sub_code; ?></p>
                         <p class="header_title"><?php echo $post->sub_credits; ?></p>
                         <p class="header_title"><?php echo $post->sub_year; ?></p>
+                        <p class="header_title"><?php echo $post->sub_semester; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
                         
                         <div class="combined_delete header_title">
