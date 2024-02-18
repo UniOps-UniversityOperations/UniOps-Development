@@ -14,6 +14,12 @@
       $this->view('Lecturer/v_viewProfile', $data);
     }
 
+    //Edit Profile
+    public function editProfile(){
+      $data = $this->lecturerModel->viewProfile();
+      $this->view('Lecturer/v_updateProfile',$data);
+    }
+
     public function viewRooms() {
       $data = $this->lecturerModel->viewRooms();
       $this->view('Lecturer/v_viewRooms',$data);
@@ -30,6 +36,24 @@
         $date = $_POST["selectedDate"];
         redirect('Lecturer/viewroombookings/'.$date.'/'.$room_id);
       }
+    }
+
+    public function viewBookingGrid($date){
+      $data = $this->lecturerModel->viewBookingGrid($date);
+      $this->view('Lecturer/v_viewBookingGrid',$data);
+    }
+
+
+
+    public function viewBookingGridDateSubmitted() {
+      if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $dateSelected = $_POST['selectedDate'];
+      }
+      else {
+        $dateSelected = date('Y-m-d');
+      }
+      redirect('Lecturer/viewBookingGrid/'.$dateSelected.'/');
+     
     }
 
   }

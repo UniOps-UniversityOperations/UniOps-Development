@@ -61,3 +61,7 @@ document.getElementById("view").addEventListener("click",()=>{
   let currentDate = new Date().toISOString().split('T')[0];
   window.location.href = urlroot + "/Lecturer/viewroombookings/"+currentDate+"/"+roomId;
 })
+
+document.getElementById('tab').addEventListener('click',()=>{
+  window.location.href = urlroot + "/Lecturer/viewBookingGridDateSubmitted/";
+})

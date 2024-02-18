@@ -23,8 +23,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Start Time</th>
-                        <th>End Time</th>
+                        <th>Time</th>
                         <th>Course Code</th>
                         <th>Course Name</th>
                         <th>Location</th>
@@ -36,8 +35,7 @@
 
                 foreach ($data as $row) {
                     echo '<tr>';
-                    echo '<td>'.$row->start_time.'</td>';
-                    echo '<td>'.$row->end_time.'</td>';
+                    echo '<td>'.$row->start_time.' - '.$row->end_time.'</td>';
                     echo '<td>'.$row->course_code.'</td>';
                     echo '<td>'.$row->course_name.'</td>';
                     echo '<td>'.$row->location.'</td>';

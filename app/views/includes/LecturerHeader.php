@@ -30,7 +30,7 @@
 			<h5><?php echo $_SESSION['username']; ?></h5>
 			<div class="circle"></div>
 			<img src="<?php echo URLROOT;?>/images/bell.svg" class="icn" alt="bell">
-			<div class="dp"><img src="<?php echo URLROOT;?>/images/profile_picture.svg" class="dpicn" alt="dp"></div>
+			<div class="dp"><img src="<?php echo URLROOT;?>/images/profilePictures/<?php echo $_SESSION['profilePicture']; ?>" class="dpicn" alt="dp"></div>
 		</div>
 
 	</header>

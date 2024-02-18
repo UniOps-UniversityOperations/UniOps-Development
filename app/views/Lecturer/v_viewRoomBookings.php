@@ -100,7 +100,7 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
                     <div class='timeslot'>".
                     $previousEnd." - ".
                     $booking->start_time."
-                    <span class='event'>Free Slot</span>
+                    <span class='event' start_time = '".$previousEnd."' end_time = '".$booking->start_time."'>Free Slot</span>
                     </div>
                 ";
             }
@@ -137,7 +137,7 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
             echo "
                 <div class='timeslot'>".
                 $previousEnd." - 19:00:00
-                <span class='event'>Free Slot</span>
+                <span class='event' start_time = '".$previousEnd."' end_time = '19:00:00'>Free Slot</span>
                 </div>
             ";
         }
