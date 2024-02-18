@@ -10,8 +10,6 @@
             $this->I_postModel = $this->model('M_Instructor');
             $this->U_postModel = $this->model('M_Users');
             $this->Stu_postModel = $this->model('M_Student');
-
-
             $this->A_postModel = $this->model('M_Asset');
             $this->RS_postModel = $this->model('M_requestedSubjects');
             $this->AS_postModel = $this->model('M_assignedSubjects');
@@ -1120,6 +1118,8 @@
             $postsAS = $this->AS_postModel->getSubjects($postId);
             $subjects = $this->AS_postModel->getSubjectDetails();
             $variables = $this->V_postModel->ASPage();
+            // get Lecturer name uing the postId(Lecturer code)
+            $lecturerName = $this->L_postModel->getLecturerByCode($postId);
             
             if(!$postsRS){
                 $postsRS = "null";
@@ -1131,6 +1131,7 @@
                 'postsAS' => $postsAS,
                 'subjects' => $subjects,
                 'variables' => $variables,
+                'lecturerName' => $lecturerName
             ];
             $this->view('adminPosts/v_assignSubjects', $data);
         }
