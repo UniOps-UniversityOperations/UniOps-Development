@@ -35,7 +35,7 @@ $data_json = json_encode($data);
         <img src= "<?php echo URLROOT;?>/images/magnifyingglass.svg" class="search-icon" id="Search-Input" alt="Magnifying Glass">
     </div>
     <div class="tabs-section">
-        <div id="tab" onclick="showTabContent('exam-halls')">View Booking Grid View</div>
+        <div id="tab">View Booking Grid View</div>
     </div>
 
 </div>
