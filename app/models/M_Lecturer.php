@@ -82,6 +82,14 @@ class M_Lecturer{
         return $row;
     }
 
+    // get Lecturer l_nameWithInitials uing the postId(Lecturer code)
+    public function getLecturerByCode($l_code){
+        $this->db->query('SELECT l_nameWithInitials FROM lecturers WHERE l_code = :l_code AND l_isDeleted = 0');
+        $this->db->bind(':l_code', $l_code);
+        $row = $this->db->single();
+        return $row;
+    }
+
 
     //Update Lecturer
 
