@@ -95,8 +95,8 @@ class M_Lecturer {
         rooms r
     LEFT JOIN 
         roombookings rb ON r.id = rb.r_id
-    WHERE 
-        rb.booking_date = :dates
+
+        WHERE rb.booking_date = :dates
     
     UNION ALL
     
@@ -112,9 +112,8 @@ class M_Lecturer {
     FROM 
         rooms r
     LEFT JOIN 
-        lecturebookings lb ON r.id = lb.r_id 
-    WHERE 
-        lb.day_of_week = :day_of_week
+        lecturebookings lb ON r.id = lb.r_id AND lb.day_of_week = :day_of_week
+        
     ORDER BY 
         id, start_time;
     

@@ -63,5 +63,5 @@ document.getElementById("view").addEventListener("click",()=>{
 })
 
 document.getElementById('tab').addEventListener('click',()=>{
-  window.location.href = urlroot + "/Lecturer/viewBookingGrid/";
+  window.location.href = urlroot + "/Lecturer/viewBookingGridDateSubmitted/";
 })
