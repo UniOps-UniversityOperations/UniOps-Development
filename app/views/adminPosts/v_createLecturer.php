@@ -10,6 +10,8 @@
         <!-- input feilds -->
 
         <fieldset>
+            <h3>Lecturer Details:</h3>    
+
             <label class="lable" for="l_code">Code:
             <input type="text" id="l_code" name="l_code" placeholder="l_code" value="<?php $data["l_code"];?>" oninput="this.value = this.value.toUpperCase();" required>
             </label>
@@ -79,6 +81,23 @@
             <label>
             <input type="checkbox" class="inline"  id="l_isSecondExaminar" name="l_isSecondExaminar" value="true">
             l_isSecondExaminar</label>
+
+        </fieldset>
+
+
+        <fieldset>
+            <!-- Add this Lecturer as a user of the system -->
+            <h3>Add as a System User:</h3>
+
+            <label class="lable" for="user_id ">User ID: Lecturer Email </label>
+
+            <label class="lable" for="username">User Name: Lecturer Name With Initials</label>
+
+            <label class="label" for="role">Role: Lecturer </label>
+
+            <label class="lable" for="pwd">password:
+            <input type="pwd" name="pwd" id="pwd" placeholder="pwd" value="<?php $data['pwd']; ?>" required>
+            </label>
 
         </fieldset>
 
