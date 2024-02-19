@@ -191,6 +191,36 @@ class M_Student{
             return "Empty";
         }
     }
+    public function updateProfile($data){
+        // $data['s_id']=130;
+        if (!empty($data['s_id'])) {
+        $this->db->query('UPDATE students SET
+        s_id = :s_id,
+        s_fullName = :s_fullName,
+        s_nameWithInitial = :s_nameWithInitial,
+        s_email = :s_email,
+        s_contactNumber = :s_contactNumber
+        WHERE s_id = :s_id
+        ');
+
+        //Bind Values
+       
+        $this->db->bind(':s_id', $data['s_id']);
+        $this->db->bind(':s_fullName', $data['s_fullName']);
+        $this->db->bind(':s_nameWithInitial', $data['s_nameWithInitial']);
+        $this->db->bind(':s_email', $data['s_email']);  
+        $this->db->bind(':s_contactNumber', $data['s_contactNumber']);
+        //Execute
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    } else {
+        return false; // Handle case where s_id is not set or empty
+    }
+    }
+
 
     public function viewBookings($date,$roomId) {
 
@@ -230,20 +260,30 @@ class M_Student{
         }
     }
 
-    public function updateProfile($data) {
-        $this->db->query("UPDATE students SET s_email = :email WHERE s_id = :uid");
-        $this->db->bind(':email', $data['email']);
-        $this->db->bind(':uid', $this->uid);
+    // public function updateProfile($s_id, $s_email) {
+    //     $this->db->query("UPDATE students SET s_email = :email WHERE s_id = :uid");
+    //     $this->db->bind(':email', $s_email);
+    //     $this->db->bind(':uid', $s_id);
 
-        // Execute the query
-        if ($this->db->execute()) {
-            return true; // Update successful
-        } else {
-            return false; // Update failed
-        }
-    }
+    //     // Execute the query
+    //     if ($this->db->execute()) {
+    //         return true; // Update successful
+    //     } else {
+    //         return false; // Update failed
+    //     }
+    // }
 
     // ... existing code ...
+
+    // public function updateProfile(){
+    //     $this->db->query("SELECT * FROM students WHERE s_email = :uid");
+    //     $result = $this->db->resultSet();
+    //     if($result){
+    //         return $result;
+    //     } else {
+    //         return "Empty";
+    //     }
+    // }    
 
 
 

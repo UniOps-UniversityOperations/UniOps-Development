@@ -58,12 +58,6 @@
 
     </fieldset>
 
-    <fieldset>
-        <label class="lable" for="s_isDeleted">
-        <input type="checkbox" class="inline" id="s_isDeleted" name="s_isDeleted" value="1" <?php echo $data["s_isDeleted"] == 1 ? 'checked' : '';?>>
-        Is Deleted</label>
-    </fieldset>
-
     <button type="submit" class="create_button">UPDATE</button>
 
     </form>

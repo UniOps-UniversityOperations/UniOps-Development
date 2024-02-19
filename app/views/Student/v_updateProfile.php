@@ -1,38 +1,42 @@
 <!-- this variable is used to set the css file for this view -->
-<?php $style = "updateProfile"; ?>
+<?php $style = "student/updateStudent"; ?>
 
 <?php require APPROOT . '/views/includes/studentHeader.php'; ?>
 
 <div class="content">
     <h1>Update Your Profile</h1>
-    <form action="<?php echo URLROOT;?>/lecturer/updateRoom/>" method="POST">
+    <form action="<?php echo URLROOT;?>/Student/updateProfile/<?php echo $data["s_id"];?>" method="POST">
+    
 
-        <!-- input feilds -->
-        <fieldset>
+    <!-- <div class="title">
+        <h1>Profile</h1></br></br>
+    </div> -->
 
-        <label class="lable" for="id">ID / Code :
-        <input type="text" id="id" name="id" placeholder="id" value="001" required>
-        </label>
+    <fieldset>
 
-        <label class="lable" for="fname">First Name :
-        <input type="text" id="fname" name="fname" placeholder="fname" value="Kamal" required>
-        </label>
+        <label class="lable" for="s_email">Student Email:
+        <input type="email" id="s_email" name="s_email" placeholder="s_email" value="<?php echo $data["s_email"];?>" required>
+        </label></br>
 
-        <label class="lable" for="lname">Last Name:
-        <input type="text" id="lname" name="lname" placeholder="lname" value="Perera" required>
-        </label>
+        <label class="lable" for="s_fullName">Student Full Name:
+        <input type="text" id="s_fullName" name="s_fullName" placeholder="s_fullName" value="<?php echo $data["s_fullName"];?>" required>
+        </label></br>
 
-        <label class="lable" for="expertise">Expertise :
-        <input type="text" id="expertise" name="expertise" placeholder="expertise" value="Networking" required>
-        </label>
+        <label class="lable" for="s_nameWithInitial">Student Name With Initials:
+        <input type="text" id="s_nameWithInitial" name="s_nameWithInitial" placeholder="s_nameWithInitial" value="<?php echo $data["s_nameWithInitial"];?>" required>
+        </label></br>
 
-        <label class="lable" for="Subjects Willing to teach">Subjects Willing to teach :
-        <input type="text" id="Subjects Willing to teach" name="Subjects Willing to teach" placeholder="Subjects Willing to teach" value="DSA" required>
-        </label>
+        <label class="lable" for="s_contactNumber">Student Contact Number:
+        <input type="text" id="s_contactNumber" name="s_contactNumber" placeholder="s_contactNumber" value="<?php echo $data["s_contactNumber"];?>" required>
+        </label></br>
+               
+    </fieldset>
+    
+    <button type="submit" class="update_button">UPDATE</button>
 
-        </fieldset>
     </form>
 </div>
-<button class="update_button">Update</button>
+
+<!-- <button class="update_button">Update</button> -->
     <!-- Footer Section -->
 <?php require APPROOT . '/views/includes/studentFooter.php'; ?>

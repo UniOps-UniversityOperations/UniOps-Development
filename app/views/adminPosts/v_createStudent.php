@@ -53,10 +53,6 @@
         <label class="lable" for="s_year">Year:
         <input type="text" id="s_year" name="s_year" placeholder="s_year" value="<?php echo $data["s_year"];?>" required>
         </label>
-
-        <label class="lable" for="s_semester">Semester:
-        <input type="text" id="s_semester" name="s_semester" placeholder="s_semester" value="<?php echo $data["s_semester"];?>" required>
-        </label>
         
     </fieldset>
 
