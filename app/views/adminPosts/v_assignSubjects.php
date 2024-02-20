@@ -7,7 +7,7 @@
 <div class="main">
     <div class="top">
             <h1 class="topic">Adminitsrator / Lecturer / Assign Subjects </h1>
-            <h2 class="topic2">Lcturer Code: <?php echo $data['postId']; ?></h2>
+            <h2 class="topic2">Lcturer: <?php echo $data['lecturerName']->l_nameWithInitials; ?> (<?php echo $data['postId']; ?>)</h2>
     </div>        
 
     <div class="container">
@@ -16,9 +16,10 @@
             <h2 style='color: #010127'>Requeted Subjects by the lecturer</h2>
 
             <div class="title_bar">
-                <p style="padding-left: 20px;" class="title_item"><b>Subject Code</b></p>
+                <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
                 <p class="title_item"><b>Credits</b></p>
                 <p class="title_item"><b>Year</b></p>
+                <p class="title_item"><b>Semester</b></p>
                 <p class="title_item"><b>Stream</b></p>
             </div>
 
@@ -37,6 +38,7 @@
                         <p class="header_title"><?php echo $post->subject_code; ?></p>
                         <p class="header_title"><?php echo $post->sub_credits; ?></p>
                         <p class="header_title"><?php echo $post->sub_year; ?></p>
+                        <p class="header_title"><?php echo $post->sub_semester; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
                     </div>
                 </div>
@@ -49,9 +51,10 @@
             <h2 style='color: #010127'>Assign Subjects</h2>
 
             <div class="title_bar">
-                <p style="padding-left: 20px;" class="title_item"><b>Subject Code</b></p>
+                <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
                 <p class="title_item"><b>Credits</b></p>
                 <p class="title_item"><b>Year</b></p>
+                <p class="title_item"><b>Semester</b></p>
                 <p style="padding-right: 60px;" class="title_item"><b>Stream</b></p>
             </div>
 
@@ -65,6 +68,7 @@
                         <p class="header_title"><?php echo $post->subject_code; ?></p>
                         <p class="header_title"><?php echo $post->sub_credits; ?></p>
                         <p class="header_title"><?php echo $post->sub_year; ?></p>
+                        <p class="header_title"><?php echo $post->sub_semester; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
 
                         <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRowAS/<?php echo $data['postId']; ?>/<?php echo $post->subject_code; ?>" title="Delete">
@@ -213,23 +217,15 @@
                     <?php $i = 0;
                     foreach($data['subjects'] as $subject) : ?>
                         <tr>
-                            <td><?php echo $subject->sub_code; ?></td>
-                            <td><?php echo $subject->sub_name; ?></td>
-                            <td><?php echo $subject->sub_year; ?></td>
-                            <td><?php echo $subject->sub_semester; ?></td>
-                            <td><?php echo $subject->sub_credits; ?></td>
-                            <td><?php echo $subject->sub_stream; ?></td>
                             <?php if ($subject->subject_code){ 
-                                if($subject->lecturer_code == $data['postId']){ ?>
-                                    <td style='color: gray;'><b>Assigned</b></td>
-                                    <td>
-                                        <form>
-                                            <input class="dummy_btn" type="submit" value="UNAVAILABLE" disabled>
-                                        </form>
-                                    </td>
-                                    <td><?php echo $subject->lecturer_code; ?></td>
-                                <?php }else{ ?>
-                                    <td><span style='color: red;'><b>Unavailable</b></span></td>
+                                if($subject->lecturer_code != $data['postId']){ ?>
+                                    <td><?php echo $subject->sub_code; ?></td>
+                                    <td><?php echo $subject->sub_name; ?></td>
+                                    <td><?php echo $subject->sub_year; ?></td>
+                                    <td><?php echo $subject->sub_semester; ?></td>
+                                    <td><?php echo $subject->sub_credits; ?></td>
+                                    <td><?php echo $subject->sub_stream; ?></td>
+                                    <td><span style='color: red;'><b>Assigned</b></span></td>
                                     <td>
                                         <form action="<?php echo URLROOT;?>/AdminPosts/forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
                                             <input class="force" type="submit" value="FORCE">
@@ -240,6 +236,12 @@
                             
                                 
                             <?php }else{ ?>
+                                <td><?php echo $subject->sub_code; ?></td>
+                                <td><?php echo $subject->sub_name; ?></td>
+                                <td><?php echo $subject->sub_year; ?></td>
+                                <td><?php echo $subject->sub_semester; ?></td>
+                                <td><?php echo $subject->sub_credits; ?></td>
+                                <td><?php echo $subject->sub_stream; ?></td>
                                 <td style="color: green;"><b>Available</b></td>
                                 <td>
                                     <!-- send 2 prameters (sub_code, lecturer_code) -->
@@ -256,13 +258,12 @@
         </div>
     <!-- submitbutton toa url -->
     <form action="">
-        <input class="create_button" type="submit" value="CANCEL">
+        <input class="create_button" type="submit" value="EXIT">
     </form>
     
     <div class="legend">
         <p><b><span style='color: green;'>Available</span></b> - can be assigned.</p>
-        <p><b><span style='color: red;'>Unavailable</span></b> - can't be assigned to this lecturer but can be forced (remove the current lecturer and assign to this lecturer).</p>
-        <p><b><span style='color: gray;'>Assigned</span></b> - already assigned to this lecturer.</p>
+        <p><b><span style='color: red;'>Assigned</span></b> - can't be assigned to this lecturer but can be forced (remove the current lecturer and assign to this lecturer).</p>
     </div>
     
     </div>
