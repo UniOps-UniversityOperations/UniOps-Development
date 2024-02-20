@@ -23,8 +23,10 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
     <button type="submit">Show Schedule</button>
 </form>
 
+
+
 <div id="scheduleGrid">
-    
+
     <!--Existing room labels and time slots will be dynamically generated here -->
     <div></div><!-- Blank div in the top left corner -->
     <?php
@@ -53,7 +55,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $previousTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot'>Free</div>";
+                            echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$previousTime->format('H:i:s')}'=>Free</div>";
                         }
                         echo '<div></div>';/* The empty Div at the end of each row */
                     }
@@ -72,7 +74,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $previousTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot'>Free</div>";
+                            echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max='{$startTime->format('H:i:s')}'>Free</div>";
                         }
 
                         //
@@ -88,7 +90,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $endTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot'>Free</div>";
+                            echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$endTime->format('H:i:s')}'>Free</div>";
                         }
 
                         //The last empty div
@@ -125,7 +127,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $previousTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot'>Free</div>";
+                            echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max = '{$startTime->format('H:i:s')}'>Free</div>";
                         }
 
                         //
@@ -138,7 +140,11 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Event/Lecture slot)
                         $timeDifference = $endTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='booked'>{$data[$i]->booking_name}</div>";
+                            if($data[$i]->booking_type==='event'){
+                                echo "<div class='booked' title = 'Booked By {$data[$i]->booked_by}' >{$data[$i]->booking_name}</div>";
+                            } else {
+                                echo "<div class='booked' title = '{$data[$i]->booked_by}' >{$data[$i]->booking_name}</div>";
+                            }
                         }
                     }
                 }
@@ -156,7 +162,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                     // Calculate the difference(Free slot)
                     $timeDifference = $previousTime->diff($startTime)->h;
                     for($diff=1;$diff<=$timeDifference;$diff++){
-                        echo "<div class='free_slot'>Free</div>";
+                        echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max='{$startTime->format('H:i:s')}'>Free</div>";
                     }
                 }
 
@@ -170,7 +176,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                     // Calculate the difference(Free slot)
                     $timeDifference = $endTime->diff($startTime)->h;
                     for($diff=1;$diff<=$timeDifference;$diff++){
-                        echo "<div class='free_slot'>Free</div>";
+                        echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$endTime->format('H:i:s')}'>Free</div>";
                     }
 
                     //The last empty div
@@ -185,7 +191,11 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                     // Calculate the difference(Event/Lecture slot)
                     $timeDifference = $endTime->diff($startTime)->h;
                     for($diff=1;$diff<=$timeDifference;$diff++){
-                        echo "<div class='booked'>{$data[$i]->booking_name}</div>";
+                        if($data[$i]->booking_type==='event'){
+                            echo "<div class='booked' title = 'Booked By {$data[$i]->booked_by}' >{$data[$i]->booking_name}</div>";
+                        } else {
+                            echo "<div class='booked' title = '{$data[$i]->booked_by}' >{$data[$i]->booking_name}</div>";
+                        }
                     }
                 }
 
@@ -199,13 +209,36 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
             // Calculate the difference(Free slot)
             $timeDifference = $previousTime->diff($startTime)->h;
             for($diff=1;$diff<=$timeDifference;$diff++){
-                echo "<div class='free_slot'>Free</div>";
+                echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$previousTime->format('H:i:s')}'>Free</div>";
             }
             echo '<div></div>';/* The empty Div at the end of each row */
         }
 
         echo "</div>"; // Close the last room container
      ?>
+
+    <div id='allocation_RequestForm'>
+        
+        <form action='' method='POST' id='reservation_form'>
+            <h1>Fill the Below Form for Reservations<span id='close-btn'>X</span></h1>
+            <label for='startTime' class='reservation_label'>Start Time:</label>
+            <select id='startTime' name='startTime' required>
+                <!-- Add options for each hour -->
+
+            </select>
+            <label for='endTime' class='reservation_label'>End Time:</label>
+            <select id='endTime' name='endTime' required>
+                <!-- Add options for each hour -->
+   
+            </select>
+            <label for='purpose' class='reservation_label'>Purpose:</label>
+            <textarea id='purpose' name='purpose' rows='4' required></textarea>
+            <button id='reservation_submit'>Submit</submit>
+        </form>
+    </div>
+
 </div>
+
+<script src="<?php echo URLROOT;?>/js/lecturerjs/viewBookingGrid.js"></script>
 
 <?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>
