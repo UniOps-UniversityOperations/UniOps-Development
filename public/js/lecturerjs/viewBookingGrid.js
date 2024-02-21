@@ -5,7 +5,8 @@ var close_btn = document.getElementById('close-btn')
 var startTimeSelect = document.getElementById('startTime');
 var endTimeSelect = document.getElementById('endTime');
 var reservation_form = document.getElementById('allocation_RequestForm');
-
+var booking_Date = document.getElementById('booking_date');
+ 
 // Add click event listener to each element
 freeSlots.forEach(function(slot) {
     slot.addEventListener('click', function() {
@@ -26,7 +27,11 @@ freeSlots.forEach(function(slot) {
             endTimeSelect.add(endOption);
         }
 
+        var r_id = slot.getAttribute('room_Id');
+        document.getElementById('r_id').value = r_id;
+
         allocationRequestForm.style.display = 'block';
+
     });
 });
 
@@ -45,4 +50,5 @@ reservation_form.addEventListener('submit',(event)=>{
         // Prevent form submission
         event.preventDefault();
     }
-})
+    booking_Date.value = document.getElementById('dateInput').value;
+});

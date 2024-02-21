@@ -56,5 +56,22 @@
      
     }
 
+    public function roomBookingRequest() {
+
+      IF($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $r_id = $_POST['r_id'];
+        $booking_date = $_POST['request_date'];
+        $startTime = $_POST['startTime'];
+        $endTime = $_POST['endTime'];
+        $purpose = $_POST['purpose'];
+        $result = $this->lecturerModel->roomBookingRequest($r_id,$booking_date,$startTime,$endTime,$purpose);//$result variable holds true or false based on the insertion was success or failure.
+
+        // Set session variable based on the result
+        $_SESSION['booking_result'] = $result;
+        redirect('Lecturer/viewBookingGridDateSubmitted');
+      }
+
+    }
+
   }
 
