@@ -132,4 +132,18 @@ class M_Lecturer {
             return "Empty";
         }
     }
+
+    public function roomBookingRequest($r_id,$booking_date,$startTime,$endTime,$purpose){
+
+        $sql = "INSERT INTO roombookingrequests (r_id,request_date,start_time,end_time,purpose,requested_by) VALUES (?,?,?,?,?,?);";
+        $this->db->query($sql);
+        $this->db->bind(1,$r_id);
+        $this->db->bind(2,$booking_date);
+        $this->db->bind(3,$startTime);
+        $this->db->bind(4,$endTime);
+        $this->db->bind(5,$purpose);
+        $this->db->bind(6,$this->uid);
+        return $this->db->execute();
+    }
+
 }

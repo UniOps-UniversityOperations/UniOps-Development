@@ -55,7 +55,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $previousTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$previousTime->format('H:i:s')}'=>Free</div>";
+                            echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$previousTime->format('H:i:s')}' room_Id='{$data[$i-1]->id}'>Free</div>";
                         }
                         echo '<div></div>';/* The empty Div at the end of each row */
                     }
@@ -74,7 +74,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $previousTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max='{$startTime->format('H:i:s')}'>Free</div>";
+                            echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max='{$startTime->format('H:i:s')}' room_Id='{$data[$i]->id}'>Free</div>";
                         }
 
                         //
@@ -90,7 +90,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $endTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$endTime->format('H:i:s')}'>Free</div>";
+                            echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$endTime->format('H:i:s')}' room_Id='{$data[$i]->id}'>Free</div>";
                         }
 
                         //The last empty div
@@ -127,7 +127,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $previousTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max = '{$startTime->format('H:i:s')}'>Free</div>";
+                            echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max = '{$startTime->format('H:i:s')}' room_Id='{$data[$i]->id}'>Free</div>";
                         }
 
                         //
@@ -162,7 +162,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                     // Calculate the difference(Free slot)
                     $timeDifference = $previousTime->diff($startTime)->h;
                     for($diff=1;$diff<=$timeDifference;$diff++){
-                        echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max='{$startTime->format('H:i:s')}'>Free</div>";
+                        echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max='{$startTime->format('H:i:s')}' room_Id='{$data[$i]->id}'>Free</div>";
                     }
                 }
 
@@ -176,7 +176,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                     // Calculate the difference(Free slot)
                     $timeDifference = $endTime->diff($startTime)->h;
                     for($diff=1;$diff<=$timeDifference;$diff++){
-                        echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$endTime->format('H:i:s')}'>Free</div>";
+                        echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$endTime->format('H:i:s')}' room_Id='{$data[$i]->id}'>Free</div>";
                     }
 
                     //The last empty div
@@ -209,7 +209,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
             // Calculate the difference(Free slot)
             $timeDifference = $previousTime->diff($startTime)->h;
             for($diff=1;$diff<=$timeDifference;$diff++){
-                echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$previousTime->format('H:i:s')}'>Free</div>";
+                echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$previousTime->format('H:i:s')}' room_Id='{$data[count($data)-1]->id}'>Free</div>";
             }
             echo '<div></div>';/* The empty Div at the end of each row */
         }
@@ -219,8 +219,12 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 
     <div id='allocation_RequestForm'>
         
-        <form action='' method='POST' id='reservation_form'>
+        <form action='<?php echo URLROOT."/Lecturer/roomBookingRequest"; ?>' method='POST' id='reservation_form'>
             <h1>Fill the Below Form for Reservations<span id='close-btn'>X</span></h1>
+
+            <input type="hidden" name = 'request_date' id= 'booking_date' value = "">
+            <input type="hidden" name = 'r_id' id = 'r_id' value = "">
+
             <label for='startTime' class='reservation_label'>Start Time:</label>
             <select id='startTime' name='startTime' required>
                 <!-- Add options for each hour -->
@@ -237,7 +241,57 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
         </form>
     </div>
 
+
+    <?php
+
+// Check if the session variable is set
+if (isset($_SESSION['booking_result'])) {
+    // Display the message based on the session variable
+    $resultMessage = $_SESSION['booking_result'] ? 'Booking successful' : 'Booking failed';
+    
+    // Create a pop-up modal using HTML and CSS
+    echo '<div id="myModal" class="modal">
+            <div class="modal-content">
+              <p>' . $resultMessage . '</p>
+              <span class="close">&times;</span>
+            </div>
+          </div>';
+    
+    // Include JavaScript to show the modal
+    echo '<script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the page is loaded, show the modal
+            window.onload = function() {
+              modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+            
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+          </script>';
+
+    // Unset the session variable to clear it
+    unset($_SESSION['booking_result']);
+}
+
+?>
+
 </div>
+
+
 
 <script src="<?php echo URLROOT;?>/js/lecturerjs/viewBookingGrid.js"></script>
 
