@@ -21,8 +21,7 @@ class M_Student{
             s_dob,
             s_contactNumber,
             s_stream,
-            s_year,
-            s_semester
+            s_year
             -- s_isDeleted
         ) VALUES (
             :s_fullName,
@@ -33,8 +32,8 @@ class M_Student{
             :s_dob,
             :s_contactNumber,
             :s_stream,
-            :s_year,
-            :s_semester
+            :s_year
+            -- :s_semester
             -- :s_isDeleted
         )');
 
@@ -49,7 +48,6 @@ class M_Student{
         $this->db->bind(':s_contactNumber', $data['s_contactNumber']);
         $this->db->bind(':s_stream', $data['s_stream']);
         $this->db->bind(':s_year', $data['s_year']);  
-        $this->db->bind(':s_semester', $data['s_semester']); 
         // $this->db->bind(':s_isDeleted', $data['s_isDeleted']); 
 
         //Execute
@@ -91,9 +89,9 @@ class M_Student{
         s_dob = :s_dob,
         s_contactNumber = :s_contactNumber,
         s_stream = :s_stream,
-        s_year = :s_year,
-        s_semester = :s_semester,
-        s_isDeleted = :s_isDeleted
+        s_year = :s_year
+        -- s_semester = :s_semester,
+        -- s_isDeleted = :s_isDeleted
         WHERE s_id = :s_id
         ');
 
@@ -109,8 +107,8 @@ class M_Student{
         $this->db->bind(':s_contactNumber', $data['s_contactNumber']);
         $this->db->bind(':s_stream', $data['s_stream']);
         $this->db->bind(':s_year', $data['s_year']);  
-        $this->db->bind(':s_semester', $data['s_semester']); 
-        $this->db->bind(':s_isDeleted', $data['s_isDeleted']);  
+        // $this->db->bind(':s_semester', $data['s_semester']); 
+        // $this->db->bind(':s_isDeleted', $data['s_isDeleted']);  
         //Execute
         if($this->db->execute()){
             return true;
