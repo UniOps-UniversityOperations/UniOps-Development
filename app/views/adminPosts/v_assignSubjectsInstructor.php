@@ -190,65 +190,65 @@
                         ?>
 
                         <div class=pie_row1>
-                        <div class="pieID--micro-skills pie-chart--wrapper">
-                        <h2 class="chart_name">Lectures</h2>
-                        
-                            <div class="pie-chart">
-                                <div class="pie-chart__pie"></div>
-                                
-                                <ul class="pie-chart__legend">
-                                <li>
-                                    <em>Assigned (%)</em>
-                                    <span><?php echo $assigned_subjects_credits_precentage ?></span>
-                                </li>
-                                <li>
-                                    <em>Remaining (%)</em>
-                                    <span><?php echo 100 - $assigned_subjects_credits_precentage ?></span>
-                                </li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-
-                        <!-- Logic for pie chart 02 -->
-
-                        <?php
-                            $instructor_max_practical_hrs = $data['variables'][4]->v_value;
-                            $practcal_hrs_per_credit = $data['variables'][2]->v_value;
-
-                            //CALCLATE ASSIGNED SUBJECTS_CREDITS
-                            $assigned_practical_credits = 0;
-                            foreach($data['postsASI'] as $post) {
-                                if($post->p_instructor_code == $data['postId']){
-                                    $assigned_practical_credits += $post->sub_credits;
-                                }
-                            }
-
-                            //number of assigned lecture hours
-                            $assigned_practical_hrs = $assigned_practical_credits * $practcal_hrs_per_credit;
-
-                            //precentage of assigned_subjects_lec_hrs
-                            $assigned_practical_credits_precentage = ($assigned_practical_hrs / $instructor_max_practical_hrs) * 100;
-                        ?>
-
-                        <div class="pieID--categories pie-chart--wrapper">
-                        <h2 class="chart_name">Practicals</h2>
-                        
-                        <div class="pie-chart">
-                            <div class="pie-chart__pie"></div>
+                            <div class="pieID--micro-skills pie-chart--wrapper">
+                                <h2 class="chart_name">Lectures</h2>
                             
-                            <ul class="pie-chart__legend">
-                            <li>
-                                <em>Assigned (%)</em>
-                                <span><?php echo $assigned_practical_credits_precentage ?></span>
-                            </li>
-                            <li>
-                                <em>Remaining (%)</em>
-                                <span><?php echo 100 - $assigned_practical_credits_precentage ?></span>
-                            </li>
-                            </ul>
-                        </div>
-                        </div>
+                                <div class="pie-chart">
+                                    <div class="pie-chart__pie"></div>
+                                    
+                                    <ul class="pie-chart__legend">
+                                    <li>
+                                        <em>Assigned (%)</em>
+                                        <span><?php echo $assigned_subjects_credits_precentage ?></span>
+                                    </li>
+                                    <li>
+                                        <em>Remaining (%)</em>
+                                        <span><?php echo 100 - $assigned_subjects_credits_precentage ?></span>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        
+
+                            <!-- Logic for pie chart 02 -->
+
+                            <?php
+                                $instructor_max_practical_hrs = $data['variables'][4]->v_value;
+                                $practcal_hrs_per_credit = $data['variables'][2]->v_value;
+
+                                //CALCLATE ASSIGNED SUBJECTS_CREDITS
+                                $assigned_practical_credits = 0;
+                                foreach($data['postsASI'] as $post) {
+                                    if($post->p_instructor_code == $data['postId']){
+                                        $assigned_practical_credits += $post->sub_credits;
+                                    }
+                                }
+
+                                //number of assigned lecture hours
+                                $assigned_practical_hrs = $assigned_practical_credits * $practcal_hrs_per_credit;
+
+                                //precentage of assigned_subjects_lec_hrs
+                                $assigned_practical_credits_precentage = ($assigned_practical_hrs / $instructor_max_practical_hrs) * 100;
+                            ?>
+
+                            <div class="pieID--categories pie-chart--wrapper">
+                                <h2 class="chart_name">Practicals</h2>
+                                
+                                <div class="pie-chart">
+                                    <div class="pie-chart__pie"></div>
+                                    
+                                    <ul class="pie-chart__legend">
+                                    <li>
+                                        <em>Assigned (%)</em>
+                                        <span><?php echo $assigned_practical_credits_precentage ?></span>
+                                    </li>
+                                    <li>
+                                        <em>Remaining (%)</em>
+                                        <span><?php echo 100 - $assigned_practical_credits_precentage ?></span>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <div class=pie_row2>

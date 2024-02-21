@@ -123,24 +123,46 @@
                 <script>document.getElementById("num_credits").innerHTML = <?php echo $assigned_subjects_credits ?>;</script>
                 <script>document.getElementById("lec_hrs").innerHTML = <?php echo $assigned_subjects_lec_hrs ?>;</script>
                 
-                <div class="wrapper">
-                    <p class="chart_name"><b>Work Load - Lecture Hours</b></p>
+    
+                <p class="chart_name"><b>Work Load</b></p>
+                    <div class="Row">
                         <div class="pieID--micro-skills pie-chart--wrapper">
-                        <div class="pie-chart">
-                            <div class="pie-chart__pie"></div>
-                            <ul class="pie-chart__legend">
-                            <li>
-                                <!-- assigned_subjects_credits_precentage -->
-                                <em>Assigned (%)</em>
-                                <span><?php echo $assigned_subjects_credits_precentage; ?></span>
-                            </li>
-                            <li>
-                                <!-- 100 - assigned_subjects_credits_precentage -->
-                                <em>Remaining (%)</em>
-                                <span><?php echo 100 - $assigned_subjects_credits_precentage; ?></span>
-                            </li>
-                            </ul>
+                            <h2 class="chart_name">Lecture Hours</h2>
+                            <div class="pie-chart">
+                                <div class="pie-chart__pie"></div>
+                                <ul class="pie-chart__legend">
+                                <li>
+                                    <!-- assigned_subjects_credits_precentage -->
+                                    <em>Assigned (%)</em>
+                                    <span><?php echo $assigned_subjects_credits_precentage; ?></span>
+                                </li>
+                                <li>
+                                    <!-- 100 - assigned_subjects_credits_precentage -->
+                                    <em>Remaining (%)</em>
+                                    <span><?php echo 100 - $assigned_subjects_credits_precentage; ?></span>
+                                </li>
+                                </ul>
+                            </div>
                         </div>
+                    
+
+                        <div class="pieID--categories pie-chart--wrapper">
+                            <h2 class="chart_name">Lecture Hours</h2>
+                            
+                            <div class="pie-chart">
+                                <div class="pie-chart__pie"></div>
+                                
+                                <ul class="pie-chart__legend">
+                                <li>
+                                    <em>Assigned (%)</em>
+                                    <span>40</span>
+                                </li>
+                                <li>
+                                    <em>Remaining (%)</em>
+                                    <span>60</span>
+                                </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
