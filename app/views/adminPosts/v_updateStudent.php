@@ -49,12 +49,17 @@
         </label>
 
         <label class="lable" for="s_year">Year:
-        <input type="text" id="s_year" name="s_year" placeholder="s_year" value="<?php echo $data["s_year"];?>" required>
+            <select id="s_year" name="s_year" required>
+                <option value="1" <?php echo ($data["s_year"] == '1') ? 'selected' : ''; ?>>1</option>
+                <option value="2" <?php echo ($data["s_year"] == '2') ? 'selected' : ''; ?>>2</option>
+                <option value="3" <?php echo ($data["s_year"] == '3') ? 'selected' : ''; ?>>3</option>
+                <option value="4" <?php echo ($data["s_year"] == '4') ? 'selected' : ''; ?>>4</option>
+            </select>
         </label>
 
-        <label class="lable" for="s_semester">Semester:
+        <!-- <label class="lable" for="s_semester">Semester:
         <input type="text" id="s_semester" name="s_semester" placeholder="s_semester" value="<?php echo $data["s_semester"];?>" required>
-        </label>
+        </label> -->
 
     </fieldset>
 

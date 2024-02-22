@@ -13,6 +13,7 @@ class M_Student{
     //Create Student
     public function createStudent($data){
         $this->db->query('INSERT INTO students (
+            s_code,
             s_fullName,
             s_nameWithInitial,
             s_regNumber,
@@ -24,6 +25,7 @@ class M_Student{
             s_year
             -- s_isDeleted
         ) VALUES (
+            :s_code,
             :s_fullName,
             :s_nameWithInitial,
             :s_regNumber,
