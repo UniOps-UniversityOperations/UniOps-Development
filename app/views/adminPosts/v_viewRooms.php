@@ -182,7 +182,7 @@
                                     <p> <b> : </b> <?php echo $post->id; ?></p>
                                     <p> <b> : </b> <?php echo $post->type; ?></p>
                                     <p> <b> : </b> <?php echo $post->capacity; ?></p>
-                                    <p> <b> : </b> <?php echo $post->current_availability; ?></p>
+                                    
                                     <p> <b> : </b> <?php echo $post->no_of_tables; ?></p>
                                     <p> <b> : </b> <?php echo $post->no_of_chairs; ?></p>
                                     <p> <b> : </b> <?php echo $post->no_of_boards; ?></p>
