@@ -49,6 +49,31 @@ reservation_form.addEventListener('submit',(event)=>{
         
         // Prevent form submission
         event.preventDefault();
+    } else {
+        //If Times are valid open confirmation popup
+        openConfirmationPopup();
+
+        //Prevent Form Submission untill Confirmation
+        event.preventDefault();
     }
-    booking_Date.value = document.getElementById('dateInput').value;
+   
+
 });
+
+// Function to open the confirmation popup
+function openConfirmationPopup() {
+    document.getElementById('reservationPopup').style.display = 'block';
+  }
+
+  // Function to close the confirmation popup
+function closeConfirmationPopup() {
+    document.getElementById('reservationPopup').style.display = 'none';
+  }
+
+  // Function to confirm the submission and submit the form
+function confirmSubmission() {
+    booking_Date.value = document.getElementById('dateInput').value;
+    document.getElementById('reservation_form').submit();
+  }
+  
+  

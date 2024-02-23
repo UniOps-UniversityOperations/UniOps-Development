@@ -241,6 +241,18 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
         </form>
     </div>
 
+    <!-- Following pop Up would apear upon clicking the reservation form submit button asking the confirmation from user -->
+    <div id="reservationPopup" class="popup">
+    <div class="popup-content">
+        <p>Are you sure you want to submit the request?</p>
+
+        <div id="button_Container">
+            <button class = "yes-btn" onclick="confirmSubmission()">Yes</button>
+            <button class = "no-btn" onclick="closeConfirmationPopup()">No</button>
+        </div>
+    </div>
+    </div>
+
 
     <?php
 

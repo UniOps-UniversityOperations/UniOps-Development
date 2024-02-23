@@ -29,11 +29,20 @@ $data_json = json_encode($data);
 <h1>View Rooms</h1>
 
 <div class="content">
-    <!--Tabs Section -->
+
     <div class="search-bar">
-        <input type="text" placeholder="Type the Room Id" onkeyup="search(event)">
-        <img src= "<?php echo URLROOT;?>/images/magnifyingglass.svg" class="search-icon" id="Search-Input" alt="Magnifying Glass">
+        <input type="text" placeholder="Search by Room Name..." onkeyup="searchRooms()" id = "searchInput">
+        <span id="clear-search">&#10006;</span>
+        <label for="filter">Filter By Type</label>
+        <select name="type" id="filter">
+            <option value="All">All</option>
+            <option value="Lecture">Lecture Rooms</option>
+            <option value="Lab">Laboratories</option>
+            <option value="Meeting">Meeting Rooms</option>
+            <option value="Other">Other</option>
+        </select>
     </div>
+
     <div class="tabs-section">
         <div id="tab">View Booking Grid View</div>
     </div>
@@ -57,7 +66,7 @@ $data_json = json_encode($data);
             <?php
             foreach ($data as $row) {
                 echo '<tr id="'.$row->id.'">';
-                echo '<td>'.$row->id.'</td>';
+                echo '<td class = "id">'.$row->id.'</td>';
                 echo '<td>'.$row->type.'</td>';
                 echo '<td>'.$row->capacity.'</td>';
                 echo '<td>'.$row->no_of_tables.'</td>';
@@ -71,7 +80,7 @@ $data_json = json_encode($data);
 
 </div>
 
-<script src="<?php echo URLROOT;?>/js/lecturerjs/sidebar.js"></script>
+<script src="<?php echo URLROOT;?>/js/lecturerjs/viewRooms.js"></script>
 
 
 <?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>
