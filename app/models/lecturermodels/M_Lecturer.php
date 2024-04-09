@@ -146,4 +146,63 @@ class M_Lecturer {
         return $this->db->execute();
     }
 
+    public function viewAssignedSubjects(){
+        $sql = 'SELECT assignedSubjects.subject_code,subjects.sub_name, subjects.sub_year, subjects.sub_stream, subjects.sub_semester, subjects.sub_credits 
+        FROM assignedSubjects 
+        INNER JOIN subjects ON assignedSubjects.subject_code = subjects.sub_code 
+        INNER JOIN lecturers ON assignedSubjects.lecturer_code = lecturers.l_code
+        WHERE lecturers.l_email = :uid';
+        $this->db->query($sql);
+        $this->db->bind(':uid',$_SESSION['user_id']);
+        //return $this->db->execute();
+        $result = $this->db->resultSet();
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
+        }
+    }
+
+    public function viewPrefferedSubjects(){
+        $sql = 'SELECT requestedSubjects.subject_code,subjects.sub_name, subjects.sub_year, subjects.sub_stream, subjects.sub_semester, subjects.sub_credits 
+        FROM requestedSubjects 
+        INNER JOIN subjects ON requestedSubjects.subject_code = subjects.sub_code 
+        INNER JOIN lecturers ON requestedSubjects.lecturer_code = lecturers.l_code
+        WHERE lecturers.l_email = :uid';
+        $this->db->query($sql);
+        $this->db->bind(':uid',$_SESSION['user_id']);
+        //return $this->db->execute();
+        $result = $this->db->resultSet();
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
+        }
+    }
+
+    public function numofLecHours() {
+        $sql = 'SELECT
+        day_of_week,
+        SUM(TIMESTAMPDIFF(MINUTE, start_time, end_time))/60 AS total_hours
+        FROM
+            lecturertimetables
+        WHERE
+            l_code = :l_email
+        GROUP BY
+            day_of_week
+        ORDER BY
+            FIELD(day_of_week, "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+        ';
+
+        $this->db->query($sql);
+        $this->db->bind(':l_email',$_SESSION['user_id']);
+        $result = $this->db->resultSet();
+
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
+        }
+    }
+
 }
