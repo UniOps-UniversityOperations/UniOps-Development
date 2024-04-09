@@ -43,8 +43,6 @@
       $this->view('Lecturer/v_viewBookingGrid',$data);
     }
 
-
-
     public function viewBookingGridDateSubmitted() {
       if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $dateSelected = $_POST['selectedDate'];
@@ -71,6 +69,39 @@
         redirect('Lecturer/viewBookingGridDateSubmitted');
       }
 
+    }
+
+    public function viewSubjects(){
+      $assignedSubjects = $this->lecturerModel->viewAssignedSubjects();
+      $PrefferedSubjects = $this->lecturerModel->viewPrefferedSubjects();
+      $numofLecHours = $this->lecturerModel->numofLecHours();
+
+      // Initialize an associative array to hold the total hours for each day
+      $hourData = [
+        'Monday' => 0,
+        'Tuesday' => 0,
+        'Wednesday' => 0,
+        'Thursday' => 0,
+        'Friday' => 0,
+/*         'Saturday' => 0,
+        'Sunday' => 0, */
+      ];
+
+      // Iterate through your fetched data and update the total hours for each day
+      foreach ($numofLecHours as $item) {
+        $day = $item -> day_of_week;
+        $totalHours = $item -> total_hours;
+        $hourData[$day] = $totalHours;
+      }
+
+
+      $data = [
+        'numofLecHours' => $hourData,
+        'assignedSubjects' => $assignedSubjects,
+        'PrefferedSubjects' => $PrefferedSubjects
+      ];
+      
+      $this->view('Lecturer/v_viewSubjects', $data);
     }
 
   }
