@@ -193,7 +193,8 @@
 
                                     <tr>
                                         <td><b>Gender</b></td>
-                                        <td><b>: </b><?php echo $post->l_gender; ?></td>
+                                        <td><b>: </b><?php echo ($post->l_gender == 'M') ? "Male" : "Female"; ?></td>
+
                                     </tr>
 
                                     <tr>

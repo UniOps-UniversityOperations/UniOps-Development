@@ -3,6 +3,15 @@
 
 <?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
 
+<div id="headings">
+    <div class="section" id="details">Details</div>
+    <div class="section" id="subjects">Subjects</div>
+    <div class="section" id="timetable">Timetable</div>
+</div>
+
+<div id="body">
+    
+
 <div class="leftsection">
 
     <img src="<?php echo URLROOT;?>/images/profilePictures/<?php echo $_SESSION['profilePicture']; ?>" id="profilepicture">
@@ -78,6 +87,8 @@
 
     </div>
     
+</div>
+
 </div>
 
 <script src="<?php echo URLROOT;?>/js/lecturerjs/viewProfile.js"></script>

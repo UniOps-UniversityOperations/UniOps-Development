@@ -65,3 +65,25 @@ document.getElementById("view").addEventListener("click",()=>{
 document.getElementById('tab').addEventListener('click',()=>{
   window.location.href = urlroot + "/Lecturer/viewBookingGridDateSubmitted/";
 })
+
+
+//Filter Function
+function searchRooms() {
+  var filter,tbody,tr,td,i,txtvalue;
+  filter = document.getElementById('searchInput').value.toUpperCase();
+  tbody = document.getElementById('tbody');
+  tr = tbody.getElementsByTagName('tr');
+
+  for(i=0; i< tr.length; i++) {
+    id = tr[i].getElementsByClassName('id')[0];
+    if(id){
+      txtvalue = id.textContent || id.innerText;
+      if(txtvalue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = '';
+      }else {
+        tr[i].style.display = 'none';
+      }
+    }
+  }
+
+}

@@ -17,6 +17,7 @@
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   margin-left: auto;
+  transform: translate(-0%,-25%);
 }
 
 #tab:hover {
@@ -30,11 +31,33 @@
 .search-bar input {
   height : 30px;
   border-radius: 20px;
+  padding: 0px 20px 0px 5px;
+  max-width: 200px;
 }
 
-.search-icon {
-  width: 20px; 
-  height: 20px; 
+#clear-search {
+  align-self : flex-start;
+  padding-top: 5px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+#clear-search:hover {
+  color: red;
+}
+
+.search-bar label {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 12px;
+  padding-left: 20px;
+}
+
+select {
+  height: 30px;
+  padding: 0px 20px 0px 5px;
+  border: 1px solid black; /* Adjust the border color as needed */
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -47,8 +70,6 @@
 }
 
 .rooms {
-  background-color: #ffffff; 
-  border: 2px solid #3498db; 
   padding: 10px; 
   flex-grow: 1;
 } 
@@ -91,50 +112,53 @@ cursor: pointer;
   margin-right: 300px; 
 }
 
+/* Table Styles Starts Here. */
+.styled-table tbody tr:hover {
+background-color: #cccccc;
+}
+
 .styled-table {
-  border-collapse: collapse;
-  margin: 25px 0;
-  font-size: 0.9em;
-  font-family: sans-serif;
-  min-width: 100%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+
+.styled-table tbody tr {
+  background-color: #f0f0f0;
+  cursor: pointer;
+  border: 1px solid #ccc;
 }
 
 .styled-table thead tr {
-  background-color: #1848A0;
-  color: #ffffff;
-  text-align: left;
-}
-/*Table styles */
-.styled-table th,
-.styled-table td {
-  padding: 12px 15px;
-  width: 1000px;
+  background-color: #1e58c4;
 }
 
-
-.styled-table tbody tr {
-  border-bottom: 1px solid #dddddd;
-  cursor: pointer;
+.styled-table td,
+.styled-table th {
+  padding: 15px;
 }
 
-.styled-table tbody tr:hover {
-background-color: #f0f0f0;
+.styled-table tr td:first-child,
+.styled-table tr th:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
-.styled-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
+.styled-table tr td:last-child,
+.styled-table tr th:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
-.styled-table tbody tr:last-of-type {
-  border-bottom: 2px solid #1848A0;
-}
 
 .styled-table tbody tr.row-selected {
   font-weight: bold;
   background-color: #251b1b;
   color: white;
 }
+
+/* Table Styles Ends Here. */
 
 .sidebar-content p {
 padding-bottom: 20px;
