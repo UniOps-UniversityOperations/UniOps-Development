@@ -170,6 +170,7 @@
                                     <p><b>Year</b></p>
                                     <p><b>Semester</b></p>
                                     <p><b>Stream</b></p>
+                                    <p><b>Student Count</b></p>
                                 </div>
 
                                 <div class="sidebar_top_right">
@@ -178,6 +179,7 @@
                                     <p> <b> : </b> <?php echo $post->sub_year; ?></p>
                                     <p> <b> : </b> <?php echo $post->sub_semester; ?></p>
                                     <p> <b> : </b> <?php echo $post->sub_stream; ?></p>
+                                    <p> <b> : </b> <?php echo $post->sub_nStudents; ?></p>
                                 </div>
                             </div>
                         

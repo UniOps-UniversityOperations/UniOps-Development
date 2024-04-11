@@ -327,6 +327,7 @@
                 // sub_year
                 // sub_semester
                 // sub_stream
+                // sub_nStudents
                 // sub_isCore
                 // sub_isHaveLecture
                 // sub_isHaveTutorial
@@ -347,6 +348,7 @@
                     'sub_year' => trim($_POST['sub_year']),
                     'sub_semester' => trim($_POST['sub_semester']),
                     'sub_stream' => trim($_POST['sub_stream']),
+                    'sub_nStudents' => trim($_POST['sub_nStudents']),
                     'sub_isCore' => isset($_POST['sub_isCore']) ? '1' : '0',
                     'sub_isHaveLecture' => isset($_POST['sub_isHaveLecture']) ? '1' : '0',
                     'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
@@ -382,6 +384,7 @@
                     'sub_year' => '',
                     'sub_semester' => '',
                     'sub_stream' => '',
+                    'sub_nStudents' => '',
                     'sub_isCore' => '',
                     'sub_isHaveLecture' => '',
                     'sub_isHaveTutorial' => '',
@@ -419,6 +422,7 @@
                     'sub_year' => trim($_POST['sub_year']),
                     'sub_semester' => trim($_POST['sub_semester']),
                     'sub_stream' => trim($_POST['sub_stream']),
+                    'sub_nStudents' => trim($_POST['sub_nStudents']),
                     'sub_isCore' => isset($_POST['sub_isCore']) ? '1' : '0',
                     'sub_isHaveLecture' => isset($_POST['sub_isHaveLecture']) ? '1' : '0',
                     'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
@@ -444,6 +448,7 @@
                     'sub_year' => $post->sub_year,
                     'sub_semester' => $post->sub_semester,
                     'sub_stream' => $post->sub_stream,
+                    'sub_nStudents' => $post->sub_nStudents,
                     'sub_isCore' => $post->sub_isCore,
                     'sub_isHaveLecture' => $post->sub_isHaveLecture,
                     'sub_isHaveTutorial' => $post->sub_isHaveTutorial,

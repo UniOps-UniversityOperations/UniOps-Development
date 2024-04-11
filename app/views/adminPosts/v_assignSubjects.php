@@ -18,9 +18,9 @@
             <div class="title_bar">
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
                 <p class="title_item"><b>Credits</b></p>
-                <p class="title_item"><b>Year</b></p>
-                <p class="title_item"><b>Semester</b></p>
+                <p class="title_item"><b>Year-Sem</b></p>
                 <p class="title_item"><b>Stream</b></p>
+                <p class="title_item"><b>S_Count</b></p>
             </div>
 
             <div class="list">
@@ -37,9 +37,9 @@
                         <p class="row_num"><?php echo $i++; ?></p>
                         <p class="header_title"><?php echo $post->subject_code; ?></p>
                         <p class="header_title"><?php echo $post->sub_credits; ?></p>
-                        <p class="header_title"><?php echo $post->sub_year; ?></p>
-                        <p class="header_title"><?php echo $post->sub_semester; ?></p>
+                        <p class="header_title"><?php echo $post->sub_year; ?> - <?php echo $post->sub_semester; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
+                        <p class="header_title"><?php echo $post->sub_nStudents; ?></p>
                     </div>
                 </div>
             <?php endforeach;} ?>
@@ -53,9 +53,9 @@
             <div class="title_bar">
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
                 <p class="title_item"><b>Credits</b></p>
-                <p class="title_item"><b>Year</b></p>
-                <p class="title_item"><b>Semester</b></p>
-                <p style="padding-right: 60px;" class="title_item"><b>Stream</b></p>
+                <p class="title_item"><b>Year-Sem</b></p>
+                <p class="title_item"><b>Stream</b></p>
+                <p style="padding-right: 60px;" class="title_item"><b>S_Count</b></p>
             </div>
 
             <div class="list">
@@ -67,9 +67,9 @@
                         <p class="row_num"><?php echo $i++; ?></p>
                         <p class="header_title"><?php echo $post->subject_code; ?></p>
                         <p class="header_title"><?php echo $post->sub_credits; ?></p>
-                        <p class="header_title"><?php echo $post->sub_year; ?></p>
-                        <p class="header_title"><?php echo $post->sub_semester; ?></p>
+                        <p class="header_title"><?php echo $post->sub_year; ?> - <?php echo $post->sub_semester; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
+                        <p class="header_title"><?php echo $post->sub_nStudents; ?></p>
 
                         <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRowAS/<?php echo $data['postId']; ?>/<?php echo $post->subject_code; ?>" title="Delete">
                             <button class="delete_button">
@@ -106,11 +106,14 @@
                 <?php
                     $lecturer_max_lec_hrs = $data['variables'][0]->v_value;
                     $lec_hrs_per_credit = $data['variables'][1]->v_value;
+                    $max_students_per_lecturer = $data['variables'][2]->v_value;
 
-                    //CALCLATE ASSIGNED SUBJECTS_CREDITS
+                    //CALCLATE ASSIGNED SUBJECTS_CREDITS AND ASSIGNED STUDENTS
                     $assigned_subjects_credits = 0;
+                    $assigned_nStudents = 0;
                     foreach($data['postsAS'] as $post) {
                         $assigned_subjects_credits += $post->sub_credits;
+                        $assigned_nStudents += $post->sub_nStudents;
                     }
 
                     //number of assigned lecture hours
@@ -118,6 +121,9 @@
 
                     //precentage of assigned_subjects_lec_hrs
                     $assigned_subjects_credits_precentage = ($assigned_subjects_lec_hrs / $lecturer_max_lec_hrs) * 100;
+
+                    //Precentage of assigned_nStudents
+                    $assigned_nStudents_precentage = ($assigned_nStudents / $max_students_per_lecturer) * 100;
                 ?>
 
                 <script>document.getElementById("num_credits").innerHTML = <?php echo $assigned_subjects_credits ?>;</script>
@@ -133,33 +139,32 @@
                                 <ul class="pie-chart__legend">
                                 <li>
                                     <!-- assigned_subjects_credits_precentage -->
-                                    <em>Assigned (%)</em>
+                                    <em>Assigned Lecture Hours (%)</em>
                                     <span><?php echo $assigned_subjects_credits_precentage; ?></span>
                                 </li>
                                 <li>
                                     <!-- 100 - assigned_subjects_credits_precentage -->
-                                    <em>Remaining (%)</em>
+                                    <em>Remaining Lecture Hours (%)</em>
                                     <span><?php echo 100 - $assigned_subjects_credits_precentage; ?></span>
                                 </li>
                                 </ul>
                             </div>
                         </div>
                     
-
                         <div class="pieID--categories pie-chart--wrapper">
-                            <h2 class="chart_name">Lecture Hours</h2>
+                            <h2 class="chart_name">Students</h2>
                             
                             <div class="pie-chart">
                                 <div class="pie-chart__pie"></div>
                                 
                                 <ul class="pie-chart__legend">
                                 <li>
-                                    <em>Assigned (%)</em>
-                                    <span>40</span>
+                                    <em>Assigned Students (%)</em>
+                                    <span><?php echo $assigned_nStudents_precentage; ?></span>
                                 </li>
                                 <li>
-                                    <em>Remaining (%)</em>
-                                    <span>60</span>
+                                    <em>Remaining Students (%)</em>
+                                    <span><?php echo 100 - $assigned_nStudents_precentage; ?></span>
                                 </li>
                                 </ul>
                             </div>
@@ -170,12 +175,16 @@
                 <p>lecturer_max_lec_hrs: <?php echo $data['variables'][0]->v_value; ?></p>
                 <!-- print lec_hrs_per_credit -->
                 <p>lec_hrs_per_credit: <?php echo $data['variables'][1]->v_value; ?></p>
+                <!-- print max_students_per_lecturer -->
+                <p>max_students_per_lecturer: <?php echo $data['variables'][2]->v_value; ?></p>
                 <!-- print assigned_subjects -->
                 <p>assigned_subjects_credits: <?php echo $assigned_subjects_credits; ?></p>
                 <!-- print assigned_subjects_credits_precentage -->
                 <p>assigned_subjects_credits_precentage: <?php echo $assigned_subjects_credits_precentage; ?></p>
                 <!-- print assigned_subjects_lec_hrs -->
                 <p>assigned_subjects_lec_hrs: <?php echo $assigned_subjects_lec_hrs; ?></p>
+                <!-- print assigned_nStudents -->
+                <p>assigned_nStudents: <?php echo $assigned_nStudents; ?></p>
 
             </div>
   </div>

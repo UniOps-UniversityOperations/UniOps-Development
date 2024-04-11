@@ -8,7 +8,7 @@ class M_assignedSubjects{
     }
 
     public function getSubjects($code){
-        $this->db->query('SELECT assignedSubjects.*, subjects.sub_year, subjects.sub_stream, subjects.sub_semester, subjects.sub_credits 
+        $this->db->query('SELECT assignedSubjects.*, subjects.sub_year, subjects.sub_stream, subjects.sub_semester, subjects.sub_credits , sub_nStudents
                             FROM assignedSubjects 
                             INNER JOIN subjects ON assignedSubjects.subject_code = subjects.sub_code 
                             WHERE assignedSubjects.lecturer_code = :code');
