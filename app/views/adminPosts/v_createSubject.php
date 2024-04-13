@@ -56,16 +56,16 @@
 
         <!-- Pre-defined values as clickable labels in two rows -->
         <div class="button-container">
-            <label for="btn10" onclick="setNumberOfStudents(10)">10 Students</label>
-            <label for="btn20" onclick="setNumberOfStudents(20)">20 Students</label>
-            <label for="btn30" onclick="setNumberOfStudents(30)">30 Students</label>
-            <label for="btn40" onclick="setNumberOfStudents(40)">40 Students</label>
+            <label for="btn1" onclick="setNumberOfStudents(230)">1<sup>st</sup> year CS</label>
+            <label for="btn2" onclick="setNumberOfStudents(230)">2<sup>nd</sup> year CS</label>
+            <label for="btn3" onclick="setNumberOfStudents(170)">3<sup>rd</sup> year CS</label>
+            <label for="btn4" onclick="setNumberOfStudents(60)">4<sup>th</sup> year CS</label>
         </div>
         <div class="button-container">
-            <label for="btn50" onclick="setNumberOfStudents(50)">50 Students</label>
-            <label for="btn60" onclick="setNumberOfStudents(60)">60 Students</label>
-            <label for="btn70" onclick="setNumberOfStudents(70)">70 Students</label>
-            <label for="btn80" onclick="setNumberOfStudents(80)">80 Students</label>
+            <label for="btn5" onclick="setNumberOfStudents(50)">50 Students</label>
+            <label for="btn6" onclick="setNumberOfStudents(60)">60 Students</label>
+            <label for="btn7" onclick="setNumberOfStudents(70)">70 Students</label>
+            <label for="btn8" onclick="setNumberOfStudents(80)">80 Students</label>
         </div>
         </label>
 

@@ -170,6 +170,13 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class='details'>
+                    <p><b>Assigned Number of Credits &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $assigned_subjects_credits; ?></b></p>
+                    <p><b>Assigned Number of Lecture Hours &nbsp; : <?php echo $assigned_subjects_lec_hrs; ?></b></p>
+                    <p><b>Assigned Number of Students &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $assigned_nStudents; ?></b></p>
+                    </div>
+
                 </div>
                 <!-- print lecturer_max_lec_hrs -->
                 <p>lecturer_max_lec_hrs: <?php echo $data['variables'][0]->v_value; ?></p>
@@ -238,6 +245,7 @@
                         <th>Semester</th>
                         <th>Credits</th>
                         <th>Stream</th>
+                        <th>Student Count</th>
                         <th></th>
                         <th> Can Assign </th>
                         <th> Assigned To </th>
@@ -256,6 +264,7 @@
                                     <td><?php echo $subject->sub_semester; ?></td>
                                     <td><?php echo $subject->sub_credits; ?></td>
                                     <td><?php echo $subject->sub_stream; ?></td>
+                                    <td><?php echo $subject->sub_nStudents; ?></td>
                                     <td><span style='color: red;'><b>Assigned</b></span></td>
                                     <td>
                                         <form action="<?php echo URLROOT;?>/AdminPosts/forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
@@ -273,6 +282,7 @@
                                 <td><?php echo $subject->sub_semester; ?></td>
                                 <td><?php echo $subject->sub_credits; ?></td>
                                 <td><?php echo $subject->sub_stream; ?></td>
+                                <td><?php echo $subject->sub_nStudents; ?></td>
                                 <td style="color: green;"><b>Available</b></td>
                                 <td>
                                     <!-- send 2 prameters (sub_code, lecturer_code) -->

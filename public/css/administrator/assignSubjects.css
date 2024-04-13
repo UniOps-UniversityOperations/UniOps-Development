@@ -490,7 +490,7 @@ color: #1848A0;
   margin: 0;
   padding: 0;
   font-weight: 300;
-  height: 600px;
+  height: 615px;
 }
 @keyframes bake-pie {
   from {
@@ -669,4 +669,10 @@ flex-direction: row;
 width: 100%;
 /* margin-top: 20px; */
 margin-bottom: 20px;
+}
+
+.details{
+  text-align: left;
+  font-size: 20px;
+  padding-left: 40px;
 }
