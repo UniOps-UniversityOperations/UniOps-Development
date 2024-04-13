@@ -1125,6 +1125,7 @@
             $variables = $this->V_postModel->ASPage();
             // get Lecturer name uing the postId(Lecturer code)
             $lecturerName = $this->L_postModel->getLecturerByCode($postId);
+            $email = $this->L_postModel->getEmail($postId);
             
             if(!$postsRS){
                 $postsRS = "null";
@@ -1136,7 +1137,8 @@
                 'postsAS' => $postsAS,
                 'subjects' => $subjects,
                 'variables' => $variables,
-                'lecturerName' => $lecturerName
+                'lecturerName' => $lecturerName,
+                'email' => $email
             ];
             $this->view('adminPosts/v_assignSubjects', $data);
         }
