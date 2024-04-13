@@ -24,6 +24,8 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
+                <option value="8">8</option>
+
             </select>
         </label>
 
@@ -39,6 +41,7 @@
 
         <label class="lable" for="sub_semester">Semester:
             <select id="sub_semester" name="sub_semester" required>
+                <option value="0">1 / 2</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
             </select>

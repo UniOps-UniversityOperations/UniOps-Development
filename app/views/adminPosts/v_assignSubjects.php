@@ -225,6 +225,7 @@
             <label for="semesterFilter">Semester:</label>
             <select id="semesterFilter">
                 <option value="">All</option>
+                <option value="0">1 / 2</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <?php foreach ($data['semesters'] as $semester) : ?>

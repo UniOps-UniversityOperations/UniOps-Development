@@ -42,6 +42,7 @@
 
                 <label class="lable" for="sub_semester">Subject Semester:
                 <select id="sub_semester" name="sub_semester" required>
+                    <option value="0" <?php echo ($data["sub_semester"] == '0') ? 'selected' : ''; ?>>1 / 2</option>
                     <option value="1" <?php echo ($data["sub_semester"] == '1') ? 'selected' : ''; ?>>1</option>
                     <option value="2" <?php echo ($data["sub_semester"] == '2') ? 'selected' : ''; ?>>2</option>
                 </select>
