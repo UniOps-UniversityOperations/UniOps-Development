@@ -217,9 +217,9 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <?php foreach ($data['years'] as $year) : ?>
+                <!-- <?php foreach ($data['years'] as $year) : ?>
                     <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                <?php endforeach; ?>
+                <?php endforeach; ?> -->
             </select>
 
             <label for="semesterFilter">Semester:</label>
@@ -257,8 +257,7 @@
                     <?php $i = 0;
                     foreach($data['subjects'] as $subject) : ?>
                         <tr>
-                            <?php if ($subject->subject_code){ 
-                                if($subject->lecturer_code != $data['postId']){ ?>
+                            <?php if ($subject->subject_code && $subject->lecturer_code != $data['postId']){?>
                                     <td><?php echo $subject->sub_code; ?></td>
                                     <td><?php echo $subject->sub_name; ?></td>
                                     <td><?php echo $subject->sub_year; ?></td>
@@ -273,8 +272,8 @@
                                         </form>
                                     </td>
                                     <td><?php echo $subject->lecturer_code; ?></td>
-                                <?php } ?>
-                            
+                                
+                                    
                                 
                             <?php }else{ ?>
                                 <td><?php echo $subject->sub_code; ?></td>
