@@ -12,5 +12,7 @@ define('APPROOT', dirname(dirname(__FILE__)));
 //URL ROOT
 define('URLROOT', 'http://localhost/UniOps');
 
+define('ROOT', 'http://localhost/URMS/public');
+
 //Website Name
 define('SITENAME', 'UniOps');
