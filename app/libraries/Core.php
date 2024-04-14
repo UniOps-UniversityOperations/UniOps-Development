@@ -3,8 +3,8 @@
     class Core{
         //The URL fromat --> /controller/method/param1/param2
 
-        protected $currentController = 'Users';
-        protected $currentMethod = 'login';
+        protected $currentController = 'home';
+        protected $currentMethod = 'index';
         protected $params = [];
 
         public function __construct(){
@@ -49,6 +49,13 @@
 
             if(isset($_GET['url'])){
                 $url = rtrim($_GET['url'], '/');
+                $url = filter_var($url, FILTER_SANITIZE_URL);
+                $url = explode('/', $url); 
+
+                return $url;
+            }
+            else {
+                $url = 'home';
                 $url = filter_var($url, FILTER_SANITIZE_URL);
                 $url = explode('/', $url); 
 
