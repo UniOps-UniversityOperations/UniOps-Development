@@ -277,7 +277,7 @@
                                 
                                     
                                 
-                            <?php }else{ ?>
+                            <?php }else if(!$subject->subject_code){ ?>
                                 <td><?php echo $subject->sub_code; ?></td>
                                 <td><?php echo $subject->sub_name; ?></td>
                                 <td><?php echo $subject->sub_year; ?></td>

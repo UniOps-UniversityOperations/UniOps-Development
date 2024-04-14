@@ -1,5 +1,7 @@
 <?php
 
+require_once APPROOT . '/controllers/Mail.php';
+
     class AdminPosts extends Controller{
 
         public function __construct(){
@@ -1308,6 +1310,29 @@
         }
         
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+
+     //Send test mail call the view test mail
+     public function sendTestMail(){
+
+        //Call the sendMail function to send the mail Controller
+        
+        $Mail_class = new Mail();
+        $response = $Mail_class->sendMail('cltowandl@gmail.com', "test", "test message");
+
+        $response = '';
+        // sendMail('cltowandl@gmail.com', "test", "test message");
+        $data = [
+            'title' => 'Send Test Mail',
+            'response' => $response
+        ];
+        $this->view('test/v_sendTestMail', $data);
     }
+
+    //dummy index
+    public function index(){
+    }
+
+}
 
 ?>
