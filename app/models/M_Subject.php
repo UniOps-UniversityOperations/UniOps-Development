@@ -127,6 +127,13 @@ class M_Subject{
         return $row;
     }
 
+    public function getSubjectDetailsByCode($code){
+        $this->db->query('SELECT * FROM subjects WHERE sub_code = :sub_code');
+        $this->db->bind(':sub_code', $code);
+        $row = $this->db->single();
+        return $row;
+    }
+
 }
 
 
