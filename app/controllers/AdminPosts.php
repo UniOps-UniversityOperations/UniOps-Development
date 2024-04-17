@@ -1120,7 +1120,7 @@ require_once APPROOT . '/controllers/Mail.php';
 
 // ----- For Lecturer asign Subjects -----------------------------------------------------------------------------------------------------------------------------------
         //Assign Subjects to Lecturer
-        public function assignSubjects($postId){
+        public function assignSubjects($postId, $popup = 0){
             $postsRS = $this->RS_postModel->getSubjects($postId);
             $postsAS = $this->AS_postModel->getSubjects($postId);
             $subjects = $this->AS_postModel->getSubjectDetails();
@@ -1140,7 +1140,8 @@ require_once APPROOT . '/controllers/Mail.php';
                 'subjects' => $subjects,
                 'variables' => $variables,
                 'lecturerName' => $lecturerName,
-                'email' => $email
+                'email' => $email,
+                'popup' => $popup
             ];
             $this->view('adminPosts/v_assignSubjects', $data);
         }
@@ -1177,18 +1178,26 @@ require_once APPROOT . '/controllers/Mail.php';
 
         // Send a request email to the lecturer for rqeuesting to remove the subject
         public function sendDeleteRequestEmail($email, $sub_code, $lecturer_code){
+
+            $subject_details = $this->S_postModel->getSubjectDetailsByCode($sub_code);
+            $lecturerName = $this->L_postModel->getLecturerByCode($lecturer_code);
+
             $to = $email;
             $subject = 'Request to Remove Subject from Teaching Assignment';
-            $body = "Dear [Lecturer's Name], <br><br>
+            $body = "Dear $lecturerName->l_nameWithInitials, <br><br>
 
             You are receiving this email because the administration of [University/Organization Name] has requested the removal of a subject from your teaching assignment.<br><br>
             
-            Subject Name: [Subject Name] <br>
-            Subject Code: [Subject Code] <br><br>
+            Subject Name: $subject_details->sub_name <br>
+            Subject Code: $sub_code <br>
+            Subject Credits: $subject_details->sub_credits <br>
+            Subject Stream: $subject_details->sub_stream <br>
+            Subject Year: $subject_details->sub_year <br>
+            Subject Semester: $subject_details->sub_semester <br><br>
             
             Due to [reason for removal], it is necessary to adjust the teaching assignments accordingly. We kindly ask for your cooperation in this matter. <br><br>
             
-            If you have any questions or concerns regarding this request, please contact the administration at [Administrator's Email Address] or [Administrator's Phone Number]. <br><br>
+            If you have any questions or concerns regarding this request, please contact the administration at UniOps@gmail.com. <br><br>
             
             Thank you for your attention to this matter. <br><br>
             
@@ -1198,7 +1207,7 @@ require_once APPROOT . '/controllers/Mail.php';
             $Mail_class = new Mail();
             $Mail_class->sendMail($to, $subject, $body);
 
-            redirect('AdminPosts/assignSubjects/' . $lecturer_code);
+            redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/1');
 
         }
 

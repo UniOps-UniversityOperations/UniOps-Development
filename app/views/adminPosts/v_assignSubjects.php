@@ -10,7 +10,49 @@
             <h2 class="topic2">Lcturer: <?php echo $data['lecturerName']->l_nameWithInitials; ?> (<?php echo $data['postId']; ?>)</h2>
             <!-- dispay email -->
             <h2 class="topic2">Email: <?php echo $data['email']->l_email; ?></h2>
-    </div>        
+    </div> 
+    
+    <!-- print popup value in the console -->
+    <script>console.log(<?php echo $data['popup']; ?>);</script>
+    
+    <?php if($data['popup']){ ?>
+
+        <div id="popup" 
+        style="
+        display: none; 
+        position: fixed; 
+        border-radius: 10px;
+        font-size: 19px;
+        font-weight: bold;
+        color: green;
+        top: 10%; 
+        left: 75%; 
+        transform: 
+        translate(35%, -25%); 
+        background-color: white; 
+        padding: 20px; border: 1px green solid; 
+        transition: top 0.5s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+            <p>This is your popup message.</p>
+        </div>
+
+        <script>
+            // Function to show the popup message
+            function showPopup() {
+                var popup = document.getElementById('popup');
+                popup.style.display = 'block';
+
+                // Hide the popup after 5 seconds
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                }, 3000);
+            }
+
+            // Call the showPopup function when the page loads
+            window.onload = showPopup;
+        </script>
+
+    <?php } ?>
 
     <div class="container">
         <div class="column">
@@ -74,8 +116,8 @@
                         <p class="header_title"><?php echo $post->sub_nStudents; ?></p>
 
                         <a href="<?php echo URLROOT; ?>/AdminPosts/sendDeleteRequestEmail/<?php echo $data['email']->l_email; ?>/<?php echo $post->subject_code; ?>/<?php echo $data['postId']; ?>" title="Send Request Email" style="padding-right: 10px;">
-                            <button class="delete_button">
-                                <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                            <button class="email_button">
+                                <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Delete Icon" class="email_icon">
                             </button>
                         </a>
 
