@@ -73,11 +73,18 @@
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
                         <p class="header_title"><?php echo $post->sub_nStudents; ?></p>
 
+                        <a href="<?php echo URLROOT; ?>/AdminPosts/sendDeleteRequestEmail/<?php echo $data['email']->l_email; ?>/<?php echo $post->subject_code; ?>/<?php echo $data['postId']; ?>" title="Send Request Email" style="padding-right: 10px;">
+                            <button class="delete_button">
+                                <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                            </button>
+                        </a>
+
                         <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRowAS/<?php echo $data['postId']; ?>/<?php echo $post->subject_code; ?>" title="Delete">
                             <button class="delete_button">
                                 <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
                             </button>
                         </a>
+
                     </div>
                 </div>
             <?php endforeach; ?>
