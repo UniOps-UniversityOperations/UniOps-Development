@@ -111,19 +111,17 @@
                                         <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
                                     </button>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateSubject/<?php echo $post->sub_id ?>" title="Edit Details">
+                                    <a href="<?php echo URLROOT;?>/AdminPosts/updateSubject/<?php echo $post->sub_id ?>" title="Edit Details">
                                         <button class="update_button">
                                             <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
-
                                         </button>
                                     </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteSubject/<?php echo $post->sub_id; ?>/<?php echo $post->sub_code; ?>" title="Delete">
+                                    <a href="<?php echo URLROOT;?>/AdminPosts/deleteSubject/<?php echo $post->sub_id;?>/<?php echo $post->sub_code; ?>" title="Delete">
                                         <button class="delete_button">
                                             <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
                                         </button>
                                     </a>
-
 
                                 </div>
                             </div>  
