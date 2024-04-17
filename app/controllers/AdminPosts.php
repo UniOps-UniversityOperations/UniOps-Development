@@ -1175,6 +1175,33 @@ require_once APPROOT . '/controllers/Mail.php';
             }
         }
 
+        // Send a request email to the lecturer for rqeuesting to remove the subject
+        public function sendDeleteRequestEmail($email, $sub_code, $lecturer_code){
+            $to = $email;
+            $subject = 'Request to Remove Subject from Teaching Assignment';
+            $body = "Dear [Lecturer's Name], <br><br>
+
+            You are receiving this email because the administration of [University/Organization Name] has requested the removal of a subject from your teaching assignment.<br><br>
+            
+            Subject Name: [Subject Name] <br>
+            Subject Code: [Subject Code] <br><br>
+            
+            Due to [reason for removal], it is necessary to adjust the teaching assignments accordingly. We kindly ask for your cooperation in this matter. <br><br>
+            
+            If you have any questions or concerns regarding this request, please contact the administration at [Administrator's Email Address] or [Administrator's Phone Number]. <br><br>
+            
+            Thank you for your attention to this matter. <br><br>
+            
+            Best regards, <br>
+            UniOps Team";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body);
+
+            redirect('AdminPosts/assignSubjects/' . $lecturer_code);
+
+        }
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

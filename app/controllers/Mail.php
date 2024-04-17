@@ -22,6 +22,7 @@ class Mail extends Controller{
       $mail->Host = MAILHOST;
       $mail->Username = USERNAME;
       $mail->Password = PASSWORD;
+      $mail->ContentType = 'text/html';
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
       $mail->Port = 587;
       $mail->setFrom(SEND_FROM, SEND_FROM_NAME);
