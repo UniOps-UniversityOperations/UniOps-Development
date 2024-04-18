@@ -1202,12 +1202,103 @@ require_once APPROOT . '/controllers/Mail.php';
             Thank you for your attention to this matter. <br><br>
             
             Best regards, <br>
-            UniOps Team";
+            UniOps Team.";
 
             $Mail_class = new Mail();
             $Mail_class->sendMail($to, $subject, $body);
 
             redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/1');
+
+        }
+
+        //send a status email to the lecturer that includes the subject details assigned to him/her
+        public function send_AS_status_email($email, $lecturer_code){
+
+            $lecturerName = $this->L_postModel->getLecturerByCode($lecturer_code);
+            $postsAS = $this->AS_postModel->getSubjects($lecturer_code);
+
+            $to = $email;
+            $subject = 'Subject Assignment Status';
+            $body = "Dear $lecturerName->l_nameWithInitials, <br><br>
+
+            You are receiving this email to inform you of the status of the subjects assigned to you for teaching.<br><br>
+
+            The following subjects have been assigned to you for teaching:<br><br>";
+
+            $body .= "<table border='1'>
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>Subject Code</th>
+                            <th>Subject Credits</th>
+                            <th>Subject Stream</th>
+                            <th>Subject Year</th>
+                            <th>Subject Semester</th>
+                        </tr>";
+
+            foreach ($postsAS as $post) {
+                $body .= "<tr>
+                            <td>$post->sub_name</td>
+                            <td>$post->sub_code</td>
+                            <td>$post->sub_credits</td>
+                            <td>$post->sub_stream</td>
+                            <td>$post->sub_year</td>
+                            <td>$post->sub_semester</td>
+                        </tr>";
+            }
+
+            $body .= "</table>";
+
+
+            $body .= "If you have any questions or concerns regarding this assignment, please contact the administration at UniOps@gmai.com. <br><br>
+
+            Thank you for your attention to this matter. <br><br>
+
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body);
+
+            redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/2');
+
+        }
+
+        //Send an email to emai_lecturer_code askimg for removing the subject to assign to another lecturer (lecturer_code)
+        public function sendForceEmail($send_lecturer_code, $sub_code, $lecturer_code){
+
+            $send_lec_name = $this->L_postModel->getLecturerByCode($send_lecturer_code);
+            $send_lec_email = $this->L_postModel->getEmail($send_lecturer_code);
+            $lec_name = $this->L_postModel->getLecturerByCode($lecturer_code);
+            $subject_details = $this->S_postModel->getSubjectDetailsByCode($sub_code);
+
+            $to = $send_lec_email->l_email;
+            $subject = 'Request to Remove Subject from Teaching Assignment';
+
+            $body = "Dear $send_lec_name->l_nameWithInitials, <br><br>
+
+            You are receiving this email because the administration of UniOps has requested the removal of a subject for the teaching assignment of $lec_name->l_nameWithInitials.<br><br>
+
+            Subject Name: $subject_details->sub_name <br>
+            Subject Code: $sub_code <br>
+            Subject Credits: $subject_details->sub_credits <br>
+            Subject Stream: $subject_details->sub_stream <br>
+            Subject Year: $subject_details->sub_year <br>
+            Subject Semester: $subject_details->sub_semester <br><br>
+
+            Due to request of administration / $lec_name->l_nameWithInitials, it is necessary to adjust the teaching assignments accordingly. We kindly ask for your cooperation in this matter. <br><br>
+
+            If you have any questions or concerns regarding this request, please contact the administration at UniOps@gmailcom. <br><br>
+
+            Thank you for your attention to this matter. <br><br>
+
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body );
+
+            redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/1');
+
 
         }
 

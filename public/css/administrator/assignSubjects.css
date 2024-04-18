@@ -369,6 +369,7 @@ background-color: #DCDCE2;
 
 .column:nth-child(2) {
 background-color: #DCDCE2;
+margin-top: -80px;
 }
 
 .hr{
@@ -695,4 +696,34 @@ margin-bottom: 20px;
 /* Change the background color on hover */
 .email_button:hover {
   background-color: #0f2c61;
+}
+
+.status_email_button {
+  background-color: var(--Border-color);
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Change the background color on hover */
+.status_email_button:hover {
+  background-color: #0f2c61;
+}
+
+.btns{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btns1{
+  display: flex;
+  justify-content: space-between;
+  width : 100px;
+  align-items: center;
 }
