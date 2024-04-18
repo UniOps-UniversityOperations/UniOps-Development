@@ -87,7 +87,12 @@ class M_Lecturer{
         $this->db->query('SELECT l_nameWithInitials FROM lecturers WHERE l_code = :l_code AND l_isDeleted = 0');
         $this->db->bind(':l_code', $l_code);
         $row = $this->db->single();
-        return $row;
+        if (!$row) {
+            // No instructor found with the given ID
+            return null; // or return an empty array: return [];
+        } else {
+            return $row;
+        }
     }
 
     // get Lecturer l_email uing the postId(Lecturer code)
@@ -95,7 +100,12 @@ class M_Lecturer{
         $this->db->query('SELECT l_email FROM lecturers WHERE l_code = :l_code AND l_isDeleted = 0');
         $this->db->bind(':l_code', $l_code);
         $row = $this->db->single();
-        return $row;
+        if (!$row) {
+            // No instructor found with the given ID
+            return null; // or return an empty array: return [];
+        } else {
+            return $row;
+        }
     }
 
 

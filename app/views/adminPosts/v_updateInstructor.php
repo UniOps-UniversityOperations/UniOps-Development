@@ -8,10 +8,6 @@
     <form action="<?php echo URLROOT;?>/AdminPosts/updateInstructor/<?php echo $data["i_id"];?>" method="POST">
 
     <fieldset>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2797c4de99ab682e39a45434c6addaef5b83d6d6
         <label class="lable" for="i_id">Instructor ID:
         <input type="text" id="i_id" name="i_id" placeholder="i_id" value="<?php echo $data["i_id"];?>" required>
         </label>

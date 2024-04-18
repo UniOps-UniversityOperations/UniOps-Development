@@ -99,6 +99,11 @@
             <input type="pwd" name="pwd" id="pwd" placeholder="pwd" value="<?php $data['pwd']; ?>" required>
             </label>
 
+            <!-- tick for send email -->
+            <label>
+            <input type="checkbox" class="inline"  id="sendEmail" name="sendEmail" value="true">
+            Send Email</label>
+
         </fieldset>
 
         <!-- Buttons -->
