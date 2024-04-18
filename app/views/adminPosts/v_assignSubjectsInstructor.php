@@ -18,8 +18,7 @@
             <div class="title_bar">
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
                 <p class="title_item"><b>Credits</b></p>
-                <p class="title_item"><b>Year</b></p>
-                <p class="title_item"><b>Semester</b></p>
+                <p class="title_item"><b>Year-Sem</b></p>
                 <p class="title_item"><b>Stream</b></p>
                 <p class="title_item"><b>Lecture</b></p>
                 <p class="title_item"><b>Practical</b></p>
@@ -40,8 +39,7 @@
                         <p class="row_num"><?php echo $i++; ?></p>
                         <p class="header_title"><?php echo $post->subject_code; ?></p>
                         <p class="header_title"><?php echo $post->sub_credits; ?></p>
-                        <p class="header_title"><?php echo $post->sub_year; ?></p>
-                        <p class="header_title"><?php echo $post->sub_semester; ?></p>
+                        <p class="header_title"><?php echo $post->sub_year; ?>-<?php echo $post->sub_semester; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
                         <p class="header_title"><?php echo $post->lecture ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
                         <p class="header_title"><?php echo $post->practical ? "<span style='color: green;'>&#10004;</span>" : "<span style='color: red;'>&#10008;</span>"; ?></p>
@@ -59,8 +57,7 @@
             <div class="title_bar">
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
                 <p class="title_item"><b>Credits</b></p>
-                <p class="title_item"><b>Year</b></p>
-                <p class="title_item"><b>Semester</b></p>
+                <p class="title_item"><b>Year-Sem</b></p>
                 <p class="title_item"><b>Stream</b></p>
                 <p style="padding-right: 25px;" class="title_item"><b>Lecture</b></p>
                 <p style="padding-right: 25px;" class="title_item"><b>Practical</b></p>
@@ -76,8 +73,7 @@
                         <p class="row_num"><?php echo $i++; ?></p>
                         <p class="header_title"><?php echo $post->sub_code; ?></p>
                         <p class="header_title"><?php echo $post->sub_credits; ?></p>
-                        <p class="header_title"><?php echo $post->sub_year; ?></p>
-                        <p class="header_title"><?php echo $post->sub_semester; ?></p>
+                        <p class="header_title"><?php echo $post->sub_year; ?>-<?php echo $post->sub_semester; ?></p>
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
                         
                         <div class="combined_delete header_title">
@@ -189,69 +185,67 @@
                             $assigned_subjects_credits_precentage = ($assigned_subjects_lec_hrs / $lecturer_max_lec_hrs) * 100;
                         ?>
 
-                        <div class=pie_row1>
-                        <div class="pieID--micro-skills pie-chart--wrapper">
-                        <h2 class="chart_name">Lectures</h2>
+                            <div class="pieID--micro-skills pie-chart--wrapper">
+                            <h2 class="chart_name">Lecture Hours</h2>
+                            
+                                <div class="pie-chart">
+                                    <div class="pie-chart__pie"></div>
+                                    
+                                    <ul class="pie-chart__legend">
+                                    <li>
+                                        <em>Assigned (%)</em>
+                                        <span><?php echo $assigned_subjects_credits_precentage ?></span>
+                                    </li>
+                                    <li>
+                                        <em>Remaining (%)</em>
+                                        <span><?php echo 100 - $assigned_subjects_credits_precentage ?></span>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
                         
+
+                            <!-- Logic for pie chart 02 -->
+
+                            <?php
+                                $instructor_max_practical_hrs = $data['variables'][4]->v_value;
+                                $practcal_hrs_per_credit = $data['variables'][2]->v_value;
+
+                                //CALCLATE ASSIGNED SUBJECTS_CREDITS
+                                $assigned_practical_credits = 0;
+                                foreach($data['postsASI'] as $post) {
+                                    if($post->p_instructor_code == $data['postId']){
+                                        $assigned_practical_credits += $post->sub_credits;
+                                    }
+                                }
+
+                                //number of assigned lecture hours
+                                $assigned_practical_hrs = $assigned_practical_credits * $practcal_hrs_per_credit;
+
+                                //precentage of assigned_subjects_lec_hrs
+                                $assigned_practical_credits_precentage = ($assigned_practical_hrs / $instructor_max_practical_hrs) * 100;
+                            ?>
+
+                            <div class="pieID--categories pie-chart--wrapper">
+                            <h2 class="chart_name">Practicals Hours</h2>
+                            
                             <div class="pie-chart">
                                 <div class="pie-chart__pie"></div>
                                 
                                 <ul class="pie-chart__legend">
                                 <li>
                                     <em>Assigned (%)</em>
-                                    <span><?php echo $assigned_subjects_credits_precentage ?></span>
+                                    <span><?php echo $assigned_practical_credits_precentage ?></span>
                                 </li>
                                 <li>
                                     <em>Remaining (%)</em>
-                                    <span><?php echo 100 - $assigned_subjects_credits_precentage ?></span>
+                                    <span><?php echo 100 - $assigned_practical_credits_precentage ?></span>
                                 </li>
                                 </ul>
                             </div>
-                        </div>
+                            </div>
                         
 
-                        <!-- Logic for pie chart 02 -->
-
-                        <?php
-                            $instructor_max_practical_hrs = $data['variables'][4]->v_value;
-                            $practcal_hrs_per_credit = $data['variables'][2]->v_value;
-
-                            //CALCLATE ASSIGNED SUBJECTS_CREDITS
-                            $assigned_practical_credits = 0;
-                            foreach($data['postsASI'] as $post) {
-                                if($post->p_instructor_code == $data['postId']){
-                                    $assigned_practical_credits += $post->sub_credits;
-                                }
-                            }
-
-                            //number of assigned lecture hours
-                            $assigned_practical_hrs = $assigned_practical_credits * $practcal_hrs_per_credit;
-
-                            //precentage of assigned_subjects_lec_hrs
-                            $assigned_practical_credits_precentage = ($assigned_practical_hrs / $instructor_max_practical_hrs) * 100;
-                        ?>
-
-                        <div class="pieID--categories pie-chart--wrapper">
-                        <h2 class="chart_name">Practicals</h2>
-                        
-                        <div class="pie-chart">
-                            <div class="pie-chart__pie"></div>
-                            
-                            <ul class="pie-chart__legend">
-                            <li>
-                                <em>Assigned (%)</em>
-                                <span><?php echo $assigned_practical_credits_precentage ?></span>
-                            </li>
-                            <li>
-                                <em>Remaining (%)</em>
-                                <span><?php echo 100 - $assigned_practical_credits_precentage ?></span>
-                            </li>
-                            </ul>
-                        </div>
-                        </div>
-                        </div>
-
-                        <div class=pie_row2>
 
                         <!-- Logic for pie chart 03 -->
 
@@ -275,7 +269,7 @@
                         ?>
 
                         <div class="pieID--operations pie-chart--wrapper">
-                        <h2 class="chart_name">Tutorials</h2>
+                        <h2 class="chart_name">Tutorials Hours</h2>
                         
                         <div class="pie-chart">
                             <div class="pie-chart__pie"></div>
@@ -292,57 +286,39 @@
                             </ul>
                         </div>
                         </div>
-                        
-                        <!-- Logic for pie chart 04 -->
-
-                        <?php
-                            $total_hrs = $assigned_subjects_lec_hrs + $assigned_practical_hrs + $assigned_tutorial_hrs;
-                            $max_hrs = $lecturer_max_lec_hrs + $instructor_max_practical_hrs + $instructor_max_tutorial_hrs;
-
-                            $total_hrs_precentage = ($total_hrs / $max_hrs) * 100;
-                        ?>
-
-                        <div class="pieID--hello pie-chart--wrapper">
-                        <h2 class="chart_name">__Total__</h2>
-                        
-                        <div class="pie-chart">
-                            <div class="pie-chart__pie"></div>
-                            
-                            <ul class="pie-chart__legend">
-                            <li>
-                                <em>Assigned (%)</em>
-                                <span><?php echo $total_hrs_precentage ?></span>
-                            </li>
-                            <li>
-                                <em>Remaining (%)</em>
-                                <span><?php echo 100 - $total_hrs_precentage ?></span>
-                            </li>
-                            </ul>
-                        </div>
-                        </div>
-                        </div>
                     
                     </div>
 
                     
                 
-                </div>                
+                </div>     
                 
-                <!-- print lecturer_max_lec_hrs -->
-                <p>lecturer_max_lec_hrs: <?php echo $data['variables'][0]->v_value; ?></p>
-                <!-- print lec_hrs_per_credit -->
-                <p>lec_hrs_per_credit: <?php echo $data['variables'][1]->v_value; ?></p>
-                <!-- print assigned_subjects_credits -->
-                <p>**assigned_subjects_credits: <?php echo $assigned_subjects_credits; ?></p>
+                <!-- progress bars -->
+                <div class='progress_bars'>
+                    <h2 class="chart_name">Student Count</h2>
 
-                <!-- print practcal_hrs_per_credit -->
-                <p>practcal_hrs_per_credit: <?php echo $data['variables'][2]->v_value; ?></p>
-                <!-- print tutorial_hrs_per_credit -->
-                <p>tutorial_hrs_per_credit: <?php echo $data['variables'][3]->v_value; ?></p>
-                <!-- print instructor_max_practical_hrs -->
-                <p>instructor_max_practical_hrs: <?php echo $data['variables'][4]->v_value; ?></p>
-                <!-- print instructor_max_tutorial_hrs -->
-                <p>instructor_max_tutorial_hrs: <?php echo $data['variables'][5]->v_value; ?></p>
+                    <div class="p_bar">
+                        <h3 class="progress_title">Lectures:</h3>
+                        <progress class="progress" value="50" max="100"></progress>
+                    </div>
+
+                    <div class="p_bar">                        
+                        <h3 class="progress_title">Practicals:</h3>
+                        <progress class="progress"></progress>
+                    </div>
+
+                    <div class="p_bar">                        
+                        <h3 class="progress_title">Tutorials:</h3>
+                        <progress class="progress"></progress>
+                    </div>
+
+                    <div class="p_bar">                        
+                        <h3 class="progress_title">Total:</h3>
+                        <progress class="progress"></progress>
+                    </div>
+
+
+                </div>
             </div>
 
             
