@@ -10,9 +10,9 @@ $data_json = json_encode($data);
         <h2 id="roomIdHeader">Room Details </h2>
         <p class = "item-title">Number of Boards <span class = "item-value" id="boards"></span></p>
         <p class = "item-title">Number of Computers <span class = "item-value" id="computers"></span></p>
+        <p class = "item-title">Number of Projectors <span class = "item-value" id="projectors"></span> </p>
         <p class = "item-title">Is_AC <span class = "item-value" id="AC"></span></p>
-        <p class = "item-title">Is_WIFI <span class = "item-value" id="WI-FI"></span></p>
-        <p class = "item-title">Number of Projectors <span id="projectors"></span> </p>
+        <p class = "item-title">Is_WIFI <span class = "item-value" id="WI-FI"></span></p>   
         <p class = "item-title">Is_Media <span class = "item-value" id="media"></span></p>
         <p class = "item-title">Is_Lecture <span class = "item-value" id="lecture"></span></p>
         <p class = "item-title">Is_Lab <span class = "item-value" id="lab"></span></p>
@@ -22,7 +22,7 @@ $data_json = json_encode($data);
         <p class = "item-title">Is_Exam <span class = "item-value" id="exam"></span></p>
     </div>
 
-    <button class = "view" id="view">View</button>
+    <button class = "view" id="view">Allocate</button>
 
 </div>
 
@@ -44,7 +44,7 @@ $data_json = json_encode($data);
     </div>
 
     <div class="tabs-section">
-        <div id="tab">View Booking Grid View</div>
+        <div id="tab">Booking Grid </div>
     </div>
 
 </div>

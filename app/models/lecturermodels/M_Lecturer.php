@@ -205,4 +205,16 @@ class M_Lecturer {
         }
     }
 
+    public function viewSubjects() {
+        $sql = 'SELECT sub_code,sub_name,sub_year,sub_semester,sub_stream,sub_credits FROM SUBJECTS ORDER BY sub_stream,sub_year,sub_semester ASC;';
+        $this->db->query($sql);
+        $result = $this->db->resultSet();
+
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
+        }
+    }
+
 }
