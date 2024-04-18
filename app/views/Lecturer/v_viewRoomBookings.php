@@ -10,30 +10,19 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
 
 <div class="sidebar sidebar-content"  id="eventdetailspanel">
 
-
 </div>
 
 <h1>View Room Bookings</h1>
-
-<div class="content">
-    <!--Tabs Section -->
-    <div class="tabs-section">
-        <div class="tab" onclick="showTabContent('lecture-halls')">Lecture Rooms</div>
-        <div class="tab" onclick="showTabContent('laboratories')">Laboratories</div>
-        <div class="tab" onclick="showTabContent('meeting-rooms')">Meeting Rooms</div>
-        <div class="tab" onclick="showTabContent('exam-halls')">Other</div>
-    </div>
-    <div class="search-bar">
-        <input type="text" placeholder="Type the Room Id" onkeyup="search(event)">
-        <img src= "<?php echo URLROOT;?>/images/magnifyingglass.svg" class="search-icon" id="Search-Input" alt="Magnifying Glass">
-    </div>
-</div>
 
 <?php
     $urlPath = $_SERVER['REQUEST_URI'];
     $segments = explode('/', trim($urlPath, '/'));
     $dateString = $segments[count($segments) - 2];
     $date = new dateTime($dateString);
+
+// This is a code to determine tha date one month ahead of now to restric users from selecting dates more than one month ahead. -->
+// Calculate the maximum allowable date (current date + 1 month)
+$maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 ?>
 
 <div class="room-name">
@@ -47,7 +36,7 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
         <form action="<?php echo URLROOT."/Lecturer/bookingDateSubmitted"; ?>" method="post" class = "date-selection-form">
             <input type="hidden" name="room_id" value="<?php echo basename($urlPath) ; ?>">
             <label for="dateInput">Select a Date: </label>
-            <input type="date" id="dateInput" name="selectedDate" value="<?php echo $date->format('Y-m-d'); ?>" required>
+            <input type="date" id="dateInput" name="selectedDate" value="<?php echo $date->format('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" max = "<?php echo $maxDate; ?>" required>
             <button type="submit">Submit</button>
         </form>
 
@@ -58,7 +47,13 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
     <?php
     $previousEnd = '08:00:00';
     if(!is_array($data)){
-        echo $data;
+        //echo $data;
+        echo "<div class='left-section'> 
+        <div class='timeslot'>".
+        $previousEnd." - 19:00:00
+        <span class='event' start_time = '".$previousEnd."' end_time = '19:00:00'>Free Slot</span>
+        </div>
+    ";
     }
 
     //The logic to calculate the total number of slots starts here.
