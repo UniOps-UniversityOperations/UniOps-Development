@@ -696,6 +696,7 @@ require_once APPROOT . '/controllers/Mail.php';
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+                $sendEmail = isset($_POST['sendEmail']) ? '1' : '0';
                 $data = [
 
                     'title' => 'Create Instructor',
@@ -714,6 +715,11 @@ require_once APPROOT . '/controllers/Mail.php';
                     'i_qualifications' => trim($_POST['i_qualifications']),
                     'i_isExamInvigilator' => isset($_POST['i_isExamInvigilator']) ? '1' : '0',
 
+                    //user
+                    'user_id' => trim($_POST['i_email']),
+                    'username' => trim($_POST['i_nameWithInitials']),
+                    'role' => 'I',
+                    'pwd' => trim($_POST['pwd']),
                     
                     'i_codeError' => '',
                 ];
@@ -723,9 +729,19 @@ require_once APPROOT . '/controllers/Mail.php';
                 }
 
                 if(empty($data['i_codeError'])){
-                    if($this->I_postModel->createInstructor($data)){
+                    if($this->I_postModel->createInstructor($data) && $this->U_postModel->addUser($data)){
                         //flash('post_message', 'Instructor Added');
                         //redirect('pages/administrator_dashboard');
+
+                        //if send email is checked then send email to the instructor
+                        //call the send email function
+                        if($sendEmail){
+                            $email = $data['i_email'];
+                            $pwd = $data['pwd'];
+                            $name = $data['i_nameWithInitials'];
+                            $this->send_acccount_created_email($email, $pwd, $name);
+                        }
+
                         redirect('adminPosts/viewInstructors');
                     }else{
                         die('Something went wrong');
@@ -752,6 +768,14 @@ require_once APPROOT . '/controllers/Mail.php';
                     'i_dateOfJoin' => '',
                     'i_qualifications' => '',
                     'i_isExamInvigilator' => '',
+
+                    //user
+                    'user_id' => '',
+                    'username' => '',
+                    'pwd' => '',
+                    'role' => '',
+
+                    'i_codeError' => '',
 
                 ];
                 $this->view('adminPosts/v_createInstructor', $data);
