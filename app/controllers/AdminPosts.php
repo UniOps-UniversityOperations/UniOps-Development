@@ -495,6 +495,7 @@ require_once APPROOT . '/controllers/Mail.php';
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+                $sendEmail = isset($_POST['sendEmail']) ? '1' : '0';
                 $data = [
 
                     'title' => 'Create Lecturer',
@@ -531,6 +532,16 @@ require_once APPROOT . '/controllers/Mail.php';
                     if($this->L_postModel->createLecturer($data) && $this->U_postModel->addUser($data)){
                         //flash('post_message', 'Lecturer Added');
                         //redirect('pages/administrator_dashboard');
+
+                        //if send email is checked then send email to the lecturer
+                        //call the send email function
+                        if($sendEmail){
+                            $email = $data['l_email'];
+                            $pwd = $data['pwd'];
+                            $name = $data['l_nameWithInitials'];
+                            $this->send_acccount_created_email($email, $pwd, $name);
+                        }
+
                         redirect('adminPosts/viewLecturers');
                     }else{
                         die('Something went wrong');
@@ -1266,15 +1277,22 @@ require_once APPROOT . '/controllers/Mail.php';
         //Send an email to emai_lecturer_code askimg for removing the subject to assign to another lecturer (lecturer_code)
         public function sendForceEmail($send_lecturer_code, $sub_code, $lecturer_code){
 
-            $send_lec_name = $this->L_postModel->getLecturerByCode($send_lecturer_code);
-            $send_lec_email = $this->L_postModel->getEmail($send_lecturer_code);
+            $send_lec_name = '';
+            if($this->L_postModel->getLecturerByCode($send_lecturer_code)){
+                $send_lec_name = $this->L_postModel->getLecturerByCode($send_lecturer_code)->l_nameWithInitials;
+                $send_lec_email = $this->L_postModel->getEmail($send_lecturer_code)->l_email;
+            }else{
+                $send_lec_name = $this->I_postModel->getInstructorByCode($send_lecturer_code)->i_nameWithInitials;
+                $send_lec_email = $this->I_postModel->getEmail($send_lecturer_code)->i_email;
+            }
+
             $lec_name = $this->L_postModel->getLecturerByCode($lecturer_code);
             $subject_details = $this->S_postModel->getSubjectDetailsByCode($sub_code);
 
-            $to = $send_lec_email->l_email;
+            $to = $send_lec_email;
             $subject = 'Request to Remove Subject from Teaching Assignment';
 
-            $body = "Dear $send_lec_name->l_nameWithInitials, <br><br>
+            $body = "Dear $send_lec_name;, <br><br>
 
             You are receiving this email because the administration of UniOps has requested the removal of a subject for the teaching assignment of $lec_name->l_nameWithInitials.<br><br>
 
@@ -1459,6 +1477,41 @@ require_once APPROOT . '/controllers/Mail.php';
     //dummy index
     public function index(){
     }
+
+
+//Emails --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //send created account email
+        public function send_acccount_created_email($email, $pwd, $name){
+            
+            $to = $email;
+            $subject = 'Account Created';
+
+            $body = 'Dear ' . $name . ',<br><br>';
+
+            $body .= 'We are pleased to inform you that your account for the UniOps system has been successfully created.<br><br>
+
+            Your login credentials are as follows:<br><br>
+
+            Username: ' . $email . '<br>
+            Temporary Password: ' . $pwd . '<br><br>
+
+            We kindly request you to log in to the system using the provided credentials. Upon logging in, you will have the opportunity to change your password for added security.<br><br>
+
+            Should you encounter any difficulties during the login process or have any inquiries regarding the system, please do not hesitate to contact the system administrator for assistance.<br><br>
+
+            Thank you for your attention to this matter.<br><br>
+
+            Best Regards,<br>
+            UniOps Team.';
+
+
+            $mail = new Mail();
+            $mail->sendMail($to, $subject, $body);
+
+        }
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 }
 
