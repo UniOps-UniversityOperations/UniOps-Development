@@ -90,7 +90,7 @@ class M_Lecturer{
         return $row;
     }
 
-    // get Lecturer l_nameWithInitials uing the postId(Lecturer code)
+    // get Lecturer l_email uing the postId(Lecturer code)
     public function getEmail($l_code){
         $this->db->query('SELECT l_email FROM lecturers WHERE l_code = :l_code AND l_isDeleted = 0');
         $this->db->bind(':l_code', $l_code);

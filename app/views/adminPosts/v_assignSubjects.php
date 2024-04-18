@@ -26,14 +26,19 @@
         font-weight: bold;
         color: green;
         top: 10%; 
-        left: 75%; 
+        left: 80%; 
         transform: 
-        translate(35%, -25%); 
+        translate(50%, -25%); 
         background-color: white; 
         padding: 20px; border: 1px green solid; 
         transition: top 0.5s ease;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
-            <p>This is your popup message.</p>
+        <!-- if popup = 1 Request Email Sent | if popup = 2 Status Email Sent -->
+            <?php if($data['popup'] == 1){ ?>
+                <p>Request Email Sent</p>
+            <?php }else if($data['popup'] == 2){ ?>
+                <p>Status Email Sent</p>
+            <?php } ?>
         </div>
 
         <script>
@@ -117,7 +122,7 @@
 
                         <a href="<?php echo URLROOT; ?>/AdminPosts/sendDeleteRequestEmail/<?php echo $data['email']->l_email; ?>/<?php echo $post->subject_code; ?>/<?php echo $data['postId']; ?>" title="Send Request Email" style="padding-right: 10px;">
                             <button class="email_button">
-                                <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Delete Icon" class="email_icon">
+                                <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Email Icon" class="email_icon">
                             </button>
                         </a>
 
@@ -131,12 +136,18 @@
                 </div>
             <?php endforeach; ?>
             </div>
-
-            <a href="" title="Add Row">
-                <button class="add_button">
-                    <img src="<?php echo URLROOT;?>/images/plus_icon.svg" alt="Add Icon" class="add_icon">
-                </button>
-            </a>
+            
+            <div class='btns'>
+                <a href="" title="Add Row">
+                    <button class="add_button">
+                        <img src="<?php echo URLROOT;?>/images/plus_icon.svg" alt="Add Icon" class="add_icon">
+                    </button>
+                </a>
+    
+                <a href="<?php echo URLROOT; ?>/AdminPosts/send_AS_status_email/<?php echo $data['email']->l_email; ?>/<?php echo $data['postId']; ?>" title="Send Status Email" style="padding-right: 10px;">
+                    <button class="status_email_button">Send Status Email</button>
+                </a>  
+            </div>
 
         </div>
 
@@ -322,7 +333,16 @@
                                             <input class="force" type="submit" value="FORCE">
                                         </form>
                                     </td>
-                                    <td><?php echo $subject->lecturer_code; ?></td>
+                                    <td>
+                                        <div class='btns1'>
+                                            <p><?php echo $subject->lecturer_code; ?></p>
+                                            <a href="<?php echo URLROOT; ?>/AdminPosts/sendForceEmail/<?php echo $subject->lecturer_code; ?>/<?php echo $post->subject_code; ?>/<?php echo $data['postId']; ?>" title="Send Request Email" style="padding-right: 10px;">
+                                                <button class="email_button">
+                                                    <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Email Icon" class="email_icon">
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
                                 
                                     
                                 
@@ -356,6 +376,8 @@
     <div class="legend">
         <p><b><span style='color: green;'>Available</span></b> - can be assigned.</p>
         <p><b><span style='color: red;'>Assigned</span></b> - can't be assigned to this lecturer but can be forced (remove the current lecturer and assign to this lecturer).</p>
+        <!--  inform thar by clickeng the mail icon, an email will be sent to the lecturer -->
+        <p><b>Mail Icon</b> - Send an email to the lecturer (Assigned To), requesting to remove the subject to assign to this lecturer.</p>
     </div>
     
     </div>
