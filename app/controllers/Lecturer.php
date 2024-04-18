@@ -75,6 +75,7 @@
       $assignedSubjects = $this->lecturerModel->viewAssignedSubjects();
       $PrefferedSubjects = $this->lecturerModel->viewPrefferedSubjects();
       $numofLecHours = $this->lecturerModel->numofLecHours();
+      $subjects = $this->lecturerModel->viewSubjects();
 
       // Initialize an associative array to hold the total hours for each day
       $hourData = [
@@ -98,7 +99,8 @@
       $data = [
         'numofLecHours' => $hourData,
         'assignedSubjects' => $assignedSubjects,
-        'PrefferedSubjects' => $PrefferedSubjects
+        'PrefferedSubjects' => $PrefferedSubjects,
+        'subjects' => $subjects
       ];
       
       $this->view('Lecturer/v_viewSubjects', $data);

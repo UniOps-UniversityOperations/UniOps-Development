@@ -247,4 +247,12 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
+
+.yes-btn:hover {
+  background-color: #bbbbbf;
+}
+
+.no-btn:hover {
+  background-color: #bbbbbf;
+}
 /* Confirmation Pop up(Yes or No box) styles ends here.  */
