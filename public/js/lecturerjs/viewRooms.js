@@ -104,3 +104,22 @@ function searchRooms() {
   }
 
 }
+
+/* Filter Function */
+
+document.getElementById('filter').addEventListener('change', function() {
+  var filterValue = this.value;
+  var tbody = document.getElementById('tbody');
+  var tr = tbody.getElementsByTagName('tr');
+
+  for (var i = 0; i < tr.length; i++) {
+    var td = tr[i].getElementsByTagName('td')[1]; // Assuming the second TD contains the type
+    if (td) {
+      if (filterValue === 'ALL' || td.textContent === filterValue) {
+        tr[i].style.display = '';
+      } else {
+        tr[i].style.display = 'none';
+      }
+    }
+  }
+});

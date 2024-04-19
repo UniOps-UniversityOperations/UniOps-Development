@@ -36,10 +36,11 @@ $data_json = json_encode($data);
         <label for="filter">Filter By Type</label>
         <select name="type" id="filter">
             <option value="All">All</option>
-            <option value="Lecture">Lecture Rooms</option>
-            <option value="Lab">Laboratories</option>
-            <option value="Meeting">Meeting Rooms</option>
-            <option value="Other">Other</option>
+            <option value="LECTURE">LECTURE</option>
+            <option value="LAB">LAB</option>
+            <option value="MEETING">MEETING</option>
+            <option value="COMMON">COMMON</option>
+            <option value="OTHER">OTHER</option>
         </select>
     </div>
 
