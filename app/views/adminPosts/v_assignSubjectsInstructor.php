@@ -170,11 +170,13 @@
                             $lecturer_max_lec_hrs = $data['variables'][0]->v_value;
                             $lec_hrs_per_credit = $data['variables'][1]->v_value;
 
-                            //CALCLATE ASSIGNED SUBJECTS_CREDITS
+                            //CALCLATE ASSIGNED SUBJECTS_CREDITS and number of Students in the lecture
                             $assigned_subjects_credits = 0;
+                            $assigned_lecture_students = 0;
                             foreach($data['postsASI'] as $post) {
                                 if($post->lecturer_code == $data['postId']){
                                     $assigned_subjects_credits += $post->sub_credits;
+                                    $assigned_lecture_students += $post->sub_nStudents;
                                 }
                             }
 
@@ -211,11 +213,13 @@
                                 $instructor_max_practical_hrs = $data['variables'][4]->v_value;
                                 $practcal_hrs_per_credit = $data['variables'][2]->v_value;
 
-                                //CALCLATE ASSIGNED SUBJECTS_CREDITS
+                                //CALCLATE ASSIGNED SUBJECTS_CREDITS and number of Students in the practical
                                 $assigned_practical_credits = 0;
+                                $assigned_practical_students = 0;
                                 foreach($data['postsASI'] as $post) {
                                     if($post->p_instructor_code == $data['postId']){
                                         $assigned_practical_credits += $post->sub_credits;
+                                        $assigned_practical_students += $post->sub_nStudents;
                                     }
                                 }
 
@@ -253,11 +257,13 @@
                             $instructor_max_tutorial_hrs = $data['variables'][5]->v_value;
                             $tutorial_hrs_per_credit = $data['variables'][3]->v_value;
 
-                            //CALCLATE ASSIGNED SUBJECTS_CREDITS
+                            //CALCLATE ASSIGNED SUBJECTS_CREDITS and number of Students in the tutorial
                             $assigned_tutorial_credits = 0;
+                            $assigned_tutorial_students = 0;
                             foreach($data['postsASI'] as $post) {
                                 if($post->t_instructor_code == $data['postId']){
                                     $assigned_tutorial_credits += $post->sub_credits;
+                                    $assigned_tutorial_students += $post->sub_nStudents;
                                 }
                             }
 
@@ -291,33 +297,52 @@
 
                     
                 
-                </div>     
+                </div>    
+
+                <!-- Logic for progress bars -->
+                <?php
+                    $total_assigned__lec_hrs = $assigned_subjects_lec_hrs + $assigned_practical_hrs + $assigned_tutorial_hrs;
+                    $total_max_hrs = $lecturer_max_lec_hrs + $instructor_max_practical_hrs + $instructor_max_tutorial_hrs;
+                ?>
+                
+                <div class='progress_bars'>
+                    <h2>Total Lecture Hours: <?php echo $total_assigned__lec_hrs; ?> / <?php echo $total_max_hrs; ?></h2>
+                        <progress class="progress0 progress" value="<?php echo $total_assigned__lec_hrs; ?>" max="<?php echo $total_max_hrs; ?>">
+                        </progress>
+                </div>
+
+                <!-- Logic for progress bars -->
+                <?php
+                    $instructor_max_students_lecturer = $data['variables'][7]->v_value;
+                    $instructor_max_students_practical = $data['variables'][8]->v_value;
+                    $instructor_max_students_tutorial = $data['variables'][9]->v_value;
+                    $instructor_total_students = $instructor_max_students_lecturer + $instructor_max_students_practical + $instructor_max_students_tutorial;
+                    $assigned_total_students = $assigned_lecture_students + $assigned_practical_students + $assigned_tutorial_students;
+                ?>
                 
                 <!-- progress bars -->
                 <div class='progress_bars'>
-                    <h2 class="chart_name">Student Count</h2>
+                    <h1 class="bar_name">Student Counts</h1>
 
                     <div class="p_bar">
-                        <h3 class="progress_title">Lectures:</h3>
-                        <progress class="progress" value="50" max="100"></progress>
+                        <h2 class="progress_title">Lectures: <?php echo $assigned_lecture_students; ?> / <?php echo $instructor_max_students_lecturer; ?></h2>
+                        <progress class="progress" value="<?php echo $assigned_lecture_students; ?>" max="<?php echo $instructor_max_students_lecturer; ?>"></progress>
                     </div>
 
                     <div class="p_bar">                        
-                        <h3 class="progress_title">Practicals:</h3>
-                        <progress class="progress"></progress>
+                        <h2 class="progress_title">Practicals: <?php echo $assigned_practical_students; ?> / <?php echo $instructor_max_students_practical; ?></h2>
+                        <progress class="progress" value="<?php echo $assigned_practical_students; ?>" max="<?php echo $instructor_max_students_practical; ?>"></progress>
                     </div>
 
                     <div class="p_bar">                        
-                        <h3 class="progress_title">Tutorials:</h3>
-                        <progress class="progress"></progress>
+                        <h2 class="progress_title">Tutorials: <?php echo $assigned_tutorial_students; ?> / <?php echo $instructor_max_students_tutorial; ?></h2>
+                        <progress class="progress" value="<?php echo $assigned_tutorial_students; ?>" max="<?php echo $instructor_max_students_tutorial; ?>"></progress>
                     </div>
 
                     <div class="p_bar">                        
-                        <h3 class="progress_title">Total:</h3>
-                        <progress class="progress"></progress>
+                        <h2 class="progress_title">Total: <?php echo $assigned_total_students; ?> / <?php echo $instructor_total_students; ?></h2>
+                        <progress class="progress" value="<?php echo $assigned_total_students; ?>" max="<?php echo $instructor_total_students; ?>"></progress>
                     </div>
-
-
                 </div>
             </div>
 
@@ -373,6 +398,7 @@
                         <th>Semester</th>
                         <th>Credits</th>
                         <th>Stream</th>
+                        <th> Student Count </th>
                         <th> Lecture </th>
                         <th></th>
                         <th> Practical </th>
@@ -392,6 +418,7 @@
                             <td><?php echo $subject->sub_semester; ?></td>
                             <td><?php echo $subject->sub_credits; ?></td>
                             <td><?php echo $subject->sub_stream; ?></td>
+                            <td><?php echo $subject->sub_nStudents; ?></td>
                             
                                 <?php if(!$subject->sub_isHaveLecture){ ?>
                                     <td>
