@@ -240,21 +240,6 @@
                     </div>
 
                 </div>
-                <!-- print lecturer_max_lec_hrs -->
-                <p>lecturer_max_lec_hrs: <?php echo $data['variables'][0]->v_value; ?></p>
-                <!-- print lec_hrs_per_credit -->
-                <p>lec_hrs_per_credit: <?php echo $data['variables'][1]->v_value; ?></p>
-                <!-- print max_students_per_lecturer -->
-                <p>max_students_per_lecturer: <?php echo $data['variables'][2]->v_value; ?></p>
-                <!-- print assigned_subjects -->
-                <p>assigned_subjects_credits: <?php echo $assigned_subjects_credits; ?></p>
-                <!-- print assigned_subjects_credits_precentage -->
-                <p>assigned_subjects_credits_precentage: <?php echo $assigned_subjects_credits_precentage; ?></p>
-                <!-- print assigned_subjects_lec_hrs -->
-                <p>assigned_subjects_lec_hrs: <?php echo $assigned_subjects_lec_hrs; ?></p>
-                <!-- print assigned_nStudents -->
-                <p>assigned_nStudents: <?php echo $assigned_nStudents; ?></p>
-
             </div>
   </div>
 
