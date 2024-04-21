@@ -18,7 +18,7 @@ class M_assignedSubjectsInstructor{
     // }
 
     public function getSubjects($code){
-        $this->db->query('SELECT assignedSubjects.*, i_assignedSubjects_practical.*, i_assignedSubjects_tutorial.*, subjects.sub_code, subjects.sub_year, subjects.sub_stream, subjects.sub_credits, subjects.sub_semester, subjects.sub_nStudents
+        $this->db->query('SELECT assignedSubjects.*, i_assignedSubjects_practical.*, i_assignedSubjects_tutorial.*, subjects.sub_code, subjects.sub_year, subjects.sub_stream, subjects.sub_credits, subjects.sub_semester, subjects.sub_nStudents, subjects.sub_name
                             FROM subjects 
                             LEFT JOIN assignedSubjects 
                             ON subjects.sub_code = assignedSubjects.subject_code 
