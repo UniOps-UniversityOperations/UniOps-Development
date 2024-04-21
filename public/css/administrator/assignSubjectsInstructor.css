@@ -158,6 +158,21 @@
     background-color: #0f2c61;
   }
 
+  .email_button1 {
+    background-color: var(--Border-color);;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    margin-left: 10px;
+  }
+
+  .email_button1:hover {
+    background-color: #0f2c61;
+  }
+
   .delete_button_disabled{
     background-color: gray;
     border: none;
@@ -828,6 +843,7 @@ background-color: transparent; /* Hide the thumb */
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  align-items: center;
 }
 
 .btns1{

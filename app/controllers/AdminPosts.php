@@ -1600,6 +1600,65 @@ require_once APPROOT . '/controllers/Mail.php';
             redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
         }
 
+        //Send an email to emai_lecturer_code askimg for removing the subject to assign to another lecturer (lecturer_code)
+        public function sendForceEmailLPT($send_instructor_code=0, $sub_code=0, $instructor_code=0, $lpt=0){
+            // die("send_instructor_code = $send_instructor_code <br>sub_code = $sub_code <br>instructor_code = $instructor_code <br>lpt = $lpt");
+
+            $send_lec_name = '';
+            if($this->L_postModel->getLecturerByCode($send_instructor_code)){
+                $send_lec_name = $this->L_postModel->getLecturerByCode($send_instructor_code)->l_nameWithInitials;
+                $send_lec_email = $this->L_postModel->getEmail($send_instructor_code)->l_email;
+            }else{
+                $send_lec_name = $this->I_postModel->getInstructorByCode($send_instructor_code)->i_nameWithInitials;
+                $send_lec_email = $this->I_postModel->getEmail($send_instructor_code)->i_email;
+            }
+
+            $lec_name = $this->I_postModel->getInstructorByCode($instructor_code);
+            $subject_details = $this->S_postModel->getSubjectDetailsByCode($sub_code);
+
+            $to = $send_lec_email;
+
+            if($lpt == 1){
+                $subject = 'Request to Remove Subject Lecture from Teaching Assignment';
+            }else if($lpt == 2){
+                $subject = 'Request to Remove Subject Practical from Teaching Assignment';
+            }else{
+                $subject = 'Request to Remove Subject Tutorial from Teaching Assignment';
+            }
+
+            $body = "Dear $send_lec_name;, <br><br>
+
+            You are receiving this email because the administration of UniOps has requested the removal of a subject";
+            if($lpt == 1){
+                $body .= " lecture";
+            }else if($lpt == 2){
+                $body .= " practical";
+            }else{
+                $body .= " tutorial";
+            }
+            $body .= " for the teaching assignment of $lec_name->i_nameWithInitials.<br><br>
+
+            Subject Name: $subject_details->sub_name <br>
+            Subject Code: $sub_code <br>
+            Subject Credits: $subject_details->sub_credits <br>
+            Subject Stream: $subject_details->sub_stream <br>
+            Subject Year : $subject_details->sub_year <br>
+            Subject Semester: $subject_details->sub_semester <br><br>
+            
+            Due to request of administration / $lec_name->i_nameWithInitials, it is necessary to adjust the teaching assignments accordingly. We kindly ask for your cooperation in this matter. <br><br>
+
+            If you have any questions or concerns regarding this request, please contact the administration at UniOps@gmailcom. <br><br>
+
+            Thank you for your attention to this matter. <br><br>
+
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body );
+
+            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+        }
         
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     

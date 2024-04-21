@@ -502,9 +502,16 @@
                                                 
                                             </td>
                                             <td>
-                                                <form action="<?php echo URLROOT;?>/AdminPosts/i_forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
-                                                    <input class="force" type="submit" value="FORCE">
-                                                </form>
+                                                <div class='btns'>
+                                                    <form action="<?php echo URLROOT;?>/AdminPosts/i_forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
+                                                        <input class="force" type="submit" value="FORCE">
+                                                    </form>
+                                                    <a href="<?php echo URLROOT;?>/AdminPosts/sendForceEmailLPT/<?php echo $subject->lecturer_code;?>/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>/1" title="Send Practical Request Email">
+                                                        <button class="email_button1">
+                                                            <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Send Practical Request Email" class="delete_icon">
+                                                        </button>
+                                                    </a>
+                                                </div>
                                             </td>
                                         <?php } ?>
                                 <?php } ?>
@@ -543,9 +550,16 @@
                                                 
                                             </td>
                                             <td>
-                                                <form action="<?php echo URLROOT;?>/AdminPosts/i_forceAssignPractical/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
-                                                    <input class="force" type="submit" value="FORCE">
-                                                </form>
+                                                <div class='btns'>                                    
+                                                    <form action="<?php echo URLROOT;?>/AdminPosts/i_forceAssignPractical/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
+                                                        <input class="force" type="submit" value="FORCE">
+                                                    </form>
+                                                    <a href="<?php echo URLROOT;?>/AdminPosts/sendForceEmailLPT/<?php echo $subject->p_instructor_code;?>/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>/2" title="Send Practical Request Email">
+                                                        <button class="email_button1">
+                                                            <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Send Practical Request Email" class="delete_icon">
+                                                        </button>
+                                                    </a>
+                                                </div>
                                             </td>
                                         <?php } ?>
                                 <?php } ?>
@@ -584,9 +598,16 @@
                                                 
                                             </td>
                                             <td>
-                                                <form action="<?php echo URLROOT;?>/AdminPosts/i_forceAssignTutorial/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
-                                                    <input class="force" type="submit" value="FORCE">
-                                                </form>
+                                                <div class='btns'>                                                    
+                                                    <form action="<?php echo URLROOT;?>/AdminPosts/i_forceAssignTutorial/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST"> <!-- add action -->
+                                                        <input class="force" type="submit" value="FORCE">
+                                                    </form>
+                                                    <a href="<?php echo URLROOT;?>/AdminPosts/sendForceEmailLPT/<?php echo $subject->t_instructor_code;?>/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>/3" title="Send Practical Request Email">
+                                                        <button class="email_button1">
+                                                            <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Send Practical Request Email" class="delete_icon">
+                                                        </button>
+                                                    </a>
+                                                </div>
                                             </td>
                                         <?php } ?>
                                 <?php } ?>
