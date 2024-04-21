@@ -97,12 +97,13 @@
       ];
 
       // Iterate through your fetched data and update the total hours for each day
-      foreach ($numofLecHours as $item) {
-        $day = $item -> day_of_week;
-        $totalHours = $item -> total_hours;
-        $hourData[$day] = $totalHours;
+      if(is_array($numofLecHours)){
+        foreach ($numofLecHours as $item) {
+          $day = $item -> day_of_week;
+          $totalHours = $item -> total_hours;
+          $hourData[$day] = $totalHours;
+        }
       }
-
 
       $data = [
         'numofLecHours' => $hourData,
