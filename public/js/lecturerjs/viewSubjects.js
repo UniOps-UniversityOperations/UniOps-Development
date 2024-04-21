@@ -60,3 +60,12 @@ document.addEventListener('DOMContentLoaded', function () {
     myChart.resize();
   });
 });
+
+
+document.getElementById('subjects').addEventListener('click',()=>{
+  window.location.href = urlroot + "/Lecturer/viewSubjects/";
+})
+
+document.getElementById('details').addEventListener('click',()=>{
+  window.location.href = urlroot + "/Lecturer/viewProfile/";
+})
