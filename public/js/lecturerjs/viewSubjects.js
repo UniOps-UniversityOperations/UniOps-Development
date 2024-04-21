@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   var ctx = document.getElementById('Chart').getContext('2d');
-  var add_button = document.getElementById('add_button')
+  var add_button = document.getElementById('add');
 
   var myChart = new Chart(ctx, {
     type: 'line',
@@ -51,15 +51,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-/*   add_button.addEventListener('click',() = {
 
-  }) */
 
   // Optional: Resize the chart when the window is resized
   window.addEventListener('resize', function () {
     myChart.resize();
   });
-});
+
+  add_button.addEventListener('click',() => {
+    document.getElementById('requestSubjects').style.display = 'block';
+  });
+}
+);
 
 
 document.getElementById('subjects').addEventListener('click',()=>{

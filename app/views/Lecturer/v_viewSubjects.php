@@ -21,6 +21,33 @@ $totalHours = array_values($data['numofLecHours']);
     <div class="section" id="timetable">Timetable</div>
 </div>
 
+<div id="requestSubjects">
+    <table id="subjectsSelectionPanel">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Year</th>
+                <th>Semester</th>
+                <th>Credits</th>
+                <th>Stream</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($data['subjects'] as $subject): ?>
+                <tr>
+                    <td><?php echo $subject->sub_code; ?></td>
+                    <td><?php echo $subject->sub_name; ?></td>
+                    <td><?php echo $subject->sub_year; ?></td>
+                    <td><?php echo $subject->sub_semester; ?></td>
+                    <td><?php echo $subject->sub_credits; ?></td>
+                    <td><?php echo $subject->sub_stream; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
 <div id="workload">
     <canvas id="Chart"></canvas>
 </div>
@@ -110,38 +137,10 @@ $totalHours = array_values($data['numofLecHours']);
 </div>
 
 <div title="Add Row">
-    <button class="add_button">
+    <button class="add_button" id='add'>
         <img src="<?php echo URLROOT;?>/images/plus_icon.svg" alt="Add Icon" class="add_icon">
     </button>
 </div>
-
-<div id="requestSubjects">
-    <table id="subjectsSelectionPanel">
-        <thead>
-            <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Year</th>
-                <th>Semester</th>
-                <th>Credits</th>
-                <th>Stream</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($data['subjects'] as $subject): ?>
-                <tr>
-                    <td><?php echo $subject->sub_code; ?></td>
-                    <td><?php echo $subject->sub_name; ?></td>
-                    <td><?php echo $subject->sub_year; ?></td>
-                    <td><?php echo $subject->sub_semester; ?></td>
-                    <td><?php echo $subject->sub_credits; ?></td>
-                    <td><?php echo $subject->sub_stream; ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
-
 
 <script src="<?php echo URLROOT;?>/js/lecturerjs/viewSubjects.js"></script>
 
