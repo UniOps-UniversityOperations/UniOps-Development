@@ -9,7 +9,54 @@
             <h1 class="topic">Adminitsrator / Instructors / Assign Subjects </h1>
             <h2 class="topic2">Instructor: <?php echo $data['instructorName']->i_nameWithInitials; ?> (<?php echo $data['postId']; ?>)</h2>
             <h2 class="topic2">Email: <?php echo $data['email']->i_email; ?></h2>
-        </div>        
+        </div>   
+        
+        <!-- print popup value in the console -->
+    <script>console.log(<?php echo $data['popup']; ?>);</script>
+    
+    <?php if($data['popup']){ ?>
+
+        <div id="popup" 
+        style="
+        display: none; 
+        position: fixed; 
+        border-radius: 10px;
+        font-size: 19px;
+        font-weight: bold;
+        color: green;
+        top: 10%; 
+        left: 80%; 
+        transform: 
+        translate(50%, -25%); 
+        background-color: white; 
+        padding: 20px; border: 1px green solid; 
+        transition: top 0.5s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+        <!-- if popup = 1 Request Email Sent | if popup = 2 Status Email Sent -->
+            <?php if($data['popup'] == 1){ ?>
+                <p>Request Email Sent</p>
+            <?php }else if($data['popup'] == 2){ ?>
+                <p>Status Email Sent</p>
+            <?php } ?>
+        </div>
+
+        <script>
+            // Function to show the popup message
+            function showPopup() {
+                var popup = document.getElementById('popup');
+                popup.style.display = 'block';
+
+                // Hide the popup after 5 seconds
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                }, 3000);
+            }
+
+            // Call the showPopup function when the page loads
+            window.onload = showPopup;
+        </script>
+
+    <?php } ?>
 
     <div class="container">
         <div class="column">
@@ -630,6 +677,7 @@
         <p><b><span style='color: red;'>Unavailable</span></b> - can't be assigned to this lecturer but can be forced (remove the current lecturer and assign to this lecturer).</p>
         <p><b><span style='color: gray;'>Assigned</span></b> - already assigned to this lecturer.</p>
         <p><b><span style='color: gray;'>NULL</span></b> - no such optiion for this subject.</p>
+        <p><b>Mail Icon</b> - Send an email to the lecturer (Assigned To), requesting to remove the subject to assign to this lecturer.</p>
     </div>
     
     </div>

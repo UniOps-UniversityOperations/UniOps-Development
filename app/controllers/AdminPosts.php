@@ -1349,7 +1349,7 @@ require_once APPROOT . '/controllers/Mail.php';
 
 // ----- For Instructor asign Subjects ------------------------------------------------------------------------------------------------------------------------------
 
-        public function assignSubjectsInstructor($postId){
+        public function assignSubjectsInstructor($postId, $popup = 0){
             $postsRS = $this->RSI_postModel->getSubjects($postId);
             $postsASI = $this->ASI_postModel->getSubjects($postId);
             $subjects = $this->ASI_postModel->getSubjectDetails();
@@ -1369,7 +1369,8 @@ require_once APPROOT . '/controllers/Mail.php';
                 'subjects' => $subjects,
                 'variables' => $variables,
                 'instructorName' => $instructorName,
-                'email' => $email
+                'email' => $email,
+                'popup' => $popup
             ];
             $this->view('adminPosts/v_assignSubjectsInstructor', $data);
         }
@@ -1546,7 +1547,7 @@ require_once APPROOT . '/controllers/Mail.php';
             $Mail_class = new Mail();
             $Mail_class->sendMail($to, $subject, $body);
 
-            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/2');
         }
 
         //Send a lecture request email to the instructor for rqeuesting to remove the subject lecture
@@ -1597,7 +1598,7 @@ require_once APPROOT . '/controllers/Mail.php';
             $Mail_class = new Mail();
             $Mail_class->sendMail($to, $subject, $body);
 
-            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/1');
         }
 
         //Send an email to emai_lecturer_code askimg for removing the subject to assign to another lecturer (lecturer_code)
@@ -1657,7 +1658,7 @@ require_once APPROOT . '/controllers/Mail.php';
             $Mail_class = new Mail();
             $Mail_class->sendMail($to, $subject, $body );
 
-            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/1');
         }
         
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
