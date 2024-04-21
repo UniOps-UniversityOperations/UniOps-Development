@@ -16,6 +16,8 @@ h1 {
     grid-template-columns: repeat(14, 1fr);
     grid-gap: 5px; /* Add gap between grid items */
     margin: 40px 20px 20px 20px; /* Add margin for spacing */
+    overflow-y: auto;
+    max-height: 500px;
 }
 
 .room-id {
@@ -52,6 +54,8 @@ h1 {
     padding-left: 0px;
     font-weight: bold;
     grid-column-gap: 0;
+    position : sticky;
+    top: 0px;
 }
 
 .room-id,

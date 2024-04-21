@@ -15,6 +15,12 @@ $totalHours = array_values($data['numofLecHours']);
  let totalHours = <?php echo json_encode($totalHours); ?>;
 </script>
 
+<div id="headings">
+    <div class="section" id="details">Details</div>
+    <div class="section" id="subjects">Subjects</div>
+    <div class="section" id="timetable">Timetable</div>
+</div>
+
 <div id="workload">
     <canvas id="Chart"></canvas>
 </div>
@@ -110,7 +116,7 @@ $totalHours = array_values($data['numofLecHours']);
 </div>
 
 <div id="requestSubjects">
-    <table id="subjects">
+    <table id="subjectsSelectionPanel">
         <thead>
             <tr>
                 <th>Code</th>
