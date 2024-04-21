@@ -8,7 +8,8 @@
     <div class="top">
             <h1 class="topic">Adminitsrator / Instructors / Assign Subjects </h1>
             <h2 class="topic2">Instructor: <?php echo $data['instructorName']->i_nameWithInitials; ?> (<?php echo $data['postId']; ?>)</h2>
-    </div>        
+            <h2 class="topic2">Email: <?php echo $data['email']->i_email; ?></h2>
+        </div>        
 
     <div class="container">
         <div class="column">
@@ -56,12 +57,12 @@
 
             <div class="title_bar">
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
-                <p class="title_item"><b>Credits</b></p>
-                <p class="title_item"><b>Year-Sem</b></p>
+                <p class="title_item"><b>Credits-Year
+                </b></p>
                 <p class="title_item"><b>Stream</b></p>
-                <p style="padding-right: 25px;" class="title_item"><b>Lecture</b></p>
-                <p style="padding-right: 25px;" class="title_item"><b>Practical</b></p>
-                <p style="padding-right: 40px;" class="title_item"><b>Tutorial</b></p>
+                <p style="padding-right: 20px;" class="title_item"><b>Lecture</b></p>
+                <p style="padding-right: 20px;" class="title_item"><b>Practical</b></p>
+                <p style="padding-right: 10px;" class="title_item"><b>Tutorial</b></p>
             </div>
 
             <div class="list">
@@ -72,61 +73,102 @@
                     <div class="lecture_room_header">
                         <p class="row_num"><?php echo $i++; ?></p>
                         <p class="header_title"><?php echo $post->sub_code; ?></p>
-                        <p class="header_title"><?php echo $post->sub_credits; ?></p>
-                        <p class="header_title"><?php echo $post->sub_year; ?>-<?php echo $post->sub_semester; ?></p>
-                        <p class="header_title"><?php echo $post->sub_stream; ?></p>
+                        <p style="padding-left: 40px;" class="header_title"><?php echo $post->sub_credits; ?> - <?php echo $post->sub_year; ?></p>
+                        <p style="padding-left: 40px;" class="header_title"><?php echo $post->sub_stream; ?></p>
                         
                         <div class="combined_delete header_title">
                             <?php if($post->lecturer_code == $data['postId']){ ?>
                                 <p class="header_title"> <span style='color: green;'>&#10004;</span> </p>
+
+                                <a href="<?php echo URLROOT; ?>/AdminPosts/sendDeleteRequestEmailLPT/<?php echo $data['email']->i_email; ?>/<?php echo $post->sub_code; ?>/<?php echo $data['postId']; ?>/1" title="Send Lecture Request Email">
+                                    <button class="email_button">
+                                        <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Send Lecture Request Email" class="delete_icon">
+                                    </button>
+                                </a>
                                 <a href="<?php echo URLROOT; ?>/AdminPosts/i_deleteRowAS/<?php echo $data['postId']; ?>/<?php echo $post->sub_code; ?>" title="Delete">
                                     <button class="delete_button">
                                         <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
                                     </button>
                                 </a>
+
                              <?php } else { ?>
                                 <p class="header_title"> <span style='color: red;'>&#10008;</span> </p>
+
+                                <a href="" title="Send Lecture Request Email">
+                                    <button class="email_button_disabled">
+                                        <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Send Lecture Request Email" class="delete_icon">
+                                    </button>
+                                </a>
                                 <a href="" title="Delete">
                                     <button class="delete_button_disabled">
                                         <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
                                     </button>
                                 </a>
+
                             <?php } ?>
                         </div>
 
                         <div class="combined_delete header_title">
                             <?php if($post->p_instructor_code == $data['postId']){ ?>
                                 <p class="header_title"> <span style='color: green;'>&#10004;</span> </p>
+
+                                <a href="<?php echo URLROOT; ?>/AdminPosts/sendDeleteRequestEmailLPT/<?php echo $data['email']->i_email; ?>/<?php echo $post->sub_code; ?>/<?php echo $data['postId']; ?>/2" title="Send Practical Request Email">
+                                    <button class="email_button">
+                                        <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Send Practical Request Email" class="delete_icon">
+                                    </button>
+                                </a>
                                 <a href="<?php echo URLROOT; ?>/AdminPosts/i_deleteRow_p/<?php echo $data['postId']; ?>/<?php echo $post->sub_code; ?>" title="Delete">
                                     <button class="delete_button">
                                         <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
                                     </button>
                                 </a>
+
                              <?php } else { ?>
                                 <p class="header_title"> <span style='color: red;'>&#10008;</span> </p>
+
+                                <a href="" title="Send Delete Practical Request Email">
+                                    <button class="email_button_disabled">
+                                        <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Send Delete Practical Request Email" class="delete_icon">
+                                    </button>
+                                </a>
                                 <a href="" title="Delete">
                                     <button class="delete_button_disabled">
                                         <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
                                     </button>
                                 </a>
+
                             <?php } ?>
                         </div>
 
                         <div class="combined_delete header_title">
                             <?php if($post->t_instructor_code == $data['postId']){ ?>
                                 <p class="header_title"> <span style='color: green;'>&#10004;</span> </p>
+
+                                <a href="<?php echo URLROOT; ?>/AdminPosts/sendDeleteRequestEmailLPT/<?php echo $data['email']->i_email; ?>/<?php echo $post->sub_code; ?>/<?php echo $data['postId']; ?>/3" title="Send Tutorial Delete Request Email">
+                                    <button class="email_button">
+                                        <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Send Tutorial Delete Request Email" class="delete_icon">
+                                    </button>
+                                </a>
                                 <a href="<?php echo URLROOT; ?>/AdminPosts/i_deleteRow_t/<?php echo $data['postId']; ?>/<?php echo $post->sub_code; ?>" title="Delete">
-                                    <button class="delete_button">
+                                    <button class="delete_button delete_button_last">
                                         <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
                                     </button>
                                 </a>
+
                              <?php } else { ?>
                                 <p class="header_title"> <span style='color: red;'>&#10008;</span> </p>
-                                <a href="" title="Delete">
-                                    <button class="delete_button_disabled">
-                                        <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+
+                                <a href="" title="Send Tutorial Delete Request Email">
+                                    <button class="email_button_disabled">
+                                        <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Delete Icon" class="delete_icon">
                                     </button>
                                 </a>
+                                <a href="" title="Delete">
+                                    <button class="delete_button_disabled_last delete_button_disabled">
+                                        <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Send Tutorial Delete Request Email" class="delete_icon">
+                                    </button>
+                                </a>
+
                             <?php } ?>
                         </div>
 
@@ -135,11 +177,17 @@
             <?php endforeach; ?>
             </div>
 
-            <a href="" title="Add Row">
-                <button class="add_button">
-                    <img src="<?php echo URLROOT;?>/images/plus_icon.svg" alt="Add Icon" class="add_icon">
-                </button>
-            </a>
+            <div class='btns'>
+                <a href="" title="Add Row">
+                    <button class="add_button">
+                        <img src="<?php echo URLROOT;?>/images/plus_icon.svg" alt="Add Icon" class="add_icon">
+                    </button>
+                </a>
+    
+                <a href="<?php echo URLROOT; ?>/AdminPosts/send_ASI_status_email/<?php echo $data['email']->i_email; ?>/<?php echo $data['postId']; ?>" title="Send Status Email" style="padding-right: 10px;">
+                    <button class="status_email_button">Send Status Email</button>
+                </a> 
+            </div>
 
         </div>
 

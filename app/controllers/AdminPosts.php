@@ -1356,6 +1356,7 @@ require_once APPROOT . '/controllers/Mail.php';
             $variables = $this->V_postModel->getAll();
             // get instructor name uing the postId(instructor code)
             $instructorName = $this->I_postModel->getInstructorByCode($postId);
+            $email = $this->I_postModel->getEmail($postId);
             
             if(!$postsRS){
                 $postsRS = "null";
@@ -1367,7 +1368,8 @@ require_once APPROOT . '/controllers/Mail.php';
                 'postsASI' => $postsASI,
                 'subjects' => $subjects,
                 'variables' => $variables,
-                'instructorName' => $instructorName
+                'instructorName' => $instructorName,
+                'email' => $email
             ];
             $this->view('adminPosts/v_assignSubjectsInstructor', $data);
         }
@@ -1477,6 +1479,127 @@ require_once APPROOT . '/controllers/Mail.php';
                 die('Something went wrong');
             }
         }
+
+        //emails
+
+        //send a status email to the instructor that includes the subject details assigned to him/her
+        public function send_ASI_status_email($email, $instructor_code){
+
+            $instructorName = $this->I_postModel->getInstructorByCode($instructor_code);
+            $postsASI = $this->ASI_postModel->getSubjects($instructor_code);
+
+            $to = $email;
+            $subject = 'Subject Assignment Status';
+            $body = "Dear $instructorName->i_nameWithInitials, <br><br>
+
+            You are receiving this email to inform you of the status of the subjects assigned to you for teaching.<br><br>
+
+            The following subjects have been assigned to you for teaching:<br><br>";
+
+            $body .= "<table border='1'>
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>Subject Code</th>
+                            <th>Subject Credits</th>
+                            <th>Subject Stream</th>
+                            <th>Subject Year</th>
+                            <th>Subject Semester</th>
+                            <th>Lecture</th>
+                            <th>Practical</th>
+                            <th>Tutorial</th>
+                        </tr>";
+
+            foreach ($postsASI as $post) {
+                $body .= "<tr>
+                            <td>$post->sub_name</td>
+                            <td>$post->sub_code</td>
+                            <td>$post->sub_credits</td>
+                            <td>$post->sub_stream</td>
+                            <td>$post->sub_year</td>
+                            <td>$post->sub_semester</td>";
+                            if($post->lecturer_code == $instructor_code){
+                                $body .= "<td><p> <span style='color: green;'>&#10004;</span> </p> </td>";
+                            }else{
+                                $body .= "<td><p> <span style='color: red;'>&#10008;</span> </p> </td>";
+                            }
+                            if($post->p_instructor_code == $instructor_code){
+                                $body .= "<td><p> <span style='color: green;'>&#10004;</span> </p> </td>";
+                            }else{
+                                $body .= "<td><p> <span style='color: red;'>&#10008;</span> </p> </td>";
+                            }
+                            if($post->t_instructor_code == $instructor_code){
+                                $body .= "<td><p> <span style='color: green;'>&#10004;</span> </p> </td></tr>";
+                            }else{
+                                $body .= "<td><p> <span style='color: red;'>&#10008;</span> </p> </td></tr>";
+                            }
+            }
+
+            $body .= "</table>";
+
+            $body .= "If you have any questions or concerns regarding this assignment, please contact the administration at UniOps.@gmail.com. <br><br>
+
+            Thank you for your attention to this matter. <br><br>
+
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body);
+
+            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+        }
+
+        //Send a lecture request email to the instructor for rqeuesting to remove the subject lecture
+        public function sendDeleteRequestEmailLPT($email=0, $sub_code=0, $instructor_code=0, $lpt=0){
+            // die("email = $email <br>sub_code = $sub_code <br>instructor_code = $instructor_code <br>lpt = $lpt");
+
+            $subject_details = $this->S_postModel->getSubjectDetailsByCode($sub_code);
+            $instructorName = $this->I_postModel->getInstructorByCode($instructor_code);
+
+            $to = $email;
+
+            if($lpt == 1){
+                $subject = 'Request to Remove Subject Lecture from Teaching Assignment';
+            }else if($lpt == 2){
+                $subject = 'Request to Remove Subject Practical from Teaching Assignment';
+            }else{
+                $subject = 'Request to Remove Subject Tutorial from Teaching Assignment';
+            }
+
+            $body = "Dear $instructorName->i_nameWithInitials, <br><br>
+
+            You are receiving this email because the administration of [University/Organization Name] has requested the removal of a subject";
+            if($lpt == 1){
+                $body .= " lecture";
+            }else if($lpt == 2){
+                $body .= " practical";
+            }else{
+                $body .= " tutorial";
+            }
+            $body .= " from your teaching assignment.<br><br>
+
+            Subject Name: $subject_details->sub_name <br>
+            Subject Code: $sub_code <br>
+            Subject Credits: $subject_details->sub_credits <br>
+            Subject Stream: $subject_details->sub_stream <br>
+            Subject Year: $subject_details->sub_year <br>
+            Subject Semester: $subject_details->sub_semester <br><br>
+
+            Due to [reason for removal], it is necessary to adjust the teaching assignments accordingly. We kindly ask for your cooperation in this matter. <br><br>
+
+            If you have any questions or concerns regarding this request, please contact the administration at UniOps@gmail.com. <br><br>
+
+            Thank you for your attention to this matter. <br><br>
+
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body);
+
+            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code);
+        }
+
         
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     

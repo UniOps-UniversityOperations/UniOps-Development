@@ -126,7 +126,11 @@
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 10px;
-    margin-right: 70px;
+    margin-right: 20px;
+  }
+
+  .delete_button_last{
+    margin-right: 10px;
   }
   
   .delete_icon{
@@ -139,6 +143,21 @@
     background-color: #d32f2f;
   }
 
+  .email_button {
+    background-color: var(--Border-color);;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+
+  .email_button:hover {
+    background-color: #0f2c61;
+  }
+
   .delete_button_disabled{
     background-color: gray;
     border: none;
@@ -147,7 +166,22 @@
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 10px;
-    margin-right: 70px;
+    margin-right: 20px;
+  }
+
+  .delete_button_disabled_last{
+    margin-right: 10px;
+  }
+
+  .email_button_disabled{
+    background-color: gray;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    margin-right: 10px;
   }
 
   .dummy_btn{
@@ -750,4 +784,55 @@ background-color: transparent; /* Hide the thumb */
 
 .progress0{
   width: 90%;
+}
+
+
+.email_button {
+  background-color: var(--Border-color);
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+}
+
+.email_icon{
+  padding-top: 5px;
+  width: 30px;
+}
+
+/* Change the background color on hover */
+.email_button:hover {
+  background-color: #0f2c61;
+}
+
+.status_email_button {
+  background-color: var(--Border-color);
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Change the background color on hover */
+.status_email_button:hover {
+  background-color: #0f2c61;
+}
+
+.btns{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btns1{
+  display: flex;
+  justify-content: space-between;
+  width : 100px;
+  align-items: center;
 }
