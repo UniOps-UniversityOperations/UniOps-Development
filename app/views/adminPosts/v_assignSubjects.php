@@ -111,7 +111,16 @@
             <?php 
             $i = 1;
             foreach($data['postsAS'] as $post) : ?>
-                <div class="lecture_room">
+                <div class="lecture_room"
+                    <?php if($data['postsRS'] != "null"){
+                        foreach($data['postsRS'] as $postRS) {
+                            if($postRS->subject_code == $post->subject_code){
+                                echo "style='background-color: lightgreen;'";
+                            }
+                        }
+                    }
+                    ?>
+                >
                     <div class="lecture_room_header">
                         <p class="row_num"><?php echo $i++; ?></p>
                         <p class="header_title"><?php echo $post->subject_code; ?></p>
@@ -134,6 +143,9 @@
 
                     </div>
                 </div>
+
+                
+
             <?php endforeach; ?>
             </div>
             
@@ -264,9 +276,9 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <!-- <?php foreach ($data['years'] as $year) : ?>
+                <?php foreach ($data['years'] as $year) : ?>
                     <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                <?php endforeach; ?> -->
+                <?php endforeach; ?> 
             </select>
 
             <label for="semesterFilter">Semester:</label>
@@ -303,35 +315,56 @@
                 <tbody>        
                     <?php $i = 0;
                     foreach($data['subjects'] as $subject) : ?>
-                        <tr>
-                            <?php if ($subject->subject_code && $subject->lecturer_code != $data['postId']){?>
-                                    <td><?php echo $subject->sub_code; ?></td>
-                                    <td><?php echo $subject->sub_name; ?></td>
-                                    <td><?php echo $subject->sub_year; ?></td>
-                                    <td><?php echo $subject->sub_semester; ?></td>
-                                    <td><?php echo $subject->sub_credits; ?></td>
-                                    <td><?php echo $subject->sub_stream; ?></td>
-                                    <td><?php echo $subject->sub_nStudents; ?></td>
-                                    <td><span style='color: red;'><b>Assigned</b></span></td>
-                                    <td>
-                                        <form action="<?php echo URLROOT;?>/AdminPosts/forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
-                                            <input class="force" type="submit" value="FORCE">
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <div class='btns1'>
-                                            <p><?php echo $subject->lecturer_code; ?></p>
-                                            <a href="<?php echo URLROOT; ?>/AdminPosts/sendForceEmail/<?php echo $subject->lecturer_code; ?>/<?php echo $post->subject_code; ?>/<?php echo $data['postId']; ?>" title="Send Request Email" style="padding-right: 10px;">
-                                                <button class="email_button">
-                                                    <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Email Icon" class="email_icon">
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </td>
-                                
-                                    
-                                
-                            <?php }else if(!$subject->subject_code){ ?>
+                        <?php if ($subject->subject_code && $subject->lecturer_code != $data['postId']){?>
+                            <tr
+                                <?php if($data['postsRS'] != "null"){
+                                    foreach($data['postsRS'] as $postRS) {
+                                        if($postRS->subject_code == $subject->sub_code){
+                                            echo "style='background-color: lightgreen;'";
+                                            //terminate the loop
+                                            break;
+                                        }
+                                    }
+                                }
+                                ?>
+                            >
+                                <td><?php echo $subject->sub_code; ?></td>
+                                <td><?php echo $subject->sub_name; ?></td>
+                                <td><?php echo $subject->sub_year; ?></td>
+                                <td><?php echo $subject->sub_semester; ?></td>
+                                <td><?php echo $subject->sub_credits; ?></td>
+                                <td><?php echo $subject->sub_stream; ?></td>
+                                <td><?php echo $subject->sub_nStudents; ?></td>
+                                <td><span style='color: red;'><b>Assigned</b></span></td>
+                                <td>
+                                    <form action="<?php echo URLROOT;?>/AdminPosts/forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
+                                        <input class="force" type="submit" value="FORCE">
+                                    </form>
+                                </td>
+                                <td>
+                                    <div class='btns1'>
+                                        <p><?php echo $subject->lecturer_code; ?></p>
+                                        <a href="<?php echo URLROOT; ?>/AdminPosts/sendForceEmail/<?php echo $subject->lecturer_code; ?>/<?php echo $post->subject_code; ?>/<?php echo $data['postId']; ?>" title="Send Request Email" style="padding-right: 10px;">
+                                            <button class="email_button">
+                                                <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Email Icon" class="email_icon">
+                                            </button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php }else if(!$subject->subject_code){ ?>
+                            <tr
+                                <?php if($data['postsRS'] != "null"){
+                                    foreach($data['postsRS'] as $postRS) {
+                                        if($postRS->subject_code == $subject->sub_code){
+                                            echo "style='background-color: lightgreen;'";
+                                            //terminate the loop
+                                            break;
+                                        }
+                                    }
+                                }
+                                ?>
+                            >
                                 <td><?php echo $subject->sub_code; ?></td>
                                 <td><?php echo $subject->sub_name; ?></td>
                                 <td><?php echo $subject->sub_year; ?></td>
@@ -347,9 +380,9 @@
                                     </form> 
                                 </td>
                                 <td>-</td>
-                            <?php }?>
+                            </tr>
+                        <?php }?>
                             
-                        </tr>
                     <?php endforeach; ?>
             </table> 
         </div>
