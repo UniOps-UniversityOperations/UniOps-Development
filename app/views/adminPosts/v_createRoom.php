@@ -21,7 +21,7 @@
 
         <label class="label" for="room_type">Credit:
             <select id="type" name="type" required>
-                <option value="LECTUER">LECTUER</option>
+                <option value="LECTURE">LECTURE</option>
                 <option value="LAB">LAB</option>
                 <option value="MEEING">MEEING</option>
                 <option value="COMMON">COMMON</option>

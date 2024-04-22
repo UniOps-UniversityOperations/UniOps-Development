@@ -12,22 +12,23 @@
         <fieldset>
             <h3>Lecturer Details:</h3>    
 
-            <label class="lable" for="l_code">Code:
+            <label class="lable" for="l_code">Initials:
             <input type="text" id="l_code" name="l_code" placeholder="l_code" value="<?php $data["l_code"];?>" oninput="this.value = this.value.toUpperCase();" required>
             </label>
 
+            
+            <label class="lable" for="l_fullName">Full Name:
+                <input type="text" id="l_fullName" name="l_fullName" placeholder="l_fullName" value="<?php $data["l_fullName"];?>" oninput="this.value = this.value.toUpperCase();" required>
+            </label>
+            
+            <label class="lable" for="l_nameWithInitials">Name With Initials:
+                <input type="text" id="l_nameWithInitials" name="l_nameWithInitials" placeholder="l_nameWithInitials" value="<?php $data["l_nameWithInitials"];?>" oninput="this.value = this.value.toUpperCase();" required>
+            </label>
+            
             <label class="lable" for="l_email">Email:
             <input type="text" id="l_email" name="l_email" placeholder="l_email" value="<?php $data["l_email"];?>" required>
             </label>
-
-            <label class="lable" for="l_fullName">Full Name:
-            <input type="text" id="l_fullName" name="l_fullName" placeholder="l_fullName" value="<?php $data["l_fullName"];?>" oninput="this.value = this.value.toUpperCase();" required>
-            </label>
-
-            <label class="lable" for="l_nameWithInitials">Name With Initials:
-            <input type="text" id="l_nameWithInitials" name="l_nameWithInitials" placeholder="l_nameWithInitials" value="<?php $data["l_nameWithInitials"];?>" oninput="this.value = this.value.toUpperCase();" required>
-            </label>
-
+            
             <label class="label">Gender:
                 <div class="gender">
                     <label>
@@ -76,11 +77,11 @@
             
             <label>
             <input type="checkbox" class="inline"  id="l_isExamSupervisor" name="l_isExamSupervisor" value="true">
-            l_isExamSupervisor</label>
+            Exam Supervisor</label>
 
             <label>
             <input type="checkbox" class="inline"  id="l_isSecondExaminar" name="l_isSecondExaminar" value="true">
-            l_isSecondExaminar</label>
+            Second Examinar</label>
 
         </fieldset>
 

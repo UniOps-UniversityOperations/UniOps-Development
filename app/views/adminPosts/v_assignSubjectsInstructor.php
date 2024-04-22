@@ -6,7 +6,7 @@
 
 <div class="main">
     <div class="top">
-            <h1 class="topic">Adminitsrator / Instructors / Assign Subjects </h1>
+            <h1 class="topic">Administrator / Instructors / Assign Subjects </h1>
             <h2 class="topic2">Instructor: <?php echo $data['instructorName']->i_nameWithInitials; ?> (<?php echo $data['postId']; ?>)</h2>
             <h2 class="topic2">Email: <?php echo $data['email']->i_email; ?></h2>
         </div>   
@@ -61,7 +61,7 @@
     <div class="container">
         <div class="column">
             <!-- Content for the first column -->
-            <h2 style='color: #010127'>Requeted Subjects by the lecturer</h2>
+            <h2 style='color: #010127'>Prefered Subjects by the lecturer</h2>
 
             <div class="title_bar">
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
@@ -673,6 +673,7 @@
     </form>
     
     <div class="legend">
+        <h3>Note:</h3>
         <p><b><span style='color: green;'>Available</span></b> - can be assigned.</p>
         <p><b><span style='color: red;'>Unavailable</span></b> - can't be assigned to this lecturer but can be forced (remove the current lecturer and assign to this lecturer).</p>
         <p><b><span style='color: gray;'>Assigned</span></b> - already assigned to this lecturer.</p>

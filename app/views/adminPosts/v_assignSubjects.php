@@ -6,7 +6,7 @@
 
 <div class="main">
     <div class="top">
-            <h1 class="topic">Adminitsrator / Lecturer / Assign Subjects </h1>
+            <h1 class="topic">Administrator / Lecturer / Assign Subjects </h1>
             <h2 class="topic2">Lcturer: <?php echo $data['lecturerName']->l_nameWithInitials; ?> (<?php echo $data['postId']; ?>)</h2>
             <!-- dispay email -->
             <h2 class="topic2">Email: <?php echo $data['email']->l_email; ?></h2>
@@ -62,7 +62,7 @@
     <div class="container">
         <div class="column">
             <!-- Content for the first column -->
-            <h2 style='color: #010127'>Requeted Subjects by the lecturer</h2>
+            <h2 style='color: #010127'>Preferred Subjects by the lecturer</h2>
 
             <div class="title_bar">
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
@@ -97,7 +97,7 @@
             <!-- horizontal line -->
             <hr class="hr">
 
-            <h2 style='color: #010127'>Assign Subjects</h2>
+            <h2 style='color: #010127'>Assigned Subjects</h2>
 
             <div class="title_bar">
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
@@ -359,6 +359,7 @@
     </form>
     
     <div class="legend">
+        <h3>Note:</h3>
         <p><b><span style='color: green;'>Available</span></b> - can be assigned.</p>
         <p><b><span style='color: red;'>Assigned</span></b> - can't be assigned to this lecturer but can be forced (remove the current lecturer and assign to this lecturer).</p>
         <!--  inform thar by clickeng the mail icon, an email will be sent to the lecturer -->

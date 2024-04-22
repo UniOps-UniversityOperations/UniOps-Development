@@ -22,7 +22,7 @@
                 ?>
             
                 <div class="top">
-                    <h1 class="topic">Adminitsrator / Rooms</h1>
+                    <h1 class="topic">Administrator / Rooms</h1>
                     <div class="centered_container">
                         <div class="room_type_counts">
                             <?php
@@ -30,7 +30,7 @@
                             foreach ($roomTypes as $type => $count) {
                                 echo "<div class='count_tile'>";
                                 echo "<div class='count_row'>";
-                                echo "<div class='count_column'><p># $type rooms:</p></div>";
+                                echo "<div class='count_column'><p># $type ROOMS:</p></div>";
                                 echo "<div class='count_column'><p>$count</p></div>";
                                 echo "</div>";
                                 echo "</div>";
