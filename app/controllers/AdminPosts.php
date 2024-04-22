@@ -159,7 +159,7 @@ require_once APPROOT . '/controllers/Mail.php';
 
                     'title' => 'Create Room',
 
-                    'id' => trim($_POST['id']),
+                    // 'id' => trim($_POST['id']),
                     'name' => trim($_POST['name']),
                     'type' => trim($_POST['type']),
                     'capacity' => trim($_POST['capacity']),
@@ -182,11 +182,11 @@ require_once APPROOT . '/controllers/Mail.php';
                     'idError' => '',
                 ];
 
-                if(empty($data['id'])){
+                if(empty($data['name'])){
                     $data['idError'] = 'Please enter Room ID';
                 }
 
-                if(empty($data['idError'])){
+                if(!empty($data['name'])){
                     if($this->R_postModel->createRoom($data)){
                         //flash('post_message', 'Room Added');
                         //redirect('pages/administrator_dashboard');
@@ -202,7 +202,7 @@ require_once APPROOT . '/controllers/Mail.php';
 
                     'title' => 'Create Room',
 
-                    'id' => '',
+                    // 'id' => '',
                     'name' => '',
                     'type' => '',
                     'capacity' => '',

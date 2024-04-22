@@ -19,7 +19,7 @@
 
         <label class="lable" for="type">Type:
         <select id="type" name="type" required>
-            <option value="LECTUER" <?php echo ($data["type"] == 'LECTUER') ? 'selected' : ''; ?>>LECTUER</option>
+            <option value="LECTURE" <?php echo ($data["type"] == 'LECTURE') ? 'selected' : ''; ?>>LECTURE</option>
             <option value="LAB" <?php echo ($data["type"] == 'LAB') ? 'selected' : ''; ?>>LAB</option>
             <option value="MEEING" <?php echo ($data["type"] == 'MEEING') ? 'selected' : ''; ?>>MEEING</option>
             <option value="COMMON" <?php echo ($data["type"] == 'COMMON') ? 'selected' : ''; ?>>COMMON</option>

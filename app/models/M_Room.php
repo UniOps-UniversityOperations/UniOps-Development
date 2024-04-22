@@ -10,7 +10,7 @@
 
         public function createRoom($data){
             $this->db->query('INSERT INTO rooms (
-                id,
+                
                 name,
                 type,
                 capacity,
@@ -30,7 +30,7 @@
                 is_seminar,
                 is_exam)
                 VALUES (
-                    :id,
+                    
                     :name,
                     :type,
                     :capacity,
@@ -50,7 +50,7 @@
                     :is_seminar,
                     :is_exam)');
             //Bind values
-            $this->db->bind(':id', $data['id']);
+            // $this->db->bind(':id', $data['id']);
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':type', $data['type']);
             $this->db->bind(':capacity', $data['capacity']);
