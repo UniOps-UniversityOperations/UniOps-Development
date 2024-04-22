@@ -116,7 +116,16 @@
             <?php 
             $i = 1;
             foreach($data['postsASI'] as $post) : ?>
-                <div class="lecture_room">
+                <div class="lecture_room"
+                    <?php if($data['postsRS'] != "null"){
+                        foreach($data['postsRS'] as $postRS) {
+                            if($postRS->subject_code == $post->sub_code){
+                                echo "style='background-color: lightgreen;'";
+                            }
+                        }
+                    }
+                    ?>
+                >
                     <div class="lecture_room_header">
                         <p class="row_num"><?php echo $i++; ?></p>
                         <p class="header_title"><?php echo $post->sub_code; ?></p>
@@ -506,7 +515,16 @@
                 <tbody>        
                     <?php $i = 0;
                     foreach($data['subjects'] as $subject) : ?>
-                        <tr>
+                        <tr
+                            <?php if($data['postsRS'] != "null"){
+                                foreach($data['postsRS'] as $postRS) {
+                                    if($postRS->subject_code == $subject->sub_code){
+                                        echo "style='background-color: lightgreen;'";
+                                    }
+                                }
+                            }
+                            ?>
+                        >
                             <td><?php echo $subject->sub_code; ?></td>
                             <td><?php echo $subject->sub_name; ?></td>
                             <td><?php echo $subject->sub_year; ?></td>
@@ -657,12 +675,7 @@
                                                 </div>
                                             </td>
                                         <?php } ?>
-                                <?php } ?>
-                            
-
-
-                            
-                            
+                                <?php } ?>                            
                         </tr>
                     <?php endforeach; ?>
             </table> 
