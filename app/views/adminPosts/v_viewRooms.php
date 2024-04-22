@@ -170,7 +170,6 @@
                                     <p><b>ID / Code</b></p> 
                                     <p><b>Type</b></p>
                                     <p><b>Capacity</b></p>
-                                    <p><b>Availability</b></p> 
                                     <p><b>No of Tables</b></p> 
                                     <p><b>No of Chairs</b></p> 
                                     <p><b>No of Boards</b></p> 
