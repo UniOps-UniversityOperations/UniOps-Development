@@ -322,8 +322,6 @@ hr {
   display: flex;
   justify-content: space-between;
 }
-/* Confirmation Pop up(Yes or No box) styles ends here.  */
-
 
 /* Styles for the modal pop-up message */
 #myModal {
@@ -361,3 +359,4 @@ hr {
   text-decoration: none;
   cursor: pointer;
 }
+

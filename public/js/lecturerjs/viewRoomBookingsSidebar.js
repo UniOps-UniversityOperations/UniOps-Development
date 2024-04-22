@@ -46,7 +46,9 @@ function reserve(start_time,end_time) {
   sidebar.innerHTML = `
   <form action='${urlroot}/Lecturer/roomBookingRequest' method='POST' id='reservation_form'>
   <div id ='sidebar-header'><h2 id='requestformh2'>Reservations <span id='close-btn' class='clsbtnres'>X</span></h2></div>
+  
   <input type="hidden" name='is_Grid' id='is_grid' value=0>
+
   <input type="hidden" name = 'request_date' id= 'booking_date' value = "">
   <input type="hidden" name = 'r_id' id = 'r_id' value = "">
 
@@ -171,6 +173,7 @@ function closeConfirmationPopup() {
 
 // Function to confirm the submission and submit the form
 function confirmSubmission() {
+
   document.getElementById('booking_date').value = document.getElementById('dateInput').value;
   document.getElementById('r_id').value = document.getElementById('roomid').textContent;
   document.getElementById('reservation_form').submit();

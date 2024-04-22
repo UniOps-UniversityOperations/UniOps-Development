@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   var ctx = document.getElementById('Chart').getContext('2d');
+
   var add_button = document.getElementById('add');
 
   var myChart = new Chart(ctx, {
@@ -60,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   add_button.addEventListener('click',() => {
     document.getElementById('requestSubjects').style.display = 'block';
+
   });
 }
 );
@@ -69,6 +71,8 @@ document.getElementById('subjects').addEventListener('click',()=>{
   window.location.href = urlroot + "/Lecturer/viewSubjects/";
 })
 
+
 document.getElementById('details').addEventListener('click',()=>{
   window.location.href = urlroot + "/Lecturer/viewProfile/";
 })
+
