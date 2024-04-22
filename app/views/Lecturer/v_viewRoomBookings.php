@@ -26,7 +26,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 ?>
 
 <div class="room-name">
-    <h2><?php echo basename($urlPath) ;?></h2>
+    <h2 id='roomid'><?php echo basename($urlPath) ;?></h2>
     <p><?php echo $date->format('d, F Y'); ?></p>
 </div>
 
@@ -145,6 +145,53 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
         ?>
          
     </div><!--Closing div for the bookings--> 
+
+    <?php
+
+// Check if the session variable is set
+if (isset($_SESSION['booking_result'])) {
+    // Display the message based on the session variable
+    $resultMessage = $_SESSION['booking_result'] ? 'Booking Request Successful' : 'Booking Request Failed';
+    
+    // Create a pop-up modal using HTML and CSS
+    echo '<div id="myModal" class="modal">
+            <div class="modal-content">
+              <p>' . $resultMessage . '</p>
+              <span class="close">&times;</span>
+            </div>
+          </div>';
+    
+    // Include JavaScript to show the modal
+    echo '<script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the page is loaded, show the modal
+            window.onload = function() {
+              modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+            
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+          </script>';
+
+    // Unset the session variable to clear it
+    unset($_SESSION['booking_result']);
+}
+
+?>
 
 </div><!--Closing div for the room schedules --> 
 

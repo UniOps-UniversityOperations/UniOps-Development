@@ -42,6 +42,7 @@
 
                 <label class="lable" for="sub_semester">Subject Semester:
                 <select id="sub_semester" name="sub_semester" required>
+                    <option value="0" <?php echo ($data["sub_semester"] == '0') ? 'selected' : ''; ?>>1 / 2</option>
                     <option value="1" <?php echo ($data["sub_semester"] == '1') ? 'selected' : ''; ?>>1</option>
                     <option value="2" <?php echo ($data["sub_semester"] == '2') ? 'selected' : ''; ?>>2</option>
                 </select>
@@ -53,6 +54,31 @@
                     <option value="IS" <?php echo ($data["sub_stream"] == 'IS') ? 'selected' : ''; ?>>IS</option>
                 </select>
                 </label>
+
+                <label class="label" for="sub_nStudents">Number of Students:
+                <input type="number" id="sub_nStudents" name="sub_nStudents" placeholder="Type or select" value="<?php echo $data["sub_nStudents"]; ?>" >
+
+                <!-- Pre-defined values as clickable labels in two rows -->
+                <div class="button-container">
+                    <label for="btn10" onclick="setNumberOfStudents(10)">10 Students</label>
+                    <label for="btn20" onclick="setNumberOfStudents(20)">20 Students</label>
+                    <label for="btn30" onclick="setNumberOfStudents(30)">30 Students</label>
+                    <label for="btn40" onclick="setNumberOfStudents(40)">40 Students</label>
+                </div>
+                <div class="button-container">
+                    <label for="btn50" onclick="setNumberOfStudents(50)">50 Students</label>
+                    <label for="btn60" onclick="setNumberOfStudents(60)">60 Students</label>
+                    <label for="btn70" onclick="setNumberOfStudents(70)">70 Students</label>
+                    <label for="btn80" onclick="setNumberOfStudents(80)">80 Students</label>
+                </div>
+                </label>
+
+                <script>
+                    // Function to set the number of students when a label is clicked
+                    function setNumberOfStudents(value) {
+                        document.getElementById('sub_nStudents').value = value;
+                    }
+                </script>
 
             </fieldset>
 

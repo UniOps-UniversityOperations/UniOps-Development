@@ -221,7 +221,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
         
         <form action='<?php echo URLROOT."/Lecturer/roomBookingRequest"; ?>' method='POST' id='reservation_form'>
             <h1>Fill the Below Form for Reservations<span id='close-btn'>X</span></h1>
-
+            <input type="hidden" name='is_Grid' id='is_grid' value = 1>
             <input type="hidden" name = 'request_date' id= 'booking_date' value = "">
             <input type="hidden" name = 'r_id' id = 'r_id' value = "">
 
@@ -259,7 +259,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 // Check if the session variable is set
 if (isset($_SESSION['booking_result'])) {
     // Display the message based on the session variable
-    $resultMessage = $_SESSION['booking_result'] ? 'Booking successful' : 'Booking failed';
+    $resultMessage = $_SESSION['booking_result'] ? 'Booking Request Successful' : 'Booking Request Failed';
     
     // Create a pop-up modal using HTML and CSS
     echo '<div id="myModal" class="modal">

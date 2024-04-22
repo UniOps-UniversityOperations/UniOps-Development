@@ -75,7 +75,8 @@ class Users extends Controller {
     }
 
     public function redirectByRole($role){
-        switch ($role):
+        $uppercaseletter = strtoupper($role);
+        switch ($uppercaseletter):
             case "L":
                 redirect('pages/lecturer_dashboard');
                 break;

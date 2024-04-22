@@ -59,14 +59,22 @@
       IF($_SERVER['REQUEST_METHOD'] == 'POST') {
         $r_id = $_POST['r_id'];
         $booking_date = $_POST['request_date'];
-        $startTime = $_POST['startTime'];
-        $endTime = $_POST['endTime'];
+        $startTime = $_POST['startTime'].':00:00';
+        $endTime = $_POST['endTime'].':00:00';
         $purpose = $_POST['purpose'];
         $result = $this->lecturerModel->roomBookingRequest($r_id,$booking_date,$startTime,$endTime,$purpose);//$result variable holds true or false based on the insertion was success or failure.
 
         // Set session variable based on the result
         $_SESSION['booking_result'] = $result;
-        redirect('Lecturer/viewBookingGridDateSubmitted');
+        echo 'is grid :- '.$_POST['is_Grid'];
+        echo 'Start time :- '.$startTime;
+        echo 'End Time :- '.$endTime;
+        if($_POST['is_Grid'] == '1'){
+          redirect('Lecturer/viewBookingGridDateSubmitted');
+        }else {
+          redirect('Lecturer/viewroombookings/'.$booking_date.'/'.$r_id);
+        }
+        
       }
 
     }
@@ -89,12 +97,13 @@
       ];
 
       // Iterate through your fetched data and update the total hours for each day
-      foreach ($numofLecHours as $item) {
-        $day = $item -> day_of_week;
-        $totalHours = $item -> total_hours;
-        $hourData[$day] = $totalHours;
+      if(is_array($numofLecHours)){
+        foreach ($numofLecHours as $item) {
+          $day = $item -> day_of_week;
+          $totalHours = $item -> total_hours;
+          $hourData[$day] = $totalHours;
+        }
       }
-
 
       $data = [
         'numofLecHours' => $hourData,

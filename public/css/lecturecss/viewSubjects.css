@@ -1,10 +1,10 @@
-.main {
-    /* margin-top: 100px; */
+/* .main {
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow-y: auto;
-}
+} */
+
 
 .option4 {
     border-left: 5px solid #010058af;
@@ -92,5 +92,111 @@ hr{
 }
 
 #requestSubjects {
-    display : block;
+    display : none;
 }
+
+#headings {
+    display: flex;
+    cursor: pointer;
+  }
+
+  #timetable:hover {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  #subjects:hover {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  #details:hover {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .section {
+    margin-right: 40px;
+    margin-bottom: 20px;
+  }
+
+  #subjects {
+    color: blue;
+  }
+
+
+
+
+
+
+
+
+
+
+/* Below is the select subject styles */
+
+#requestSubjects {
+  max-height: 600px; /* Set your desired height for the table body */
+  overflow-y: auto; /* Make the table body scrollable */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 75%;
+  margin: 0 auto;
+}
+
+/* Customize the scrollbar */
+#requestSubjects::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+#requestSubjects::-webkit-scrollbar-thumb {
+  background-color: #1848A0; /* Set the color of the scrollbar thumb */
+  border-radius: 5px; /* Roundness of the scroll thumb */
+}
+
+#requestSubjects::-webkit-scrollbar-track {
+  background-color: #fff; /* Set the color of the scrollbar track */
+}
+
+#subjectsSelectionPanel {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-top: 0px;
+}
+
+#subjectsSelectionPanel thead tr {
+  background-color: #1848A0;
+  color: #ffffff;
+  text-align: center;
+  position: sticky;
+  top: 0; /* Stick to the top of the container */
+  z-index: 1;
+}
+
+#subjectsSelectionPanel th,
+#subjectsSelectionPanel td {
+  padding: 12px 15px;
+}
+
+
+#subjectsSelectionPanel tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+#subjectsSelectionPanel tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+#subjectsSelectionPanel tbody tr:last-of-type {
+  border-bottom: 2px solid #1848A0;
+}
+
+#subjectsSelectionPanel tbody tr.active-row {
+  font-weight: bold;
+  color: #1848A0;
+}
+

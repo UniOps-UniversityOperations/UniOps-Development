@@ -71,7 +71,9 @@ select {
 
 .rooms {
   padding: 10px; 
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  overflow-y: auto;
+  max-height: 500px;
 } 
 
 .option2 {
@@ -122,6 +124,7 @@ background-color: #cccccc;
   text-align: center;
   border-collapse: separate;
   border-spacing: 0 15px;
+
 }
 
 .styled-table tbody tr {
@@ -132,6 +135,9 @@ background-color: #cccccc;
 
 .styled-table thead tr {
   background-color: #1e58c4;
+  position: sticky;
+  /* top: -40px; */
+  top : -10px;
 }
 
 .styled-table td,

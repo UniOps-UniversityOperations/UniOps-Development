@@ -9,7 +9,7 @@ class M_variables{
 
     // Get "lecturer_max_lec_hrs" and "lec_hrs_per_credit" 
     public function ASPage(){
-        $this->db->query('SELECT * FROM variables WHERE v_name = "lecturer_max_lec_hrs" OR v_name = "lec_hrs_per_credit"');
+        $this->db->query('SELECT * FROM variables WHERE v_name = "lecturer_max_lec_hrs" OR v_name = "lec_hrs_per_credit" OR v_name = "max_students_per_lecturer"');
         $results = $this->db->resultSet();
         return $results;
     }

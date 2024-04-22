@@ -240,6 +240,13 @@
                                     <?php $i++; } endforeach;?>
                                 </div>
                             </div>
+                                     
+                            <div class='upload_img'>
+                                <form method="post" action="<?php echo URLROOT; ?>/Upload/uploadImage/<?php echo $post->id; ?>" enctype="multipart/form-data">
+                                    <input type="file" name="image" required/>
+                                    <input type="submit" name="submit" value="Upload" />
+                                </form>
+                            </div>
 
                             <!-- ----------------- -->
 
