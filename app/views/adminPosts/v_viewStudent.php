@@ -4,6 +4,7 @@
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- <i class="material-icons">language</i> --> 
 
         <!-- <div class="wrapper side-panel-open"> -->
         <div class="wrapper">
@@ -80,19 +81,19 @@
                                 <div class="action_buttons">
 
                                     <button class="view_button">
-                                        <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
+                                        <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" title="view" class="view_icon">
                                     </button>
                                     
                                     <a href="<?php echo URLROOT; ?>/AdminPosts/updateStudent/<?php echo $post->s_id ?>">
                                         <button class="update_button">
-                                            <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
+                                            <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" title="update" class="update_icon">
 
                                         </button>
                                     </a>
                                     
                                     <a href="<?php echo URLROOT; ?>/AdminPosts/deleteStudent/<?php echo $post->s_id ?>">
                                         <button class="delete_button">
-                                            <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
+                                            <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" title="delete" class="delete_icon">
                                         </button>
                                     </a>
 

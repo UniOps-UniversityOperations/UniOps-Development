@@ -4,7 +4,19 @@
 
 <div class="leftsection">
 
-    <img src="<?php echo URLROOT;?>/images/default.jpeg" id="profilepicture">
+    <!-- Display user's profile picture -->
+    <?php if (!empty($data->profile_picture)) : ?>
+        <img src="<?php echo $data->profile_picture; ?>" id="profilepicture">
+    <?php else : ?>
+        <!-- If user's profile picture is not available, display a default image -->
+        <img src="<?php echo URLROOT; ?>/images/profile-user.png" id="profilepicture">
+    <?php endif; ?>
+
+    <!-- Form to upload a new profile picture -->
+    <form action="<?php echo URLROOT; ?>/Student/uploadProfilePicture" method="post" enctype="multipart/form-data">
+        <input type="file" name="profile_picture" id="profile_picture">
+        <input type="submit" value="Upload Profile Picture">
+    </form>
 
     <div><h2><?php echo $data->s_nameWithInitial ?></h2></div>
 
@@ -12,6 +24,9 @@
     
     <div class="create_room_button">
         <a href="<?php echo URLROOT;?>/Student/updateProfile/<?php echo $data->s_id ?>">
+
+
+        
         <button class="updatebutton">Edit Details</button>
         </a>
     </div>

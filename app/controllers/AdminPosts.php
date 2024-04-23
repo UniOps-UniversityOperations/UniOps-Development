@@ -871,7 +871,7 @@
                     's_stream' => trim($_POST['s_stream']),
                     's_year' => trim($_POST['s_year']),
                     // 's_semester' => trim($_POST['s_semester']),
-                    // 's_isDeleted' => isset($_POST['s_isDeleted']) ? '1' : '0',
+                    // 's_isDeleted' => isset($ _POST['s_isDeleted']) ? '1' : '0',
                     
                     's_codeError' => '',
                 ];
