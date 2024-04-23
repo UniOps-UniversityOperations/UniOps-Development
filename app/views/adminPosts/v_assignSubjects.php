@@ -344,7 +344,7 @@
                                 <td>
                                     <div class='btns1'>
                                         <p><?php echo $subject->lecturer_code; ?></p>
-                                        <a href="<?php echo URLROOT; ?>/AdminPosts/sendForceEmail/<?php echo $subject->lecturer_code; ?>/<?php echo $post->subject_code; ?>/<?php echo $data['postId']; ?>" title="Send Request Email" style="padding-right: 10px;">
+                                        <a href="<?php echo URLROOT; ?>/AdminPosts/sendForceEmail/<?php echo $subject->lecturer_code; ?>/<?php echo $subject->subject_code; ?>/<?php echo $data['postId']; ?>" title="Send Request Email" style="padding-right: 10px;">
                                             <button class="email_button">
                                                 <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Email Icon" class="email_icon">
                                             </button>
