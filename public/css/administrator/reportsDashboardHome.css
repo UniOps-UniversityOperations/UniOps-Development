@@ -293,3 +293,11 @@ flex-direction: row;
     margin-left: 80px;
     font-size: 21px;
 }
+
+.option10 {
+    border-left: 5px solid #010058af;
+    background-color: var(--Border-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 50px;
+}
