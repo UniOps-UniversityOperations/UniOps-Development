@@ -101,6 +101,13 @@
 						</a>
 					</div>
 
+					<div class="nav-option Reports">
+						<a href="<?php echo URLROOT;?>/Reports/viewReportsDashboard/">
+							<img src="<?php echo URLROOT;?>/images/reports.svg" class="nav-img">
+							<h3>Reports</h3>
+						</a>
+					</div>
+
 
 					<div class="nav-option logout">
 						<a href="<?php echo URLROOT;?>/Users/login/">
