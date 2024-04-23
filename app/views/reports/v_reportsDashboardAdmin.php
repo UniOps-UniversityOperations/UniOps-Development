@@ -11,7 +11,7 @@
         <a href="" class="btn2 btn"><h2>Timetable Report</h2></a>
     </div>
     <div class="row">
-        <a href="" class="btn3 btn"><h2>Lecturer Report</h2></a>
+        <a href="<?php echo URLROOT;?>/Reports/viewLecturerReportHome/" class="btn3 btn"><h2>Lecturer Report</h2></a>
         <a href="" class="btn4 btn"><h2>Instructor Report</h2></a>
     </div>
   </div>
