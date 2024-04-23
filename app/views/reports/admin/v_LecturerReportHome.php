@@ -137,9 +137,9 @@
             <div class="botttom">
                 <h2 class="bottom_topic">System Lecturer Variables</h2>
                 <div class='details1'>
-                    <p><b>Max Lecture Hours per Lecturer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 0</b></p>
-                    <p><b>Number of Lecture Hours per Credit &nbsp; : <?php echo $assigned_lec_count; ?></b></p>
-                    <p><b>Max Students per Lecturer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $lecturer_count - $assigned_lec_count; ?></b></p>
+                    <p><b>Max Lecture Hours per Lecturer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $data['variables'][0]->v_value;?></b></p>
+                    <p><b>Number of Lecture Hours per Credit &nbsp; : <?php echo $data['variables'][1]->v_value;?></b></p>
+                    <p><b>Max Students per Lecturer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $data['variables'][6]->v_value;?></b></p>
                 </div>
                 <div class='details2'>
                     

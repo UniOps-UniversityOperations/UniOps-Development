@@ -47,4 +47,11 @@ class M_Reports{
         return $result;
     }
 
+    //get Lecturer variables
+    public function getVariables(){
+        $this->db->query('SELECT * FROM variables');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
 }

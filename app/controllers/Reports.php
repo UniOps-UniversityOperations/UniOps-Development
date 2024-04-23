@@ -23,13 +23,15 @@ class Reports extends Controller {
         $assigned_lec_count = $this->Rpt_postModel->getAssignedLecturerCount();
         $total_subjects_count = $this->Rpt_postModel->getTotalSubjectsCount();
         $assigned_subjects_count = $this->Rpt_postModel->getAssignedSubjectsCount();
+        $variables = $this->Rpt_postModel->getVariables();
         
         $data = [
             'lecturers' => $lecturers,
             'department_count' => $department_count,
             'assigned_lec_count' => $assigned_lec_count,
             'total_subjects_count' => $total_subjects_count,
-            'assigned_subjects_count' => $assigned_subjects_count
+            'assigned_subjects_count' => $assigned_subjects_count,
+            'variables' => $variables
         ];
 
         $this->view('reports/admin/v_LecturerReportHome', $data);
