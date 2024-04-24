@@ -42,6 +42,7 @@ $totalHours = array_values($data['numofLecHours']);
                     <td><?php echo $subject->sub_semester; ?></td>
                     <td><?php echo $subject->sub_credits; ?></td>
                     <td><?php echo $subject->sub_stream; ?></td>
+                    <!-- <button id='request'>Request</button> -->
                 </tr>
             <?php endforeach; ?>
         </tbody>

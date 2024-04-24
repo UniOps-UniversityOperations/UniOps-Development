@@ -133,4 +133,5 @@
     padding: 5px 15px;
     cursor: pointer;
     border-radius: 15px;
+    width: fit-content;
   }

@@ -217,4 +217,16 @@ class M_Lecturer {
         }
     }
 
+    public function timeTable() {
+        
+
+    }
+
+    public function updateProfilePicture($fileDestination) {
+        $sql = "UPDATE users SET profilePicture=:path WHERE user_id = :uid;";
+        $this->db->query($sql);
+        $this->db->bind(':path',$fileDestination);
+        $this->db->bind(':uid',$_SESSION['user_id']);
+        return $this->db->execute();
+    }
 }
