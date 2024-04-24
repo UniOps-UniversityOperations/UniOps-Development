@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <a href="<?php echo URLROOT;?>/Reports/viewLecturerReportHome/" class="btn3 btn"><h2>Lecturer Report</h2></a>
-        <a href="" class="btn4 btn"><h2>Instructor Report</h2></a>
+        <a href="<?php echo URLROOT;?>/Reports/viewInstructorReportHome/" class="btn4 btn"><h2>Instructor Report</h2></a>
     </div>
   </div>
 

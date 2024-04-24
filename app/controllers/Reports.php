@@ -58,4 +58,28 @@ class Reports extends Controller {
         $this->view('reports/admin/v_LecturrerReport', $data);
     }
 //---------------------------------------------------------------------------------------------------------------------------
+
+// Instructor----------------------------------------------------------------------------------------------------------------
+
+    public function viewInstructorReportHome(){
+        $Instructors = $this->Rpt_postModel->getInstructors();
+        $department_count = $this->Rpt_postModel->getDepartmentCountI();
+        $assigned_lec_count = $this->Rpt_postModel->getAssignedLecturerCountI();
+        $total_subjects_count = $this->Rpt_postModel->getTotalSubjectsCount();
+        $assigned_subjects_count = $this->Rpt_postModel->getAssignedSubjectsCountI();
+        $variables = $this->Rpt_postModel->getVariables();
+        
+        $data = [
+            'Instructors' => $Instructors,
+            'department_count' => $department_count,
+            'assigned_lec_count' => $assigned_lec_count,
+            'total_subjects_count' => $total_subjects_count,
+            'assigned_subjects_count' => $assigned_subjects_count,
+            'variables' => $variables
+        ];
+
+        $this->view('reports/admin/v_InstructorReportHome', $data);
+    }
+
+// --------------------------------------------------------------------------------------------------------------------------
 }
