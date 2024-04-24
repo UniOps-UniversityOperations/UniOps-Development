@@ -19,7 +19,7 @@
             ?>
                 
                 <div class="top">
-                <h1 class="topic">Adminitsrator / Lecturers</h1>
+                <h1 class="topic">Administrator / Lecturers</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
@@ -58,7 +58,7 @@
 
                 <div class="title_bar">
                     <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
-                    <p class="title_item"><b>Code</b></p>
+                    <p class="title_item"><b>Initials</b></p>
                     <p class="title_item"><b>Email</b></p>
                     <p class="title_item"><b>Contact</b></p>
                     <p style="padding-right: 280px;" class="title_item"><b>Department</b></p>
@@ -152,7 +152,7 @@
 
                                 <table class="sidebar_table">
                                     <tr>
-                                        <td><b>Code</b></td>
+                                        <td><b>Initials</b></td>
                                         <td><b>: </b><?php echo $post->l_code; ?></td>
                                     </tr>
 

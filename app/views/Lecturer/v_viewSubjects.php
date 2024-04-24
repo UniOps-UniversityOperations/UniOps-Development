@@ -143,6 +143,7 @@ $totalHours = array_values($data['numofLecHours']);
     </button>
 </div>
 
+
 <script src="<?php echo URLROOT;?>/js/lecturerjs/viewSubjects.js"></script>
 
 <?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>

@@ -15,6 +15,7 @@ class M_Subject{
             sub_year,
             sub_semester,
             sub_stream,
+            sub_nStudents,
             sub_isCore,
             sub_isHaveLecture,
             sub_isHaveTutorial,
@@ -26,6 +27,7 @@ class M_Subject{
                 :sub_year,
                 :sub_semester,
                 :sub_stream,
+                :sub_nStudents,
                 :sub_isCore,
                 :sub_isHaveLecture,
                 :sub_isHaveTutorial,
@@ -38,6 +40,7 @@ class M_Subject{
         $this->db->bind(':sub_year', $data['sub_year']);
         $this->db->bind(':sub_semester', $data['sub_semester']);
         $this->db->bind(':sub_stream', $data['sub_stream']);
+        $this->db->bind(':sub_nStudents', $data['sub_nStudents']);
         $this->db->bind(':sub_isCore', $data['sub_isCore']);
         $this->db->bind(':sub_isHaveLecture', $data['sub_isHaveLecture']);
         $this->db->bind(':sub_isHaveTutorial', $data['sub_isHaveTutorial']);
@@ -67,6 +70,7 @@ class M_Subject{
             sub_year = :sub_year,
             sub_semester = :sub_semester,
             sub_stream = :sub_stream,
+            sub_nStudents = :sub_nStudents,
             sub_isCore = :sub_isCore,
             sub_isHaveLecture = :sub_isHaveLecture,
             sub_isHaveTutorial = :sub_isHaveTutorial,
@@ -80,6 +84,7 @@ class M_Subject{
         $this->db->bind(':sub_year', $data['sub_year']);
         $this->db->bind(':sub_semester', $data['sub_semester']);
         $this->db->bind(':sub_stream', $data['sub_stream']);
+        $this->db->bind(':sub_nStudents', $data['sub_nStudents']);
         $this->db->bind(':sub_isCore', $data['sub_isCore']);
         $this->db->bind(':sub_isHaveLecture', $data['sub_isHaveLecture']);
         $this->db->bind(':sub_isHaveTutorial', $data['sub_isHaveTutorial']);
@@ -122,6 +127,13 @@ class M_Subject{
         return $row;
     }
 
+    public function getSubjectDetailsByCode($code){
+        $this->db->query('SELECT * FROM subjects WHERE sub_code = :sub_code');
+        $this->db->bind(':sub_code', $code);
+        $row = $this->db->single();
+        return $row;
+    }
+
 }
 
 
@@ -134,6 +146,7 @@ class M_Subject{
         sub_year
         sub_semester
         sub_stream
+        sub_nStudents
         sub_isCore
         sub_isHaveLecture
         sub_isHaveTutorial

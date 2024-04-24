@@ -59,13 +59,6 @@
 						</a>
 					</div>
 
-					<div class="nav-option timetable">
-						<a href="">
-							<img src="<?php echo URLROOT;?>/images/timetable.svg" class="nav-img" alt="Timetable">
-							<h3> Timetable</h3>
-						</a>
-					</div>
-
 					<div class="nav-option option4">
 						<a href="<?php echo URLROOT;?>/AdminPosts/viewLecturers/">
 							<img src="<?php echo URLROOT;?>/images/lecturer.svg" class="nav-img" alt="Lecturer">
@@ -98,6 +91,20 @@
 					<a href="">
 							<img class="bellw" src="<?php echo URLROOT;?>/images/bellw.svg" alt="Notifications & Requests">
 							<h3> Notifications  & Requests</h3>
+						</a>
+					</div>
+
+					<div class="nav-option timetable">
+						<a href="">
+							<img src="<?php echo URLROOT;?>/images/timetable.svg" class="nav-img">
+							<h3>Timetables</h3>
+						</a>
+					</div>
+
+					<div class="nav-option Reports">
+						<a href="<?php echo URLROOT;?>/Reports/viewReportsDashboard/">
+							<img src="<?php echo URLROOT;?>/images/reports.svg" class="nav-img">
+							<h3>Reports</h3>
 						</a>
 					</div>
 

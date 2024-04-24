@@ -11,6 +11,6 @@
     // Load Config
     require_once 'config/config.php';
 
-    require_once 'libaries/Core.php';
-    require_once 'libaries/Controller.php';
-    require_once 'libaries/Database.php';
+    require_once 'libraries/Core.php';
+    require_once 'libraries/Controller.php';
+    require_once 'libraries/Database.php';
