@@ -20,7 +20,12 @@
 
     <div id="rank"><h3><?php echo $data->l_positionRank ?></h3></div>
 
-    <button class="updatebutton" onclick="editProfile('<?php echo URLROOT; ?>')">Edit Details</button>
+    <form action="<?php echo URLROOT;?>/lecturer/uploadProfilePicture" method='POST' enctype='multipart/form-data'>
+        <input type="file" name='profilePic' id='profilePicInput'>
+        <button type='submit' name = 'submit'>Update</button>
+    </form> 
+
+    <button id='clearProfilePic'>Clear Profile Picture</button>
 
 </div>
 
@@ -84,6 +89,8 @@
                 </div>
             </div>
         </div>
+
+        <button class="updatebutton" onclick="editProfile('<?php echo URLROOT; ?>')">Edit Details</button>  
 
     </div>
     

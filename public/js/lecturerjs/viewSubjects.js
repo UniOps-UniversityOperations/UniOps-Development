@@ -72,3 +72,8 @@ document.getElementById('subjects').addEventListener('click',()=>{
 document.getElementById('details').addEventListener('click',()=>{
   window.location.href = urlroot + "/Lecturer/viewProfile/";
 })
+
+document.getElementById('timetable').addEventListener('click',()=>{
+  window.location.href = urlroot + "/Lecturer/timeTable/";
+})
+
