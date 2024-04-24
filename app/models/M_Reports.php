@@ -54,4 +54,12 @@ class M_Reports{
         return $results;
     }
 
+    //get Lecturer details
+    public function getLecturer($l_code){
+        $this->db->query('SELECT * FROM lecturers WHERE l_code = :l_code AND l_isDeleted = 0');
+        $this->db->bind(':l_code', $l_code);
+        $result = $this->db->single();
+        return $result;
+    }
+
 }
