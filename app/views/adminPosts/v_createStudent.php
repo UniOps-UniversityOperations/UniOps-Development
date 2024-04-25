@@ -65,11 +65,11 @@
         </label>
 
         <label class="lable" for="s_year">Year:
-            <select name="year" id="s_year" required>
-                <option value="1"<?php if ($data["s_year"]=="1")echo " selected";?>>1</option>
-                <option value="2"<?php if ($data["s_year"]=="2")echo " selected";?>>2</option>
-                <option value="3"<?php if ($data["s_year"]=="3")echo " selected";?>>3</option>
-                <option value="4"<?php if ($data["s_year"]=="4")echo " selected";?>>4</option>
+            <select name="s_year" id="s_year" required>
+                <option value=1 <?php if ($data["s_year"]=="1")echo " selected";?>>1</option>
+                <option value=2 <?php if ($data["s_year"]=="2")echo " selected";?>>2</option>
+                <option value=3 <?php if ($data["s_year"]=="3")echo " selected";?>>3</option>
+                <option value=4 <?php if ($data["s_year"]=="4")echo " selected";?>>4</option>
             </select>
         </label>
         

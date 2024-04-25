@@ -64,10 +64,10 @@
 
         <label class="lable" for="s_year">Year:
             <select id="s_year" name="s_year" required>
-                <option value="1" <?php echo ($data["s_year"] == '1') ? 'selected' : ''; ?>>1</option>
-                <option value="2" <?php echo ($data["s_year"] == '2') ? 'selected' : ''; ?>>2</option>
-                <option value="3" <?php echo ($data["s_year"] == '3') ? 'selected' : ''; ?>>3</option>
-                <option value="4" <?php echo ($data["s_year"] == '4') ? 'selected' : ''; ?>>4</option>
+                <option value=1 <?php echo ($data["s_year"] == '1') ? 'selected' : ''; ?>>1</option>
+                <option value=2 <?php echo ($data["s_year"] == '2') ? 'selected' : ''; ?>>2</option>
+                <option value=3 <?php echo ($data["s_year"] == '3') ? 'selected' : ''; ?>>3</option>
+                <option value=4 <?php echo ($data["s_year"] == '4') ? 'selected' : ''; ?>>4</option>
             </select>
         </label>
 

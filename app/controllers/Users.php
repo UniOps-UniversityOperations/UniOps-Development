@@ -65,6 +65,7 @@ class Users extends Controller {
     public function createUserSession($user){
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['username'] = $user->username;
+        $_SESSION['profilePicture'] = $user->profilePicture;
     }
 
     public function logout(){
@@ -74,7 +75,8 @@ class Users extends Controller {
     }
 
     public function redirectByRole($role){
-        switch ($role):
+        $uppercaseletter = strtoupper($role);
+        switch ($uppercaseletter):
             case "L":
                 redirect('pages/lecturer_dashboard');
                 break;

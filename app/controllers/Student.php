@@ -40,6 +40,20 @@
             $this->view('Student/v_viewRoomBookings', $data);
         }
 
+        public function bookingDateSubmitted() {
+            if($_SERVER['REQUEST_METHOD'] == "POST") {
+              $room_id = $_POST['room_id'];
+              $date = $_POST["selectedDate"];
+              redirect('Student/viewroombookings/'.$date.'/'.$room_id);
+            }
+        }
+
+        public function viewBookingGrid($date){
+            $data = $this->studentModel->viewBookingGrid($date);
+            $this->view('Student/v_viewBookingGrid',$data);
+        }  
+      
+
         public function viewBookingGridDateSubmitted() {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
               $dateSelected = $_POST['selectedDate'];
@@ -47,19 +61,19 @@
             else {
               $dateSelected = date('Y-m-d');
             }
-            redirect('Lecturer/viewBookingGrid/'.$dateSelected.'/');
+            redirect('Student/viewBookingGrid/'.$dateSelected.'/');
            
         }
       
         public function roomBookingRequest() {
-      
+
             IF($_SERVER['REQUEST_METHOD'] == 'POST') {
               $r_id = $_POST['r_id'];
               $booking_date = $_POST['request_date'];
               $startTime = $_POST['startTime'].':00:00';
               $endTime = $_POST['endTime'].':00:00';
               $purpose = $_POST['purpose'];
-              $result = $this->lecturerModel->roomBookingRequest($r_id,$booking_date,$startTime,$endTime,$purpose);//$result variable holds true or false based on the insertion was success or failure.
+              $result = $this->studentModel->roomBookingRequest($r_id,$booking_date,$startTime,$endTime,$purpose);//$result variable holds true or false based on the insertion was success or failure.
       
               // Set session variable based on the result
               $_SESSION['booking_result'] = $result;
@@ -67,9 +81,9 @@
               echo 'Start time :- '.$startTime;
               echo 'End Time :- '.$endTime;
               if($_POST['is_Grid'] == '1'){
-                redirect('Lecturer/viewBookingGridDateSubmitted');
+                redirect('Student/viewBookingGridDateSubmitted');
               }else {
-                redirect('Lecturer/viewroombookings/'.$booking_date.'/'.$r_id);
+                redirect('Student/viewroombookings/'.$booking_date.'/'.$r_id);
               }
               
             }
@@ -85,13 +99,6 @@
         // public function updateProfile($s_id){
         //     $data = $this->studentModel->updateStudent($s_id);
         //     $this->view('Student/v_updateProfile', $data);
-        // }
-
-        //   public function lecturer_dashboard(){
-        //     $lecturerModel = $this->model('lecturermodels/M_Lecturer');
-        //     $current_Day = date('l');
-        //     $data = $lecturerModel->getTimeTable($current_Day);
-        //     $this->view('pages/Lecturer_dashboard',$data);
         // }
 
         public function updateProfile($postId){
@@ -132,30 +139,16 @@
             }
         }
 
-        // public function uploadProfilePicture() {
-        //     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_picture'])) {
-        //         $file = $_FILES['profile_picture'];
-        //         // Check file type, size, and perform any necessary validation
-        
-        //         // Move the uploaded file to a directory on the server
-        //         $uploadDirectory = 'path/to/upload/directory/';
-        //         $uploadedFilePath = $uploadDirectory . basename($file['name']);
-        //         move_uploaded_file($file['tmp_name'], $uploadedFilePath);
-        
-        //         // Update user's profile picture in the database
-        //         $this->studentModel->updateProfilePicture($uploadedFilePath);
-        //     }
-        // }
-        
 
-        // public function updateProfile($id){
-        //     $data = $this->studentModel->updateProfile();
-        //     if($data-> getRow($id)){
-        //         $data['row'] = $data->getRow($id);
-        //         $this->view('Student/v_updateProfile', $data);
-        //     }
-        //     else{
-        //         echo "error";
+        // // Function to handle profile picture upload
+        // private function uploadProfilePicture($file){
+        //     $uploadDirectory = 'images/upload/';
+        //     $fileName = uniqid() . '_' . basename($file['name']);
+        //     $targetFilePath = $uploadDirectory . $fileName;
+        //     if(move_uploaded_file($file['tmp_name'], $targetFilePath)){
+        //         return ['success' => true, 'file_path' => $targetFilePath];
+        //     }else{
+        //         return ['success' => false];
         //     }
         // }
 
