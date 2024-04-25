@@ -21,6 +21,7 @@ $totalHours = array_values($data['numofLecHours']);
     <div class="section" id="timetable">Timetable</div>
 </div>
 
+<div id="table_container">
 <div id="requestSubjects">
     <table id="subjectsSelectionPanel">
         <thead>
@@ -31,6 +32,7 @@ $totalHours = array_values($data['numofLecHours']);
                 <th>Semester</th>
                 <th>Credits</th>
                 <th>Stream</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -43,10 +45,20 @@ $totalHours = array_values($data['numofLecHours']);
                     <td><?php echo $subject->sub_credits; ?></td>
                     <td><?php echo $subject->sub_stream; ?></td>
                     <!-- <button id='request'>Request</button> -->
+                    <td>
+                        <form action="<?php echo URLROOT;?>/lecturer/requestSubject" method="POST">
+                            <button type="submit" name="submit" id="request_button">Request</button>
+                            <input type="hidden" name="sub_code" value=<?php echo $subject->sub_code; ?>>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    
+</div>
+<button id="end_btn">End</button>
 </div>
 
 <div id="workload">
@@ -142,6 +154,8 @@ $totalHours = array_values($data['numofLecHours']);
         <img src="<?php echo URLROOT;?>/images/plus_icon.svg" alt="Add Icon" class="add_icon">
     </button>
 </div>
+
+
 
 <script src="<?php echo URLROOT;?>/js/lecturerjs/viewSubjects.js"></script>
 

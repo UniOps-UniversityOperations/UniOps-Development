@@ -59,7 +59,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   add_button.addEventListener('click',() => {
-    document.getElementById('requestSubjects').style.display = 'block';
+    document.getElementById('table_container').style.display = 'block';
+    document.getElementsByClassName('main')[0].classList.add('no-scroll');
   });
 }
 );
@@ -77,3 +78,7 @@ document.getElementById('timetable').addEventListener('click',()=>{
   window.location.href = urlroot + "/Lecturer/timeTable/";
 })
 
+document.getElementById("end_btn").addEventListener('click',()=>{
+  document.getElementById('table_container').style.display = 'none';
+  document.getElementsByClassName('main')[0].classList.remove('no-scroll');
+})

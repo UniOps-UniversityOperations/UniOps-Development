@@ -170,5 +170,13 @@
       $this->view('Lecturer/v_viewProfile', $data);
     }
 
+    public function requestSubject() {
+      if(isset($_POST['submit'])){
+        $sub_code = $_POST['sub_code'];
+        $this->lecturerModel->requestSubject($sub_code);
+        redirect('Lecturer/viewSubjects');
+      }
+    }
+
   }
 
