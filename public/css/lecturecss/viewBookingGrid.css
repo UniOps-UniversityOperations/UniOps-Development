@@ -1,0 +1,262 @@
+.option2 {
+    border-left: 5px solid #010058af;
+    background-color: var(--Border-color);
+    color: white;
+    cursor: pointer;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+/* Grid Styles starts here */
+
+#scheduleGrid {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-gap: 5px; /* Add gap between grid items */
+    margin: 40px 20px 20px 20px; /* Add margin for spacing */
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.room-id {
+    padding: 10px; /* Add padding for better visual separation */
+    font-weight: bold;
+}
+
+.free_slot {
+    background-color: #aaffaa; /* Light green for free slots */
+    border: 1px solid #00aa00; /* Darker green border */
+    padding: 10px; /* Add padding for better visual appearance */
+}
+
+.booked {
+    background-color: #ffaaaa; /* Light red for booked slots */
+    border: 1px solid #aa0000; /* Darker red border */
+    padding: 10px; /* Add padding for better visual appearance */
+}
+
+/* Additional styling for the grid container */
+#scheduleGrid div {
+    text-align: center; /* Center the text inside each grid item */
+}
+
+/* Hover effect for better interactivity */
+.free_slot:hover,
+.booked:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#scheduleGrid .time {
+    text-align: left;
+    padding-left: 0px;
+    font-weight: bold;
+    grid-column-gap: 0;
+    position : sticky;
+    top: 0px;
+}
+
+.room-id,
+.free_slot,
+.booked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensure the items take up the full height of the grid cell */
+}
+/* Grid Styles */
+
+
+/* Form Styling */
+
+.date-selection-form {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .date-selection-form label {
+    margin-right: 8px;
+    font-weight: bold;
+  }
+  
+  .date-selection-form input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-right: 8px;
+  }
+  
+  .date-selection-form button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .date-selection-form button:hover {
+    background-color: #45a049;
+  }
+
+  /* Form Styling ends here */
+
+  /*Request room for styles */
+
+#reservation_form {
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .reservation_label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  select {
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  #reservation_submit {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #reservation_submit:hover {
+    background-color: #45a049;
+  }
+
+  #allocation_RequestForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Ensure the form appears on top of other elements */
+    display: none;
+    /* Add other styling as needed */
+}
+
+#close-btn {
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+/* Below are the styles for the pop up message */
+
+/* Styles for the modal pop-up message */
+#myModal {
+  display: none; /* Hide the modal by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3; /* Ensure the modal appears on top of other elements */
+  background-color: #fefefe;
+  border: 1px solid #888;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.modal-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 200px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* Confirmation Pop up(Yes or No box) styles starts here.  */
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-content p {
+  font-weight: bold;
+}
+
+.yes-btn, .no-btn {
+  margin-top: 20px;
+  padding: 5px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#button_Container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.yes-btn:hover {
+  background-color: #bbbbbf;
+}
+
+.no-btn:hover {
+  background-color: #bbbbbf;
+}
+/* Confirmation Pop up(Yes or No box) styles ends here.  */

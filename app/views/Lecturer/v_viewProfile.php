@@ -1,17 +1,31 @@
 <!-- this variable is used to set the css file for this view -->
-<?php $style = "viewProfile"; ?> 
+<?php $style = "lecturecss/viewProfile"; ?> 
 
 <?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
 
+<div id="headings">
+    <div class="section" id="details">Details</div>
+    <div class="section" id="subjects">Subjects</div>
+    <div class="section" id="timetable">Timetable</div>
+</div>
+
+<div id="body">
+    
+
 <div class="leftsection">
 
-    <img src="<?php echo URLROOT;?>/images/default.jpeg" id="profilepicture">
+    <img src="<?php echo URLROOT;?>/images/profilePictures/<?php echo $_SESSION['profilePicture']; ?>" id="profilepicture">
 
     <div><h2><?php echo $data->l_fullName ?></h2></div>
 
     <div id="rank"><h3><?php echo $data->l_positionRank ?></h3></div>
 
-    <button class="updatebutton">Edit Details</button>
+    <form action="<?php echo URLROOT;?>/lecturer/uploadProfilePicture" method='POST' enctype='multipart/form-data'>
+        <input type="file" name='profilePic' id='profilePicInput'>
+        <button type='submit' name = 'submit'>Update</button>
+    </form> 
+
+    <button id='clearProfilePic'>Clear Profile Picture</button>
 
 </div>
 
@@ -76,8 +90,13 @@
             </div>
         </div>
 
+        <button class="updatebutton" onclick="editProfile('<?php echo URLROOT; ?>')">Edit Details</button>  
+
     </div>
     
 </div>
 
+</div>
+
+<script src="<?php echo URLROOT;?>/js/lecturerjs/viewProfile.js"></script>
 <?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>

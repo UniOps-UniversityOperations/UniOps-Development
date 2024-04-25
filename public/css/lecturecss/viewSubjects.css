@@ -1,0 +1,203 @@
+/* .main {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+
+.option4 {
+    border-left: 5px solid #010058af;
+    background-color: var(--Border-color);
+    color: white;
+    cursor: pointer;
+}
+
+/* Table Styles Starts Here. */
+
+.styled-table {
+    width: 100%;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.styled-table tbody tr {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+.styled-table thead tr {
+    background-color: #1e58c4;
+}
+
+.styled-table td,
+.styled-table th {
+    padding: 15px;
+}
+
+.styled-table tr td:first-child,
+.styled-table tr th:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.styled-table tr td:last-child,
+.styled-table tr th:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+hr{
+    border: 1px solid #1848A0;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+    
+  /* Style for the add button */
+  .add_button {
+    background-color: #4CAF50;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+  }
+  
+  .add_icon{
+    padding-top: 5px;
+    width: 30px;
+  }
+  
+  /* Change the background color on hover */
+  .add_button:hover {
+    background-color: #45a049;
+  }
+
+  #workload {
+    height: 50vh; /* Ensure this height is sufficient to contain the chart */
+    width: 100%;
+    max-height: 400px;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+#chart {
+    flex-grow: 1;
+    width: 100%;
+}
+
+#requestSubjects {
+    display : none;
+}
+
+#headings {
+    display: flex;
+    cursor: pointer;
+  }
+
+  #timetable:hover {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  #subjects:hover {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  #details:hover {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .section {
+    margin-right: 40px;
+    margin-bottom: 20px;
+  }
+
+  #subjects {
+    color: blue;
+  }
+
+
+
+
+
+
+
+
+
+
+/* Below is the select subject styles */
+
+#requestSubjects {
+  max-height: 600px; /* Set your desired height for the table body */
+  overflow-y: auto; /* Make the table body scrollable */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 75%;
+  margin: 0 auto;
+}
+
+/* Customize the scrollbar */
+#requestSubjects::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+#requestSubjects::-webkit-scrollbar-thumb {
+  background-color: #1848A0; /* Set the color of the scrollbar thumb */
+  border-radius: 5px; /* Roundness of the scroll thumb */
+}
+
+#requestSubjects::-webkit-scrollbar-track {
+  background-color: #fff; /* Set the color of the scrollbar track */
+}
+
+#subjectsSelectionPanel {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-top: 0px;
+}
+
+#subjectsSelectionPanel thead tr {
+  background-color: #1848A0;
+  color: #ffffff;
+  text-align: center;
+  position: sticky;
+  top: 0; /* Stick to the top of the container */
+  z-index: 1;
+}
+
+#subjectsSelectionPanel th,
+#subjectsSelectionPanel td {
+  padding: 12px 15px;
+}
+
+
+#subjectsSelectionPanel tbody tr {
+  border-bottom: 1px solid #dddddd;
+ /*  text-align: center; */
+}
+
+#subjectsSelectionPanel tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+#subjectsSelectionPanel tbody tr:last-of-type {
+  border-bottom: 2px solid #1848A0;
+}
+
+#subjectsSelectionPanel tbody tr.active-row {
+  font-weight: bold;
+  color: #1848A0;
+}
+
