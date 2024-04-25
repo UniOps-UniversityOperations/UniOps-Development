@@ -10,17 +10,41 @@
     background-color: #f0f0f0;
     margin-right: 15px;
     border-radius: 15px;
-    padding: 20px;
-    width: 26%;
+    padding: 20px 0px 20px 20px;
+    width: 24%;
 }
 
 .page_right{
-    flex: 2;
-    background-color: #f0f0f0;
-    border-radius: 15px;
-    padding: 10px;
-    height : 150%;
+  flex: 2;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  padding: 10px;
+  height: 100%;
+  overflow-y: auto;
 }   
+
+
+/* Styles for WebKit browsers */
+.page_right::-webkit-scrollbar {
+  width: 10px; /* Adjust the width of the scrollbar */
+}
+
+/* Track */
+.page_right::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Color of the scrollbar track */
+}
+
+/* Handle */
+.page_right::-webkit-scrollbar-thumb {
+  background: #1848A0; /* Color of the scrollbar handle */
+  border-radius: 10px; /* Rounded corners of the scrollbar handle */
+}
+
+/* Handle on hover */
+.page_right::-webkit-scrollbar-thumb:hover {
+  background: navy; /* Color of the scrollbar handle on hover */
+}
+
 
 .page_left h2{
     padding: 10px;
@@ -32,8 +56,6 @@
     padding-top: 10px;
 }
 
-
-
 .top{
     display: flex;
     justify-content: space-between;
@@ -41,7 +63,8 @@
     /* border: #1848A0 2px solid; */
     /* border-radius: 15px; */
     margin: 10px;
-    height: 44%;
+    height: 66%;
+    width: 98%;
 }
 
 .top_left{
@@ -74,7 +97,7 @@
     /* height: 46%; */
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    width: 98%;
 }
 
 
@@ -375,7 +398,7 @@
     display: flex;
     justify-content: space-evenly;
     /* padding-left: 30px; */
-    padding-top: 10px;
+    /* padding-top: 10px; */
     font-size: 20px;
 }
   
