@@ -122,5 +122,13 @@ class M_Reports{
         $assigned_subjects_count = $assigned_subjects_count_iast->assigned_subjects_count_iast + $assigned_subjects_count_ipt->assigned_subjects_count_ipt;
         return $assigned_subjects_count;
     }
+
+    //get Instructor details
+    public function getInstructor($i_code){
+        $this->db->query('SELECT * FROM instructors WHERE i_code = :i_code AND i_isDeleted = 0');
+        $this->db->bind(':i_code', $i_code);
+        $result = $this->db->single();
+        return $result;
+    }
     
 }

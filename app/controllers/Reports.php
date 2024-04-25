@@ -6,7 +6,8 @@ class Reports extends Controller {
         $this->Rpt_postModel = $this->model('M_Reports');
         $this->AS_postModel = $this->model('M_assignedSubjects');
         $this->RS_postModel = $this->model('M_requestedSubjects');
-
+        $this->RSI_postModel = $this->model('M_requestedSubjectsInstructor');
+        $this->ASI_postModel = $this->model('M_assignedSubjectsInstructor');
     }
     
 
@@ -79,6 +80,26 @@ class Reports extends Controller {
         ];
 
         $this->view('reports/admin/v_InstructorReportHome', $data);
+    }
+
+    public function viewInstructorReport($i_code){
+        // die('viewInstructorReport -> ' . $i_code);
+
+
+        $instructor = $this->Rpt_postModel->getInstructor($i_code);
+        $variables = $this->Rpt_postModel->getVariables();
+        $postsASI = $this->ASI_postModel->getSubjects($i_code);
+        $postsRSI = $this->RSI_postModel->getSubjects($i_code);
+
+        $data = [
+            'instructor' => $instructor,
+            'variables' => $variables,
+            'postsASI' => $postsASI,
+            'postsRSI' => $postsRSI
+        ];
+
+        $this->view('reports/admin/v_InstructorReport', $data);
+
     }
 
 // --------------------------------------------------------------------------------------------------------------------------

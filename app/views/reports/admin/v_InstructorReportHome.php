@@ -138,19 +138,18 @@
                 <h2 class="bottom_topic">System Instructor Variables</h2>
                 <div class='details1'>
                     <p><b>Max Lecture Hours per Instructor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $data['variables'][0]->v_value;?></b></p>
-                    <p><b>Max Practical Hours per Instructor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $data['variables'][4]->v_value;?></b></p>
+                    <p><b>Max Practical Hours per Instructor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $data['variables'][4]->v_value;?></b></p>
                     <p><b>Max Tutorial Hours per Instructor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $data['variables'][5]->v_value;?></b></p>
-                    <p><b>Number Lecture of Hours per Credit &nbsp; : <?php echo $data['variables'][1]->v_value;?></b></p>
-                    <p><b>Number Practical of Hours per Credit : <?php echo $data['variables'][2]->v_value;?></b></p>
+                    <p><b>Number Lecture of Hours per Credit &nbsp;&nbsp;&nbsp; : <?php echo $data['variables'][1]->v_value;?></b></p>
+                    <p><b>Number Practical of Hours per Credit &nbsp; : <?php echo $data['variables'][2]->v_value;?></b></p>
 
                 </div>
                 <div class='details2'>
                     <p><b>Number Tutorial of Hours per Credit &nbsp; : <?php echo $data['variables'][3]->v_value;?></b></p>
                     <p><b>Max Students per Lecturer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $data['variables'][7]->v_value;?></b></p>
-                    <p><b>Max Students per Practical &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $data['variables'][8]->v_value;?></b></p>
-                    <p><b>Max Students per Tutorial : <?php echo $data['variables'][9]->v_value;?></b></p>
+                    <p><b>Max Students per Practical &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $data['variables'][8]->v_value;?></b></p>
+                    <p><b>Max Students per Tutorial &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $data['variables'][9]->v_value;?></b></p>
                 </div>
-                
             </div>
         </div>
     </div>
