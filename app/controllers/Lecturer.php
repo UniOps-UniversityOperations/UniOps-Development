@@ -170,5 +170,18 @@
       $this->view('Lecturer/v_viewProfile', $data);
     }
 
+    public function requestSubject() {
+      if(isset($_POST['submit'])){
+        $sub_code = $_POST['sub_code'];
+        $result = $this->lecturerModel->requestSubject($sub_code);
+        redirect('Lecturer/viewSubjects');
+      }
+    }
+
+    public function deletePreferredSubject($sub_code) {
+      $this->lecturerModel->deletePreferredSubject($sub_code);
+      redirect('Lecturer/viewSubjects');
+    }
+
   }
 

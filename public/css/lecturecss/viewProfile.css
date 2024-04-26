@@ -135,3 +135,59 @@
     border-radius: 15px;
     width: fit-content;
   }
+
+
+
+
+  /* Form and the clearProfilePic button Styles */
+ /*  .leftsection form {
+    margin-top: 20px; 
+  }
+  
+  .leftsection form input[type="file"] {
+    margin-bottom: 10px; 
+  }
+  
+  #clearProfilePic {
+    color: white;
+    background-color: red; 
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 15px;
+    width: fit-content;
+    margin-top: 10px; 
+  } */
+  
+  .leftsection form {
+    margin-top: 20px; /* Adjust as needed */
+  }
+  
+
+  .leftsection form label.upload-label {
+    color: white;
+    background-color: blue; /* Choose a suitable color */
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  
+  .leftsection form label.upload-label:hover {
+    background-color: navy; /* Darken the color on hover */
+  }
+  
+  #clearProfilePic {
+    margin-top: 10px; /* Adjust as needed */
+    color: white;
+    background-color: red; /* Choose a suitable color */
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #clearProfilePic:hover {
+    background-color: darkred; /* Darken the color on hover */
+  }
+  
