@@ -1,0 +1,303 @@
+.page{  
+    display: flex;
+    height: 94%;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+.col1{
+    flex: 1;
+    background-color: #f0f0f0;
+    margin-right: 15px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.col2{
+    flex: 2;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    padding: 10px;
+}   
+
+.lecturer_list{
+    padding: 10px;
+}
+
+/* Style for the search container */
+.search-container {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* Style for the search input */
+#search {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Add this to your CSS file */
+#clear-search {
+    cursor: pointer;
+}
+
+/* Add any other existing styles you may have */
+#clear-search:hover {
+    color: red;
+}
+
+.lecturer_table{
+    max-height: 760px;
+    overflow-y: auto;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-top: 0px;
+}
+
+.styled-table thead tr {
+    background-color: #1848A0;
+    color: #ffffff;
+    text-align: left;
+    position: sticky;
+    top: 0; /* Stick to the top of the container */
+    z-index: 1;
+    }
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #ccc;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #1848A0;
+}
+
+.styled-table tbody tr.active-row {
+    /* font-weight: bold; */
+    color: #1848A0;
+}
+
+.report_btn{
+    text-decoration: none;
+    font-weight: bold;
+    background-color: var(--Border-color);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+.top_bar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cell{
+    display: flex;
+    width: 240px;
+    height: 120px;
+    margin: 10px;
+    border: #1848A0 2px solid;
+    border-radius: 10px;
+    padding: 10px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom_bar{
+    display: flex;
+    flex-direction: column;
+}
+
+.pie_chart{
+    display: flex;
+    flex-grow: 1;
+    border: 2px solid #1848A0;
+    border-radius: 20px;
+    font-family: "Open Sans", Arial;
+    background: #EEE;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 20px;
+    font-weight: 300;
+    height: 540px;
+    /* width: 505px; */
+    flex-direction: row;
+    justify-content: space-around;
+}
+@keyframes bake-pie {
+from {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+}
+}
+
+.pie-chart {
+    font-family: Arial;
+    width: 440px;
+    margin-top: 80px;
+    text-align: center;
+    scale: 1.5;
+}
+
+.pie-chart__wrapper {
+width: 400px;
+margin: 30px auto;
+text-align: center;
+}
+
+.pie-chart__pie,
+.pie-chart__legend {
+display: inline-block;
+vertical-align: top;
+}
+
+.pie-chart__pie {
+position: relative;
+height: 200px;
+width: 200px;
+margin: 10px auto 35px;
+}
+
+.pie-chart__pie::before {
+content: "";
+display: block;
+position: absolute;
+z-index: 1;
+width: 100px;
+height: 100px;
+background: #EEE;
+border-radius: 50%;
+top: 50px;
+left: 50px;
+}
+
+.pie-chart__pie::after {
+content: "";
+display: block;
+width: 120px;
+height: 2px;
+background: rgba(0, 0, 0, 0.1);
+border-radius: 50%;
+box-shadow: 0 0 3px 4px rgba(0, 0, 0, 0.1);
+margin: 220px auto;
+}
+
+.slice {
+position: absolute;
+width: 200px;
+height: 200px;
+clip: rect(0px, 200px, 200px, 100px);
+animation: bake-pie 1s;
+}
+
+.slice span {
+display: block;
+position: absolute;
+top: 0;
+left: 0;
+background-color: black;
+width: 200px;
+height: 200px;
+border-radius: 50%;
+clip: rect(0px, 200px, 200px, 100px);
+}
+
+.pie-chart__legend {
+display: block;
+list-style-type: none;
+padding: 0;
+margin: 0 auto;
+background: #FFF;
+padding: 0.75em 0.75em 0.05em;
+font-size: 13px;
+box-shadow: 1px 1px 0 #DDD, 2px 2px 0 #BBB;
+text-align: left;
+width: 63%;
+}
+
+.pie-chart__legend li {
+height: 1.25em;
+margin-bottom: 0.7em;
+padding-left: 0.5em;
+border-left: 1.25em solid black;
+}
+
+.pie-chart__legend em {
+font-style: normal;
+}
+
+.pie-chart__legend span {
+float: right;
+}
+
+.pie-charts {
+display: flex;
+flex-direction: row;
+}
+
+@media (max-width: 500px) {
+.pie-charts {
+    flex-direction: column;
+}
+}
+
+.botttom{
+    display: flex;
+    border: #1848A0 2px solid;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 160px;
+}
+
+.bottom_topic{
+    padding: 10px;
+}
+.details1{
+    text-align: left;
+    padding-top: 50px;
+    margin-left: -270px;
+    font-size: 21px;
+}
+
+.details2{
+    text-align: left;
+    padding-top: 50px;
+    margin-left: 80px;
+    font-size: 21px;
+}
+
+.option10 {
+    border-left: 5px solid #010058af;
+    background-color: var(--Border-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 50px;
+}
