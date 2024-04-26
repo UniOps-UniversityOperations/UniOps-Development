@@ -60,8 +60,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   add_button.addEventListener('click',() => {
+<<<<<<< HEAD
+    document.getElementById('table_container').style.display = 'block';
+    document.getElementsByClassName('main')[0].classList.add('no-scroll');
+=======
     document.getElementById('requestSubjects').style.display = 'block';
 
+>>>>>>> 0c147ba8ec7fedaec9e190fb642254c84fcade12
   });
 }
 );
@@ -76,3 +81,16 @@ document.getElementById('details').addEventListener('click',()=>{
   window.location.href = urlroot + "/Lecturer/viewProfile/";
 })
 
+
+document.getElementById('timetable').addEventListener('click',()=>{
+  window.location.href = urlroot + "/Lecturer/timeTable/";
+})
+
+<<<<<<< HEAD
+document.getElementById("end_btn").addEventListener('click',()=>{
+  document.getElementById('table_container').style.display = 'none';
+  document.getElementsByClassName('main')[0].classList.remove('no-scroll');
+})
+=======
+
+>>>>>>> 0c147ba8ec7fedaec9e190fb642254c84fcade12

@@ -3,6 +3,7 @@
   class Lecturer extends Controller{
 
     public $lecturerModel;
+    public $userModel;
 
     public function __construct(){
       $this->lecturerModel = $this->model('lecturermodels/M_Lecturer');
@@ -113,6 +114,73 @@
       ];
       
       $this->view('Lecturer/v_viewSubjects', $data);
+    }
+
+    public function timeTable() {
+      $timetable = $this->lecturerModel->timeTable();
+    }
+
+    public function uploadProfilePicture() {
+      if(isset($_POST['submit'])){
+        $file = $_FILES['profilePic'];
+        $fileName = $file['name'];
+        $fileParts = explode('.',$fileName);
+        $fileExt = strtolower(end($fileParts));
+        $allowedExt = array('jpeg','png','jpg');
+
+        if(in_array($fileExt,$allowedExt)){
+          if(!$file['error']){
+            if($file['size'] < 5000000) {
+              $fileNameNew = $_SESSION['user_id'].".".$fileExt;
+              $fileDestination = dirname(dirname(dirname(__FILE__)))."\public\images\profilePictures\lecturerProfilePics\\".$fileNameNew;
+  
+                // Attempt to move the uploaded file
+                if(move_uploaded_file($file['tmp_name'], $fileDestination)) {
+        
+                    $this->lecturerModel->updateProfilePicture("lecturerProfilePics/".$fileNameNew);
+                    $data = $this->lecturerModel->viewProfile();
+                    unset($_SESSION['profilePicture']);
+                    $this->userModel = $this->model('M_Users');
+                    $user = $this->userModel->findUserById($_SESSION['user_id']);
+                    $_SESSION['profilePicture'] = $user->profilePicture;
+                    $this->view('Lecturer/v_viewProfile', $data);
+                } else {
+                    echo "Failed to move file.";
+                }
+              
+            } else {
+              echo "Your Image is too big.";
+            }
+          } else {
+            echo "There was an error uploading your profile picture.";
+          }
+        } else {
+          echo "You can not upload files of this type.";
+        }
+      }
+    }
+
+    public function clearProfilePicture() {
+      $this->lecturerModel->updateProfilePicture("defaultPicture.svg");
+      $data = $this->lecturerModel->viewProfile();
+      unset($_SESSION['profilePicture']);
+      $this->userModel = $this->model('M_Users');
+      $user = $this->userModel->findUserById($_SESSION['user_id']);
+      $_SESSION['profilePicture'] = $user->profilePicture;
+      $this->view('Lecturer/v_viewProfile', $data);
+    }
+
+    public function requestSubject() {
+      if(isset($_POST['submit'])){
+        $sub_code = $_POST['sub_code'];
+        $result = $this->lecturerModel->requestSubject($sub_code);
+        redirect('Lecturer/viewSubjects');
+      }
+    }
+
+    public function deletePreferredSubject($sub_code) {
+      $this->lecturerModel->deletePreferredSubject($sub_code);
+      redirect('Lecturer/viewSubjects');
     }
 
   }

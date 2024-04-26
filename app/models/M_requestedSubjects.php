@@ -16,7 +16,7 @@ class M_requestedSubjects{
 //     }
 
     public function getSubjects($code){
-        $this->db->query('SELECT requestedSubjects.*, subjects.sub_year, subjects.sub_stream, subjects.sub_semester, subjects.sub_credits, sub_nStudents
+        $this->db->query('SELECT requestedSubjects.*, subjects.sub_year, subjects.sub_stream, subjects.sub_semester, subjects.sub_credits, subjects.sub_name, subjects.sub_nStudents
                             FROM requestedSubjects 
                             INNER JOIN subjects ON requestedSubjects.subject_code = subjects.sub_code 
                             WHERE requestedSubjects.isDeleted = 0 AND requestedSubjects.lecturer_code = :code');

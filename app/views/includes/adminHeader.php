@@ -94,10 +94,17 @@
 						</a>
 					</div>
 
-					<div class="nav-option timetable">
+					<div class="nav-option option9">
 						<a href="">
 							<img src="<?php echo URLROOT;?>/images/timetable.svg" class="nav-img">
 							<h3>Timetables</h3>
+						</a>
+					</div>
+
+					<div class="nav-option option10">
+						<a href="<?php echo URLROOT;?>/Reports/viewReportsDashboard/">
+							<img src="<?php echo URLROOT;?>/images/reports.svg" class="nav-img">
+							<h3>Reports</h3>
 						</a>
 					</div>
 

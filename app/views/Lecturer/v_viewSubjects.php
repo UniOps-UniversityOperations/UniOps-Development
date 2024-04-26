@@ -21,6 +21,7 @@ $totalHours = array_values($data['numofLecHours']);
     <div class="section" id="timetable">Timetable</div>
 </div>
 
+<div id="table_container">
 <div id="requestSubjects">
     <table id="subjectsSelectionPanel">
         <thead>
@@ -31,6 +32,7 @@ $totalHours = array_values($data['numofLecHours']);
                 <th>Semester</th>
                 <th>Credits</th>
                 <th>Stream</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -42,10 +44,21 @@ $totalHours = array_values($data['numofLecHours']);
                     <td><?php echo $subject->sub_semester; ?></td>
                     <td><?php echo $subject->sub_credits; ?></td>
                     <td><?php echo $subject->sub_stream; ?></td>
+                    <!-- <button id='request'>Request</button> -->
+                    <td>
+                        <form action="<?php echo URLROOT;?>/lecturer/requestSubject" method="POST">
+                            <button type="submit" name="submit" id="request_button">Request</button>
+                            <input type="hidden" name="sub_code" value=<?php echo $subject->sub_code; ?>>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    
+</div>
+<button id="end_btn">End</button>
 </div>
 
 <div id="workload">
@@ -114,6 +127,7 @@ $totalHours = array_values($data['numofLecHours']);
             <th>Year</th>
             <th>Semester</th>
             <th>Num of Credits</th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="tbody">
@@ -126,6 +140,13 @@ $totalHours = array_values($data['numofLecHours']);
                 <td><?php echo $subject->sub_year; ?></td>
                 <td><?php echo $subject->sub_semester; ?></td>
                 <td><?php echo $subject->sub_credits; ?></td>
+                <td>
+                    <a href="<?php echo URLROOT; ?>/lecturer/deletePreferredSubject/<?php echo $subject->subject_code; ?>" title="Delete">
+                        <button class="delete_button">
+                            <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                        </button>
+                    </a>
+                </td>
             </tr>
 
         <?php endforeach; ?>

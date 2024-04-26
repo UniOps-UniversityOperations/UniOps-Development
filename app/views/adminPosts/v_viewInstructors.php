@@ -21,7 +21,7 @@
             ?>
                 
                 <div class="top">
-                <h1 class="topic">Adminitsrator / Instructors</h1>
+                <h1 class="topic">Administrator / Instructors</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
