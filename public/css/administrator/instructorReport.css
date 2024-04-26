@@ -1,0 +1,427 @@
+.page{  
+    display: flex;
+    height: 94%;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+.page_left{
+    /* flex: 1; */
+    background-color: #f0f0f0;
+    margin-right: 15px;
+    border-radius: 15px;
+    padding: 20px 0px 20px 20px;
+    width: 24%;
+}
+
+.page_right{
+  flex: 2;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  padding: 10px;
+  height: 100%;
+  overflow-y: auto;
+}   
+
+
+/* Styles for WebKit browsers */
+.page_right::-webkit-scrollbar {
+  width: 10px; /* Adjust the width of the scrollbar */
+}
+
+/* Track */
+.page_right::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Color of the scrollbar track */
+}
+
+/* Handle */
+.page_right::-webkit-scrollbar-thumb {
+  background: #1848A0; /* Color of the scrollbar handle */
+  border-radius: 10px; /* Rounded corners of the scrollbar handle */
+}
+
+/* Handle on hover */
+.page_right::-webkit-scrollbar-thumb:hover {
+  background: navy; /* Color of the scrollbar handle on hover */
+}
+
+
+.page_left h2{
+    padding: 10px;
+}
+
+.page_left p{
+    font-size: larger;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    /* padding: 10px; */
+    /* border: #1848A0 2px solid; */
+    /* border-radius: 15px; */
+    margin: 10px;
+    height: 66%;
+    width: 98%;
+}
+
+.top_left{
+    display: flex;
+    justify-content: space-between;
+    border: #1848A0 2px solid; 
+    border-radius: 15px;
+    width: 49%;
+    /* height: 132%; */
+}
+
+.top_left h2{
+    padding: 10px;
+}
+
+.top_right{
+    display: flex;
+    justify-content: space-between;
+    border: #1848A0 2px solid; 
+    border-radius: 15px;
+    width: 50%;
+    margin-left: 10px;
+    flex-direction: column;
+    /* height: 132%; */
+}
+
+.bottom{
+    margin: 10px;
+    display: flex;
+    /* height: 46%; */
+    flex-direction: column;
+    align-items: center;
+    width: 98%;
+}
+
+
+.pie_chart{
+    flex-grow: 1; /* Make the tiles stretch along the width */
+    border-radius: 20px;
+    margin: 10px;
+    padding: 20px;
+    font-family: "Open Sans", Arial;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+  }
+  @keyframes bake-pie {
+    from {
+      transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+  }
+  
+  .pie-chart {
+    font-family: "Open Sans", Arial;
+    width: 195px;
+    margin: -20px auto;
+    text-align: center;
+    scale: 0.8;
+  }
+  
+  .pie-chart__wrapper {
+    width: 400px;
+    margin: 30px auto;
+    text-align: center;
+  }
+  
+  .pie-chart__pie,
+  .pie-chart__legend {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .pie-chart__pie {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin: 10px auto 35px;
+  }
+  
+  .pie-chart__pie::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    background: #EEE;
+    border-radius: 50%;
+    top: 50px;
+    left: 50px;
+  }
+  
+  .pie-chart__pie::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    box-shadow: 0 0 3px 4px rgba(0, 0, 0, 0.1);
+    margin: 220px auto;
+  }
+  
+  .slice {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    clip: rect(0px, 200px, 200px, 100px);
+    animation: bake-pie 1s;
+  }
+  
+  .slice span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    clip: rect(0px, 200px, 200px, 100px);
+  }
+  
+  .pie-chart__legend {
+    display: block;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    background: #FFF;
+    padding: 0.75em 0.75em 0.05em;
+    font-size: 13px;
+    box-shadow: 1px 1px 0 #DDD, 2px 2px 0 #BBB;
+    text-align: left;
+    width: 80%;
+  }
+  
+  .pie-chart__legend li {
+    height: 1.25em;
+    margin-bottom: 0.7em;
+    padding-left: 0.5em;
+    border-left: 1.25em solid black;
+  }
+  
+  .pie-chart__legend em {
+    font-style: normal;
+  }
+  
+  .pie-chart__legend span {
+    float: right;
+  }
+  
+  .pie-charts {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  @media (max-width: 500px) {
+    .pie-charts {
+      flex-direction: column;
+    }
+  }
+
+.Row{
+    display: flex;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 2%;
+}
+
+.bottom_left{
+    display: flex;
+    border: #1848A0 2px solid;
+    border-radius: 15px;
+    width: 100%;
+    flex-direction: column;
+    /* height: 50%; */
+    margin-top: 10px;
+}
+
+.t{
+    padding: 10px;
+}
+
+.ttt{
+    padding-top: 10px;
+    padding-left: 10px;
+    color: #1848A0;
+}
+
+.bottom_right{
+    display: flex;
+    border: #1848A0 2px solid;
+    border-radius: 15px;
+    width: 100%;
+    flex-direction: column;
+    /* height: 60%; */
+}
+
+.subject_assignment{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.assigned_subjects{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 46%;
+}
+
+.requested_subjects{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 46%;
+}
+
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-top: 0px;
+}
+
+.styled-table thead tr {
+    background-color: #1848A0;
+    color: #ffffff;
+    text-align: left;
+    position: sticky;
+    top: 0; /* Stick to the top of the container */
+    z-index: 1;
+    }
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #1848A0;
+}
+
+.styled-table tbody tr.active-row {
+    /* font-weight: bold; */
+    color: #1848A0;
+}
+
+.note{
+    font-size: 15px;
+    font-weight: bold;
+    color: #1848A0;
+    padding-left: 20px;
+    margin-top: -19px;  
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+
+.progress_bars_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.progress_bars{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}  
+
+  .bar_name{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+  }
+  
+  .p_bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px 20px 10px 20px;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  
+  .progress {
+    width:100%;
+    height: 15px;
+    /* For modern browsers */
+    color: navy; /* Color of the "fill" part of the progress bar */
+    background-color: cornflowerblue; /* Color of the "empty" part of the progress bar */
+    border-radius: 10px; /* Rounded corners */
+    border: 2px solid black; /* Add a 2px solid black border */
+  }
+  
+  /* For older browsers (Internet Explorer) */
+  .progress::-webkit-progress-value {
+    background-color: navy; /* Color of the "fill" part of the progress bar */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .progress::-webkit-progress-bar {
+    background-color: cornflowerblue; /* Color of the "empty" part of the progress bar */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .progress::-moz-progress-bar {
+    background-color: navy; /* Color of the "fill" part of the progress bar */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .progress0{
+    width: 90%;
+  }
+
+.details{
+    display: flex;
+    justify-content: space-evenly;
+    /* padding-left: 30px; */
+    /* padding-top: 10px; */
+    font-size: 20px;
+}
+  
+
+  .details1{
+    text-align: left;
+    padding-top: 15px;
+    /* margin-left: 30px; */
+    font-size: 21px;
+    padding-bottom: 10px;
+}
+
+.details2{
+    text-align: left;
+    padding-top: 15px;
+    /* margin-left: 80px; */
+    font-size: 21px;
+}
+
+.option10 {
+    border-left: 5px solid #010058af;
+    background-color: var(--Border-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 50px;
+}
