@@ -27,8 +27,12 @@
         </label></br>
 
         <label class="lable" for="s_contactNumber">Student Contact Number:
-        <input type="text" id="s_contactNumber" name="s_contactNumber" placeholder="s_contactNumber" value="<?php echo $data["s_contactNumber"];?>" required>
-        </label></br>
+        <input type="text" id="s_contactNumber" name="s_contactNumber" placeholder="s_contactNumber" 
+           value="<?php echo $data["s_contactNumber"];?>" 
+           pattern="[0-9]{10}" 
+           title="Please enter a 10-digit contact number" 
+           required>
+        </label>
                
     </fieldset>
     

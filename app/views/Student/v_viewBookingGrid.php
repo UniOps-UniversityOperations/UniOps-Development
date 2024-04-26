@@ -1,6 +1,6 @@
 <?php $style = "lecturecss/viewBookingGrid"; ?> 
 
-<?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
+<?php require APPROOT . '/views/includes/studentHeader.php'; ?>
 <h1>Room Booking Grid</h1>
 
 <!-- This is the Code to get the date from the url -->
@@ -17,7 +17,7 @@ $date = new dateTime($dateString);
 $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 ?>
 
-<form class="date-selection-form" action = "<?php echo URLROOT."/Lecturer/viewBookingGridDateSubmitted"; ?>" method="post" class = "date-selection-form">
+<form class="date-selection-form" action = "<?php echo URLROOT."/Student/viewBookingGridDateSubmitted"; ?>" method="post" class = "date-selection-form">
     <label for="dateInput">Select Date:</label>
     <input type="date" id="dateInput" name="selectedDate" value="<?php echo $date->format('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" max = "<?php echo $maxDate; ?>" required>
     <button type="submit">Show Schedule</button>
@@ -219,7 +219,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 
     <div id='allocation_RequestForm'>
         
-        <form action='<?php echo URLROOT."/Lecturer/roomBookingRequest"; ?>' method='POST' id='reservation_form'>
+        <form action='<?php echo URLROOT."/Student/roomBookingRequest"; ?>' method='POST' id='reservation_form'>
             <h1>Fill the Below Form for Reservations<span id='close-btn'>X</span></h1>
             <input type="hidden" name='is_Grid' id='is_grid' value = 1>
             <input type="hidden" name = 'request_date' id= 'booking_date' value = "">
@@ -305,6 +305,6 @@ if (isset($_SESSION['booking_result'])) {
 
 
 
-<script src="<?php echo URLROOT;?>/js/lecturerjs/viewBookingGrid.js"></script>
+<script src="<?php echo URLROOT;?>/js/studentjs/viewBookingGrid.js"></script>
 
-<?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>
+<?php require APPROOT . '/views/includes/studentFooter.php'; ?>

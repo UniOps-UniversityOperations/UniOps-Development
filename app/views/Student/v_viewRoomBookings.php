@@ -6,7 +6,7 @@ $count = 0;
 $rightsectionexist = false;//BOOLEAN value to keep track of whether a right section exist and based on the existence to echo the closing div tag.
 ?> 
 
-<?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
+<?php require APPROOT . '/views/includes/studentHeader.php'; ?>
 
 <div class="sidebar sidebar-content"  id="eventdetailspanel">
 
@@ -33,7 +33,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 <div class="room-schedule">
     <div class="navigatedays">
         <p class="day"><?php echo $date->format('l'); ?></p>
-        <form action="<?php echo URLROOT."/Lecturer/bookingDateSubmitted"; ?>" method="post" class = "date-selection-form">
+        <form action="<?php echo URLROOT."/Student/bookingDateSubmitted"; ?>" method="post" class = "date-selection-form">
             <input type="hidden" name="room_id" value="<?php echo basename($urlPath) ; ?>">
             <label for="dateInput">Select a Date: </label>
             <input type="date" id="dateInput" name="selectedDate" value="<?php echo $date->format('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" max = "<?php echo $maxDate; ?>" required>
@@ -195,7 +195,7 @@ if (isset($_SESSION['booking_result'])) {
 
 </div><!--Closing div for the room schedules --> 
 
-<script src="<?php echo URLROOT;?>/js/lecturerjs/viewRoomBookingsSidebar.js"></script>
+<script src="<?php echo URLROOT;?>/js/studentjs/viewRoomBookingsSidebar.js"></script>
 
 
-<?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>
+<?php require APPROOT . '/views/includes/studentFooter.php'; ?>

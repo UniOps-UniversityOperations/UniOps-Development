@@ -3,22 +3,12 @@
     class Student extends Controller{
     
         public $studentModel;
+        public $userModel;
 
         public function __construct(){
             $this->studentModel = $this->model('M_Student');
             // $this->Stu_postModel = $this->model('M_Student');
         }
-
-        // //show Lecturer Profile
-        // public function viewProfile(){
-        //   //  $profile = $this->P_postModel->getRooms();
-        //     $data = [
-        //         'title' => 'View Profile',
-        //         //'posts' => $profile
-        //         'posts' => []
-        //     ];
-        //     $this->view('Student/v_viewProfile', $data);
-        // }
 
         // public function updateProfile(){
         //     //  $profile = $this->P_postModel->getRooms();
@@ -139,18 +129,58 @@
             }
         }
 
+        public function uploadProfilePicture() {
+            if(isset($_POST['submit'])){
+              $file = $_FILES['profilePic'];
+              $fileName = $file['name'];
+              $fileParts = explode('.',$fileName);
+              $fileExt = strtolower(end($fileParts));
+              $allowedExt = array('jpeg','png','jpg');
+      
+              if(in_array($fileExt,$allowedExt)){
+                if(!$file['error']){
+                  if($file['size'] < 5000000) {
+                    $fileNameNew = $_SESSION['user_id'].".".$fileExt;
+                    $fileDestination = dirname(dirname(dirname(__FILE__)))."\public\images\profilePictures\studentProfilePics\\".$fileNameNew;
+        
+                      // Attempt to move the uploaded file
+                      if(move_uploaded_file($file['tmp_name'], $fileDestination)) {
+              
+                          $this->studentModel->updateProfilePicture("studentProfilePics/".$fileNameNew);
+                          $data = $this->studentModel->viewProfile();
+                          unset($_SESSION['profilePicture']);
+                          $this->userModel = $this->model('M_Users');
+                          $user = $this->userModel->findUserById($_SESSION['user_id']);
+                          $_SESSION['profilePicture'] = $user->profilePicture;
+                          $this->view('Student/v_viewProfile', $data);
+                      } else {
+                          echo "Failed to move file.";
+                      }
+                    
+                  } else {
+                    echo "Your Image is too big.";
+                  }
+                } else {
+                  echo "There was an error uploading your profile picture.";
+                }
+              } else {
+                echo "You can not upload files of this type.";
+              }
+            }
+        }
+      
+        public function clearProfilePicture() {
+        $this->studentModel->updateProfilePicture("defaultPicture.svg");
+        $data = $this->studentModel->viewProfile();
+        unset($_SESSION['profilePicture']);
+        $this->userModel = $this->model('M_Users');
+        $user = $this->userModel->findUserById($_SESSION['user_id']);
+        $_SESSION['profilePicture'] = $user->profilePicture;
+        $this->view('Student/v_viewProfile', $data);
+        }
 
-        // // Function to handle profile picture upload
-        // private function uploadProfilePicture($file){
-        //     $uploadDirectory = 'images/upload/';
-        //     $fileName = uniqid() . '_' . basename($file['name']);
-        //     $targetFilePath = $uploadDirectory . $fileName;
-        //     if(move_uploaded_file($file['tmp_name'], $targetFilePath)){
-        //         return ['success' => true, 'file_path' => $targetFilePath];
-        //     }else{
-        //         return ['success' => false];
-        //     }
-        // }
+
+
 
     }
 

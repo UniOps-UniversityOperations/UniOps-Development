@@ -3,7 +3,7 @@ $data_json = json_encode($data);
 ?> 
 
 
-<?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
+<?php require APPROOT . '/views/includes/studentHeader.php'; ?>
 
 <div class="sidebar"  id="room">
     <div class="sidebar-content">
@@ -31,7 +31,7 @@ $data_json = json_encode($data);
 <div class="content">
 
     <div class="search-bar">
-        <input type="text" placeholder="Search by Room Name..." onkeyup="searchRooms()" id = "searchInput">
+        <input type="text" placeholder="Search by Room Name..." onkey="searchRooms()" id = "searchInput">       
         <span id="clear-search">&#10006;</span>
         <label for="filter">Filter By Type</label>
         <select name="type" id="filter">
@@ -81,7 +81,7 @@ $data_json = json_encode($data);
 
 </div>
 
-<script src="<?php echo URLROOT;?>/js/lecturerjs/viewRooms.js"></script>
+<script src="<?php echo URLROOT;?>/js/studentjs/viewRooms.js"></script>
 
 
-<?php require APPROOT . '/views/includes/LecturerFooter.php'; ?>
+<?php require APPROOT . '/views/includes/studentFooter.php'; ?>

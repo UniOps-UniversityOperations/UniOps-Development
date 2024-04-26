@@ -3,7 +3,7 @@
 class M_Student{
 
     private $db;
-    // private $uid;
+    private $uid;
 
     public function __construct(){
         $this->db = new Database;
@@ -311,6 +311,15 @@ class M_Student{
         $this->db->bind(4,$endTime);
         $this->db->bind(5,$purpose);
         $this->db->bind(6,$this->uid);
+        return $this->db->execute();
+    }
+
+    
+    public function updateProfilePicture($fileDestination) {
+        $sql = "UPDATE users SET profilePicture=:path WHERE user_id = :uid;";
+        $this->db->query($sql);
+        $this->db->bind(':path',$fileDestination);
+        $this->db->bind(':uid',$_SESSION['user_id']);
         return $this->db->execute();
     }
 

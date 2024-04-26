@@ -4,19 +4,14 @@
 
 <div class="leftsection">
 
-    <!-- Display user's profile picture -->
-    <?php if (!empty($data->profile_picture)) : ?>
-        <img src="<?php echo $data->profile_picture; ?>" id="profilepicture">
-    <?php else : ?>
-        <!-- If user's profile picture is not available, display a default image -->
-        <img src="<?php echo URLROOT; ?>/images/profile-user.png" id="profilepicture">
-    <?php endif; ?>
+    <img src="<?php echo URLROOT;?>/images/profilePictures/<?php echo $_SESSION['profilePicture']; ?>" id="profilepicture">
 
-    <!-- Form to upload a new profile picture -->
-    <form action="<?php echo URLROOT; ?>/Student/uploadProfilePicture" method="post" enctype="multipart/form-data">
-        <input type="file" name="profile_picture" id="profile_picture">
-        <input type="submit" value="Upload Profile Picture">
-    </form>
+    <!-- <form action="<?php echo URLROOT;?>/lecturer/uploadProfilePicture" method='POST' enctype='multipart/form-data'>
+        <input type="file" name='profilePic' id='profilePicInput'>
+        <button type='submit' name = 'submit'>Update</button>
+    </form> 
+
+    <button id='clearProfilePic'>Clear Profile Picture</button> -->
 
     <div><h2><?php echo $data->s_nameWithInitial ?></h2></div>
 
@@ -62,5 +57,6 @@
         
     </div>
 </div>
+
 
 <?php require APPROOT . '/views/includes/studentFooter.php'; ?>
