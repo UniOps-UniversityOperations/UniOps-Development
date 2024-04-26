@@ -241,3 +241,25 @@ hr{
   transition: background-color 0.3s;
   border-radius: 10px;
 }
+
+
+  /* Style for the delete button */
+  .delete_button {
+    background-color: #f44336;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+  }
+  
+  .delete_icon{
+    padding-top: 5px;
+    width: 30px;
+  }
+  
+  /* Change the background color on hover */
+  .delete_button:hover {
+    background-color: #d32f2f;
+  }

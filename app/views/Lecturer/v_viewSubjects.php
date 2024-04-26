@@ -127,6 +127,7 @@ $totalHours = array_values($data['numofLecHours']);
             <th>Year</th>
             <th>Semester</th>
             <th>Num of Credits</th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="tbody">
@@ -139,6 +140,13 @@ $totalHours = array_values($data['numofLecHours']);
                 <td><?php echo $subject->sub_year; ?></td>
                 <td><?php echo $subject->sub_semester; ?></td>
                 <td><?php echo $subject->sub_credits; ?></td>
+                <td>
+                    <a href="<?php echo URLROOT; ?>/lecturer/deletePreferredSubject/<?php echo $subject->subject_code; ?>" title="Delete">
+                        <button class="delete_button">
+                            <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                        </button>
+                    </a>
+                </td>
             </tr>
 
         <?php endforeach; ?>
@@ -154,7 +162,6 @@ $totalHours = array_values($data['numofLecHours']);
         <img src="<?php echo URLROOT;?>/images/plus_icon.svg" alt="Add Icon" class="add_icon">
     </button>
 </div>
-
 
 
 <script src="<?php echo URLROOT;?>/js/lecturerjs/viewSubjects.js"></script>
