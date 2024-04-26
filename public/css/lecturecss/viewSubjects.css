@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-=======
-/* .main {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
-
-
->>>>>>> 0c147ba8ec7fedaec9e190fb642254c84fcade12
 .option4 {
     border-left: 5px solid #010058af;
     background-color: var(--Border-color);
@@ -217,7 +206,6 @@ hr{
   color: #1848A0;
 }
 
-<<<<<<< HEAD
 
 /* Request Subjects Button */
 
@@ -276,5 +264,3 @@ hr{
   .delete_button:hover {
     background-color: #d32f2f;
   }
-=======
->>>>>>> 0c147ba8ec7fedaec9e190fb642254c84fcade12
