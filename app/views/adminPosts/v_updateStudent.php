@@ -28,8 +28,19 @@
         <input type="text" id="s_nameWithInitial" name="s_nameWithInitial" placeholder="s_nameWithInitial" value="<?php echo $data["s_nameWithInitial"];?>" required>
         </label>
 
-        <label class="lable" for="s_regNumber">Student Registration Number:
+        <label class="lable" for="s_stream">Subject Stream: 
+            <select id ="s_stream" name="s_stream" required>
+                <option value="CS" <?php echo ($data["s_stream"]== 'cs') ? 'selected' : ''; ?>>CS</option>
+                <option value="IS" <?php echo ($data["s_stream"]== 'is') ? 'selected' : ''; ?>>IS</option>
+            </select>    
+        </label>
+
+        <!-- <label class="lable" for="s_regNumber">Student Registration Number:
         <input type="text" id="s_regNumber" name="s_regNumber" placeholder="s_regNumber" value="<?php echo $data["s_regNumber"];?>" required>
+        </label> -->
+
+        <label class="label" for="s_regNumber">Student Registration Number:
+        <input type="text" id="s_regNumber" name="s_regNumber" placeholder="s_regNumber" value="<?php echo $data["s_regNumber"];?>" required pattern="^(\d{4})/(\w+)/(\d{3})$" title="Format: 4 digits/s_stream/3 digits">
         </label>
 
         <label class="lable" for="s_indexNumber">Student Index Number:
@@ -40,28 +51,30 @@
         <input type="date" id="s_dob" name="s_dob" placeholder="s_dob" value="<?php echo $data["s_dob"];?>" required>
         </label>
 
-        <label class="lable" for="s_contactNumber">Student Contact Number:
+        <!-- <label class="lable" for="s_contactNumber">Student Contact Number:
         <input type="text" id="s_contactNumber" name="s_contactNumber" placeholder="s_contactNumber" value="<?php echo $data["s_contactNumber"];?>" required>
-        </label>
-
-        <label class="lable" for="s_stream">Subject Stream:
-        <input type="text" id="s_stream" name="s_stream" placeholder="s_stream" value="<?php echo $data["s_stream"];?>" required>
+        </label> -->
+        <label class="lable" for="s_contactNumber">Student Contact Number:
+        <input type="text" id="s_contactNumber" name="s_contactNumber" placeholder="s_contactNumber" 
+           value="<?php echo $data["s_contactNumber"];?>" 
+           pattern="[0-9]{10}" 
+           title="Please enter a 10-digit contact number" 
+           required>
         </label>
 
         <label class="lable" for="s_year">Year:
-        <input type="text" id="s_year" name="s_year" placeholder="s_year" value="<?php echo $data["s_year"];?>" required>
+            <select id="s_year" name="s_year" required>
+                <option value=1 <?php echo ($data["s_year"] == '1') ? 'selected' : ''; ?>>1</option>
+                <option value=2 <?php echo ($data["s_year"] == '2') ? 'selected' : ''; ?>>2</option>
+                <option value=3 <?php echo ($data["s_year"] == '3') ? 'selected' : ''; ?>>3</option>
+                <option value=4 <?php echo ($data["s_year"] == '4') ? 'selected' : ''; ?>>4</option>
+            </select>
         </label>
 
-        <label class="lable" for="s_semester">Semester:
+        <!-- <label class="lable" for="s_semester">Semester:
         <input type="text" id="s_semester" name="s_semester" placeholder="s_semester" value="<?php echo $data["s_semester"];?>" required>
-        </label>
+        </label> -->
 
-    </fieldset>
-
-    <fieldset>
-        <label class="lable" for="s_isDeleted">
-        <input type="checkbox" class="inline" id="s_isDeleted" name="s_isDeleted" value="1" <?php echo $data["s_isDeleted"] == 1 ? 'checked' : '';?>>
-        Is Deleted</label>
     </fieldset>
 
     <button type="submit" class="create_button">UPDATE</button>

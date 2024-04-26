@@ -6,7 +6,7 @@ $count = 0;
 $rightsectionexist = false;//BOOLEAN value to keep track of whether a right section exist and based on the existence to echo the closing div tag.
 ?> 
 
-<?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
+<?php require APPROOT . '/views/includes/studentHeader.php'; ?>
 
 <div class="sidebar sidebar-content"  id="eventdetailspanel">
 

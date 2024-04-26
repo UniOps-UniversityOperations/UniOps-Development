@@ -1,4 +1,4 @@
-<?php $style = "viewRoomBookings";
+<?php $style = "lecturecss/viewRoomBookings";
 $data_json = json_encode($data);
 /*This is a variable use to calculate all the slots that is gonna be displayed on the website(The total Number of 
 room bookings,lecture bookings and free slots)*/
@@ -10,46 +10,50 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
 
 <div class="sidebar sidebar-content"  id="eventdetailspanel">
 
-
 </div>
 
 <h1>View Room Bookings</h1>
 
-<div class="content">
-    <!--Tabs Section -->
-    <div class="tabs-section">
-        <div class="tab" onclick="showTabContent('lecture-halls')">Lecture Rooms</div>
-        <div class="tab" onclick="showTabContent('laboratories')">Laboratories</div>
-        <div class="tab" onclick="showTabContent('meeting-rooms')">Meeting Rooms</div>
-        <div class="tab" onclick="showTabContent('exam-halls')">Other</div>
-    </div>
-    <div class="search-bar">
-        <input type="text" placeholder="Type the Room Id" onkeyup="search(event)">
-        <img src= "<?php echo URLROOT;?>/images/magnifyingglass.svg" class="search-icon" id="Search-Input" alt="Magnifying Glass">
-    </div>
-</div>
+<?php
+    $urlPath = $_SERVER['REQUEST_URI'];
+    $segments = explode('/', trim($urlPath, '/'));
+    $dateString = $segments[count($segments) - 2];
+    $date = new dateTime($dateString);
+
+// This is a code to determine tha date one month ahead of now to restric users from selecting dates more than one month ahead. -->
+// Calculate the maximum allowable date (current date + 1 month)
+$maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
+?>
 
 <div class="room-name">
-    <h2><?php  if(is_array($data)){print_r($data[0]->r_id);} ?></h2>
-    <p><?php echo date("d, F y")?></p>
+    <h2 id='roomid'><?php echo basename($urlPath) ;?></h2>
+    <p><?php echo $date->format('d, F Y'); ?></p>
 </div>
 
 <div class="room-schedule">
     <div class="navigatedays">
-        <p class="day"><?php echo date('l')?></p>
-        <form action="" method="post">
+        <p class="day"><?php echo $date->format('l'); ?></p>
+        <form action="<?php echo URLROOT."/Student/bookingDateSubmitted"; ?>" method="post" class = "date-selection-form">
+            <input type="hidden" name="room_id" value="<?php echo basename($urlPath) ; ?>">
             <label for="dateInput">Select a Date: </label>
-            <input type="date" id="dateInput" name="selectedDate" value="<?php echo date('Y-m-d'); ?>" required>
+            <input type="date" id="dateInput" name="selectedDate" value="<?php echo $date->format('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" max = "<?php echo $maxDate; ?>" required>
             <button type="submit">Submit</button>
         </form>
 
 
     </div>
+    <hr>
     <div id="bookings" data="<?php echo htmlspecialchars($data_json, ENT_QUOTES, 'UTF-8'); ?>">
     <?php
     $previousEnd = '08:00:00';
     if(!is_array($data)){
-        echo $data;
+        //echo $data;
+        echo "<div class='left-section'> 
+        <div class='timeslot'>".
+        $previousEnd." - 19:00:00
+        <span class='event' start_time = '".$previousEnd."' end_time = '19:00:00'>Free Slot</span>
+        </div>
+    ";
     }
 
     //The logic to calculate the total number of slots starts here.
@@ -91,7 +95,7 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
                     <div class='timeslot'>".
                     $previousEnd." - ".
                     $booking->start_time."
-                    <span class='event'>Free Slot</span>
+                    <span class='event' start_time = '".$previousEnd."' end_time = '".$booking->start_time."'>Free Slot</span>
                     </div>
                 ";
             }
@@ -128,7 +132,7 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
             echo "
                 <div class='timeslot'>".
                 $previousEnd." - 19:00:00
-                <span class='event'>Free Slot</span>
+                <span class='event' start_time = '".$previousEnd."' end_time = '19:00:00'>Free Slot</span>
                 </div>
             ";
         }
@@ -142,9 +146,56 @@ $rightsectionexist = false;//BOOLEAN value to keep track of whether a right sect
          
     </div><!--Closing div for the bookings--> 
 
+    <?php
+
+// Check if the session variable is set
+if (isset($_SESSION['booking_result'])) {
+    // Display the message based on the session variable
+    $resultMessage = $_SESSION['booking_result'] ? 'Booking Request Successful' : 'Booking Request Failed';
+    
+    // Create a pop-up modal using HTML and CSS
+    echo '<div id="myModal" class="modal">
+            <div class="modal-content">
+              <p>' . $resultMessage . '</p>
+              <span class="close">&times;</span>
+            </div>
+          </div>';
+    
+    // Include JavaScript to show the modal
+    echo '<script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the page is loaded, show the modal
+            window.onload = function() {
+              modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+            
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+          </script>';
+
+    // Unset the session variable to clear it
+    unset($_SESSION['booking_result']);
+}
+
+?>
+
 </div><!--Closing div for the room schedules --> 
 
-<script src="<?php echo URLROOT;?>/js/viewRoomBookingsSidebar.js"></script>
+<script src="<?php echo URLROOT;?>/js/studentjs/viewRoomBookingsSidebar.js"></script>
 
 
 <?php require APPROOT . '/views/includes/studentFooter.php'; ?>
