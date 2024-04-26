@@ -90,6 +90,17 @@ class M_Instructor{
         return $row;
     }
 
+    // get Instructor i_email uing the postId(Instructor code)
+    public function getEmail($id){
+        $this->db->query('SELECT i_email FROM instructors WHERE i_code = :i_code');
+
+        $this->db->bind(':i_code', $id);
+
+        $row = $this->db->single();
+
+        return $row;
+    }
+
 
     public function updateInstructor($data){
         $this->db->query('UPDATE instructors SET 

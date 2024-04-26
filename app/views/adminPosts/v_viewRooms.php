@@ -22,7 +22,7 @@
                 ?>
             
                 <div class="top">
-                    <h1 class="topic">Adminitsrator / Rooms</h1>
+                    <h1 class="topic">Administrator / Rooms</h1>
                     <div class="centered_container">
                         <div class="room_type_counts">
                             <?php
@@ -30,7 +30,7 @@
                             foreach ($roomTypes as $type => $count) {
                                 echo "<div class='count_tile'>";
                                 echo "<div class='count_row'>";
-                                echo "<div class='count_column'><p># $type rooms:</p></div>";
+                                echo "<div class='count_column'><p># $type ROOMS:</p></div>";
                                 echo "<div class='count_column'><p>$count</p></div>";
                                 echo "</div>";
                                 echo "</div>";
@@ -170,7 +170,6 @@
                                     <p><b>ID / Code</b></p> 
                                     <p><b>Type</b></p>
                                     <p><b>Capacity</b></p>
-                                    <p><b>Availability</b></p> 
                                     <p><b>No of Tables</b></p> 
                                     <p><b>No of Chairs</b></p> 
                                     <p><b>No of Boards</b></p> 
@@ -239,6 +238,13 @@
                                             <img class="database_images" class="gallery-img" onclick="showImage(src)" src="data:image/jpeg;base64,<?php echo base64_encode($image->data); ?>" alt="image">
                                     <?php $i++; } endforeach;?>
                                 </div>
+                            </div>
+                                     
+                            <div class='upload_img'>
+                                <form method="post" action="<?php echo URLROOT; ?>/Upload/uploadImage/<?php echo $post->id; ?>" enctype="multipart/form-data">
+                                    <input type="file" name="image" required/>
+                                    <input type="submit" name="submit" value="Upload" />
+                                </form>
                             </div>
 
                             <!-- ----------------- -->

@@ -110,7 +110,7 @@ function createPie(id) {
 function createPieCharts() {
     createPie('.pieID--micro-skills');
     createPie('.pieID--categories');
-    createPie('.pieID--operations');
+    // createPie('.pieID--operations');
 }
 
 createPieCharts();

@@ -11,9 +11,9 @@
     <fieldset>
         <!-- input feilds -->
 
-        <label class="lable" for="id">ID:
+        <!-- <label class="lable" for="id">ID:
         <input type="text" id="id" name="id" placeholder="id" value="<?php $data["id"];?>" required>
-        </label>
+        </label> -->
 
         <label class="lable" for="name">Name / Code:
         <input type="text" id="name" name="name" placeholder="name" value="<?php $data["name"];?>" oninput="this.value = this.value.toUpperCase();" required>
@@ -21,7 +21,7 @@
 
         <label class="label" for="room_type">Credit:
             <select id="type" name="type" required>
-                <option value="LECTUER">LECTUER</option>
+                <option value="LECTURE">LECTURE</option>
                 <option value="LAB">LAB</option>
                 <option value="MEEING">MEEING</option>
                 <option value="COMMON">COMMON</option>

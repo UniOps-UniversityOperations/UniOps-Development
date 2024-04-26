@@ -23,7 +23,7 @@
             ?>
 
             <div class="top">
-            <h1 class="topic">Adminitsrator / Subjects</h1>
+            <h1 class="topic">Administrator / Subjects</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
@@ -31,7 +31,7 @@
                         foreach ($roomYears as $year => $count) {
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p># year $year subjects:</p></div>";
+                            echo "<div class='count_column'><p>$year YEAR SUBJECTS:</p></div>";
                             echo "<div class='count_column'><p>$count</p></div>";
                             echo "</div>";
                             echo "</div>";
@@ -81,6 +81,7 @@
                     <p class="title_item"><b>Name</b></p>
                     <p class="title_item"><b>Stream</b></p>
                     <p class="title_item"><b>Year</b></p>
+                    <p class="title_item"><b>Semester</b></p>
                     <p style="padding-right: 210px;" class="title_item"><b>Credits</b></p>
                 </div> 
             </div>
@@ -103,6 +104,7 @@
                                 <p class="header_item"><?php echo $post->sub_name; ?></p>
                                 <p class="header_item"><?php echo $post->sub_stream; ?></p>
                                 <p class="header_item"><?php echo $post->sub_year; ?></p>
+                                <p class="header_item"><?php echo $post->sub_semester; ?></p>
                                 <p class="header_item"></b> <?php echo $post->sub_credits; ?></p>
                                 
                                 <div class="action_buttons">
@@ -111,19 +113,17 @@
                                         <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
                                     </button>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateSubject/<?php echo $post->sub_id ?>" title="Edit Details">
+                                    <a href="<?php echo URLROOT;?>/AdminPosts/updateSubject/<?php echo $post->sub_id ?>" title="Edit Details">
                                         <button class="update_button">
                                             <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
-
                                         </button>
                                     </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteSubject/<?php echo $post->sub_id; ?>/<?php echo $post->sub_code; ?>" title="Delete">
+                                    <a href="<?php echo URLROOT;?>/AdminPosts/deleteSubject/<?php echo $post->sub_id;?>/<?php echo $post->sub_code; ?>" title="Delete">
                                         <button class="delete_button">
                                             <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
                                         </button>
                                     </a>
-
 
                                 </div>
                             </div>  
@@ -170,6 +170,7 @@
                                     <p><b>Year</b></p>
                                     <p><b>Semester</b></p>
                                     <p><b>Stream</b></p>
+                                    <p><b>Student Count</b></p>
                                 </div>
 
                                 <div class="sidebar_top_right">
@@ -178,16 +179,17 @@
                                     <p> <b> : </b> <?php echo $post->sub_year; ?></p>
                                     <p> <b> : </b> <?php echo $post->sub_semester; ?></p>
                                     <p> <b> : </b> <?php echo $post->sub_stream; ?></p>
+                                    <p> <b> : </b> <?php echo $post->sub_nStudents; ?></p>
                                 </div>
                             </div>
                         
 
                             <div class="sidebar_body_bottom">
                                 <div class="sidebar_bottom_left_part1">
-                                    <p><b>Is Core</b></p>
-                                    <p><b>Is Has Lecture</b></p>
-                                    <p><b>Is Has Tutorial</b></p>
-                                    <p><b>Is Has Practical</b></p>
+                                    <p><b>Core Subject</b></p>
+                                    <p><b>Has Lecture</b></p>
+                                    <p><b>Has Tutorial</b></p>
+                                    <p><b>Has Practical</b></p>
                                 </div>
 
                                 <div class="sidebar_bottom_right_part1">

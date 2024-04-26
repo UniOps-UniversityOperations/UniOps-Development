@@ -3,7 +3,7 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
-<h1>Add New Lecturer</h1>
+<h1>Add New Instructor</h1>
 
 <div class="content">
     <form action="<?php echo URLROOT;?>/adminPosts/createInstructor/" method="post">
@@ -11,51 +11,61 @@
         <!-- input feilds -->
 
         <fieldset>
-            <label class="lable" for="i_code">Instructor Code:
+        <h3>Instructor Details:</h3>
+
+            <label class="lable" for="i_code">Code:
             <input type="text" id="i_code" name="i_code" placeholder="i_code" value="<?php $data["i_code"];?>" required>
             </label>
 
-            <label class="lable" for="i_email">Instructor Email:
+            <label class="lable" for="i_email">Email:
             <input type="text" id="i_email" name="i_email" placeholder="i_email" value="<?php $data["i_email"];?>" required>
             </label>
 
-            <label class="lable" for="i_fullName">Instructor Full Name:
+            <label class="lable" for="i_fullName">Full Name:
             <input type="text" id="i_fullName" name="i_fullName" placeholder="i_fullName" value="<?php $data["i_fullName"];?>" required>
             </label>
 
-            <label class="lable" for="i_nameWithInitials">Instructor Name With Initials:
+            <label class="lable" for="i_nameWithInitials">Name With Initials:
             <input type="text" id="i_nameWithInitials" name="i_nameWithInitials" placeholder="i_nameWithInitials" value="<?php $data["i_nameWithInitials"];?>" required>
             </label>
 
-            <label class="lable" for="i_gender">Instructor Gender:
-            <input type="text" id="i_gender" name="i_gender" placeholder="i_gender" value="<?php $data["i_gender"];?>" required>
+            <label class="label">Gender:
+                <div class="gender">
+                    <label>
+                    <input class="inline" type="radio" id="i_gender" name="i_gender" value="M" required>
+                    Male</label>
+
+                    <label>
+                    <input class="inline" type="radio" id="i_gender" name="i_gender" value="F"required>
+                    Female</label>
+                </div>
             </label>
 
-            <label class="lable" for="i_dob">Instructor Date Of Birth:
+            <label class="lable" for="i_dob">Date Of Birth:
             <input type="date" id="i_dob" name="i_dob" placeholder="i_dob" value="<?php $data["i_dob"];?>" required>
             </label>
 
-            <label class="lable" for="i_contactNumber">Instructor Contact Number:
+            <label class="lable" for="i_contactNumber">Contact Number:
             <input type="text" id="i_contactNumber" name="i_contactNumber" placeholder="i_contactNumber" value="<?php $data["i_contactNumber"];?>" required>
             </label>
 
-            <label class="lable" for="i_address">Instructor Address:
+            <label class="lable" for="i_address">Address:
             <input type="text" id="i_address" name="i_address" placeholder="i_address" value="<?php $data["i_address"];?>" required>
             </label>
 
-            <label class="lable" for="i_department">Instructor Department:
+            <label class="lable" for="i_department">Department:
             <input type="text" id="i_department" name="i_department" placeholder="i_department" value="<?php $data["i_department"];?>" required>
             </label>
 
-            <label class="lable" for="i_positionRank">Instructor Position Rank:
+            <label class="lable" for="i_positionRank">Position Rank:
             <input type="text" id="i_positionRank" name="i_positionRank" placeholder="i_positionRank" value="<?php $data["i_positionRank"];?>" required>
             </label>
 
-            <label class="lable" for="i_dateOfJoin">Instructor Date Of Join:
+            <label class="lable" for="i_dateOfJoin">Date Of Join:
             <input type="date" id="i_dateOfJoin" name="i_dateOfJoin" placeholder="i_dateOfJoin" value="<?php $data["i_dateOfJoin"];?>" required>
             </label>
 
-            <label class="lable" for="i_qualifications">Instructor Qualifications:
+            <label class="lable" for="i_qualifications">Qualifications:
             <input type="text" id="i_qualifications" name="i_qualifications" placeholder="i_qualifications" value="<?php $data["i_qualifications"];?>" required>
             </label>
 
@@ -68,6 +78,29 @@
             <input type="checkbox" class="inline"  id="i_isExamInvigilator" name="i_isExamInvigilator" value="true">
             i_isExamInvigilator</label>
         </fieldset>
+
+        <fieldset>
+            <!-- Add this Lecturer as a user of the system -->
+            <h3>Add as a System User:</h3>
+
+            <label class="lable" for="user_id ">User ID: Instructor Email </label>
+
+            <label class="lable" for="username">User Name: Instructor Name With Initials</label>
+
+            <label class="label" for="role">Role: Instructor </label>
+
+            <label class="lable" for="pwd">password:
+            <input type="pwd" name="pwd" id="pwd" placeholder="pwd" value="<?php $data['pwd']; ?>" required>
+            </label>
+
+            <!-- tick for send email -->
+            <label>
+            <input type="checkbox" class="inline"  id="sendEmail" name="sendEmail" value="true">
+            Send Email</label>
+
+        </fieldset>
+
+
 
         <!-- Buttons -->
         <button type="submit" class="create_button">Create Lecturer</button>
