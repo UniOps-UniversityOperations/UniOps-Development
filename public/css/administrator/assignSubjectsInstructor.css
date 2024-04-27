@@ -432,7 +432,7 @@
 .column:nth-child(2) {
   width: 50%;
   background-color: #DCDCE2;
-  margin-top: -90px;
+  margin-top: -60px;
 }
 
 .hr{
@@ -733,7 +733,7 @@ background-color: transparent; /* Hide the thumb */
 }
 
 .list2 {
-  height: 85vh;
+  height: 82vh;
   overflow-y: scroll; /* Enable vertical scrolling if the content exceeds the max height */
 }
 
