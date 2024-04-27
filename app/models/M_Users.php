@@ -81,6 +81,47 @@ class M_Users {
         }
     }
 
+    //Reset Password
+    public function resetpwd($email,$selector,$token,$expires) {
+        //Deleting already exist token from the resetpwd table
+        $sql = "DELETE FROM pwdreset WHERE pwdResetEmail = :email ;";
+        $this->db->query($sql);
+        $this->db->bind(":email",$email);
+        $this->db->execute();
+
+        //Inserting new record
+        $sql = "INSERT INTO pwdreset (pwdResetEmail,pwdResetSelector,pwdResetToken,pwdResetExpires) VALUES (?,?,?,?);";
+        $hashedToken = password_hash($token,PASSWORD_DEFAULT);
+        $this->db->query($sql);
+        $this->db->bind(1,$email);
+        $this->db->bind(2,$selector);
+        $this->db->bind(3,$hashedToken);
+        $this->db->bind(4,$expires);
+        return $this->db->execute();
+    }
+
+    public function resetpasswordsubmit($selector,$currentDate) {
+        $sql = "SELECT * FROM pwdreset WHERE pwdResetSelector = ? && pwdResetExpires >= ?;";
+        $this->db->query($sql);
+        $this->db->bind(1,$selector);
+        $this->db->bind(2,$currentDate);
+        return $this->db->single();
+    }
+
+    public function updatePassword($pwd,$tokenemail) {
+        $sql = 'UPDATE users SET pwd = ? WHERE user_id = ?;';
+        $this->db->query($sql);
+        $this->db->bind(1,$pwd);
+        $this->db->bind(2,$tokenemail);
+        $this->db->execute();
+
+        //Deleting the token from pwdreset table
+        $sql = 'DELETE FROM pwdreset WHERE pwdResetEmail = ?;';
+        $this->db->query($sql);
+        $this->db->bind(1,$tokenemail);
+        $this->db->execute();
+    }
+
 }
 
 /* User model Structure
