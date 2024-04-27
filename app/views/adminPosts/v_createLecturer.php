@@ -2,6 +2,49 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
+<?php if($data['popup']){ ?>
+    
+    <div id="popup" 
+        style="
+        display: none; 
+        position: fixed; 
+        border-radius: 10px;
+        font-size: 19px;
+        font-weight: bold;
+        color: red;
+        top: 10%; 
+        left: 73%; 
+        transform: 
+        translate(50%, -25%); 
+        background-color: white; 
+        padding: 20px 20px 20px 20px;
+        margin-right: 20px;
+        border: 1px red solid; 
+        transition: top 0.5s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+        <!-- if popup = 1 Request Email Sent | if popup = 2 Status Email Sent -->
+        <p>Lecturer initials already exists! </p>
+        
+    </div>
+    
+    <script>
+        // Function to show the popup message
+        function showPopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+    
+            // Hide the popup after 5 seconds
+            setTimeout(function() {
+                popup.style.display = 'none';
+            }, 3000);
+        }
+    
+        // Call the showPopup function when the page loads
+        window.onload = showPopup;
+    </script>
+    
+    <?php } ?>
+
 <h1>Add New Lecturer</h1>
 
 <div class="content">
@@ -45,29 +88,102 @@
             <input type="date" id="l_dob" name="l_dob" placeholder="l_dob" value="<?php $data["l_dob"];?>" required>
             </label>
 
-            <label class="lable" for="l_contactNumber">Contact Number:
-            <input type="text" id="l_contactNumber" name="l_contactNumber" placeholder="l_contactNumber" value="<?php $data["l_contactNumber"];?>" required>
+            <label class="label" for="l_contactNumber">Contact Number:
+                <input type="text" id="l_contactNumber" name="l_contactNumber" placeholder="l_contactNumber" required>
             </label>
+            <span style="color:red" id="l_contactNumber_error" class="error"></span>
+
+            <script>
+                document.getElementById("l_contactNumber").addEventListener("input", function() {
+                    var contactNumber = this.value.trim();
+                    var errorSpan = document.getElementById("l_contactNumber_error");
+                    if (!/^\d+$/.test(contactNumber) || contactNumber.length < 10) {
+                        errorSpan.textContent = "''Contact Number'' must be numeric and longer than 10 characters";
+                    } else {
+                        errorSpan.textContent = "";
+                    }
+                });
+            </script>
+
 
             <label class="lable" for="l_address">Address:
             <input type="text" id="l_address" name="l_address" placeholder="l_address" value="<?php $data["l_address"];?>" oninput="this.value = this.value.toUpperCase();" required>
             </label>
 
-            <label class="lable" for="l_department">Department:
-            <input type="text" id="l_department" name="l_department" placeholder="l_department" value="<?php $data["l_department"];?>" oninput="this.value = this.value.toUpperCase();" required>
+
+            <label class="label" for="l_department">Credit:
+                <select id="l_department" name="l_department" required>
+                    <option value="UCSC">UCSC</option>
+                    <option value="Sicece - Mathemetics">Sicece - Mathemetics</option>
+                    <option value="Sicece - Chemistry">Sicece - Chemistry</option>
+                    <option value="Sicece - Physics">Sicece - Physics</option>
+                    <option value="Medicine">Medicine</option>
+                    <option value="Statistics">Statistics</option>
+
+                </select>
             </label>
 
-            <label class="lable" for="l_positionRank">Position:
-            <input type="text" id="l_positionRank" name="l_positionRank" placeholder="l_positionRank" value="<?php $data["l_positionRank"];?>" oninput="this.value = this.value.toUpperCase();" required>
+            <label class="label" for="l_positionRank">Credit:
+                <select id="l_positionRank" name="l_positionRank" required>
+                    <option value="Professor">Professor</option>
+                    <option value="Senior Lecturer">Senior Lecturer</option>
+                    <option value="Lecturer">Lecturer</option>
+                </select>
             </label>
 
             <label class="lable" for="l_dateOfJoin">Date Of Join:
             <input type="date" id="l_dateOfJoin" name="l_dateOfJoin" placeholder="l_dateOfJoin" value="<?php $data["l_dateOfJoin"];?>" required>
             </label>
 
-            <label class="lable" for="l_qualifications">Qualifications:
+            <!-- <label class="lable" for="l_qualifications">Qualifications:
             <input type="text" id="l_qualifications" name="l_qualifications" placeholder="l_qualifications" value="<?php $data["l_qualifications"];?>" oninput="this.value = this.value.toUpperCase();" required>
+            </label> -->
+
+            <label class="label" for="l_qualifications">Qualifications:
+            
+            <input type="text" id="l_qualifications" name="l_qualifications" placeholder="l_qualifications" required>
+            <span id="qualifications_error" class="error"></span>
             </label>
+
+            
+            <div class='qualifications'>
+
+                <label>
+                <input class="inline" type="checkbox" id="BSC" name="BSC" value="BSC">
+                BSC</label>
+
+                <label>
+                <input class="inline" type="checkbox" id="MSC" name="MSC" value="MSC">
+                MSC</label>
+
+                <label>
+                <input class="inline" type="checkbox" id="Mphil" name="Mphil" value="Mphil">
+                Mphil</label>
+
+                <label>
+                <input class="inline" type="checkbox" id="PHD" name="PHD" value="PHD">
+                PHD</label>
+
+
+            </div>
+
+            <script>
+                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                var qualificationsInput = document.getElementById("l_qualifications");
+
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.addEventListener('change', function() {
+                        var selectedQualifications = [];
+                        checkboxes.forEach(function(checkbox) {
+                            if (checkbox.checked) {
+                                selectedQualifications.push(checkbox.value);
+                            }
+                        });
+                        qualificationsInput.value = selectedQualifications.join(', ');
+                    });
+                });
+            </script>
+
 
         </fieldset>
 
@@ -82,6 +198,7 @@
             <label>
             <input type="checkbox" class="inline"  id="l_isSecondExaminar" name="l_isSecondExaminar" value="true">
             Second Examinar</label>
+            
 
         </fieldset>
 

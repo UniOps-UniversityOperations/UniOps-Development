@@ -25,7 +25,7 @@
         transition: top 0.5s ease;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
         <!-- if popup = 1 Request Email Sent | if popup = 2 Status Email Sent -->
-        <p>Room ID already exists! </p>
+        <p>Subject ID already exists! </p>
         
     </div>
     
@@ -146,7 +146,7 @@
         
         </fieldset>
 
-        <button type="submit" class="create_button">Create Room</button>
+        <button type="submit" class="create_button">Create Subject</button>
     </form>
 </div>
 

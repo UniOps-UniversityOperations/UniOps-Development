@@ -113,7 +113,6 @@ class M_Lecturer{
 
     public function updateLecturer($data){
         $this->db->query('UPDATE lecturers SET
-        l_id = :l_id,
         l_code = :l_code,
         l_email = :l_email,
         l_fullName = :l_fullName,
@@ -177,6 +176,32 @@ class M_Lecturer{
         return $row;
     }
 
+    //lecturerExists
+    public function lecturerExists($l_code){
+        $this->db->query('SELECT * FROM lecturers WHERE l_code = :l_code AND l_isDeleted = 0');
+        $this->db->bind(':l_code', $l_code);
+        $row = $this->db->single();
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //lecturerExists2($data['l_code'], $postId)
+    public function lecturerExists2($l_code, $l_id){
+        $this->db->query('SELECT * FROM lecturers WHERE l_code = :l_code AND l_id != :l_id AND l_isDeleted = 0');
+        $this->db->bind(':l_code', $l_code);
+        $this->db->bind(':l_id', $l_id);
+        $row = $this->db->single();
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
 

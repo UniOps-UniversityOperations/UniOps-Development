@@ -145,6 +145,19 @@ class M_Subject{
         }
     }
 
+    //subjectExists2($data['sub_code'], $postId)
+    public function subjectExists2($code, $id){
+        $this->db->query('SELECT * FROM subjects WHERE sub_code = :sub_code AND sub_id != :sub_id AND sub_isDeleted = 0');
+        $this->db->bind(':sub_code', $code);
+        $this->db->bind(':sub_id', $id);
+        $row = $this->db->single();
+        if($this->db->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
 
 
