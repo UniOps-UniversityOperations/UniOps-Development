@@ -20,7 +20,7 @@ class M_Users {
         $this->db->bind(':user_id', $data['user_id']);
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':pwd', $data['pwd']);
-        $this->db->bind(':role', $data['role']);
+        $this->db->bind(':role', 'A');
 
         //execute
         if($this->db->execute()){
@@ -31,8 +31,8 @@ class M_Users {
     }
 
     //get all users
-    public function getUsers(){
-        $this->db->query("SELECT * FROM users");
+    public function getAdmins(){
+        $this->db->query("SELECT * FROM users WHERE role = 'A'");
         $results = $this->db->resultSet();
         return $results;
     
@@ -48,18 +48,16 @@ class M_Users {
 
     //update user
     public function updateUser($data){
+        // die($data['user_id'] . " -- " . $data['username'] . " -- " . $data['pwd']);
         $this->db->query('UPDATE users SET
-        user_id = :user_id,
         username = :username,
-        pwd = :pwd,
-        role = :role
+        pwd = :pwd
         WHERE user_id = :user_id
         ');
         //bind values
         $this->db->bind(':user_id', $data['user_id']);
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':pwd', $data['pwd']);
-        $this->db->bind(':role', $data['role']);
         //execute
         if($this->db->execute()){
             return true;
@@ -75,6 +73,19 @@ class M_Users {
         $this->db->bind(':user_id', $id);
         //execute
         if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //a function to return true if the user exists else false
+    public function userExists($user_id){
+        $this->db->query("SELECT * FROM users WHERE user_id = :user_id");
+        $this->db->bind(':user_id', $user_id);
+        $this->db->single();
+        $row = $this->db->rowCount();
+        if($row > 0){
             return true;
         } else {
             return false;

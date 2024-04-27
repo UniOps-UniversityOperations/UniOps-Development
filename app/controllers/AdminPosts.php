@@ -27,7 +27,7 @@ require_once APPROOT . '/controllers/Mail.php';
     
         //show 
         public function showDashboard(){
-            $posts = $this->U_postModel->getUsers();
+            $posts = $this->U_postModel->getAdmins();
             $r_count = $this->R_postModel->getCount();
             $s_count = $this->S_postModel->getCount();
             $l_count = $this->L_postModel->getCount();
@@ -50,7 +50,7 @@ require_once APPROOT . '/controllers/Mail.php';
         }
 
         //Add User
-        public function addUser(){
+        public function addUser($popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -61,13 +61,18 @@ require_once APPROOT . '/controllers/Mail.php';
                     'user_id' => trim($_POST['user_id']),
                     'username' => trim($_POST['username']),
                     'pwd' => trim($_POST['pwd']),
-                    'role' => trim($_POST['role']),
-                    
+                    'popup' => $popup,
+                                        
                     'user_idError' => '',
                 ];
 
                 if(empty($data['user_id'])){
                     $data['user_idError'] = 'Please enter User ID';
+                }
+
+                //check if user_id already exists
+                if($this->U_postModel->userExists($data['user_id'])){
+                    redirect('AdminPosts/addUser/1');
                 }
 
                 if(empty($data['user_idError'])){
@@ -89,7 +94,7 @@ require_once APPROOT . '/controllers/Mail.php';
                     'user_id' => '',
                     'username' => '',
                     'pwd' => '',
-                    'role' => '',
+                    'popup' => $popup,
                     
                     'user_idError' => '',
                 ];
@@ -109,10 +114,9 @@ require_once APPROOT . '/controllers/Mail.php';
                     'title' => 'Update User',
                     'postId' => $postId,
 
-                    'user_id' => trim($_POST['user_id']),
+                    'user_id' => $postId,
                     'username' => trim($_POST['username']),
                     'pwd' => trim($_POST['pwd']),
-                    'role' => trim($_POST['role']),
                     
                 ];
 
@@ -131,7 +135,6 @@ require_once APPROOT . '/controllers/Mail.php';
                     'user_id' => $post->user_id,
                     'username' => $post->username,
                     'pwd' => $post->pwd,
-                    'role' => $post->role,
                 ];
                 $this->view('adminPosts/v_updateUser', $data);
             }
