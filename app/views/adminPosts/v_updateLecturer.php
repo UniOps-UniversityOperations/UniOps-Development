@@ -2,17 +2,59 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
+
+<?php if($data['popup']){ ?>
+    
+    <div id="popup" 
+        style="
+        display: none; 
+        position: fixed; 
+        border-radius: 10px;
+        font-size: 19px;
+        font-weight: bold;
+        color: red;
+        top: 10%; 
+        left: 73%; 
+        transform: 
+        translate(50%, -25%); 
+        background-color: white; 
+        padding: 20px 20px 20px 20px;
+        margin-right: 20px;
+        border: 1px red solid; 
+        transition: top 0.5s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+        <!-- if popup = 1 Request Email Sent | if popup = 2 Status Email Sent -->
+        <p>Lecturer initials already exists! </p>
+        
+    </div>
+    
+    <script>
+        // Function to show the popup message
+        function showPopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+    
+            // Hide the popup after 5 seconds
+            setTimeout(function() {
+                popup.style.display = 'none';
+            }, 3000);
+        }
+    
+        // Call the showPopup function when the page loads
+        window.onload = showPopup;
+    </script>
+    
+    <?php } ?>
+
+
 <h1>Update Lecturer</h1>
 
 <div class="content">
     <form action="<?php echo URLROOT;?>/AdminPosts/updateLecturer/<?php echo $data["l_id"];?>" method="POST">
 
     <fieldset>
-        <label class="lable" for="l_id">ID:
-        <input type="text" id="l_id" name="l_id" placeholder="l_id" value="<?php echo $data["l_id"];?>" required>
-        </label>
 
-        <label class="label" for="l_code">Code:
+        <label class="label" for="l_code">Initials:
             <input type="text" id="l_code" name="l_code" placeholder="l_code" value="<?php echo strtoupper($data["l_code"]); ?>" oninput="this.value = this.value.toUpperCase();" required>
         </label>
 

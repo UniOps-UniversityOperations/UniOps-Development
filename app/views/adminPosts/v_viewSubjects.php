@@ -257,7 +257,7 @@
         // onclick .delete_button prevent default and confirm
         $(".delete_button").click(function(e){
             e.preventDefault();
-            var c = confirm("Are you sure you want to delete this room?");
+            var c = confirm("Are you sure you want to delete this subject?");
             if(c){
                 // get href from parent div
                 var href = $(this).parent().attr("href");
