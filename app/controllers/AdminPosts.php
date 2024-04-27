@@ -167,7 +167,15 @@ require_once APPROOT . '/controllers/Mail.php';
                     'max_students_per_lecturer' => trim($_POST['max_students_per_lecturer']) > 0 ? trim($_POST['max_students_per_lecturer']) : 0,
                     'instructor_max_students_lecturer' => trim($_POST['instructor_max_students_lecturer']) > 0 ? trim($_POST['instructor_max_students_lecturer']) : 0,
                     'instructor_max_students_practical' => trim($_POST['instructor_max_students_practical']) > 0 ? trim($_POST['instructor_max_students_practical']) : 0,
-                    'instructor_max_students_tutorial' => trim($_POST['instructor_max_students_tutorial']) > 0 ? trim($_POST['instructor_max_students_tutorial']) : 0,             
+                    'instructor_max_students_tutorial' => trim($_POST['instructor_max_students_tutorial']) > 0 ? trim($_POST['instructor_max_students_tutorial']) : 0,
+                    'n_1_yr_cs' => trim($_POST['n_1_yr_cs']) > 0 ? trim($_POST['n_1_yr_cs']) : 0,
+                    'n_2_yr_cs' => trim($_POST['n_2_yr_cs']) > 0 ? trim($_POST['n_2_yr_cs']) : 0,
+                    'n_3_yr_cs' => trim($_POST['n_3_yr_cs']) > 0 ? trim($_POST['n_3_yr_cs']) : 0,
+                    'n_4_yr_cs' => trim($_POST['n_4_yr_cs']) > 0 ? trim($_POST['n_4_yr_cs']) : 0,
+                    'n_1_yr_is' => trim($_POST['n_1_yr_is']) > 0 ? trim($_POST['n_1_yr_is']) : 0,
+                    'n_2_yr_is' => trim($_POST['n_2_yr_is']) > 0 ? trim($_POST['n_2_yr_is']) : 0,
+                    'n_3_yr_is' => trim($_POST['n_3_yr_is']) > 0 ? trim($_POST['n_3_yr_is']) : 0,
+                    'n_4_yr_is' => trim($_POST['n_4_yr_is']) > 0 ? trim($_POST['n_4_yr_is']) : 0,             
                 ];
 
                 if(1){
@@ -193,7 +201,15 @@ require_once APPROOT . '/controllers/Mail.php';
                     'max_students_per_lecturer' => $vars[6]->v_value,
                     'instructor_max_students_lecturer' => $vars[7]->v_value,
                     'instructor_max_students_practical' => $vars[8]->v_value,
-                    'instructor_max_students_tutorial' => $vars[9]->v_value
+                    'instructor_max_students_tutorial' => $vars[9]->v_value,
+                    'n_1_yr_cs' => $vars[10]->v_value,
+                    'n_2_yr_cs' => $vars[11]->v_value,
+                    'n_3_yr_cs' => $vars[12]->v_value,
+                    'n_4_yr_cs' => $vars[13]->v_value,
+                    'n_1_yr_is' => $vars[14]->v_value,
+                    'n_2_yr_is' => $vars[15]->v_value,
+                    'n_3_yr_is' => $vars[16]->v_value,
+                    'n_4_yr_is' => $vars[17]->v_value,
                     
                 ];
                 $this->view('adminPosts/v_editVariables', $data);
@@ -400,7 +416,10 @@ require_once APPROOT . '/controllers/Mail.php';
                 // sub_isHavePractical
                 // sub_isDeleted
 
-        public function createSubject(){
+        public function createSubject($popup = 0){
+
+            $variables = $this->V_postModel->getAll();
+
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -414,31 +433,42 @@ require_once APPROOT . '/controllers/Mail.php';
                     'sub_year' => trim($_POST['sub_year']),
                     'sub_semester' => trim($_POST['sub_semester']),
                     'sub_stream' => trim($_POST['sub_stream']),
-                    'sub_nStudents' => trim($_POST['sub_nStudents']),
+                    'sub_nStudents' => trim($_POST['sub_nStudents']) > 0 ? trim($_POST['sub_nStudents']) : 0,
                     'sub_isCore' => isset($_POST['sub_isCore']) ? '1' : '0',
                     'sub_isHaveLecture' => isset($_POST['sub_isHaveLecture']) ? '1' : '0',
                     'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
                     'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0',
 
-                    'sub_codeError' => ''
+                    'sub_codeError' => '',
+
+                    'variables' => $variables,
+                    'popup' => $popup
                 ];
 
                 if(empty($data['sub_code'])){
                     $data['sub_codeError'] = 'Please enter Subject Code';
                 }
 
-                if(empty($data['sub_codeError'])){
-                    if($this->S_postModel->createSubject($data)){
-                        //flash('post_message', 'Subject Added');
-                        //redirect('pages/administrator_dashboard');
-                        redirect('AdminPosts/viewSubjects');
-                    }else{
-                        die('Something went wrong');
-                    }
+                //check if sub_code already exists
+                if($this->S_postModel->subjectExists($data['sub_code'])){
+                    redirect('AdminPosts/createSubject/1');
+                    // die('room already exists');
                 }else{
-                    $this->view('adminPosts/v_createSubject', $data);
 
+                    if(empty($data['sub_codeError'])){
+                        if($this->S_postModel->createSubject($data)){
+                            //flash('post_message', 'Subject Added');
+                            //redirect('pages/administrator_dashboard');
+                            redirect('AdminPosts/viewSubjects');
+                        }else{
+                            die('Something went wrong');
+                        }
+                    }else{
+                        $this->view('adminPosts/v_createSubject', $data);
+    
+                    }
                 }
+
             }  else{
                 $data = [
 
@@ -456,7 +486,10 @@ require_once APPROOT . '/controllers/Mail.php';
                     'sub_isHaveTutorial' => '',
                     'sub_isHavePractical' => '',
 
-                    'sub_codeError' => ''
+                    'sub_codeError' => '',
+
+                    'variables' => $variables,
+                    'popup' => $popup
                 ];
                 $this->view('adminPosts/v_createSubject', $data);
             }  
@@ -473,6 +506,9 @@ require_once APPROOT . '/controllers/Mail.php';
         }
 
         public function updateSubject($postId){
+
+            $variables = $this->V_postModel->getAll();
+
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -481,18 +517,20 @@ require_once APPROOT . '/controllers/Mail.php';
                     'title' => 'Update Subject',
                     'postId' => $postId,
 
-                    'sub_id' => trim($_POST['sub_id']),
+                    'sub_id' => $postId,
                     'sub_code' => trim($_POST['sub_code']),
                     'sub_name' => trim($_POST['sub_name']),
                     'sub_credits' => trim($_POST['sub_credits']),
                     'sub_year' => trim($_POST['sub_year']),
                     'sub_semester' => trim($_POST['sub_semester']),
                     'sub_stream' => trim($_POST['sub_stream']),
-                    'sub_nStudents' => trim($_POST['sub_nStudents']),
+                    'sub_nStudents' => trim($_POST['sub_nStudents']) > 0 ? trim($_POST['sub_nStudents']) : 0,
                     'sub_isCore' => isset($_POST['sub_isCore']) ? '1' : '0',
                     'sub_isHaveLecture' => isset($_POST['sub_isHaveLecture']) ? '1' : '0',
                     'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
-                    'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0'                    
+                    'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0',
+                    
+                    'variables' => $variables
                 ];
 
                 if(1){
@@ -507,7 +545,7 @@ require_once APPROOT . '/controllers/Mail.php';
                 $data = [
                     'title' => 'Update Subject',
 
-                    'sub_id' => $post->sub_id,
+                    'sub_id' => $postId,
                     'sub_code' => $post->sub_code,
                     'sub_name' => $post->sub_name,
                     'sub_credits' => $post->sub_credits,
@@ -518,7 +556,9 @@ require_once APPROOT . '/controllers/Mail.php';
                     'sub_isCore' => $post->sub_isCore,
                     'sub_isHaveLecture' => $post->sub_isHaveLecture,
                     'sub_isHaveTutorial' => $post->sub_isHaveTutorial,
-                    'sub_isHavePractical' => $post->sub_isHavePractical
+                    'sub_isHavePractical' => $post->sub_isHavePractical,
+
+                    'variables' => $variables
                 ];
                 $this->view('adminPosts/v_updateSubject', $data);
             }

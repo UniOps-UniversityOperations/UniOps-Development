@@ -41,7 +41,7 @@
             // Hide the popup after 5 seconds
             setTimeout(function() {
                 popup.style.display = 'none';
-            }, 300000);
+            }, 3000);
         }
     
         // Call the showPopup function when the page loads

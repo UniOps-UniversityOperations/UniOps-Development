@@ -138,27 +138,29 @@
                     <h2 style='padding-bottom:10px;'>Variables</h2>
                     <button class="add_user add_user1"><a href="<?php echo URLROOT;?>/AdminPosts/editVariables">Edit</a></button>
                 </div>
-                    
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>var name</th>
-                            <th>var value</th>
-                        </tr>
-                    </thead>
-                    <tbody>        
-                        <?php
-                        foreach($data['vars'] as $var) : ?>
-
-                        
+                   
+                <div class="table-wrapper">
+                    <table class="styled-table">
+                        <thead>
                             <tr>
-                                <td><?php echo $var->v_name; ?></td>
-                                <td><?php echo $var->v_value; ?></td>
-                            </tr>    
-                        
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                                <th>var name</th>
+                                <th>var value</th>
+                            </tr>
+                        </thead>
+                        <tbody>        
+                            <?php
+                            foreach($data['vars'] as $var) : ?>
+
+                            
+                                <tr>
+                                    <td><?php echo $var->v_name; ?></td>
+                                    <td><?php echo $var->v_value; ?></td>
+                                </tr>    
+                            
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
 

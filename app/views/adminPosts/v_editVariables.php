@@ -59,6 +59,46 @@
             <label class="lable" for="instructor_max_students_tutorial">Maximum number of students per tutorial for an instructor:
             <input type="text" name="instructor_max_students_tutorial" id="instructor_max_students_tutorial" value="<?php echo $data['instructor_max_students_tutorial']; ?>" required>
             </label>
+
+            <!-- 11 -->
+            <label class="lable" for="n_1_yr_cs">Number of students in 1st year Computer Science:
+            <input type="text" name="n_1_yr_cs" id="n_1_yr_cs" value="<?php echo $data['n_1_yr_cs']; ?>" required>
+            </label>
+
+            <!-- 12 -->
+            <label class="lable" for="n_2_yr_cs">Number of students in 2nd year Computer Science:
+            <input type="text" name="n_2_yr_cs" id="n_2_yr_cs" value="<?php echo $data['n_2_yr_cs']; ?>" required>
+            </label>
+
+            <!-- 13 -->
+            <label class="lable" for="n_3_yr_cs">Number of students in 3rd year Computer Science:
+            <input type="text" name="n_3_yr_cs" id="n_3_yr_cs" value="<?php echo $data['n_3_yr_cs']; ?>" required>
+            </label>
+
+            <!-- 14 -->
+            <label class="lable" for="n_4_yr_cs">Number of students in 4th year Computer Science:
+            <input type="text" name="n_4_yr_cs" id="n_4_yr_cs" value="<?php echo $data['n_4_yr_cs']; ?>" required>
+            </label>
+
+            <!-- 15 -->
+            <label class="lable" for="n_1_yr_is">Number of students in 1st year Information Systems:
+            <input type="text" name="n_1_yr_is" id="n_1_yr_is" value="<?php echo $data['n_1_yr_is']; ?>" required>
+            </label>
+
+            <!-- 16 -->
+            <label class="lable" for="n_2_yr_is">Number of students in 2nd year Information Systems:
+            <input type="text" name="n_2_yr_is" id="n_2_yr_is" value="<?php echo $data['n_2_yr_is']; ?>" required>
+            </label>
+
+            <!-- 17 -->
+            <label class="lable" for="n_3_yr_is">Number of students in 3rd year Information Systems:
+            <input type="text" name="n_3_yr_is" id="n_3_yr_is" value="<?php echo $data['n_3_yr_is']; ?>" required>
+            </label>
+
+            <!-- 18 -->
+            <label class="lable" for="n_4_yr_is">Number of students in 4th year Information Systems:
+            <input type="text" name="n_4_yr_is" id="n_4_yr_is" value="<?php echo $data['n_4_yr_is']; ?>" required>
+            </label>
            
             
         </fieldset>
@@ -74,14 +114,22 @@
 
 
 <!-- 
-'lecturer_max_lec_hrs' => trim($_POST['lecturer_max_lec_hrs']),
-'lec_hrs_per_credit' => trim($_POST['lec_hrs_per_credit']),
-'practcal_hrs_per_credit' => trim($_POST['practcal_hrs_per_credit']),
-'tutorial_hrs_per_credit' => trim($_POST['tutorial_hrs_per_credit']),
-'instructor_max_practical_hrs' => trim($_POST['instructor_max_practical_hrs']),
-'instructor_max_tutorial_hrs' => trim($_POST['instructor_max_tutorial_hrs']),
-'max_students_per_lecturer' => trim($_POST['max_students_per_lecturer']),
-'instructor_max_students_lecturer' => trim($_POST['instructor_max_students_lecturer']),
-'instructor_max_students_practical' => trim($_POST['instructor_max_students_practical']),
-'instructor_max_students_tutorial' => trim($_POST['instructor_max_students_tutorial'])  
+'lecturer_max_lec_hrs' => $vars[0]->v_value,
+'lec_hrs_per_credit' => $vars[1]->v_value,
+'practcal_hrs_per_credit' => $vars[2]->v_value,
+'tutorial_hrs_per_credit' => $vars[3]->v_value,
+'instructor_max_practical_hrs' => $vars[4]->v_value,
+'instructor_max_tutorial_hrs' => $vars[5]->v_value,
+'max_students_per_lecturer' => $vars[6]->v_value,
+'instructor_max_students_lecturer' => $vars[7]->v_value,
+'instructor_max_students_practical' => $vars[8]->v_value,
+'instructor_max_students_tutorial' => $vars[9]->v_value,
+'n_1_yr_cs' => $vars[10]->v_value,
+'n_2_yr_cs' => $vars[11]->v_value,
+'n_3_yr_cs' => $vars[12]->v_value,
+'n_4_yr_cs' => $vars[13]->v_value,
+'n_1_yr_is' => $vars[14]->v_value,
+'n_2_yr_is' => $vars[15]->v_value,
+'n_3_yr_is' => $vars[16]->v_value,
+'n_4_yr_is' => $vars[17]->v_value,
 -->

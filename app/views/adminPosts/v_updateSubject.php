@@ -10,10 +10,6 @@
 
             <fieldset>
 
-                <label class="lable" for="sub_id">Subject ID:
-                <input type="text" id="sub_id" name="sub_id" placeholder="sub_id" value="<?php echo $data["sub_id"];?>" required>
-                </label>
-
                 <label class="lable" for="sub_code">Code:
                 <input type="text" id="sub_code" name="sub_code" placeholder="sub_code" value="<?php echo $data["sub_code"];?>" required>
                 </label>
@@ -60,16 +56,17 @@
 
                 <!-- Pre-defined values as clickable labels in two rows -->
                 <div class="button-container">
-                    <label for="btn10" onclick="setNumberOfStudents(10)">10 Students</label>
-                    <label for="btn20" onclick="setNumberOfStudents(20)">20 Students</label>
-                    <label for="btn30" onclick="setNumberOfStudents(30)">30 Students</label>
-                    <label for="btn40" onclick="setNumberOfStudents(40)">40 Students</label>
+                    <label for="btn1" onclick="setNumberOfStudents(<?php echo $data['variables'][10]->v_value; ?>)">1 yr CS (<?php echo $data['variables'][10]->v_value; ?>)</label>
+                    <label for="btn2" onclick="setNumberOfStudents(<?php echo $data['variables'][11]->v_value; ?>)">2 yr CS (<?php echo $data['variables'][11]->v_value; ?>)</label>
+                    <label for="btn3" onclick="setNumberOfStudents(<?php echo $data['variables'][12]->v_value; ?>)">3 yr CS (<?php echo $data['variables'][12]->v_value; ?>)</label>
+                    <label for="btn4" onclick="setNumberOfStudents(<?php echo $data['variables'][13]->v_value; ?>)">4 yr CS (<?php echo $data['variables'][13]->v_value; ?>)</label>
+                    
                 </div>
                 <div class="button-container">
-                    <label for="btn50" onclick="setNumberOfStudents(50)">50 Students</label>
-                    <label for="btn60" onclick="setNumberOfStudents(60)">60 Students</label>
-                    <label for="btn70" onclick="setNumberOfStudents(70)">70 Students</label>
-                    <label for="btn80" onclick="setNumberOfStudents(80)">80 Students</label>
+                    <label for="btn5" onclick="setNumberOfStudents(<?php echo $data['variables'][14]->v_value; ?>)">1 yr IS (<?php echo $data['variables'][14]->v_value; ?>)</label>
+                    <label for="btn6" onclick="setNumberOfStudents(<?php echo $data['variables'][15]->v_value; ?>)">2 yr IS (<?php echo $data['variables'][15]->v_value; ?>)</label>
+                    <label for="btn7" onclick="setNumberOfStudents(<?php echo $data['variables'][16]->v_value; ?>)">3 yr IS (<?php echo $data['variables'][16]->v_value; ?>)</label>
+                    <label for="btn8" onclick="setNumberOfStudents(<?php echo $data['variables'][17]->v_value; ?>)">4 yr IS (<?php echo $data['variables'][17]->v_value; ?>)</label>
                 </div>
                 </label>
 

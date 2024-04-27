@@ -16,7 +16,7 @@ class M_variables{
 
     //Get all data
     public function getAll(){
-        $this->db->query('SELECT * FROM variables');
+        $this->db->query('SELECT * FROM variables ORDER BY v_id');
         $results = $this->db->resultSet();
         return $results;
     }
@@ -34,6 +34,14 @@ class M_variables{
                             WHEN v_name = "instructor_max_students_lecturer" THEN :instructor_max_students_lecturer
                             WHEN v_name = "instructor_max_students_practical" THEN :instructor_max_students_practical
                             WHEN v_name = "instructor_max_students_tutorial" THEN :instructor_max_students_tutorial
+                            WHEN v_name = "n_1_yr_cs" THEN :n_1_yr_cs
+                            WHEN v_name = "n_2_yr_cs" THEN :n_2_yr_cs
+                            WHEN v_name = "n_3_yr_cs" THEN :n_3_yr_cs
+                            WHEN v_name = "n_4_yr_cs" THEN :n_4_yr_cs
+                            WHEN v_name = "n_1_yr_is" THEN :n_1_yr_is
+                            WHEN v_name = "n_2_yr_is" THEN :n_2_yr_is
+                            WHEN v_name = "n_3_yr_is" THEN :n_3_yr_is
+                            WHEN v_name = "n_4_yr_is" THEN :n_4_yr_is
         END');
         //bind values
         $this->db->bind(':lecturer_max_lec_hrs', $data['lecturer_max_lec_hrs']);
@@ -46,6 +54,14 @@ class M_variables{
         $this->db->bind(':instructor_max_students_lecturer', $data['instructor_max_students_lecturer']);
         $this->db->bind(':instructor_max_students_practical', $data['instructor_max_students_practical']);
         $this->db->bind(':instructor_max_students_tutorial', $data['instructor_max_students_tutorial']);
+        $this->db->bind(':n_1_yr_cs', $data['n_1_yr_cs']);
+        $this->db->bind(':n_2_yr_cs', $data['n_2_yr_cs']);
+        $this->db->bind(':n_3_yr_cs', $data['n_3_yr_cs']);
+        $this->db->bind(':n_4_yr_cs', $data['n_4_yr_cs']);
+        $this->db->bind(':n_1_yr_is', $data['n_1_yr_is']);
+        $this->db->bind(':n_2_yr_is', $data['n_2_yr_is']);
+        $this->db->bind(':n_3_yr_is', $data['n_3_yr_is']);
+        $this->db->bind(':n_4_yr_is', $data['n_4_yr_is']);
 
         //execute
         if($this->db->execute()){
@@ -66,13 +82,21 @@ class M_variables{
 */
 
 // values are
-//     'lecturer_max_lec_hrs' => trim($_POST['lecturer_max_lec_hrs']) > 0 ? trim($_POST['lecturer_max_lec_hrs']) : 0,
-//     'lec_hrs_per_credit' => trim($_POST['lec_hrs_per_credit']) > 0 ? trim($_POST['lec_hrs_per_credit']) : 0,
-//     'practcal_hrs_per_credit' => trim($_POST['practcal_hrs_per_credit']) > 0 ? trim($_POST['practcal_hrs_per_credit']) : 0,
-//     'tutorial_hrs_per_credit' => trim($_POST['tutorial_hrs_per_credit']) > 0 ? trim($_POST['tutorial_hrs_per_credit']) : 0,
-//     'instructor_max_practical_hrs' => trim($_POST['instructor_max_practical_hrs']) > 0 ? trim($_POST['instructor_max_practical_hrs']) : 0,
-//     'instructor_max_tutorial_hrs' => trim($_POST['instructor_max_tutorial_hrs']) > 0 ? trim($_POST['instructor_max_tutorial_hrs']) : 0,
-//     'max_students_per_lecturer' => trim($_POST['max_students_per_lecturer']) > 0 ? trim($_POST['max_students_per_lecturer']) : 0,
-//     'instructor_max_students_lecturer' => trim($_POST['instructor_max_students_lecturer']) > 0 ? trim($_POST['instructor_max_students_lecturer']) : 0,
-//     'instructor_max_students_practical' => trim($_POST['instructor_max_students_practical']) > 0 ? trim($_POST['instructor_max_students_practical']) : 0,
-//     'instructor_max_students_tutorial' => trim($_POST['instructor_max_students_tutorial']) > 0 ? trim($_POST['instructor_max_students_tutorial']) : 0,
+    // 'lecturer_max_lec_hrs' => $vars[0]->v_value,
+    // 'lec_hrs_per_credit' => $vars[1]->v_value,
+    // 'practcal_hrs_per_credit' => $vars[2]->v_value,
+    // 'tutorial_hrs_per_credit' => $vars[3]->v_value,
+    // 'instructor_max_practical_hrs' => $vars[4]->v_value,
+    // 'instructor_max_tutorial_hrs' => $vars[5]->v_value,
+    // 'max_students_per_lecturer' => $vars[6]->v_value,
+    // 'instructor_max_students_lecturer' => $vars[7]->v_value,
+    // 'instructor_max_students_practical' => $vars[8]->v_value,
+    // 'instructor_max_students_tutorial' => $vars[9]->v_value,
+    // 'n_1_yr_cs' => $vars[10]->v_value,
+    // 'n_2_yr_cs' => $vars[11]->v_value,
+    // 'n_3_yr_cs' => $vars[12]->v_value,
+    // 'n_4_yr_cs' => $vars[13]->v_value,
+    // 'n_1_yr_is' => $vars[14]->v_value,
+    // 'n_2_yr_is' => $vars[15]->v_value,
+    // 'n_3_yr_is' => $vars[16]->v_value,
+    // 'n_4_yr_is' => $vars[17]->v_value,
