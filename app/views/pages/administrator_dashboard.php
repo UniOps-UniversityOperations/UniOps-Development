@@ -170,6 +170,21 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<!-- Popup to Confrim Delete administrator -->
+<script>
+    $(".delete_button").click(function (e) {
+        e.preventDefault();
+        var c = confirm("Are you sure you want to delete this administrator?");
+        if (c) {
+            // get href from parent div
+            var href = $(this).parent().attr("href");
+            // follow the href
+            window.location.href = href;
+        }
+    });
+</script>
 
 <script src="<?php echo URLROOT;?>/js/administrator/administrator_dashboard.js"></script>
 

@@ -16,7 +16,7 @@
             <input type="text" name="username" id="username" value="<?php echo $data['username']; ?>" required>
             </label>
 
-            <label class="lable" for="pwd">Passeord:
+            <label class="lable" for="pwd">Password:
             <input type="pwd" name="pwd" id="pwd" value="<?php echo $data['pwd']; ?>" required>
             </label>
 

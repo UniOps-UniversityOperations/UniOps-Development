@@ -2,7 +2,7 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
-<h1>Update Adminidtrator</h1>
+<h1>Edit Variables</h1>
 
 <div class="content">
     <form action="<?php echo URLROOT;?>/AdminPosts/editVariables" method="post">
