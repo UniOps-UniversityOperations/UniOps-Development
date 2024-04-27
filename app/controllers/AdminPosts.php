@@ -149,6 +149,57 @@ require_once APPROOT . '/controllers/Mail.php';
             }
         }
 
+        //Edit / Update Variables
+        public function editVariables(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+
+                    'title' => 'Edit Variables',
+
+                    'lecturer_max_lec_hrs' => trim($_POST['lecturer_max_lec_hrs']) > 0 ? trim($_POST['lecturer_max_lec_hrs']) : 0,
+                    'lec_hrs_per_credit' => trim($_POST['lec_hrs_per_credit']) > 0 ? trim($_POST['lec_hrs_per_credit']) : 0,
+                    'practcal_hrs_per_credit' => trim($_POST['practcal_hrs_per_credit']) > 0 ? trim($_POST['practcal_hrs_per_credit']) : 0,
+                    'tutorial_hrs_per_credit' => trim($_POST['tutorial_hrs_per_credit']) > 0 ? trim($_POST['tutorial_hrs_per_credit']) : 0,
+                    'instructor_max_practical_hrs' => trim($_POST['instructor_max_practical_hrs']) > 0 ? trim($_POST['instructor_max_practical_hrs']) : 0,
+                    'instructor_max_tutorial_hrs' => trim($_POST['instructor_max_tutorial_hrs']) > 0 ? trim($_POST['instructor_max_tutorial_hrs']) : 0,
+                    'max_students_per_lecturer' => trim($_POST['max_students_per_lecturer']) > 0 ? trim($_POST['max_students_per_lecturer']) : 0,
+                    'instructor_max_students_lecturer' => trim($_POST['instructor_max_students_lecturer']) > 0 ? trim($_POST['instructor_max_students_lecturer']) : 0,
+                    'instructor_max_students_practical' => trim($_POST['instructor_max_students_practical']) > 0 ? trim($_POST['instructor_max_students_practical']) : 0,
+                    'instructor_max_students_tutorial' => trim($_POST['instructor_max_students_tutorial']) > 0 ? trim($_POST['instructor_max_students_tutorial']) : 0,             
+                ];
+
+                if(1){
+                    if($this->V_postModel->updateVariables($data)){
+                        redirect('AdminPosts/showDashboard');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }
+            }else{
+
+                $vars = $this->V_postModel->getAll();
+                $data = [
+
+                    'title' => 'Edit Variables',
+
+                    'lecturer_max_lec_hrs' => $vars[0]->v_value,
+                    'lec_hrs_per_credit' => $vars[1]->v_value,
+                    'practcal_hrs_per_credit' => $vars[2]->v_value,
+                    'tutorial_hrs_per_credit' => $vars[3]->v_value,
+                    'instructor_max_practical_hrs' => $vars[4]->v_value,
+                    'instructor_max_tutorial_hrs' => $vars[5]->v_value,
+                    'max_students_per_lecturer' => $vars[6]->v_value,
+                    'instructor_max_students_lecturer' => $vars[7]->v_value,
+                    'instructor_max_students_practical' => $vars[8]->v_value,
+                    'instructor_max_students_tutorial' => $vars[9]->v_value
+                    
+                ];
+                $this->view('adminPosts/v_editVariables', $data);
+            }
+        }
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

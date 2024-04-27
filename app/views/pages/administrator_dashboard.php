@@ -136,7 +136,7 @@
             <div class='inner_column'>
                 <div class='uses_top_bar'>
                     <h2 style='padding-bottom:10px;'>Variables</h2>
-                    <button class="add_user add_user1"><a href="<?php echo URLROOT;?>/AdminPosts/addUser">Add Administator</a></button>
+                    <button class="add_user add_user1"><a href="<?php echo URLROOT;?>/AdminPosts/editVariables">Edit</a></button>
                 </div>
                     
                 <table class="styled-table">
