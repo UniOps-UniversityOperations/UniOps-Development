@@ -88,7 +88,6 @@
 
         public function updateRoom($data){
             $this->db->query('UPDATE rooms SET 
-                id = :id,
                 name = :name,
                 type = :type,
                 capacity = :capacity,
