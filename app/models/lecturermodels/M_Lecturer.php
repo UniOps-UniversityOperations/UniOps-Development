@@ -164,11 +164,11 @@ class M_Lecturer {
     }
 
     public function viewPrefferedSubjects(){
-        $sql = 'SELECT requestedsubjects.subject_code,subjects.sub_name, subjects.sub_year, subjects.sub_stream, subjects.sub_semester, subjects.sub_credits 
+        $sql = 'SELECT requestedsubjects.subject_code,requestedsubjects.pref_level,subjects.sub_name, subjects.sub_year, subjects.sub_stream, subjects.sub_semester, subjects.sub_credits 
         FROM requestedsubjects 
         INNER JOIN subjects ON requestedsubjects.subject_code = subjects.sub_code 
         INNER JOIN lecturers ON requestedsubjects.lecturer_code = lecturers.l_code
-        WHERE lecturers.l_email = :uid;';
+        WHERE lecturers.l_email = :uid ORDER BY requestedsubjects.pref_level ASC;';
         $this->db->query($sql);
         $this->db->bind(':uid',$_SESSION['user_id']);
         //return $this->db->execute();
@@ -206,13 +206,6 @@ class M_Lecturer {
     }
 
     public function viewSubjects() {
-        /* $sql = 'SELECT sub_code,sub_name,sub_year,sub_semester,sub_stream,sub_credits FROM SUBJECTS ORDER BY sub_stream,sub_year,sub_semester ASC;'; */
-  /*       $sql = "SELECT s.*
-        FROM subjects s
-        LEFT JOIN requestedsubjects r ON s.sub_code = r.subject_code
-        WHERE r.lecturer_code IS NULL OR r.lecturer_code <> :uid;
-        "; */
-
         $sql = "SELECT s.*
         FROM subjects s
         LEFT JOIN requestedsubjects rs ON s.sub_code = rs.subject_code
@@ -243,14 +236,18 @@ class M_Lecturer {
         return $this->db->execute();
     }
 
-    public function requestSubject($sub_code) {
+    public function requestSubject($sub_code,$num_of_requested_subjects) {
         /* $sql = "INSERT INTO requestedsubjects (lecturer_code,subject_code) values (:uid,:sub_code);"; */
-        $sql = "INSERT INTO requestedsubjects (lecturer_code,subject_code)
-        SELECT L.l_code,:sub_code FROM lecturers L WHERE L.l_email = :uid;
+        $sql = "INSERT INTO requestedsubjects (lecturer_code,subject_code,pref_level)
+        SELECT L.l_code,:sub_code,:pref_levl FROM lecturers L WHERE L.l_email = :uid;
         ";
+
+        $pref_levl = $num_of_requested_subjects+1;
+
         $this->db->query($sql);
         $this->db->bind(':uid',$_SESSION['user_id']);
         $this->db->bind(':sub_code',$sub_code);
+        $this->db->bind(':pref_levl',$pref_levl);
         return $this->db->execute();
     }
 
@@ -262,5 +259,12 @@ class M_Lecturer {
         $this->db->bind(':uid',$_SESSION['user_id']);
         $this->db->bind(':code',$sub_code);
         return $this->db->execute();
+    }
+
+    public function findnumofrequestedsub() {
+        $sql = "SELECT COUNT(lecturer_code) as subject_count FROM requestedsubjects WHERE lecturer_code = (SELECT l_code FROM lecturers WHERE l_email = :uid);";
+        $this->db->query($sql);
+        $this->db->bind(':uid',$_SESSION['user_id']);
+        return $this->db->single()->subject_count;
     }
 }

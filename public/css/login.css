@@ -53,3 +53,7 @@ button:hover {
 #Errormsg {
     color: red;
 }
+
+#forgotpasswordmsg {
+    margin-top: 20px;
+}

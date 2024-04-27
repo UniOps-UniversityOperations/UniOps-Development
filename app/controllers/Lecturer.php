@@ -173,7 +173,10 @@
     public function requestSubject() {
       if(isset($_POST['submit'])){
         $sub_code = $_POST['sub_code'];
-        $result = $this->lecturerModel->requestSubject($sub_code);
+
+        //This finds the number of requested subjetcs by a lecturer so that we can set the preference level
+        $num_of_requested_subjects = (int) $this->lecturerModel->findnumofrequestedsub();
+        $result = $this->lecturerModel->requestSubject($sub_code,$num_of_requested_subjects);
         redirect('Lecturer/viewSubjects');
       }
     }
