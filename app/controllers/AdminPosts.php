@@ -1155,7 +1155,7 @@ require_once APPROOT . '/controllers/Mail.php';
 
 // ----- For Lecturer asign Subjects -----------------------------------------------------------------------------------------------------------------------------------
         //Assign Subjects to Lecturer
-        public function assignSubjects($postId, $popup = 0){
+        public function assignSubjects($postId, $popup = 0, $case = 0, $ohp = 0, $sub_code = 0){
             $postsRS = $this->RS_postModel->getSubjects($postId);
             $postsAS = $this->AS_postModel->getSubjects($postId);
             $subjects = $this->AS_postModel->getSubjectDetails();
@@ -1163,6 +1163,12 @@ require_once APPROOT . '/controllers/Mail.php';
             // get Lecturer name uing the postId(Lecturer code)
             $lecturerName = $this->L_postModel->getLecturerByCode($postId);
             $email = $this->L_postModel->getEmail($postId);
+
+            if($sub_code != 0){
+                $conflit_delails = $this->RS_postModel->getOtherHighestPreference($sub_code, $postId);
+            }else{
+                $conflit_delails = null;
+            }
             
             if(!$postsRS){
                 $postsRS = "null";
@@ -1176,7 +1182,10 @@ require_once APPROOT . '/controllers/Mail.php';
                 'variables' => $variables,
                 'lecturerName' => $lecturerName,
                 'email' => $email,
-                'popup' => $popup
+                'popup' => $popup,
+                'case' => $case,
+                'conflit_delails' => $conflit_delails,
+                'ohp' => $ohp
             ];
             $this->view('adminPosts/v_assignSubjects', $data);
         }
@@ -1184,6 +1193,42 @@ require_once APPROOT . '/controllers/Mail.php';
         public function addToAssignSubjects($sub_code, $lecturer_code){
             // die($sub_code . "and" . $lecturer_code);
             //add subject to the requestedSubjects table
+
+            //this lecturers preferencee level for the subject
+            $this_l_preference = $this->RS_postModel->getPreference($sub_code, $lecturer_code);
+            // die("this_l_preference = " . $this_l_preference);
+            
+            //get othwe hihghest preference level for the subject
+            $other_highest_preference = $this->RS_postModel->getOtherHighestPreference($sub_code, $lecturer_code);
+            $max_preference = $this->RS_postModel->getMinPrefLevel($sub_code , $lecturer_code);
+            // die(var_dump($other_highest_preference));
+            if($other_highest_preference){
+                // die("case -> " . $this_l_preference . " and " . $max_preference);
+                
+                //case 1  - if the lecturer has no preference for the subject
+                if($this_l_preference == 0 || $this_l_preference > $max_preference){
+                    // die("case 1");
+                    if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                        redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/0' . '/1' . '/1' . '/' . $sub_code);
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                    
+                }else{
+                    //case 2 - if the lecturer has a same preference for the subject
+                    // die("case 2");
+                    if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                        redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/0' . '/2' . '/1' . '/' . $sub_code);
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+            }
+
+            // die("ok");
+
             if($this->AS_postModel->add($sub_code, $lecturer_code)){
                 redirect('AdminPosts/assignSubjects/' . $lecturer_code);
             }
