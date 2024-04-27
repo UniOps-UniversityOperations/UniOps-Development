@@ -22,8 +22,14 @@
         border: 1px red solid; 
         transition: top 0.5s ease;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
-        <!-- if popup = 1 Request Email Sent | if popup = 2 Status Email Sent -->
-        <p>Lecturer initials already exists! </p>
+        <!-- if popup = 1 Lecturer initial is already exists | popup = 2 Lecturer email is already exists | popup = 3 Lecturer initial and email is already exists -->
+        <?php if($data['popup'] == 1){ 
+            echo "<p>Lecturer initial is already exists</p>";
+        }elseif($data['popup'] == 2){
+            echo "<p>Lecturer email is already exists</p>";
+        }elseif($data['popup'] == 3){
+            echo "<p>Lecturer initial and<br> email are already exists</p>";
+        } ?>
         
     </div>
     
@@ -53,7 +59,10 @@
         <!-- input feilds -->
 
         <fieldset>
-            <h3>Lecturer Details:</h3>    
+            <h3>Lecturer Details:</h3> 
+            
+            <!-- importent message  (Initials and Email must be unique) -->
+            <p style="color:red">Important: <b>Initials</b> and <b>Email</b> must be unique.</p>
 
             <label class="lable" for="l_code">Initials:
             <input type="text" id="l_code" name="l_code" placeholder="l_code" value="<?php $data["l_code"];?>" oninput="this.value = this.value.toUpperCase();" required>
@@ -111,7 +120,7 @@
             </label>
 
 
-            <label class="label" for="l_department">Credit:
+            <label class="label" for="l_department">Department:
                 <select id="l_department" name="l_department" required>
                     <option value="UCSC">UCSC</option>
                     <option value="Sicece - Mathemetics">Sicece - Mathemetics</option>

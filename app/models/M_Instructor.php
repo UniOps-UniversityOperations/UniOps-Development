@@ -164,6 +164,32 @@ class M_Instructor{
         $row = $this->db->single();
         return $row;
     }
+
+    //instructorExists($data['i_code'])
+    public function instructorExists($i_code){
+        $this->db->query('SELECT * FROM instructors WHERE i_code = :i_code');
+        $this->db->bind(':i_code', $i_code);
+        $row = $this->db->single();
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //userExistsemail($data['i_email'])
+    public function userExistsemail($i_email){
+        $this->db->query('SELECT * FROM instructors WHERE i_email = :i_email');
+        $this->db->bind(':i_email', $i_email);
+        $row = $this->db->single();
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 /*

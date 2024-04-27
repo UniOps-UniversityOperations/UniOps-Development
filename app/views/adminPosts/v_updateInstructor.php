@@ -2,6 +2,55 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
+<?php if($data['popup']){ ?>
+    
+    <div id="popup" 
+        style="
+        display: none; 
+        position: fixed; 
+        border-radius: 10px;
+        font-size: 19px;
+        font-weight: bold;
+        color: red;
+        top: 10%; 
+        left: 73%; 
+        transform: 
+        translate(50%, -25%); 
+        background-color: white; 
+        padding: 20px 20px 20px 20px;
+        margin-right: 20px;
+        border: 1px red solid; 
+        transition: top 0.5s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+        <!-- if popup = 1 Lecturer initial is already exists | popup = 2 Lecturer email is already exists | popup = 3 Lecturer initial and email is already exists -->
+        <?php if($data['popup'] == 1){ 
+            echo "<p>initials is already exists</p>";
+        }elseif($data['popup'] == 2){
+            echo "<p>email is already exists</p>";
+        }elseif($data['popup'] == 3){
+            echo "<p>Initials and<br> email are already exists</p>";
+        } ?>
+        
+    </div>
+    
+    <script>
+        // Function to show the popup message
+        function showPopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+    
+            // Hide the popup after 5 seconds
+            setTimeout(function() {
+                popup.style.display = 'none';
+            }, 3000);
+        }
+    
+        // Call the showPopup function when the page loads
+        window.onload = showPopup;
+    </script>
+    
+    <?php } ?>
+
 <h1>Update Instructor</h1>
 
 <div class="content">

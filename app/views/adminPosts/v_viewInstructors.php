@@ -21,7 +21,7 @@
             ?>
                 
                 <div class="top">
-                <h1 class="topic">Administrator / Instructors</h1>
+                <h1 class="topic">Administrator &#10145; Instructors & Assistant Lecturers</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
@@ -44,7 +44,7 @@
 
                     <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createInstructor">
-                            <button class="create_button">Add Instructor</button>
+                            <button class="create_button">Add New </button>
                         </a>
                     </div>
                 </div>
@@ -242,7 +242,7 @@
                                         <td>
                                             <?php 
                                                 $text = $post->i_qualifications;
-                                                $chunks = str_split($text, 20);
+                                                $chunks = str_split($text, 15);
 
                                                 foreach ($chunks as $key => $chunk):
                                                     echo $key === 0 ? "<b>: </b>" : ''; // Add <b>: </b> for the first chunk
