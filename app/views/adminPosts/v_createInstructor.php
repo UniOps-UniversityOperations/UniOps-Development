@@ -144,7 +144,7 @@
             <input type="text" id="i_positionRank" name="i_positionRank" placeholder="i_positionRank" value="<?php $data["i_positionRank"];?>" required>
             </label> -->
 
-            <label class="label" for="i_positionRank">Credit:
+            <label class="label" for="i_positionRank">Position Rank:
                 <select id="i_positionRank" name="i_positionRank" required>
                     <option value="Assistant Lecturer">Assistant Lecturer</option>
                     <option value="Instructor">Instructor</option>

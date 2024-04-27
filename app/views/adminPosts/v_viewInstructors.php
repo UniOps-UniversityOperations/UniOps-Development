@@ -14,9 +14,14 @@
             <!-- Have to look this later **************************************************************************************************************-->
             <?php
                 // Count the number of Lecturers
-                $count = 0;
+                $counti = 0;
+                $countal = 0;
                 foreach ($data['posts'] as $post) {
-                    $count++;
+                    if ($post->i_positionRank == "Instructor") {
+                        $counti++;
+                    } else {
+                        $countal++;
+                    }
                 }
             ?>
                 
@@ -29,7 +34,17 @@
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
                             echo "<div class='count_column'><p># Instructors:</p></div>";
-                            echo "<div class='count_column'><p>$count</p></div>";
+                            echo "<div class='count_column'><p>$counti</p></div>";
+                            echo "</div>";
+                            echo "</div>"
+                        ?>
+                        
+                        <?php
+                        // Display the count for each type
+                            echo "<div class='count_tile'>";
+                            echo "<div class='count_row'>";
+                            echo "<div class='count_column'><p># Assistant Lecturers:</p></div>";
+                            echo "<div class='count_column'><p>$countal</p></div>";
                             echo "</div>";
                             echo "</div>"
                         ?>

@@ -977,7 +977,7 @@ require_once APPROOT . '/controllers/Mail.php';
                     'title' => 'Update Instructor',
                     'postId' => $postId,
 
-                    'i_id' => trim($_POST['i_id']),
+                    'i_id' => $postId,
                     'i_code' => trim($_POST['i_code']), 
                     'i_email' => trim($_POST['i_email']),
                     'i_fullName' => trim($_POST['i_fullName']),
@@ -995,19 +995,31 @@ require_once APPROOT . '/controllers/Mail.php';
                     'popup' => $popup,
                 ];
 
-                if(1){
-                    if($this->I_postModel->updateInstructor($data)){
-                        redirect('adminPosts/viewInstructors');
-                    }else{
-                        die('Something went wrong');
+                //check if i_code already exists
+                if($this->I_postModel->instructorExists2($data['i_code'], $postId) && $this->I_postModel->userExistsemail2($data['i_email'], $postId)){
+                    redirect('AdminPosts/updateInstructor/' . $postId . '/3');
+                    // die('room already exists');
+                }else if($this->I_postModel->instructorExists2($data['i_code'], $postId)){
+                    redirect('AdminPosts/updateInstructor/' . $postId . '/1');
+                }else if($this->I_postModel->userExistsemail2($data['i_email'], $postId)){
+                    redirect('AdminPosts/updateInstructor/' . $postId . '/2');
+                }else{
+
+                    if(1){
+                        if($this->I_postModel->updateInstructor($data)){
+                            redirect('adminPosts/viewInstructors');
+                        }else{
+                            die('Something went wrong');
+                        }
                     }
                 }
+
             }else{
                 $post = $this->I_postModel->getInstructorById($postId);
                 $data = [
                     'title' => 'Update Instructor',
 
-                    'i_id' => $post->i_id,
+                    'i_id' => $postId,
                     'i_code' => $post->i_code,
                     'i_email' => $post->i_email,
                     'i_fullName' => $post->i_fullName,
