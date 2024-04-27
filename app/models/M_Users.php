@@ -118,6 +118,8 @@ class M_Users {
         $this->db->query($sql);
         $this->db->bind(1,$tokenemail);
         $this->db->execute();
+
+    }
     //a function to return true if the user exists else false
     public function userExists($user_id){
         $this->db->query("SELECT * FROM users WHERE user_id = :user_id");
