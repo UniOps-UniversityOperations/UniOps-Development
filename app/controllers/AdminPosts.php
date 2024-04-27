@@ -205,7 +205,7 @@ require_once APPROOT . '/controllers/Mail.php';
 
 //----- CRUD for Room ------------------------------------------------------------------------------------------------------------------------------------
 
-        public function createRoom(){
+        public function createRoom($popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -218,11 +218,11 @@ require_once APPROOT . '/controllers/Mail.php';
                     'type' => trim($_POST['type']),
                     'capacity' => trim($_POST['capacity']),
                     'current_availability' => trim($_POST['current_availability']),
-                    'no_of_tables' => trim($_POST['no_of_tables']),
-                    'no_of_chairs' => trim($_POST['no_of_chairs']),
-                    'no_of_boards' => trim($_POST['no_of_boards']),
-                    'no_of_projectors' => trim($_POST['no_of_projectors']),
-                    'no_of_computers' => trim($_POST['no_of_computers']),
+                    'no_of_tables' => trim($_POST['no_of_tables']) > 0 ? trim($_POST['no_of_tables']) : 0,
+                    'no_of_chairs' => trim($_POST['no_of_chairs']) > 0 ? trim($_POST['no_of_chairs']) : 0,
+                    'no_of_boards' => trim($_POST['no_of_boards']) > 0 ? trim($_POST['no_of_boards']) : 0,
+                    'no_of_projectors' => trim($_POST['no_of_projectors']) > 0 ? trim($_POST['no_of_projectors']) : 0,
+                    'no_of_computers' => trim($_POST['no_of_computers']) > 0 ? trim($_POST['no_of_computers']) : 0,
                     'is_ac' => isset($_POST['is_ac']) ? '1' : '0',
                     'is_wifi' => isset($_POST['is_wifi']) ? '1' : '0',
                     'is_media' => isset($_POST['is_media']) ? '1' : '0',
@@ -232,6 +232,7 @@ require_once APPROOT . '/controllers/Mail.php';
                     'is_meeting' => isset($_POST['is_meeting']) ? '1' : '0',
                     'is_seminar' => isset($_POST['is_seminar']) ? '1' : '0',         
                     'is_exam' => isset($_POST['is_exam']) ? '1' : '0',
+                    'popup' => $popup,
                     
                     'idError' => '',
                 ];
@@ -240,17 +241,25 @@ require_once APPROOT . '/controllers/Mail.php';
                     $data['idError'] = 'Please enter Room ID';
                 }
 
-                if(!empty($data['name'])){
-                    if($this->R_postModel->createRoom($data)){
-                        //flash('post_message', 'Room Added');
-                        //redirect('pages/administrator_dashboard');
-                        redirect('adminPosts/viewRooms');
-                    }else{
-                        die('Something went wrong');
-                    }
+                //check if room_id already exists
+                if($this->R_postModel->roomExists($data['name'])){
+                    redirect('AdminPosts/createRoom/1');
+                    // die('room already exists');
                 }else{
-                    $this->view('posts/v_createRoom', $data);
+
+                    if(!empty($data['name'])){
+                        if($this->R_postModel->createRoom($data)){
+                            //flash('post_message', 'Room Added');
+                            //redirect('pages/administrator_dashboard');
+                            redirect('adminPosts/viewRooms');
+                        }else{
+                            die('Something went wrong');
+                        }
+                    }else{
+                        $this->view('posts/v_createRoom', $data);
+                    }
                 }
+
             }  else{
                 $data = [
 
@@ -275,6 +284,7 @@ require_once APPROOT . '/controllers/Mail.php';
                     'is_meeting' => '',
                     'is_seminar' => '',         
                     'is_exam' => '',
+                    'popup' => $popup,
                     
                     'idError' => '',
                 ];
