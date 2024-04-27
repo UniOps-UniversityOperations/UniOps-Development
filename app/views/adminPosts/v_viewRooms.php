@@ -79,7 +79,6 @@
 
                     <div class="title_bar">
                         <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
-                        <p class="title_item"><b>ID</b></p>
                         <p class="title_item"><b>Type</b></p>
                         <p style="padding-right: 210px;" class="title_item"><b>Capacity</b></p>
                     </div> 
@@ -99,7 +98,6 @@
                             <div class="lecture_room_header">
                                 <p class="row_num"><?php echo $i++; ?></p>
                                 <h3 class="header_title"><?php echo $post->name; ?></h3>
-                                <p class="header_item"><?php echo $post->id; ?></p>
                                 <p class="header_item"><?php echo $post->type; ?></p>
                                 <p class="header_item"><?php echo $post->capacity; ?></p>
                                 <!-- <p class="header_item"><b>Availability:</b> <?php echo $post->current_availability; ?></p> -->
