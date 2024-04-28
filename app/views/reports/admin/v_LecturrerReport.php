@@ -4,7 +4,7 @@
 
 <!-- convert l_nameWithInitials ri Camel case -->
 <?php $l_nameWithInitials = ucwords(strtolower($data['lecturer']->l_nameWithInitials)); ?>
-<h1>Reports / Lecturer / <?php echo $l_nameWithInitials; ?> (<?php echo $data['lecturer']->l_code; ?>)</h1>
+<h1>Reports &#10145; Lecturers &#10145; <?php echo $l_nameWithInitials; ?> (<?php echo $data['lecturer']->l_code; ?>)</h1>
 
 
 

@@ -62,14 +62,14 @@
 					<div class="nav-option option4">
 						<a href="<?php echo URLROOT;?>/AdminPosts/viewLecturers/">
 							<img src="<?php echo URLROOT;?>/images/lecturer.svg" class="nav-img" alt="Lecturer">
-							<h3> Lecturer</h3>
+							<h3> Lecturers</h3>
 						</a>
 					</div>
 
 					<div class="nav-option option5">
 						<a href="<?php echo URLROOT;?>/AdminPosts/viewInstructors/">
 							<img src="<?php echo URLROOT;?>/images/instructor.svg" Class="nav-img" alt="Instructor">
-							<h3> Instructor</h3>
+							<h3> Instructors & Assistant ...</h3>
 						</a>
 					</div>
 

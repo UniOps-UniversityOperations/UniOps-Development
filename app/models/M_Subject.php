@@ -63,7 +63,6 @@ class M_Subject{
 
     public function updateSubject($data){
         $this->db->query('UPDATE subjects SET
-            sub_id = :sub_id,
             sub_code = :sub_code,
             sub_name = :sub_name,
             sub_credits = :sub_credits,
@@ -132,6 +131,31 @@ class M_Subject{
         $this->db->bind(':sub_code', $code);
         $row = $this->db->single();
         return $row;
+    }
+
+    // subjectExists
+    public function subjectExists($code){
+        $this->db->query('SELECT * FROM subjects WHERE sub_code = :sub_code AND sub_isDeleted = 0');
+        $this->db->bind(':sub_code', $code);
+        $row = $this->db->single();
+        if($this->db->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //subjectExists2($data['sub_code'], $postId)
+    public function subjectExists2($code, $id){
+        $this->db->query('SELECT * FROM subjects WHERE sub_code = :sub_code AND sub_id != :sub_id AND sub_isDeleted = 0');
+        $this->db->bind(':sub_code', $code);
+        $this->db->bind(':sub_id', $id);
+        $row = $this->db->single();
+        if($this->db->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

@@ -19,14 +19,14 @@
             ?>
                 
                 <div class="top">
-                <h1 class="topic">Administrator / Lecturers</h1>
+                <h1 class="topic">Administrator &#10145; Lecturers</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
                         // Display the count for each type
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p># Lecturers:</p></div>";
+                            echo "<div class='count_column'><p># LECTURERS</p></div>";
                             echo "<div class='count_column'><p>$count</p></div>";
                             echo "</div>";
                             echo "</div>"
@@ -161,7 +161,7 @@
                                         <td>
                                             <?php 
                                                 $text = $post->l_email;
-                                                $chunks = str_split($text, 20);
+                                                $chunks = str_split($text, 15);
 
                                                 foreach ($chunks as $key => $chunk):
                                                     echo $key === 0 ? "<b>: </b>" : ''; // Add <b>: </b> for the first chunk

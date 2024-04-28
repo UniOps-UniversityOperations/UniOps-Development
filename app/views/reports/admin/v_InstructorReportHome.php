@@ -2,7 +2,7 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
-<h1>Reports / Instructor / Home</h1>
+<h1>Reports &#10145; Instructors</h1>
 
 <?php
     $lecturer_count = count($data['Instructors']);

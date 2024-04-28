@@ -104,7 +104,6 @@ class M_Instructor{
 
     public function updateInstructor($data){
         $this->db->query('UPDATE instructors SET 
-            i_id = :i_id,
             i_code = :i_code, 
             i_email = :i_email, 
             i_fullName = :i_fullName,
@@ -163,6 +162,60 @@ class M_Instructor{
         $this->db->query('SELECT COUNT(*) AS count FROM instructors WHERE i_isDeleted = 0');
         $row = $this->db->single();
         return $row;
+    }
+
+    //instructorExists($data['i_code'])
+    public function instructorExists($i_code){
+        $this->db->query('SELECT * FROM instructors WHERE i_code = :i_code');
+        $this->db->bind(':i_code', $i_code);
+        $row = $this->db->single();
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //userExistsemail($data['i_email'])
+    public function userExistsemail($i_email){
+        $this->db->query('SELECT * FROM instructors WHERE i_email = :i_email AND i_isDeleted = 0');
+        $this->db->bind(':i_email', $i_email);
+        $row = $this->db->single();
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //instructorExists2($data['i_code'], $postId)
+    public function instructorExists2($i_code, $i_id){
+        $this->db->query('SELECT * FROM instructors WHERE i_code = :i_code AND i_id != :i_id');
+        $this->db->bind(':i_code', $i_code);
+        $this->db->bind(':i_id', $i_id);
+        $row = $this->db->single();
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //userExistsemail2($data['i_email'], $postId)
+    public function userExistsemail2($i_email, $i_id){
+        $this->db->query('SELECT * FROM instructors WHERE i_email = :i_email AND i_id != :i_id');
+        $this->db->bind(':i_email', $i_email);
+        $this->db->bind(':i_id', $i_id);
+        $row = $this->db->single();
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
