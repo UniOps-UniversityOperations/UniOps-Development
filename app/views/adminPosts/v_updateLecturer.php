@@ -135,8 +135,12 @@
         <label class="label" for="l_positionRank">Position Rank:
             <select id="l_positionRank" name="l_positionRank" required>
                 <option value="Professor" <?php echo $data["l_positionRank"] == 'Professor' ? 'selected' : ''; ?>>Professor</option>
+                <option value="Department Head" <?php echo $data["l_positionRank"] == 'Department Head' ? 'selected' : ''; ?>>Department Head</option>
                 <option value="Senior Lecturer" <?php echo $data["l_positionRank"] == 'Senior Lecturer' ? 'selected' : ''; ?>>Senior Lecturer</option>
+                <option value="Senior Lecturer (On Contract)" <?php echo $data["l_positionRank"] == 'Senior Lecturer (On Contract)' ? 'selected' : ''; ?>>Senior Lecturer (On Contract)</option>
                 <option value="Lecturer" <?php echo $data["l_positionRank"] == 'Lecturer' ? 'selected' : ''; ?>>Lecturer</option>
+                <option value="Lecturer (On Contract)" <?php echo $data["l_positionRank"] == 'Lecturer (On Contract)' ? 'selected' : ''; ?>>Lecturer (On Contract)</option>
+                <option value="Lecturers (Probationary)" <?php echo $data["l_positionRank"] == 'Lecturers (Probationary)' ? 'selected' : ''; ?>>Lecturers (Probationary)</option>
             </select>
         </label>
 

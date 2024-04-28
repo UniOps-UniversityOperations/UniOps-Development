@@ -135,8 +135,12 @@
             <label class="label" for="l_positionRank">Position Rank:
                 <select id="l_positionRank" name="l_positionRank" required>
                     <option value="Professor">Professor</option>
+                    <option value="Department Head">Department Head</option>
                     <option value="Senior Lecturer">Senior Lecturer</option>
+                    <option value="Senior Lecturer (On Contract)" >Senior Lecturer (On Contract)</option>
                     <option value="Lecturer">Lecturer</option>
+                    <option value="Lecturer (On Contract)">Lecturer (On Contract)</option>
+                    <option value="Lecturers (Probationary)">Lecturers (Probationary)</option>
                 </select>
             </label>
 
