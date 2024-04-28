@@ -106,8 +106,15 @@ class Reports extends Controller {
 
 // overall report------------------------------------------------------------------------------------------------------------
     public function viewOverallReport(){
-        
+        // $lecturer_count = count($data['lecturers']);
+        // $assigned_lec_count = $data['assigned_lec_count']->assigned_lec_count;
+
+        $lecturers = $this->Rpt_postModel->getLecturers();
+        $assigned_lec_count = $this->Rpt_postModel->getAssignedLecturerCount();
+
         $data = [
+            'lecturers' => $lecturers,
+            'assigned_lec_count' => $assigned_lec_count
             
         ];
 
