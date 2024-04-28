@@ -33,7 +33,7 @@
                         // Display the count for each type
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p># Instructors:</p></div>";
+                            echo "<div class='count_column'><p># INSTUCTORS:</p></div>";
                             echo "<div class='count_column'><p>$counti</p></div>";
                             echo "</div>";
                             echo "</div>"
@@ -43,7 +43,7 @@
                         // Display the count for each type
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p># Assistant Lecturers:</p></div>";
+                            echo "<div class='count_column'><p># ASISTANT LECTURERS:</p></div>";
                             echo "<div class='count_column'><p>$countal</p></div>";
                             echo "</div>";
                             echo "</div>"
@@ -78,7 +78,7 @@
                         <p class="title_item"><b>Code</b></p>
                         <p class="title_item"><b>Email</b></p>
                         <p class="title_item"><b>Contact</b></p>
-                        <p style="padding-right: 220px;" class="title_item"><b>Department</b></p>
+                        <p style="padding-right: 290px;" class="title_item"><b>Department</b></p>
                     </div> 
 
                 </div>

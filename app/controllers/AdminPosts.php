@@ -1053,11 +1053,15 @@ require_once APPROOT . '/controllers/Mail.php';
 
         public function deleteInstructor($postId, $instructor_code){
             // die("postID = " . $postId . "    instructor_code = " . $instructor_code);
+            //get email of the instructor
+            $email = $this->I_postModel->getEmail($instructor_code)->i_email;
+
             if($this->I_postModel->deleteInstructor($postId) &&
                 $this->AS_postModel->deleteForInstructor($instructor_code) &&
                 $this->ASI_postModel->deleteForInstructor_p($instructor_code) &&
                 $this->ASI_postModel->deleteForInstructor_t($instructor_code) &&
-                $this->RSI_postModel->deleteForInstructor($instructor_code)
+                $this->RSI_postModel->deleteForInstructor($instructor_code) &&
+                $this->U_postModel->deleteUser($email)
             ){
                 redirect('adminPosts/viewInstructors');
             }else{

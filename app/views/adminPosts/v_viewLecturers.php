@@ -26,7 +26,7 @@
                         // Display the count for each type
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p># Lecturers:</p></div>";
+                            echo "<div class='count_column'><p># LECTURERS</p></div>";
                             echo "<div class='count_column'><p>$count</p></div>";
                             echo "</div>";
                             echo "</div>"
