@@ -177,8 +177,22 @@
         }
     }
 
+    //roomExists2($data['name'], $postId)
+    public function roomExists2($name, $id){
+        $this->db->query("SELECT * FROM rooms WHERE name = :name AND id != :id AND r_isDeleted = 0");
+        $this->db->bind(':name', $name);
+        $this->db->bind(':id', $id);
+        $this->db->single();
+        $row = $this->db->rowCount();
+        if($row > 0){
+            return true;
+        } else {
+            return false;
+        }
+
 
     }
+}
 
 
 

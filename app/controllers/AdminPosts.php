@@ -320,7 +320,7 @@ require_once APPROOT . '/controllers/Mail.php';
             $this->view('adminPosts/v_viewRooms', $data);
         }
 
-        public function updateRoom($postId){
+        public function updateRoom($postId, $popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -348,16 +348,26 @@ require_once APPROOT . '/controllers/Mail.php';
                     'is_meeting' => isset($_POST['is_meeting']) ? '1' : '0',
                     'is_seminar' => isset($_POST['is_seminar']) ? '1' : '0',         
                     'is_exam' => isset($_POST['is_exam']) ? '1' : '0',
+
+                    'popup' => $popup,
                     
                 ];
 
-                if(1){
-                    if($this->R_postModel->updateRoom($data)){
-                        redirect('AdminPosts/viewRooms');
-                    }else{
-                        die('Something went wrong');
+                //check if room_id already exists
+                if($this->R_postModel->roomExists2($data['name'], $postId)){
+                    redirect('AdminPosts/updateRoom/' . $postId . '/1');
+                    // die('room already exists');
+                }else{
+
+                    if(1){
+                        if($this->R_postModel->updateRoom($data)){
+                            redirect('AdminPosts/viewRooms');
+                        }else{
+                            die('Something went wrong');
+                        }
                     }
                 }
+
             }else{
                 $post = $this->R_postModel->getRoomById($postId);
                 $data = [
@@ -382,6 +392,8 @@ require_once APPROOT . '/controllers/Mail.php';
                     'is_meeting' => $post->is_meeting,
                     'is_seminar' => $post->is_seminar,         
                     'is_exam' => $post->is_exam,
+
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_updateRoom', $data);
             }
@@ -505,7 +517,7 @@ require_once APPROOT . '/controllers/Mail.php';
             $this->view('adminPosts/v_viewSubjects', $data);
         }
 
-        public function updateSubject($postId){
+        public function updateSubject($postId, $popup = 0){
 
             $variables = $this->V_postModel->getAll();
 
@@ -530,15 +542,24 @@ require_once APPROOT . '/controllers/Mail.php';
                     'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
                     'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0',
                     
-                    'variables' => $variables
+                    'variables' => $variables,
+                    'popup' => $popup
                 ];
 
-                if(1){
-                    if($this->S_postModel->updateSubject($data)){
-                        redirect('AdminPosts/viewSubjects');
-                    }else{
-                        die('Something went wrong');
+                //check if sub_code already exists
+                if($this->S_postModel->subjectExists2($data['sub_code'], $postId)){
+                    redirect('AdminPosts/updateSubject/' . $postId . '/1');
+                    // die('room already exists');
+
+                }else{
+                    if(1){
+                        if($this->S_postModel->updateSubject($data)){
+                            redirect('AdminPosts/viewSubjects');
+                        }else{
+                            die('Something went wrong');
+                        }
                     }
+
                 }
             }else{
                 $post = $this->S_postModel->getSubjectById($postId);
@@ -558,7 +579,8 @@ require_once APPROOT . '/controllers/Mail.php';
                     'sub_isHaveTutorial' => $post->sub_isHaveTutorial,
                     'sub_isHavePractical' => $post->sub_isHavePractical,
 
-                    'variables' => $variables
+                    'variables' => $variables,
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_updateSubject', $data);
             }
@@ -595,7 +617,7 @@ require_once APPROOT . '/controllers/Mail.php';
 //----- CRUD for Lecturer --------------------------------------------------------------------------------------------------------------------------------
         
         //Create Lecturer
-        public function createLecturer(){
+        public function createLecturer($popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -626,34 +648,50 @@ require_once APPROOT . '/controllers/Mail.php';
                     'pwd' => trim($_POST['pwd']),
                     
                     'l_codeError' => '',
+                    'popup' => $popup,
+
                 ];
 
                 if(empty($data['l_code'])){
                     $data['l_codeError'] = 'Please enter Lecturer Code';
                 }
 
-                if(empty($data['l_codeError'])){
-                    if($this->L_postModel->createLecturer($data) && $this->U_postModel->addUser($data)){
-                        //flash('post_message', 'Lecturer Added');
-                        //redirect('pages/administrator_dashboard');
 
-                        //if send email is checked then send email to the lecturer
-                        //call the send email function
-                        if($sendEmail){
-                            $email = $data['l_email'];
-                            $pwd = $data['pwd'];
-                            $name = $data['l_nameWithInitials'];
-                            $this->send_acccount_created_email($email, $pwd, $name);
-                        }
-
-                        redirect('adminPosts/viewLecturers');
-                    }else{
-                        die('Something went wrong');
-                    }
+                //check if l_code already exists
+                if($this->L_postModel->lecturerExists($data['l_code']) && $this->U_postModel->userExistsemail($data['l_email'])){
+                    redirect('AdminPosts/createLecturer/3');
+                    // die('room already exists');
+                }else if($this->L_postModel->lecturerExists($data['l_code'])){
+                    redirect('AdminPosts/createLecturer/1');
+                }else if($this->U_postModel->userExistsemail($data['l_email'])){
+                    // die('email already exists');
+                    redirect('AdminPosts/createLecturer/2');
                 }else{
-                    $this->view('posts/v_createLecturer', $data);
-
+                    // die('ok');
+                    if(empty($data['l_codeError'])){
+                        if($this->L_postModel->createLecturer($data) && $this->U_postModel->addUser($data)){
+                            //flash('post_message', 'Lecturer Added');
+                            //redirect('pages/administrator_dashboard');
+    
+                            //if send email is checked then send email to the lecturer
+                            //call the send email function
+                            if($sendEmail){
+                                $email = $data['l_email'];
+                                $pwd = $data['pwd'];
+                                $name = $data['l_nameWithInitials'];
+                                $this->send_acccount_created_email($email, $pwd, $name);
+                            }
+    
+                            redirect('adminPosts/viewLecturers');
+                        }else{
+                            die('Something went wrong');
+                        }
+                    }else{
+                        $this->view('posts/v_createLecturer', $data);
+    
+                    }
                 }
+
             }  else{
                 $data = [
 
@@ -681,6 +719,7 @@ require_once APPROOT . '/controllers/Mail.php';
                     'role' => '',
 
                     'l_codeError' => '',
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_createLecturer', $data);
             }  
@@ -696,16 +735,19 @@ require_once APPROOT . '/controllers/Mail.php';
             $this->view('adminPosts/v_viewLecturers', $data);
         }
 
-        public function updateLecturer($postId){
+        public function updateLecturer($postId, $popup = 0){
+            //userneame = l_nameWithInitials
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
+                
+                $username = $this->L_postModel->getLecturerById($postId)->l_nameWithInitials;
+                $email = $this->L_postModel->getLecturerById($postId)->l_email;
                 $data = [
 
                     'title' => 'Update Lecturer',
                     'postId' => $postId,
 
-                    'l_id' => trim($_POST['l_id']),
+                    'l_id' => $postId, //added
                     'l_code' => trim($_POST['l_code']),
                     'l_email' => trim($_POST['l_email']),
                     'l_fullName' => trim($_POST['l_fullName']),
@@ -719,22 +761,37 @@ require_once APPROOT . '/controllers/Mail.php';
                     'l_dateOfJoin' => trim($_POST['l_dateOfJoin']),
                     'l_qualifications' => trim($_POST['l_qualifications']),
                     'l_isExamSupervisor' => isset($_POST['l_isExamSupervisor']) ? '1' : '0',
-                    'l_isSecondExaminar' => isset($_POST['l_isSecondExaminar']) ? '1' : '0',                    
+                    'l_isSecondExaminar' => isset($_POST['l_isSecondExaminar']) ? '1' : '0', 
+                    
+                    'popup' => $popup,
                 ];
 
-                if(1){
-                    if($this->L_postModel->updateLecturer($data)){
-                        redirect('adminPosts/viewLecturers');
-                    }else{
-                        die('Something went wrong');
+                //check if l_code already exists
+                if($this->L_postModel->lecturerExists2($data['l_code'], $postId) && $this->U_postModel->userExistsemail2($data['l_email'], $username)){
+                    redirect('AdminPosts/updateLecturer/' . $postId . '/3');
+                    // die('room already exists');
+                }else if($this->L_postModel->lecturerExists2($data['l_code'], $postId)){
+                    redirect('AdminPosts/updateLecturer/' . $postId . '/1');
+                }else if($this->U_postModel->userExistsemail2($data['l_email'], $username)){
+                    redirect('AdminPosts/updateLecturer/' . $postId . '/2');
+                }else{
+
+                    if(1){
+                        //update_id_name($old_id, $old_name, $new_id, $new_name)
+                        if($this->L_postModel->updateLecturer($data) && $this->U_postModel->update_id_name($email, $username, $data['l_email'], $data['l_nameWithInitials'])){
+                            redirect('adminPosts/viewLecturers');
+                        }else{
+                            die('Something went wrong');
+                        }
                     }
                 }
+
             }else{
                 $post = $this->L_postModel->getLecturerById($postId);
                 $data = [
                     'title' => 'Update Lecturer',
 
-                    'l_id' => $post->l_id, //added
+                    'l_id' => $postId,
                     'l_code' => $post->l_code,
                     'l_email' => $post->l_email,
                     'l_fullName' => $post->l_fullName,
@@ -749,6 +806,8 @@ require_once APPROOT . '/controllers/Mail.php';
                     'l_qualifications' => $post->l_qualifications,
                     'l_isExamSupervisor' => $post->l_isExamSupervisor,
                     'l_isSecondExaminar' => $post->l_isSecondExaminar,
+
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_updateLecturer', $data);
             }
@@ -763,9 +822,13 @@ require_once APPROOT . '/controllers/Mail.php';
 
         public function deleteLecturer($postId, $lecturer_code){
             // die("postID = " . $postId . "    lecturer_code = " . $lecturer_code);
+            //get email of the lecturer
+            $email = $this->L_postModel->getEmail($lecturer_code)->l_email;
+
             if($this->L_postModel->deleteLecturer($postId) &&
                 $this->AS_postModel->deleteForLecturer($lecturer_code) &&
-                $this->RS_postModel->deleteForLecturer($lecturer_code)
+                $this->RS_postModel->deleteForLecturer($lecturer_code) &&
+                $this->U_postModel->deleteUser($email)
             ){
                 redirect('AdminPosts/viewLecturers');
             }else{
@@ -796,7 +859,7 @@ require_once APPROOT . '/controllers/Mail.php';
             // 15	i_isDeleted	tinyint(4)	
 
 
-        public function createInstructor(){
+        public function createInstructor($popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -826,34 +889,48 @@ require_once APPROOT . '/controllers/Mail.php';
                     'pwd' => trim($_POST['pwd']),
                     
                     'i_codeError' => '',
+
+                    'popup' => $popup,
                 ];
 
                 if(empty($data['i_code'])){
                     $data['i_codeError'] = 'Please enter Instructor Name';
                 }
 
-                if(empty($data['i_codeError'])){
-                    if($this->I_postModel->createInstructor($data) && $this->U_postModel->addUser($data)){
-                        //flash('post_message', 'Instructor Added');
-                        //redirect('pages/administrator_dashboard');
-
-                        //if send email is checked then send email to the instructor
-                        //call the send email function
-                        if($sendEmail){
-                            $email = $data['i_email'];
-                            $pwd = $data['pwd'];
-                            $name = $data['i_nameWithInitials'];
-                            $this->send_acccount_created_email($email, $pwd, $name);
-                        }
-
-                        redirect('adminPosts/viewInstructors');
-                    }else{
-                        die('Something went wrong');
-                    }
+                //check if i_code already exists
+                if($this->I_postModel->instructorExists($data['i_code']) && $this->U_postModel->userExistsemail($data['i_email'])){
+                    redirect('AdminPosts/createInstructor/3');
+                    // die('room already exists');
+                }else if($this->I_postModel->instructorExists($data['i_code'])){
+                    redirect('AdminPosts/createInstructor/1');
+                }else if($this->U_postModel->userExistsemail($data['i_email'])){
+                    redirect('AdminPosts/createInstructor/2');
                 }else{
-                    $this->view('posts/v_createInstructor', $data);
-
+                    
+                    if(empty($data['i_codeError'])){
+                        if($this->I_postModel->createInstructor($data) && $this->U_postModel->addUser($data)){
+                            //flash('post_message', 'Instructor Added');
+                            //redirect('pages/administrator_dashboard');
+    
+                            //if send email is checked then send email to the instructor
+                            //call the send email function
+                            if($sendEmail){
+                                $email = $data['i_email'];
+                                $pwd = $data['pwd'];
+                                $name = $data['i_nameWithInitials'];
+                                $this->send_acccount_created_email($email, $pwd, $name);
+                            }
+    
+                            redirect('adminPosts/viewInstructors');
+                        }else{
+                            die('Something went wrong');
+                        }
+                    }else{
+                        $this->view('posts/v_createInstructor', $data);
+    
+                    }
                 }
+
             }  else{
                 $data = [
 
@@ -880,6 +957,7 @@ require_once APPROOT . '/controllers/Mail.php';
                     'role' => '',
 
                     'i_codeError' => '',
+                    'popup' => $popup,
 
                 ];
                 $this->view('adminPosts/v_createInstructor', $data);
@@ -896,16 +974,19 @@ require_once APPROOT . '/controllers/Mail.php';
             $this->view('adminPosts/v_viewInstructors', $data);
         }
 
-        public function updateInstructor($postId){
+        public function updateInstructor($postId, $popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $username = $this->I_postModel->getInstructorById($postId)->i_nameWithInitials;
+                $email = $this->I_postModel->getInstructorById($postId)->i_email;
 
                 $data = [
 
                     'title' => 'Update Instructor',
                     'postId' => $postId,
 
-                    'i_id' => trim($_POST['i_id']),
+                    'i_id' => $postId,
                     'i_code' => trim($_POST['i_code']), 
                     'i_email' => trim($_POST['i_email']),
                     'i_fullName' => trim($_POST['i_fullName']),
@@ -919,21 +1000,36 @@ require_once APPROOT . '/controllers/Mail.php';
                     'i_dateOfJoin' => trim($_POST['i_dateOfJoin']),
                     'i_qualifications' => trim($_POST['i_qualifications']),
                     'i_isExamInvigilator' => isset($_POST['i_isExamInvigilator']) ? '1' : '0',    
+
+                    'popup' => $popup,
                 ];
 
-                if(1){
-                    if($this->I_postModel->updateInstructor($data)){
-                        redirect('adminPosts/viewInstructors');
-                    }else{
-                        die('Something went wrong');
+                //check if i_code already exists
+                if($this->I_postModel->instructorExists2($data['i_code'], $postId) && $this->U_postModel->userExistsemail2($data['i_email'], $username)){
+                    redirect('AdminPosts/updateInstructor/' . $postId . '/3');
+                    // die('room already exists');
+                }else if($this->I_postModel->instructorExists2($data['i_code'], $postId)){
+                    redirect('AdminPosts/updateInstructor/' . $postId . '/1');
+                }else if($this->U_postModel->userExistsemail2($data['i_email'], $username)){
+                    redirect('AdminPosts/updateInstructor/' . $postId . '/2');
+                }else{
+
+                    if(1){
+                        //update_id_name($old_id, $old_name, $new_id, $new_name)
+                        if($this->I_postModel->updateInstructor($data) && $this->U_postModel->update_id_name($email, $username, $data['i_email'], $data['i_nameWithInitials'])){
+                            redirect('adminPosts/viewInstructors');
+                        }else{
+                            die('Something went wrong');
+                        }
                     }
                 }
+
             }else{
                 $post = $this->I_postModel->getInstructorById($postId);
                 $data = [
                     'title' => 'Update Instructor',
 
-                    'i_id' => $post->i_id,
+                    'i_id' => $postId,
                     'i_code' => $post->i_code,
                     'i_email' => $post->i_email,
                     'i_fullName' => $post->i_fullName,
@@ -946,7 +1042,9 @@ require_once APPROOT . '/controllers/Mail.php';
                     'i_positionRank' => $post->i_positionRank,
                     'i_dateOfJoin' => $post->i_dateOfJoin,
                     'i_qualifications' => $post->i_qualifications,
-                    'i_isExamInvigilator' => $post->i_isExamInvigilator,                    
+                    'i_isExamInvigilator' => $post->i_isExamInvigilator,     
+                    
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_updateInstructor', $data);
             }
@@ -965,11 +1063,15 @@ require_once APPROOT . '/controllers/Mail.php';
 
         public function deleteInstructor($postId, $instructor_code){
             // die("postID = " . $postId . "    instructor_code = " . $instructor_code);
+            //get email of the instructor
+            $email = $this->I_postModel->getEmail($instructor_code)->i_email;
+
             if($this->I_postModel->deleteInstructor($postId) &&
                 $this->AS_postModel->deleteForInstructor($instructor_code) &&
                 $this->ASI_postModel->deleteForInstructor_p($instructor_code) &&
                 $this->ASI_postModel->deleteForInstructor_t($instructor_code) &&
-                $this->RSI_postModel->deleteForInstructor($instructor_code)
+                $this->RSI_postModel->deleteForInstructor($instructor_code) &&
+                $this->U_postModel->deleteUser($email)
             ){
                 redirect('adminPosts/viewInstructors');
             }else{

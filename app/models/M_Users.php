@@ -20,7 +20,7 @@ class M_Users {
         $this->db->bind(':user_id', $data['user_id']);
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':pwd', $data['pwd']);
-        $this->db->bind(':role', 'A');
+        $this->db->bind(':role', $data['role']);
 
         //execute
         if($this->db->execute()){
@@ -120,7 +120,7 @@ class M_Users {
         $this->db->execute();
 
     }
-    
+
     //a function to return true if the user exists else false
     public function userExists($user_id){
         $this->db->query("SELECT * FROM users WHERE user_id = :user_id");
@@ -133,6 +133,50 @@ class M_Users {
             return false;
         }
     }
+
+    //userExistsemail
+    public function userExistsemail($email){
+        $this->db->query('SELECT * FROM users WHERE user_id = :user_id');
+        $this->db->bind(':user_id', $email);
+        $row = $this->db->single();
+        $row = $this->db->rowCount();
+        if($row > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //userExistsemail2
+    public function userExistsemail2($email, $username){
+        $this->db->query('SELECT * FROM users WHERE user_id = :user_id AND username != :username');
+        $this->db->bind(':user_id', $email);
+        $this->db->bind(':username', $username);
+        $row = $this->db->single();
+        $row = $this->db->rowCount();
+        if($row > 0){
+            return true;
+        } else {
+            return false;
+        }
+    
+    }
+
+    //update only the user_id and username
+    public function update_id_name($old_id, $old_name, $new_id, $new_name){
+        $this->db->query('UPDATE users SET user_id = :new_id, username = :new_name WHERE user_id = :old_id AND username = :old_name');
+        $this->db->bind(':old_id', $old_id);
+        $this->db->bind(':old_name', $old_name);
+        $this->db->bind(':new_id', $new_id);
+        $this->db->bind(':new_name', $new_name);
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 
 }
 

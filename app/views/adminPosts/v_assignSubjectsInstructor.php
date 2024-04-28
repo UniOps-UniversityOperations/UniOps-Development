@@ -6,7 +6,7 @@
 
 <div class="main">
     <div class="top">
-            <h1 class="topic">Administrator / Instructors / Assign Subjects </h1>
+            <h1 class="topic">Administrator &#10145; Instructors & Assistant Lecturers &#10145; Assign Subjects </h1>
             <h2 class="topic2">Instructor: <?php echo $data['instructorName']->i_nameWithInitials; ?> (<?php echo $data['postId']; ?>)</h2>
             <h2 class="topic2">Email: <?php echo $data['email']->i_email; ?></h2>
         </div>   
