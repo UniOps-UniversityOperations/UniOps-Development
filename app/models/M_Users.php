@@ -20,7 +20,7 @@ class M_Users {
         $this->db->bind(':user_id', $data['user_id']);
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':pwd', $data['pwd']);
-        $this->db->bind(':role', 'A');
+        $this->db->bind(':role', $data['role']);
 
         //execute
         if($this->db->execute()){

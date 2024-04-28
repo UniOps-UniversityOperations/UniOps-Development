@@ -68,15 +68,15 @@
             <p style="color:red">Important: <b>Initials</b> and <b>Email</b> must be unique.</p>
 
             <label class="lable" for="i_code">Initials (Must be unique) :
-            <input type="text" id="i_code" name="i_code" placeholder="i_code" value="<?php $data["i_code"];?>" required>
+            <input type="text" id="i_code" name="i_code" placeholder="i_code" value="<?php $data["i_code"];?>" oninput="this.value = this.value.toUpperCase();" required>
             </label>
   
             <label class="lable" for="i_fullName">Full Name:
-                <input type="text" id="i_fullName" name="i_fullName" placeholder="i_fullName" value="<?php $data["i_fullName"];?>" required>
+                <input type="text" id="i_fullName" name="i_fullName" placeholder="i_fullName" value="<?php $data["i_fullName"];?>" oninput="this.value = this.value.toUpperCase();" required>
             </label>
             
             <label class="lable" for="i_nameWithInitials">Name With Initials:
-                <input type="text" id="i_nameWithInitials" name="i_nameWithInitials" placeholder="i_nameWithInitials" value="<?php $data["i_nameWithInitials"];?>" required>
+                <input type="text" id="i_nameWithInitials" name="i_nameWithInitials" placeholder="i_nameWithInitials" value="<?php $data["i_nameWithInitials"];?>" oninput="this.value = this.value.toUpperCase();" required>
             </label>
             
             <label class="lable" for="i_email">Email (Must be unique) :
@@ -121,7 +121,7 @@
             </script>
 
             <label class="lable" for="i_address">Address:
-            <input type="text" id="i_address" name="i_address" placeholder="i_address" value="<?php $data["i_address"];?>" required>
+            <input type="text" id="i_address" name="i_address" placeholder="i_address" value="<?php $data["i_address"];?>" oninput="this.value = this.value.toUpperCase();" required>
             </label>
 
             <!-- <label class="lable" for="i_department">Department:
@@ -161,7 +161,7 @@
 
             <label class="label" for="i_qualifications">Qualifications:
             
-            <input type="text" id="i_qualifications" name="i_qualifications" placeholder="i_qualifications" required>
+            <input type="text" id="i_qualifications" name="i_qualifications" placeholder="i_qualifications" oninput="this.value = this.value.toUpperCase();" required>
             <span id="qualifications_error" class="error"></span>
             </label>
 
