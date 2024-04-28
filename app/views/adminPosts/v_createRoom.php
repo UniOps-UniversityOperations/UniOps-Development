@@ -64,7 +64,7 @@
         <input type="text" id="name" name="name" placeholder="name" value="<?php $data["name"];?>" oninput="this.value = this.value.toUpperCase();" required>
         </label>
 
-        <label class="label" for="room_type">Credit:
+        <label class="label" for="room_type">Type:
             <select id="type" name="type" required>
                 <option value="LECTURE">LECTURE</option>
                 <option value="LAB">LAB</option>

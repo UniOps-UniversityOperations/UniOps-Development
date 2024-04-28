@@ -132,7 +132,7 @@
                 </select>
             </label>
 
-            <label class="label" for="l_positionRank">Credit:
+            <label class="label" for="l_positionRank">Position Rank:
                 <select id="l_positionRank" name="l_positionRank" required>
                     <option value="Professor">Professor</option>
                     <option value="Senior Lecturer">Senior Lecturer</option>
