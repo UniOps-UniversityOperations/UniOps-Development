@@ -130,5 +130,12 @@ class M_Reports{
         $result = $this->db->single();
         return $result;
     }
+
+    //get student count
+    public function getStudentCount(){
+        $this->db->query('SELECT COUNT(DISTINCT s_id) as student_count FROM students WHERE s_isDeleted = 0');
+        $result = $this->db->single();
+        return $result;
+    }
     
 }

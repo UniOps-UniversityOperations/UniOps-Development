@@ -111,10 +111,16 @@ class Reports extends Controller {
 
         $lecturers = $this->Rpt_postModel->getLecturers();
         $assigned_lec_count = $this->Rpt_postModel->getAssignedLecturerCount();
+        $instructors = $this->Rpt_postModel->getInstructors();
+        $assigned_instr_count = $this->Rpt_postModel->getAssignedLecturerCountI();
+        $student_count = $this->Rpt_postModel->getStudentCount();
 
         $data = [
             'lecturers' => $lecturers,
-            'assigned_lec_count' => $assigned_lec_count
+            'assigned_lec_count' => $assigned_lec_count,
+            'instructors' => $instructors,
+            'assigned_instr_count' => $assigned_instr_count,
+            'student_count' => $student_count
             
         ];
 

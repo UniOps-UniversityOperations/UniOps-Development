@@ -7,11 +7,16 @@
 <?php
     $lecturer_count = count($data['lecturers']);
     $assigned_lec_count = $data['assigned_lec_count']->assigned_lec_count;
+    $instr_count = count($data['instructors']);
+    $assigned_instr_count = $data['assigned_instr_count']->assigned_lec_count;
+    $student_count = $data['student_count']->student_count;
 
 ?>
 
 <div class="main_page">
-    <div class='main_page_left'></div>
+    <div class='main_page_left'>
+        <div class='mpl_top'></div>
+    </div>
 
     <div class='main_page_right'>
         <div class='mpr_top'>
@@ -86,13 +91,17 @@
                     </div>
     
                 </div>
-
-                <a href="">
-                    <button class="more_btn">MORE</button>
-                </a>
             </div>
 
             <div class='mpr_top_right'>
+            
+                <div class="top_bar" style="justify-content: flex-end;">
+                    <a href="">
+                        <button class="more_btn1">MORE</button>
+                    </a>
+                </div>
+
+
                 <div class='pie_chart'>
                     <div class="pieID--micro-skills pie-chart--wrapper">
                         <h3 class="chart_name">Assigned Lecturers</h3>
@@ -116,14 +125,59 @@
 
             </div>
 
+        </div>
+
+        <div class='mpr_middle'>
+
+            <?php
+                $count_instructors = 0;
+                $count_assistant_lecturers = 0;
+
+                foreach($data['instructors'] as $instructor){
+                    if($instructor->i_positionRank == 'Instructor'){
+                        $count_instructors++;
+                    }else if($instructor->i_positionRank == 'Assistant Lecturer'){
+                        $count_assistant_lecturers++;
+                    }
+                }
+
+            ?>
+
+            <div class="top_bar">
+                <h2>Instructors & Assistant Lecturers</h2>
+    
+                <a href="">
+                    <button class="more_btn1">MORE</button>
+                </a>
+            </div>
+
+            <div class='progress_bars_container'>
+                <h3 class="bar_name">Number of Total Instructors & Assistant Lecturers : <?php echo $instr_count; ?></h3>
+
+                <div class="p_bar">
+                    <h3 class="progress_title">Instructors: <?php echo $count_instructors; ?> / <?php echo $instr_count; ?></h3>
+                    <progress class="progress" value="<?php echo $count_instructors; ?>" max="<?php echo $instr_count; ?>"></progress>
+                </div>
+
+                <div class="p_bar">
+                    <h3 class="progress_title">Assistant Lecturers: <?php echo $count_assistant_lecturers; ?> / <?php echo $instr_count; ?></h3>
+                    <progress class="progress" value="<?php echo $count_assistant_lecturers; ?>" max="<?php echo $instr_count; ?>"></progress>
+                </div>
+
+                <div class="p_bar">
+                    <h3 class="progress_title">Assigned Instructors & Assistant Lecturers: <?php echo $assigned_instr_count; ?> / <?php echo $instr_count; ?></h3>
+                    <progress class="progress" value="<?php echo $assigned_instr_count; ?>" max="<?php echo $instr_count; ?>"></progress>
+                </div>
+
+            </div>
 
         </div>
 
         <div class='mpr_bottom'>
-
+                <h2>Students</h2>
+                <h3 class="bar_name1">Number of Students : <?php echo $student_count; ?></h3>
         </div>
     </div>
-
 
 </div>
 
