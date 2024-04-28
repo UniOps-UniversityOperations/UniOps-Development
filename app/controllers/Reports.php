@@ -155,6 +155,7 @@ class Reports extends Controller {
         //     . 'credit8_sub_count -> ' . $credit8_sub_count . '<br>'
         // );
 
+        $rooms = $this->Rpt_postModel->getRooms();
 
         $data = [
             'lecturers' => $lecturers,
@@ -179,7 +180,8 @@ class Reports extends Controller {
             'credit2_sub_count' => $credit2_sub_count,
             'credit3_sub_count' => $credit3_sub_count,
             'credit4_sub_count' => $credit4_sub_count,
-            'credit8_sub_count' => $credit8_sub_count
+            'credit8_sub_count' => $credit8_sub_count,
+            'rooms' => $rooms
             
         ];
 

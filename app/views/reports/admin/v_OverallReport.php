@@ -302,16 +302,161 @@
 
         </div>
 
+        <div class='mpl_bottom'>
+                <div class="mpr_top_left">
+
+                    <?php
+                        $total_rooms = 0;
+                        $available_for_lectures = 0;
+                        $available_for_labs = 0;
+                        $available_for_tutorial = 0;
+                        $available_for_meeting = 0;
+                        $available_for_seminar = 0;
+                        $available_for_examination = 0;
+                        $lecture_rooms = 0;
+                        $lab_rooms = 0;
+                        $meeting_rooms = 0;
+                        $common_rooms = 0;
+                        $other_rooms = 0;
+
+                        foreach($data['rooms'] as $room){
+
+                            $total_rooms++;
+
+                            if($room->is_lecture == 1){
+                                $available_for_lectures++;
+                            }
+
+                            if($room->is_lab == 1){
+                                $available_for_labs++;
+                            }
+
+                            if($room->is_tutorial == 1){
+                                $available_for_tutorial++;
+                            }
+
+                            if($room->is_meeting == 1){
+                                $available_for_meeting++;
+                            }
+
+                            if($room->is_seminar == 1){
+                                $available_for_seminar++;
+                            }
+
+                            if($room->is_exam == 1){
+                                $available_for_examination++;
+                            }
+
+                            if($room->type == 'LECTURE'){
+                                $lecture_rooms++;
+                            }
+
+                            if($room->type == 'LAB'){
+                                $lab_rooms++;
+                            }
+
+                            if($room->type == 'MEETING'){
+                                $meeting_rooms++;
+                            }
+
+                            if($room->type == 'COMMON'){
+                                $common_rooms++;
+                            }
+
+                            if($room->type == 'OTHER'){
+                                $other_rooms++;
+                            }
+
+                        }
+
+                    ?>
+
+                    <h2>Lecturers</h2>
+                    <div class='progress_bars_container'>
+                        <h3 class="bar_name">Number of Total Rooms : <?php echo $total_rooms; ?></h3>
+                        
+                        <div class="p_bar">
+                            <h3 class="progress_title"> Available for Lectures: <?php echo $available_for_lectures; ?> / <?php echo $total_rooms; ?></h3>
+                            <progress class="progress" value="<?php echo $available_for_lectures; ?>" max="<?php echo $total_rooms; ?>"></progress>
+                        </div>
+
+                        <div class="p_bar">
+                            <h3 class="progress_title"> Available for Labs: <?php echo $available_for_labs; ?> / <?php echo $total_rooms; ?></h3>
+                            <progress class="progress" value="<?php echo $available_for_labs; ?>" max="<?php echo $total_rooms; ?>"></progress>
+                        </div>
+
+                        <div class="p_bar">
+                            <h3 class="progress_title"> Available for Tutorial: <?php echo $available_for_tutorial; ?> / <?php echo $total_rooms; ?></h3>
+                            <progress class="progress" value="<?php echo $available_for_tutorial; ?>" max="<?php echo $total_rooms; ?>"></progress>
+                        </div> 
+
+                        <div class="p_bar">
+                            <h3 class="progress_title"> Available for Meeting: <?php echo $available_for_meeting; ?> / <?php echo $total_rooms; ?></h3>
+                            <progress class="progress" value="<?php echo $available_for_meeting; ?>" max="<?php echo $total_rooms; ?>"></progress>
+                        </div>
+
+                        <div class="p_bar">
+                            <h3 class="progress_title"> Available for Seminar: <?php echo $available_for_seminar; ?> / <?php echo $total_rooms; ?></h3>
+                            <progress class="progress" value="<?php echo $available_for_seminar; ?>" max="<?php echo $total_rooms; ?>"></progress>
+                        </div>
+
+                        <div class="p_bar">
+                            <h3 class="progress_title"> Available for Examination: <?php echo $available_for_examination; ?> / <?php echo $total_rooms; ?></h3>
+                            <progress class="progress" value="<?php echo $available_for_examination; ?>" max="<?php echo $total_rooms; ?>"></progress>
+                        </div>  
+        
+                    </div>
+                </div>
+
+                <div class='mpr_top_right'>
+                
+                    <div class="top_bar" style="justify-content: flex-end;">
+                        <a href="">
+                            <button class="more_btn1">MORE</button>
+                        </a>
+                    </div>
+
+                    <div class='pie_chart' style="margin-top: -48px;">
+                        <div class="pieID--categories pie-chart--wrapper">
+                            <h3 class="chart_name">Room Types</h3>
+                            <div class="pie-chart" style="scale: 1; margin: -5px auto;">
+                                <div class="pie-chart__pie"></div>
+                                <ul class="pie-chart__legend">
+
+                                    <li>
+                                        <em>Lecture</em>
+                                        <span><?php echo $lecture_rooms; ?></span>
+                                    </li>
+
+                                    <li>
+                                        <em>Lab</em>
+                                        <span><?php echo $lab_rooms; ?></span>
+                                    </li>
+
+                                    <li>
+                                        <em>Meeting</em>
+                                        <span><?php echo $meeting_rooms; ?></span>
+                                    </li>
+
+                                    <li>
+                                        <em>Common</em>
+                                        <span><?php echo $common_rooms; ?></span>
+                                    </li>
+
+                                    <li>
+                                        <em>Other</em>
+                                        <span><?php echo $other_rooms; ?></span>
+                                    </li>
 
 
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
 
-
-
-
-
-
-
+        </div>
 
     </div>
 
@@ -520,7 +665,11 @@
 
         var color = [
             'navy',
-            'cornflowerblue'
+            'cornflowerblue',
+            'blue',
+            'royalblue',
+            'lightblue',
+            'red'
         ];
 
         dataElement.querySelectorAll('span').forEach(function (span) {
@@ -541,7 +690,7 @@
 
     function createPieCharts() {
         createPie('.pieID--micro-skills');
-        // createPie('.pieID--categories');
+        createPie('.pieID--categories');
         // createPie('.pieID--operations');
     }
 

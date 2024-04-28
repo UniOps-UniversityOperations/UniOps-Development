@@ -316,8 +316,14 @@ class M_Reports{
         return $result;
     }
 
+    //getRooms
+    public function getRooms(){
+        $this->db->query('SELECT * FROM rooms WHERE r_isDeleted = 0');
+        $results = $this->db->resultSet();
+        return $results;
+    }
 
-
+    
 
 
 }
