@@ -133,16 +133,17 @@ class M_Lecturer {
         }
     }
 
-    public function roomBookingRequest($r_id,$booking_date,$startTime,$endTime,$purpose){
+    public function roomBookingRequest($r_id,$booking_date,$startTime,$endTime,$purpose,$droplistpurpose){
 
-        $sql = "INSERT INTO roombookingrequests (r_id,request_date,start_time,end_time,purpose,requested_by) VALUES (?,?,?,?,?,?);";
+        $sql = "INSERT INTO roombookingrequests (r_id,request_date,start_time,end_time,purpose,description,requested_by) VALUES (?,?,?,?,?,?,?);";
         $this->db->query($sql);
         $this->db->bind(1,$r_id);
         $this->db->bind(2,$booking_date);
         $this->db->bind(3,$startTime);
         $this->db->bind(4,$endTime);
-        $this->db->bind(5,$purpose);
-        $this->db->bind(6,$this->uid);
+        $this->db->bind(5,$droplistpurpose);
+        $this->db->bind(6,$purpose);
+        $this->db->bind(7,$this->uid);
         return $this->db->execute();
     }
 
@@ -251,13 +252,18 @@ class M_Lecturer {
         return $this->db->execute();
     }
 
-    public function deletePreferredSubject($sub_code) {
+    public function deletePreferredSubject($sub_code,$pref_level) {
         $sql = "DELETE FROM requestedsubjects 
         WHERE subject_code = :code AND 
         lecturer_code = (SELECT l_code FROM lecturers WHERE l_email = :uid);";
         $this->db->query($sql);
         $this->db->bind(':uid',$_SESSION['user_id']);
         $this->db->bind(':code',$sub_code);
+        $this->db->execute();
+
+        $sql = "UPDATE requestedsubjects SET pref_level = pref_level-1 WHERE pref_level> :pref_level;";
+        $this->db->query($sql);
+        $this->db->bind(':pref_level',$pref_level);
         return $this->db->execute();
     }
 

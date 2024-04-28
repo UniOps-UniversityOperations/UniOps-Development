@@ -146,7 +146,7 @@ $totalHours = array_values($data['numofLecHours']);
                 <td><?php echo $subject->sub_credits; ?></td>
                 <td><?php echo $subject->pref_level; ?></td>
                 <td>
-                    <a href="<?php echo URLROOT; ?>/lecturer/deletePreferredSubject/<?php echo $subject->subject_code; ?>" title="Delete">
+                    <a href="<?php echo URLROOT; ?>/lecturer/deletePreferredSubject/<?php echo $subject->subject_code; ?>/<?php echo $subject->pref_level;?>" title="Delete">
                         <button class="delete_button">
                             <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
                         </button>
