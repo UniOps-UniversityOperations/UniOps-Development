@@ -15,10 +15,308 @@
 
 <div class="main_page">
     <div class='main_page_left'>
-        <div class='mpl_top'></div>
+        <div class='mpl_top'>
+
+            <h2>Subjects</h2>
+
+            <div class='subject_bar'>
+                <div class='sub_cell'>
+                    <p>1<sup>st</sup> YEAR CS</p>
+                    <p><?php echo $data['cs_1yr_sub_count']; ?></p>
+                </div>
+                <div class='sub_cell'>
+                    <p>2<sup>nd</sup> YEAR CS</p>
+                    <p><?php echo $data['cs_2yr_sub_count']; ?></p>
+                </div>
+                <div class='sub_cell'>
+                    <p>3<sup>rd</sup> YEAR CS</p>
+                    <p><?php echo $data['cs_3yr_sub_count']; ?></p>
+                </div>
+                <div class='sub_cell'>
+                    <p>4<sup>th</sup> YEAR CS</p>
+                    <p><?php echo $data['cs_4yr_sub_count']; ?></p>
+                </div>
+            </div>
+
+            <div class='subject_bar'>
+                <div class='sub_cell'>
+                    <p>1<sup>st</sup> YEAR IS</p>
+                    <p><?php echo $data['is_1yr_sub_count']; ?></p>
+                </div>
+                <div class='sub_cell'>
+                    <p>2<sup>nd</sup> YEAR IS</p>
+                    <p><?php echo $data['is_2yr_sub_count']; ?></p>
+                </div>
+                <div class='sub_cell'>
+                    <p>3<sup>rd</sup> YEAR IS</p>
+                    <p><?php echo $data['is_3yr_sub_count']; ?></p>
+                </div>
+                <div class='sub_cell'>
+                    <p>4<sup>th</sup> YEAR IS</p>
+                    <p><?php echo $data['is_4yr_sub_count']; ?></p>
+                </div>
+            </div>
+
+            <div class='prog_bars'>
+                
+                <!--By Semester -->
+                <h3>By Semester:</h3>
+                <?php
+                    $sem1 = $data['sem1_sub_count'];
+                    $sem2 = $data['sem2_sub_count'];
+                    $p_sem1 = ($sem1 / ($sem1 + $sem2)) * 100;
+                    $p_sem2 = ($sem2 / ($sem1 + $sem2)) * 100;
+                ?>
+
+                <div class="bar">
+                    <div class="p_sem1">
+                        <p class="in_bar">Semester 1 : <?php echo $sem1; ?></p>
+                    </div>
+                    <div class="p_sem2">
+                        <p class="in_bar">Semester 2 : <?php echo $sem2; ?></p>
+                    </div>
+                </div>
+                <style>          
+                        .p_sem1 {
+                            width: <?php echo $p_sem1; ?>%;
+                            height: 100%;
+                            background-color: navy;
+                            float: left;
+                            border-top-left-radius: 10px;
+                            border-bottom-left-radius: 10px;
+                        }
+
+                        .p_sem2 {
+                            width: <?php echo $p_sem2; ?>%;
+                            height: 100%;
+                            background-color: cornflowerblue;
+                            float: left;
+                            border-top-right-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                        }
+                </style>
+
+
+                <!--By Core Subjects -->
+                <h3>By Core Subjects:</h3>
+                <?php
+                    $core  = $data['core_sub_count'];
+                    $ncore = $data['total_subjects_count'] - $core;
+                    $p_core = ($core / $data['total_subjects_count']) * 100;
+                    $p_ncore = ($ncore / $data['total_subjects_count']) * 100;
+                ?>
+
+                <div class="bar">
+                    <div class="p_core">
+                        <p class="in_bar">Core Subjects : <?php echo $core; ?></p>
+                    </div>
+                    <div class="p_ncore">
+                        <p class="in_bar">Non-Core Subjects : <?php echo $ncore; ?></p>
+                    </div>
+                </div>
+                <style>          
+                        .p_core {
+                            width: <?php echo $p_core; ?>%;
+                            height: 100%;
+                            background-color: navy;
+                            float: left;
+                            border-top-left-radius: 10px;
+                            border-bottom-left-radius: 10px;
+                        }
+
+                        .p_ncore {
+                            width: <?php echo $p_ncore; ?>%;
+                            height: 100%;
+                            background-color: cornflowerblue;
+                            float: left;
+                            border-top-right-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                        }
+                </style>
+
+                <!--By Year  -->
+                <h3>By Year:</h3>
+                <?php
+                    $yr1 = $data['cs_1yr_sub_count'] + $data['is_1yr_sub_count'];
+                    $yr2 = $data['cs_2yr_sub_count'] + $data['is_2yr_sub_count'];
+                    $yr3 = $data['cs_3yr_sub_count'] + $data['is_3yr_sub_count'];
+                    $yr4 = $data['cs_4yr_sub_count'] + $data['is_4yr_sub_count'];
+                    $total = $yr1 + $yr2 + $yr3 + $yr4;
+
+                    $p_yr1 = ($yr1 / $total) * 100;
+                    $p_yr2 = ($yr2 / $total) * 100;
+                    $p_yr3 = ($yr3 / $total) * 100;
+                    $p_yr4 = ($yr4 / $total) * 100;
+                ?>
+
+                <div class="bar">
+                    <div class="p_yr1">
+                        <p class="in_bar">Year 1 : <?php echo $yr1; ?></p>
+                    </div>
+                    <div class="p_yr2">
+                        <p class="in_bar">Year 2 : <?php echo $yr2; ?></p>
+                    </div>
+                    <div class="p_yr3">
+                        <p class="in_bar">Year 3 : <?php echo $yr3; ?></p>
+                    </div>
+                    <div class="p_yr4">
+                        <p class="in_bar">Year 4 : <?php echo $yr4; ?></p>
+                    </div>
+                </div>
+                <style>          
+                        .p_yr1 {
+                            width: <?php echo $p_yr1; ?>%;
+                            height: 100%;
+                            background-color: navy;
+                            float: left;
+                            border-top-left-radius: 10px;
+                            border-bottom-left-radius: 10px;
+                        }
+
+                        .p_yr2 {
+                            width: <?php echo $p_yr2; ?>%;
+                            height: 100%;
+                            background-color: blue;
+                            float: left;
+                        }
+
+                        .p_yr3 {
+                            width: <?php echo $p_yr3; ?>%;
+                            height: 100%;
+                            background-color: royalblue;
+                            float: left;
+                        }
+
+                        .p_yr4 {
+                            width: <?php echo $p_yr4; ?>%;
+                            height: 100%;
+                            background-color: cornflowerblue;
+                            float: left;
+                            border-top-right-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                        }
+                </style>
+
+                <!--By Credits -->
+                <h3>By Credits:</h3>
+                <?php
+                    $credit1 = $data['credit1_sub_count'];
+                    $credit2 = $data['credit2_sub_count'];
+                    $credit3 = $data['credit3_sub_count'];
+                    $credit4 = $data['credit4_sub_count'];
+                    $credit8 = $data['credit8_sub_count'];
+
+                    $total_credits = $credit1 + $credit2 + $credit3 + $credit4 + $credit8;
+
+                    $p_credit1 = ($credit1 / $total_credits) * 100;
+                    $p_credit2 = ($credit2 / $total_credits) * 100;
+                    $p_credit3 = ($credit3 / $total_credits) * 100;
+                    $p_credit4 = ($credit4 / $total_credits) * 100;
+                    $p_credit8 = ($credit8 / $total_credits) * 100;
+                ?>
+
+                <div class="bar">
+                    <div class="p_credit1">
+                    </div>
+                    <div class="p_credit2">
+                    </div>
+                    <div class="p_credit3">
+                    </div>
+                    <div class="p_credit4">
+                    </div>
+                    <div class="p_credit8">
+                    </div>
+                </div>
+                <style>          
+                        .p_credit1 {
+                            width: <?php echo $p_credit1; ?>%;
+                            height: 100%;
+                            background-color: navy;
+                            float: left;
+                            border-top-left-radius: 10px;
+                            border-bottom-left-radius: 10px;
+                        }
+
+                        .p_credit2 {
+                            width: <?php echo $p_credit2; ?>%;
+                            height: 100%;
+                            background-color: blue;
+                            float: left;
+                        }
+
+                        .p_credit3 {
+                            width: <?php echo $p_credit3; ?>%;
+                            height: 100%;
+                            background-color: royalblue;
+                            float: left;
+                        }
+
+                        .p_credit4 {
+                            width: <?php echo $p_credit4; ?>%;
+                            height: 100%;
+                            background-color: cornflowerblue;
+                            float: left;
+                        }
+
+                        .p_credit8 {
+                            width: <?php echo $p_credit8; ?>%;
+                            height: 100%;
+                            background-color: lightblue;
+                            float: left;
+                            border-top-right-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                        }
+                </style>
+
+                <div class='discription'>
+
+                    <div class="d_set">
+                        <div class="color_box" style="background-color: navy;"></div>
+                        <p>1 Credits : <?php echo $credit1; ?></p>
+                    </div>
+
+                    <div class="d_set">
+                        <div class="color_box" style="background-color: blue;"></div>
+                        <p>2 Credits : <?php echo $credit2; ?></p>
+                    </div>
+
+                    <div class="d_set">
+                        <div class="color_box" style="background-color: royalblue;"></div>
+                        <p>3 Credits : <?php echo $credit3; ?></p>
+                    </div>
+
+                    <div class="d_set">
+                        <div class="color_box" style="background-color: cornflowerblue;"></div>
+                        <p>4 Credits : <?php echo $credit4; ?></p>
+                    </div>
+
+                    <div class="d_set">
+                        <div class="color_box" style="background-color: lightblue;"></div>
+                        <p>8 Credits : <?php echo $credit8; ?></p>
+                    </div>
+                </div>                
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
 
     <div class='main_page_right'>
+        
         <div class='mpr_top'>
             
             <div class="mpr_top_left">

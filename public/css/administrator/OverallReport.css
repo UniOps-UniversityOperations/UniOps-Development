@@ -25,13 +25,113 @@ h2{
 
 .mpl_top{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 55%;
     margin: 10px 0 0 10px;
     border: #1848A0 2px solid;
     border-radius: 15px;
     background-color: #f0f0f0;
 }
+
+.subject_bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height:15%;
+    align-items: center;
+}
+
+.sub_cell{
+    display: flex;
+    width: 22%;
+    height: 80%;
+    flex-direction: column;
+    /* margin: 0 0 0 10px; */
+    border: #1848A0 2px solid;
+    border-radius: 15px;
+    background-color: #f0f0f0;
+    justify-content: center;
+
+}
+
+.sub_cell p{
+    text-align: center;
+    /* padding-top: 10px; */
+    font-weight: bold;
+}
+
+.prog_bars{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+}
+
+.prog_bars h3{
+    padding: 10px 0px 3px 46px;
+    align-self: flex-start;
+
+}
+
+.bar {
+    display: flex;
+    width: 90%;
+    height: 30px;
+    border-radius: 10px;
+    border: 2px solid black; /* Add a 2px solid black border */
+    background-color: #b3b3b3;
+    color: white;
+    text-align: center;
+}
+
+.in_bar {
+    position: relative;
+    top: 5px;
+    font-weight: bold;
+}
+
+.color_box{
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    border: 2px solid black;
+}
+
+.discription{
+    /* display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    padding-left: 54px;
+    padding-top: 5px;
+    padding-bottom: 15px; */
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-start;
+    padding-left: 54px;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.d_set{
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+.d_set p{
+    font-weight: bold;
+    padding-left: 3px;
+    width: 120px;
+}
+
+
+
+
+
 
 
 
@@ -119,7 +219,7 @@ h2{
   
   .progress {
     width:100%;
-    height: 15px;
+    height: 20px;
     /* For modern browsers */
     color: navy; /* Color of the "fill" part of the progress bar */
     background-color: cornflowerblue; /* Color of the "empty" part of the progress bar */

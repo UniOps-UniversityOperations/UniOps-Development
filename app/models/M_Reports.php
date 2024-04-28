@@ -137,5 +137,187 @@ class M_Reports{
         $result = $this->db->single();
         return $result;
     }
+
+    //getCS1yrSubjectCount
+    public function getCS1yrSubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS cs_1yr_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_year = 1
+                             AND sub_stream = "CS"');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getCS2yrSubjectCount
+    public function getCS2yrSubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS cs_2yr_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_year = 2
+                             AND sub_stream = "CS"');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getCS3yrSubjectCount
+    public function getCS3yrSubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS cs_3yr_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_year = 3
+                             AND sub_stream = "CS"');
+        $result = $this->db->single();
+        return $result;
+    }
     
+    //getCS4yrSubjectCount
+    public function getCS4yrSubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS cs_4yr_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_year = 4
+                             AND sub_stream = "CS"');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getIS1yrSubjectCount
+    public function getIS1yrSubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS is_1yr_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_year = 1
+                             AND sub_stream = "IS"');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getIS2yrSubjectCount
+    public function getIS2yrSubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS is_2yr_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_year = 2
+                             AND sub_stream = "IS"');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getIS3yrSubjectCount
+    public function getIS3yrSubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS is_3yr_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_year = 3
+                             AND sub_stream = "IS"');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getIS4yrSubjectCount
+    public function getIS4yrSubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS is_4yr_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_year = 4
+                             AND sub_stream = "IS"');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getSem1SubjectCount
+    public function getSem1SubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS sem1_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_semester = 1');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getSem2SubjectCount
+    public function getSem2SubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS sem2_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_semester = 2');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getSem1and2SubjectCount
+    public function getSem1and2SubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS sem1and2_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_semester = 0');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getCoreSubjectCount
+    public function getCoreSubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS core_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_isCore = 1');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getCredit1SubjectCount
+    public function getCredit1SubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS credit1_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_credits = 1');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getCredit2SubjectCount
+    public function getCredit2SubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS credit2_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_credits = 2');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getCredit3SubjectCount
+    public function getCredit3SubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS credit3_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_credits = 3');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getCredit4SubjectCount
+    public function getCredit4SubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS credit4_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_credits = 4');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    //getCredit8SubjectCount
+    public function getCredit8SubjectCount(){
+        $this->db->query('SELECT COUNT(DISTINCT sub_code) AS credit8_sub_count
+                             FROM subjects 
+                             WHERE sub_isDeleted = 0 
+                             AND sub_credits = 8');
+        $result = $this->db->single();
+        return $result;
+    }
+
+
+
+
+
 }

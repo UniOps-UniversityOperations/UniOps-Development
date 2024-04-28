@@ -115,12 +115,71 @@ class Reports extends Controller {
         $assigned_instr_count = $this->Rpt_postModel->getAssignedLecturerCountI();
         $student_count = $this->Rpt_postModel->getStudentCount();
 
+        //for the sbjects
+        $total_subjects_count = $this->Rpt_postModel->getTotalSubjectsCount() ? $this->Rpt_postModel->getTotalSubjectsCount()->total_subjects_count : 0; 
+        $cs_1yr_sub_count = $this->Rpt_postModel->getCS1yrSubjectCount() ? $this->Rpt_postModel->getCS1yrSubjectCount()->cs_1yr_sub_count : 0;
+        $cs_2yr_sub_count = $this->Rpt_postModel->getCS2yrSubjectCount() ? $this->Rpt_postModel->getCS2yrSubjectCount()->cs_2yr_sub_count : 0;
+        $cs_3yr_sub_count = $this->Rpt_postModel->getCS3yrSubjectCount() ? $this->Rpt_postModel->getCS3yrSubjectCount()->cs_3yr_sub_count : 0;
+        $cs_4yr_sub_count = $this->Rpt_postModel->getCS4yrSubjectCount() ? $this->Rpt_postModel->getCS4yrSubjectCount()->cs_4yr_sub_count : 0;
+        $is_1yr_sub_count = $this->Rpt_postModel->getIS1yrSubjectCount() ? $this->Rpt_postModel->getIS1yrSubjectCount()->is_1yr_sub_count : 0;
+        $is_2yr_sub_count = $this->Rpt_postModel->getIS2yrSubjectCount() ? $this->Rpt_postModel->getIS2yrSubjectCount()->is_2yr_sub_count : 0;
+        $is_3yr_sub_count = $this->Rpt_postModel->getIS3yrSubjectCount() ? $this->Rpt_postModel->getIS3yrSubjectCount()->is_3yr_sub_count : 0;
+        $is_4yr_sub_count = $this->Rpt_postModel->getIS4yrSubjectCount() ? $this->Rpt_postModel->getIS4yrSubjectCount()->is_4yr_sub_count : 0; 
+        $sem1_sub_count = $this->Rpt_postModel->getSem1SubjectCount() ? $this->Rpt_postModel->getSem1SubjectCount()->sem1_sub_count : 0;
+        $sem2_sub_count = $this->Rpt_postModel->getSem2SubjectCount() ? $this->Rpt_postModel->getSem2SubjectCount()->sem2_sub_count : 0;
+        $sem1and2_sub_count = $this->Rpt_postModel->getSem1and2SubjectCount() ? $this->Rpt_postModel->getSem1and2SubjectCount()->sem1and2_sub_count : 0;
+        $core_sub_count = $this->Rpt_postModel->getCoreSubjectCount() ? $this->Rpt_postModel->getCoreSubjectCount()->core_sub_count : 0;
+        $credit1_sub_count = $this->Rpt_postModel->getCredit1SubjectCount() ? $this->Rpt_postModel->getCredit1SubjectCount()->credit1_sub_count : 0;
+        $credit2_sub_count = $this->Rpt_postModel->getCredit2SubjectCount() ? $this->Rpt_postModel->getCredit2SubjectCount()->credit2_sub_count : 0;
+        $credit3_sub_count = $this->Rpt_postModel->getCredit3SubjectCount() ? $this->Rpt_postModel->getCredit3SubjectCount()->credit3_sub_count : 0;
+        $credit4_sub_count = $this->Rpt_postModel->getCredit4SubjectCount() ? $this->Rpt_postModel->getCredit4SubjectCount()->credit4_sub_count : 0;
+        $credit8_sub_count = $this->Rpt_postModel->getCredit8SubjectCount() ? $this->Rpt_postModel->getCredit8SubjectCount()->credit8_sub_count : 0;
+        
+        // die('total_subjects_count -> ' . $total_subjects_count . '<br>'
+        //     . 'cs_1yr_sub_count -> ' . $cs_1yr_sub_count . '<br>'
+        //     . 'cs_2yr_sub_count -> ' . $cs_2yr_sub_count . '<br>'
+        //     . 'cs_3yr_sub_count -> ' . $cs_3yr_sub_count . '<br>'
+        //     . 'cs_4yr_sub_count -> ' . $cs_4yr_sub_count . '<br>'
+        //     . 'is_1yr_sub_count -> ' . $is_1yr_sub_count . '<br>'
+        //     . 'is_2yr_sub_count -> ' . $is_2yr_sub_count . '<br>'
+        //     . 'is_3yr_sub_count -> ' . $is_3yr_sub_count . '<br>'
+        //     . 'is_4yr_sub_count -> ' . $is_4yr_sub_count . '<br>'
+        //     . 'sem1_sub_count -> ' . $sem1_sub_count . '<br>'
+        //     . 'sem2_sub_count -> ' . $sem2_sub_count . '<br>'
+        //     . 'sem1and2_sub_count -> ' . $sem1and2_sub_count . '<br>'
+        //     . 'core_sub_count -> ' . $core_sub_count . '<br>'
+        //     . 'credit1_sub_count -> ' . $credit1_sub_count . '<br>'
+        //     . 'credit2_sub_count -> ' . $credit2_sub_count . '<br>'
+        //     . 'credit3_sub_count -> ' . $credit3_sub_count . '<br>'
+        //     . 'credit4_sub_count -> ' . $credit4_sub_count . '<br>'
+        //     . 'credit8_sub_count -> ' . $credit8_sub_count . '<br>'
+        // );
+
+
         $data = [
             'lecturers' => $lecturers,
             'assigned_lec_count' => $assigned_lec_count,
             'instructors' => $instructors,
             'assigned_instr_count' => $assigned_instr_count,
-            'student_count' => $student_count
+            'student_count' => $student_count,
+            'total_subjects_count' => $total_subjects_count,
+            'cs_1yr_sub_count' => $cs_1yr_sub_count,
+            'cs_2yr_sub_count' => $cs_2yr_sub_count,
+            'cs_3yr_sub_count' => $cs_3yr_sub_count,
+            'cs_4yr_sub_count' => $cs_4yr_sub_count,
+            'is_1yr_sub_count' => $is_1yr_sub_count,
+            'is_2yr_sub_count' => $is_2yr_sub_count,
+            'is_3yr_sub_count' => $is_3yr_sub_count,
+            'is_4yr_sub_count' => $is_4yr_sub_count,
+            'sem1_sub_count' => $sem1_sub_count,
+            'sem2_sub_count' => $sem2_sub_count,
+            'sem1and2_sub_count' => $sem1and2_sub_count,
+            'core_sub_count' => $core_sub_count,
+            'credit1_sub_count' => $credit1_sub_count,
+            'credit2_sub_count' => $credit2_sub_count,
+            'credit3_sub_count' => $credit3_sub_count,
+            'credit4_sub_count' => $credit4_sub_count,
+            'credit8_sub_count' => $credit8_sub_count
             
         ];
 
