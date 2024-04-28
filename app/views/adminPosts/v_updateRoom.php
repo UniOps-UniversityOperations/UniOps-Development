@@ -9,9 +9,6 @@
 
         <!-- input feilds -->
         <fieldset>
-        <label class="lable" for="id">ID:
-        <input type="text" id="id" name="id" placeholder="id" value="<?php echo $data["id"];?>" required>
-        </label>
 
         <label class="lable" for="name">Name / Code: :
         <input type="text" id="name" name="name" placeholder="name" value="<?php echo strtoupper($data["name"]); ?>" oninput="this.value = this.value.toUpperCase();" required>

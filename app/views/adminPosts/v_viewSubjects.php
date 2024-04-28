@@ -11,24 +11,47 @@
 
             <?php
                 // Count the number of rooms for each year
-                $roomYears = [];
+                $roomYearsCS = [];
+                $roomYearsIS = [];
                 foreach ($data['posts'] as $post) {
                     $year = $post->sub_year;
-                    if (!isset($roomYears[$year])) {
-                        $roomYears[$year] = 1;
-                    } else {
-                        $roomYears[$year]++;
+                    if($post->sub_stream == "CS"){
+                        if (!isset($roomYearsCS[$year])) {
+                            $roomYearsCS[$year] = 1;
+                        } else {
+                            $roomYearsCS[$year]++;
+                        }
+                    }else{
+                        if (!isset($roomYearsIS[$year])) {
+                            $roomYearsIS[$year] = 1;
+                        } else {
+                            $roomYearsIS[$year]++;
+                        }
                     }
                 }
             ?>
 
             <div class="top">
-            <h1 class="topic">Administrator / Subjects</h1>
+            <h1 class="topic">Administrator &#10145; Subjects</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
                         // Display the count for each type
-                        foreach ($roomYears as $year => $count) {
+                        foreach ($roomYearsCS as $year => $count) {
+                            echo "<div class='count_tile'>";
+                            echo "<div class='count_row'>";
+                            echo "<div class='count_column'><p> CS $year YEAR SUBJECTS:</p></div>";
+                            echo "<div class='count_column'><p>$count</p></div>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        ?>
+                    </div>
+
+                    <div class="room_type_counts">
+                        <?php
+                        // Display the count for each type
+                        foreach ($roomYearsIS as $year => $count) {
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
                             echo "<div class='count_column'><p>$year YEAR SUBJECTS:</p></div>";
@@ -38,6 +61,8 @@
                         }
                         ?>
                     </div>
+
+                    
                 </div>
 
                 <div class="table-head">
@@ -52,7 +77,7 @@
                             <option value="">All years</option>
                             <?php
                             // Populate the dropdown with unique room types
-                            foreach (array_keys($roomYears) as $year) {
+                            foreach (array_keys($roomYearsCS) as $year) {
                                 echo "<option value=\"$year\">$year</option>";
                             }
                             ?>

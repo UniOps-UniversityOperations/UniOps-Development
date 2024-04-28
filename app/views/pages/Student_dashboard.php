@@ -2,13 +2,17 @@
 
 <?php require APPROOT . '/views/includes/studentHeader.php';?>
 
-<h1>Student Dashboard </h1>
+<div class="imagecontainer">
+<img src="<?php echo URLROOT;?>/images/Welcome-img.svg" class="welcome-img" alt="Welcome Image">
+</div>
 <br>
 
 <div class="date-container">
+    <h3>
     <?php 
         echo date('l, F jS Y');
     ?>
+    </h3>
 </div>
 
 

@@ -22,7 +22,7 @@
                 ?>
             
                 <div class="top">
-                    <h1 class="topic">Administrator / Rooms</h1>
+                    <h1 class="topic">Administrator &#10145; Rooms</h1>
                     <div class="centered_container">
                         <div class="room_type_counts">
                             <?php
@@ -79,7 +79,6 @@
 
                     <div class="title_bar">
                         <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
-                        <p class="title_item"><b>ID</b></p>
                         <p class="title_item"><b>Type</b></p>
                         <p style="padding-right: 210px;" class="title_item"><b>Capacity</b></p>
                     </div> 
@@ -99,7 +98,6 @@
                             <div class="lecture_room_header">
                                 <p class="row_num"><?php echo $i++; ?></p>
                                 <h3 class="header_title"><?php echo $post->name; ?></h3>
-                                <p class="header_item"><?php echo $post->id; ?></p>
                                 <p class="header_item"><?php echo $post->type; ?></p>
                                 <p class="header_item"><?php echo $post->capacity; ?></p>
                                 <!-- <p class="header_item"><b>Availability:</b> <?php echo $post->current_availability; ?></p> -->
@@ -273,7 +271,7 @@
 
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="<?php echo URLROOT;?>/js/administrator/viewRooms.js"></script>
 
 
