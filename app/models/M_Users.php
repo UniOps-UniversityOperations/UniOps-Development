@@ -120,6 +120,7 @@ class M_Users {
         $this->db->execute();
 
     }
+
     //a function to return true if the user exists else false
     public function userExists($user_id){
         $this->db->query("SELECT * FROM users WHERE user_id = :user_id");
