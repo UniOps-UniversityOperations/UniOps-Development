@@ -24,11 +24,11 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
         <!-- if popup = 1 Lecturer initial is already exists | popup = 2 Lecturer email is already exists | popup = 3 Lecturer initial and email is already exists -->
         <?php if($data['popup'] == 1){ 
-            echo "<p>Lecturer initial is already exists</p>";
+            echo "<p>Initial is already exists</p>";
         }elseif($data['popup'] == 2){
-            echo "<p>Lecturer email is already exists</p>";
+            echo "<p>Email is already exists</p>";
         }elseif($data['popup'] == 3){
-            echo "<p>Lecturer initial and<br> email are already exists</p>";
+            echo "<p>Initials and<br> email are already exists</p>";
         } ?>
         
     </div>

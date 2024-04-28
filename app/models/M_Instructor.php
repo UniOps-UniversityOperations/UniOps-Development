@@ -179,7 +179,7 @@ class M_Instructor{
 
     //userExistsemail($data['i_email'])
     public function userExistsemail($i_email){
-        $this->db->query('SELECT * FROM instructors WHERE i_email = :i_email');
+        $this->db->query('SELECT * FROM instructors WHERE i_email = :i_email AND i_isDeleted = 0');
         $this->db->bind(':i_email', $i_email);
         $row = $this->db->single();
         //Check row

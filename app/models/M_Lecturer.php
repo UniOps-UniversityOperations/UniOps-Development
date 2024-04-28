@@ -189,18 +189,6 @@ class M_Lecturer{
         }
     }
 
-    //userExistsemail
-    public function userExistsemail($l_email){
-        $this->db->query('SELECT * FROM lecturers WHERE l_email = :l_email AND l_isDeleted = 0');
-        $this->db->bind(':l_email', $l_email);
-        $row = $this->db->single();
-        //Check row
-        if($this->db->rowCount() > 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     //lecturerExists2($data['l_code'], $postId)
     public function lecturerExists2($l_code, $l_id){
@@ -216,19 +204,6 @@ class M_Lecturer{
         }
     }
 
-    //userExistsemail2
-    public function userExistsemail2($l_email, $l_id){
-        $this->db->query('SELECT * FROM lecturers WHERE l_email = :l_email AND l_id != :l_id AND l_isDeleted = 0');
-        $this->db->bind(':l_email', $l_email);
-        $this->db->bind(':l_id', $l_id);
-        $row = $this->db->single();
-        //Check row
-        if($this->db->rowCount() > 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
 }
 

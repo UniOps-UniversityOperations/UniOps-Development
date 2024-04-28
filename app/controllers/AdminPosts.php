@@ -658,14 +658,16 @@ require_once APPROOT . '/controllers/Mail.php';
 
 
                 //check if l_code already exists
-                if($this->L_postModel->lecturerExists($data['l_code']) && $this->L_postModel->userExistsemail($data['l_email'])){
+                if($this->L_postModel->lecturerExists($data['l_code']) && $this->U_postModel->userExistsemail($data['l_email'])){
                     redirect('AdminPosts/createLecturer/3');
                     // die('room already exists');
                 }else if($this->L_postModel->lecturerExists($data['l_code'])){
                     redirect('AdminPosts/createLecturer/1');
-                }else if($this->L_postModel->userExistsemail($data['l_email'])){
+                }else if($this->U_postModel->userExistsemail($data['l_email'])){
+                    // die('email already exists');
                     redirect('AdminPosts/createLecturer/2');
                 }else{
+                    // die('ok');
                     if(empty($data['l_codeError'])){
                         if($this->L_postModel->createLecturer($data) && $this->U_postModel->addUser($data)){
                             //flash('post_message', 'Lecturer Added');
@@ -734,9 +736,12 @@ require_once APPROOT . '/controllers/Mail.php';
         }
 
         public function updateLecturer($postId, $popup = 0){
+            //userneame = l_nameWithInitials
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
+                
+                $username = $this->L_postModel->getLecturerById($postId)->l_nameWithInitials;
+                $email = $this->L_postModel->getLecturerById($postId)->l_email;
                 $data = [
 
                     'title' => 'Update Lecturer',
@@ -762,17 +767,18 @@ require_once APPROOT . '/controllers/Mail.php';
                 ];
 
                 //check if l_code already exists
-                if($this->L_postModel->lecturerExists2($data['l_code'], $postId) && $this->L_postModel->userExistsemail2($data['l_email'], $postId)){
+                if($this->L_postModel->lecturerExists2($data['l_code'], $postId) && $this->U_postModel->userExistsemail2($data['l_email'], $username)){
                     redirect('AdminPosts/updateLecturer/' . $postId . '/3');
                     // die('room already exists');
                 }else if($this->L_postModel->lecturerExists2($data['l_code'], $postId)){
                     redirect('AdminPosts/updateLecturer/' . $postId . '/1');
-                }else if($this->L_postModel->userExistsemail2($data['l_email'], $postId)){
+                }else if($this->U_postModel->userExistsemail2($data['l_email'], $username)){
                     redirect('AdminPosts/updateLecturer/' . $postId . '/2');
                 }else{
 
                     if(1){
-                        if($this->L_postModel->updateLecturer($data)){
+                        //update_id_name($old_id, $old_name, $new_id, $new_name)
+                        if($this->L_postModel->updateLecturer($data) && $this->U_postModel->update_id_name($email, $username, $data['l_email'], $data['l_nameWithInitials'])){
                             redirect('adminPosts/viewLecturers');
                         }else{
                             die('Something went wrong');
@@ -892,12 +898,12 @@ require_once APPROOT . '/controllers/Mail.php';
                 }
 
                 //check if i_code already exists
-                if($this->I_postModel->instructorExists($data['i_code']) && $this->I_postModel->userExistsemail($data['i_email'])){
+                if($this->I_postModel->instructorExists($data['i_code']) && $this->U_postModel->userExistsemail($data['i_email'])){
                     redirect('AdminPosts/createInstructor/3');
                     // die('room already exists');
                 }else if($this->I_postModel->instructorExists($data['i_code'])){
                     redirect('AdminPosts/createInstructor/1');
-                }else if($this->I_postModel->userExistsemail($data['i_email'])){
+                }else if($this->U_postModel->userExistsemail($data['i_email'])){
                     redirect('AdminPosts/createInstructor/2');
                 }else{
                     
@@ -972,6 +978,9 @@ require_once APPROOT . '/controllers/Mail.php';
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+                $username = $this->I_postModel->getInstructorById($postId)->i_nameWithInitials;
+                $email = $this->I_postModel->getInstructorById($postId)->i_email;
+
                 $data = [
 
                     'title' => 'Update Instructor',
@@ -996,17 +1005,18 @@ require_once APPROOT . '/controllers/Mail.php';
                 ];
 
                 //check if i_code already exists
-                if($this->I_postModel->instructorExists2($data['i_code'], $postId) && $this->I_postModel->userExistsemail2($data['i_email'], $postId)){
+                if($this->I_postModel->instructorExists2($data['i_code'], $postId) && $this->U_postModel->userExistsemail2($data['i_email'], $username)){
                     redirect('AdminPosts/updateInstructor/' . $postId . '/3');
                     // die('room already exists');
                 }else if($this->I_postModel->instructorExists2($data['i_code'], $postId)){
                     redirect('AdminPosts/updateInstructor/' . $postId . '/1');
-                }else if($this->I_postModel->userExistsemail2($data['i_email'], $postId)){
+                }else if($this->U_postModel->userExistsemail2($data['i_email'], $username)){
                     redirect('AdminPosts/updateInstructor/' . $postId . '/2');
                 }else{
 
                     if(1){
-                        if($this->I_postModel->updateInstructor($data)){
+                        //update_id_name($old_id, $old_name, $new_id, $new_name)
+                        if($this->I_postModel->updateInstructor($data) && $this->U_postModel->update_id_name($email, $username, $data['i_email'], $data['i_nameWithInitials'])){
                             redirect('adminPosts/viewInstructors');
                         }else{
                             die('Something went wrong');
