@@ -371,7 +371,7 @@
 
                     ?>
 
-                    <h2>Lecturers</h2>
+                    <h2>Rooms</h2>
                     <div class='progress_bars_container'>
                         <h3 class="bar_name">Number of Total Rooms : <?php echo $total_rooms; ?></h3>
                         
@@ -410,7 +410,7 @@
 
                 <div class='mpr_top_right'>
                 
-                    <div class="top_bar" style="justify-content: flex-end;">
+                    <div class="top_bar" style="justify-content: flex-end; z-index: 1;">
                         <a href="">
                             <button class="more_btn1">MORE</button>
                         </a>

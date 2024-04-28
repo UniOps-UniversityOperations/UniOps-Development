@@ -68,7 +68,7 @@
             <select id="type" name="type" required>
                 <option value="LECTURE">LECTURE</option>
                 <option value="LAB">LAB</option>
-                <option value="MEEING">MEEING</option>
+                <option value="MEETING">MEETING</option>
                 <option value="COMMON">COMMON</option>
                 <option value="OTHER">OTHER</option>
             </select>
