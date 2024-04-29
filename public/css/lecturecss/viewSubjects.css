@@ -1,9 +1,15 @@
 .option4 {
-    border-left: 5px solid #010058af;
-    background-color: var(--Border-color);
-    color: white;
-    cursor: pointer;
-}
+  border-left: 5px solid #010058af;
+  background-color: var(--Border-color);
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+  }
+
+.option4:hover {
+  border-left: 5px solid #010058af;
+  background-color: var(--Border-color);
+  }
 
 /* Table Styles Starts Here. */
 
@@ -69,23 +75,198 @@ hr{
     background-color: #45a049;
   }
 
-#Chart {
-    height : 33vh;
-}
-
-.main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#workload {
-    height : 50vh;
-    width : 100%;
+  #workload {
+    height: 50vh; /* Ensure this height is sufficient to contain the chart */
+    width: 100%;
+    max-height: 400px;
     display: flex;
     justify-content: center;
+    padding-top: 50px;
 }
 
-#Chart {
-    padding-top: 20px;
+#chart {
+    flex-grow: 1;
+    width: 100%;
 }
+
+
+
+#headings {
+    display: flex;
+    cursor: pointer;
+  }
+
+  #timetable:hover {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  #subjects:hover {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  #details:hover {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .section {
+    margin-right: 40px;
+    margin-bottom: 20px;
+  }
+
+  #subjects {
+    color: blue;
+  }
+
+
+
+
+
+
+
+
+
+
+/* Below is the select subject styles */
+
+#table_container {
+  display : none;
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  top: 90px;
+  width:75%;
+  height :700px;
+  z-index: 20000;
+  background-color: #fff;
+}
+
+#requestSubjects {
+  max-height: 600px; 
+  overflow-y: auto; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Customize the scrollbar */
+#requestSubjects::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+#requestSubjects::-webkit-scrollbar-thumb {
+  background-color: #1848A0; /* Set the color of the scrollbar thumb */
+  border-radius: 5px; /* Roundness of the scroll thumb */
+}
+
+#requestSubjects::-webkit-scrollbar-track {
+  background-color: #fff; /* Set the color of the scrollbar track */
+}
+
+#subjectsSelectionPanel {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-top: 0px;
+  background-color: #ffffff; /* Solid white */
+  
+}
+
+#subjectsSelectionPanel thead tr {
+  background-color: #1848A0;
+  color: #ffffff;
+  text-align: center;
+  position: sticky;
+  top: 0; /* Stick to the top of the container */
+  z-index: 1;
+}
+
+#subjectsSelectionPanel th,
+#subjectsSelectionPanel td {
+  padding: 12px 15px;
+}
+
+
+#subjectsSelectionPanel tbody tr {
+  border-bottom: 1px solid #dddddd;
+  overflow: auto;
+ /*  text-align: center; */
+}
+
+#subjectsSelectionPanel tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+#subjectsSelectionPanel tbody tr:last-of-type {
+  border-bottom: 2px solid #1848A0;
+}
+
+#subjectsSelectionPanel tbody tr.active-row {
+  font-weight: bold;
+  color: #1848A0;
+}
+
+
+/* Request Subjects Button */
+
+#request_button{
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+  /* width: 130px; */
+  font-weight: bold;
+}
+
+#request_button:hover {
+  background-color: #45a049;
+}
+
+
+
+
+
+.main .no-scroll {
+  overflow: hidden;
+}
+
+#end_btn{
+  background-color: var(--Border-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+}
+
+
+  /* Style for the delete button */
+  .delete_button {
+    background-color: #f44336;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+  }
+  
+  .delete_icon{
+    padding-top: 5px;
+    width: 30px;
+  }
+  
+  /* Change the background color on hover */
+  .delete_button:hover {
+    background-color: #d32f2f;
+  }

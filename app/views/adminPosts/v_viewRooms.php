@@ -22,7 +22,7 @@
                 ?>
             
                 <div class="top">
-                    <h1 class="topic">Adminitsrator / Rooms</h1>
+                    <h1 class="topic">Administrator &#10145; Rooms</h1>
                     <div class="centered_container">
                         <div class="room_type_counts">
                             <?php
@@ -30,7 +30,7 @@
                             foreach ($roomTypes as $type => $count) {
                                 echo "<div class='count_tile'>";
                                 echo "<div class='count_row'>";
-                                echo "<div class='count_column'><p># $type rooms:</p></div>";
+                                echo "<div class='count_column'><p># $type ROOMS:</p></div>";
                                 echo "<div class='count_column'><p>$count</p></div>";
                                 echo "</div>";
                                 echo "</div>";
@@ -79,7 +79,6 @@
 
                     <div class="title_bar">
                         <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
-                        <p class="title_item"><b>ID</b></p>
                         <p class="title_item"><b>Type</b></p>
                         <p style="padding-right: 210px;" class="title_item"><b>Capacity</b></p>
                     </div> 
@@ -99,7 +98,6 @@
                             <div class="lecture_room_header">
                                 <p class="row_num"><?php echo $i++; ?></p>
                                 <h3 class="header_title"><?php echo $post->name; ?></h3>
-                                <p class="header_item"><?php echo $post->id; ?></p>
                                 <p class="header_item"><?php echo $post->type; ?></p>
                                 <p class="header_item"><?php echo $post->capacity; ?></p>
                                 <!-- <p class="header_item"><b>Availability:</b> <?php echo $post->current_availability; ?></p> -->
@@ -170,7 +168,6 @@
                                     <p><b>ID / Code</b></p> 
                                     <p><b>Type</b></p>
                                     <p><b>Capacity</b></p>
-                                    <p><b>Availability</b></p> 
                                     <p><b>No of Tables</b></p> 
                                     <p><b>No of Chairs</b></p> 
                                     <p><b>No of Boards</b></p> 
@@ -240,6 +237,13 @@
                                     <?php $i++; } endforeach;?>
                                 </div>
                             </div>
+                                     
+                            <div class='upload_img'>
+                                <form method="post" action="<?php echo URLROOT; ?>/Upload/uploadImage/<?php echo $post->id; ?>" enctype="multipart/form-data">
+                                    <input type="file" name="image" required/>
+                                    <input type="submit" name="submit" value="Upload" />
+                                </form>
+                            </div>
 
                             <!-- ----------------- -->
 
@@ -267,7 +271,7 @@
 
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="<?php echo URLROOT;?>/js/administrator/viewRooms.js"></script>
 
 

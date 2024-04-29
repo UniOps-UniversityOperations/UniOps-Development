@@ -1,23 +1,35 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     // Check if the side-panel-open class is already present
-    var wrapper = document.querySelector('.wrapper');
+    var wrapper = document.querySelector('.wrapper');    // first element of the document
     // if (wrapper && !wrapper.classList.contains('side-panel-open')) {
     //     // Add the side-panel-open class if it's not present
     //     wrapper.classList.add('side-panel-open');
     // }
 
-    var viewButtons = document.querySelectorAll('.view_button');
+    var viewButtons = document.querySelectorAll('.view_button');                                                         
     var searchInput = document.getElementById('search');
     var clearSearch = document.getElementById('clear-search');
+    var filterType = document.getElementById('filter-type');
+
+    filterType.addEventListener('change', function () {
+        var selectedType = this.value.toLowerCase();
+
+        // Show/hide student rooms based on the selected type
+        document.querySelectorAll('.student_room').forEach(function (studentRoom) {
+            var roomType = studentRoom.dataset.roomType.toLowerCase();
+            studentRoom.style.display = roomType.includes(selectedType) ? 'block' : 'none';
+        });
+    });
+
 
 
     viewButtons.forEach(function (viewButton) {
         viewButton.addEventListener('click', function () {
-            var studelntRoom = this.closest('.student_room');
+            var studentRoom = this.closest('.student_room');
             var idleView = studentRoom.querySelector('.idle-view');
             var detailedView = studentRoom.querySelector('.detailed-view');
-          
+            // var detailedView = studentRoom.querySelector('.student_room_body');
 
             // Close all detailed views except the one associated with the clicked button
             document.querySelectorAll('.detailed-view').forEach(function (otherDetailedView) {
@@ -36,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var searchTerm = searchInput.value.toLowerCase();
 
         document.querySelectorAll('.student_room').forEach(function (studentRoom) {
-            var roomName =studentRoom.dataset.roomName.toLowerCase();
+            var roomName = studentRoom.dataset.roomName.toLowerCase();
 
             console.log('Search Term:', searchTerm);
             console.log('Room Name:', roomName);

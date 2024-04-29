@@ -15,6 +15,52 @@ $totalHours = array_values($data['numofLecHours']);
  let totalHours = <?php echo json_encode($totalHours); ?>;
 </script>
 
+<div id="headings">
+    <div class="section" id="details">Details</div>
+    <div class="section" id="subjects">Subjects</div>
+    <div class="section" id="timetable">Timetable</div>
+</div>
+
+<div id="table_container">
+<div id="requestSubjects">
+    <table id="subjectsSelectionPanel">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Year</th>
+                <th>Semester</th>
+                <th>Credits</th>
+                <th>Stream</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($data['subjects'] as $subject): ?>
+                <tr>
+                    <td><?php echo $subject->sub_code; ?></td>
+                    <td><?php echo $subject->sub_name; ?></td>
+                    <td><?php echo $subject->sub_year; ?></td>
+                    <td><?php echo $subject->sub_semester; ?></td>
+                    <td><?php echo $subject->sub_credits; ?></td>
+                    <td><?php echo $subject->sub_stream; ?></td>
+                    <!-- <button id='request'>Request</button> -->
+                    <td>
+                        <form action="<?php echo URLROOT;?>/lecturer/requestSubject" method="POST">
+                            <button type="submit" name="submit" id="request_button">Request</button>
+                            <input type="hidden" name="sub_code" value=<?php echo $subject->sub_code; ?>>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    
+</div>
+<button id="end_btn">End</button>
+</div>
+
 <div id="workload">
     <canvas id="Chart"></canvas>
 </div>
@@ -67,10 +113,13 @@ $totalHours = array_values($data['numofLecHours']);
 <h2>Requested Subjects</h2>
 
 <?php if(is_string($data['PrefferedSubjects'])):?>
-
+    <br>
     <p>You have not yet set your preferrences.</p>
     
 <?php else : ?> 
+
+    <br>
+    <p>The subject you request first will get the highest preference.(The lower the pref_level number the higher the preference level.)So when requesting subjects be sure that you request them in order of your preference</p>
 
 <table class="styled-table">
     <thead>
@@ -81,6 +130,8 @@ $totalHours = array_values($data['numofLecHours']);
             <th>Year</th>
             <th>Semester</th>
             <th>Num of Credits</th>
+            <th>Pref_Level</th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="tbody">
@@ -93,6 +144,14 @@ $totalHours = array_values($data['numofLecHours']);
                 <td><?php echo $subject->sub_year; ?></td>
                 <td><?php echo $subject->sub_semester; ?></td>
                 <td><?php echo $subject->sub_credits; ?></td>
+                <td><?php echo $subject->pref_level; ?></td>
+                <td>
+                    <a href="<?php echo URLROOT; ?>/lecturer/deletePreferredSubject/<?php echo $subject->subject_code; ?>/<?php echo $subject->pref_level;?>" title="Delete">
+                        <button class="delete_button">
+                            <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
+                        </button>
+                    </a>
+                </td>
             </tr>
 
         <?php endforeach; ?>
@@ -103,11 +162,11 @@ $totalHours = array_values($data['numofLecHours']);
 
 </div>
 
-<a href="" title="Add Row">
-    <button class="add_button">
+<div title="Add Row">
+    <button class="add_button" id='add'>
         <img src="<?php echo URLROOT;?>/images/plus_icon.svg" alt="Add Icon" class="add_icon">
     </button>
-</a>
+</div>
 
 
 <script src="<?php echo URLROOT;?>/js/lecturerjs/viewSubjects.js"></script>

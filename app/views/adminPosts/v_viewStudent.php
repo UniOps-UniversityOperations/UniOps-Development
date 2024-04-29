@@ -4,11 +4,11 @@
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- <i class="material-icons">language</i> --> 
 
         <!-- <div class="wrapper side-panel-open"> -->
         <div class="wrapper">
         <div class="main">
-            <h1 class="topic">Adminitsrator / Students</h1>
 
             <!-- Have to look this later *************************************************************************************************************-->
             <?php
@@ -18,7 +18,24 @@
                     $count++;
                 }
             ?>
+
+
+            <?php
+                // Count the number of rooms for each year
+                $roomYears = [];
+                foreach ($data['posts'] as $post) {
+                    $year = $post->s_year;
+                    if (!isset($roomYears[$year])) {
+                        $roomYears[$year] = 1;
+                    } else {
+                        $roomYears[$year]++;
+                    }
+                }
+            ?>
+
                 
+                <div class="top">
+                <h1 class="topic">Administrator / Students</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
@@ -30,6 +47,7 @@
                             echo "</div>";
                             echo "</div>"
                         ?>
+
                     </div>
                 </div>
 
@@ -39,7 +57,20 @@
                         <span class="clear-icon" id="clear-search">&#10006;</span>
                     </div>
 
-                    <div class="create_room_button">
+                    <div class="filter-container">
+                        <label for="filter-type">Filter by year:</label>
+                        <select id="filter-type">
+                            <option value="">All years</option>
+                            <?php
+                            // Populate the dropdown with unique room types
+                            foreach (array_keys($roomYears) as $year) {
+                                echo "<option value=\"$year\">$year</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                   <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createStudent">
                             <button class="create_button">Create Student</button>
                         </a>
@@ -55,39 +86,50 @@
                     }
                 </style>
 
+                <div class="title_bar">
+                    <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
+                    <p class="title_item"><b>Email</b></p>
+                    <p class="title_item"><b>Index</b></p>
+                    <p class="title_item"><b>Year</b></p>
+                    <p style="padding-right: 240px;" class="title_item"><b>Stream</b></p>
+                </div> 
+            </div>
+            <?php $test = $stu_room = []; ?>
 
-            <?php foreach($data['posts'] as $post) : ?>
+            <div class="list">
+            <?php 
+            $i = 1;
+            foreach($data['posts'] as $post) : ?>
 
-                <div class="student_room" data-room-name="<?php echo $post->s_fullName; ?>">
+                <div class="student_room" data-room-name="<?php echo $post->s_fullNam; ?>" data-room-type="<?php echo $post->s_year; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
                             <div class="student_room_header">
                                 <h3 class="header_title"><?php echo $post->s_nameWithInitial; ?></h3>
-                                <p class="header_item"><b>Code:</b> <?php echo $post->s_code; ?></p>
-                                <p class="header_item"><b>Index Number:</b> <?php echo $post->s_indexNumber; ?></p>
-                                <p class="header_item"><b>Email:</b> <?php echo $post->s_email; ?></p>
-                                <p class="header_item"><b>Stream:</b> <?php echo $post->s_stream; ?></p>
+                                <p class="header_item"><b></b> <?php echo $post->s_email; ?></p>
+                                <p class="header_item"><b></b> <?php echo $post->s_indexNumber; ?></p>
+                                <p class="header_item"><b></b> <?php echo $post->s_year; ?></p>
+                                <p class="header_item"><b></b> <?php echo $post->s_stream; ?></p>
                                 
                                 <div class="action_buttons">
 
                                     <button class="view_button">
-                                        <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
+                                        <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" title="view" class="view_icon">
                                     </button>
                                     
                                     <a href="<?php echo URLROOT; ?>/AdminPosts/updateStudent/<?php echo $post->s_id ?>">
                                         <button class="update_button">
-                                            <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
+                                            <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" title="update" class="update_icon">
 
                                         </button>
                                     </a>
                                     
                                     <a href="<?php echo URLROOT; ?>/AdminPosts/deleteStudent/<?php echo $post->s_id ?>">
                                         <button class="delete_button">
-                                            <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
+                                            <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" title="delete" class="delete_icon">
                                         </button>
                                     </a>
-
 
                                 </div>
                             </div>  
@@ -96,6 +138,7 @@
                     <!-- Detailed view -->
 
                             <?php
+                            $test[] = $post->s_code;
                              $stu_room[] = $post;
                             ?>
                     
@@ -103,6 +146,7 @@
                 </div>
                 
             <?php endforeach; ?>
+            </div>
 
 
         </div>
@@ -127,10 +171,6 @@
                             <div class="sidebar_body_top">
 
                                 <table class="sidebar_table">
-                                    <tr>
-                                        <td><b>Code</b></td>
-                                        <td><b>: </b><?php echo $post->s_code; ?></td>
-                                    </tr>
 
                                     <tr>
                                         <td><b>Email</b></td>
@@ -173,7 +213,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td><b>Registraion Number</b></td>
+                                        <td><b>Registration Number</b></td>
                                         <td><b>: </b><?php echo $post->s_regNumber; ?></td>
                                     </tr>
 
@@ -206,27 +246,18 @@
                                         <td><b>Year</b></td>
                                         <td><b>: </b><?php echo $post->s_year; ?></td>
                                     </tr>
-
-                                    <tr>
-                                        <td><b>Semester</b></td>
-                                        <td><b>: </b><?php echo $post->s_semester; ?></td>
-                                    </tr>
                                         
                                 </table>
 
                             </div>
                         
-
+<!-- 
                             <div class="sidebar_body_bottom">
                                 <div class="sidebar_bottom_left_part1">
                                     <p><b>IsDeleted</b></p>
-                                </div>
+                                </div> -->
 
-                                <div class="sidebar_bottom_right_part1">
-                                    <p><?php echo $post->s_isDeleted ? "<b> : </b> Yes" : "<b> : </b> No"; ?></p>
-                                </div>
-
-                            </div>
+                            <!-- </div> -->
                         </div>
                     <?php
                     echo "</div>";
@@ -237,6 +268,7 @@
         </div>
     
         </div>
+        
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="<?php echo URLROOT;?>/js/administrator/viewStudent.js"></script>
@@ -276,4 +308,3 @@
 
 
 <?php require APPROOT . '/views/includes/adminFooter.php'; ?>
-

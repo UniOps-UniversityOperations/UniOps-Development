@@ -11,33 +11,58 @@
 
             <?php
                 // Count the number of rooms for each year
-                $roomYears = [];
+                $roomYearsCS = [];
+                $roomYearsIS = [];
                 foreach ($data['posts'] as $post) {
                     $year = $post->sub_year;
-                    if (!isset($roomYears[$year])) {
-                        $roomYears[$year] = 1;
-                    } else {
-                        $roomYears[$year]++;
+                    if($post->sub_stream == "CS"){
+                        if (!isset($roomYearsCS[$year])) {
+                            $roomYearsCS[$year] = 1;
+                        } else {
+                            $roomYearsCS[$year]++;
+                        }
+                    }else{
+                        if (!isset($roomYearsIS[$year])) {
+                            $roomYearsIS[$year] = 1;
+                        } else {
+                            $roomYearsIS[$year]++;
+                        }
                     }
                 }
             ?>
 
             <div class="top">
-            <h1 class="topic">Adminitsrator / Subjects</h1>
+            <h1 class="topic">Administrator &#10145; Subjects</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
                         // Display the count for each type
-                        foreach ($roomYears as $year => $count) {
+                        foreach ($roomYearsCS as $year => $count) {
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p># year $year subjects:</p></div>";
+                            echo "<div class='count_column'><p> CS $year YEAR SUBJECTS:</p></div>";
                             echo "<div class='count_column'><p>$count</p></div>";
                             echo "</div>";
                             echo "</div>";
                         }
                         ?>
                     </div>
+
+                    <div class="room_type_counts">
+                        <?php
+                        // Display the count for each type
+                        foreach ($roomYearsIS as $year => $count) {
+                            echo "<div class='count_tile'>";
+                            echo "<div class='count_row'>";
+                            echo "<div class='count_column'><p>$year YEAR SUBJECTS:</p></div>";
+                            echo "<div class='count_column'><p>$count</p></div>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        ?>
+                    </div>
+
+                    
                 </div>
 
                 <div class="table-head">
@@ -52,7 +77,7 @@
                             <option value="">All years</option>
                             <?php
                             // Populate the dropdown with unique room types
-                            foreach (array_keys($roomYears) as $year) {
+                            foreach (array_keys($roomYearsCS) as $year) {
                                 echo "<option value=\"$year\">$year</option>";
                             }
                             ?>
@@ -81,6 +106,7 @@
                     <p class="title_item"><b>Name</b></p>
                     <p class="title_item"><b>Stream</b></p>
                     <p class="title_item"><b>Year</b></p>
+                    <p class="title_item"><b>Semester</b></p>
                     <p style="padding-right: 210px;" class="title_item"><b>Credits</b></p>
                 </div> 
             </div>
@@ -103,6 +129,7 @@
                                 <p class="header_item"><?php echo $post->sub_name; ?></p>
                                 <p class="header_item"><?php echo $post->sub_stream; ?></p>
                                 <p class="header_item"><?php echo $post->sub_year; ?></p>
+                                <p class="header_item"><?php echo $post->sub_semester; ?></p>
                                 <p class="header_item"></b> <?php echo $post->sub_credits; ?></p>
                                 
                                 <div class="action_buttons">
@@ -111,19 +138,17 @@
                                         <img src="<?php echo URLROOT;?>/images/view_icon.svg" alt="View Icon" class="view_icon">
                                     </button>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/updateSubject/<?php echo $post->sub_id ?>" title="Edit Details">
+                                    <a href="<?php echo URLROOT;?>/AdminPosts/updateSubject/<?php echo $post->sub_id ?>" title="Edit Details">
                                         <button class="update_button">
                                             <img src="<?php echo URLROOT;?>/images/update_icon.svg" alt="Update Icon" class="update_icon">
-
                                         </button>
                                     </a>
                                     
-                                    <a href="<?php echo URLROOT; ?>/AdminPosts/deleteSubject/<?php echo $post->sub_id; ?>/<?php echo $post->sub_code; ?>" title="Delete">
+                                    <a href="<?php echo URLROOT;?>/AdminPosts/deleteSubject/<?php echo $post->sub_id;?>/<?php echo $post->sub_code; ?>" title="Delete">
                                         <button class="delete_button">
                                             <img src="<?php echo URLROOT;?>/images/delete_icon.svg" alt="Delete Icon" class="delete_icon">
                                         </button>
                                     </a>
-
 
                                 </div>
                             </div>  
@@ -186,10 +211,10 @@
 
                             <div class="sidebar_body_bottom">
                                 <div class="sidebar_bottom_left_part1">
-                                    <p><b>Is Core</b></p>
-                                    <p><b>Is Has Lecture</b></p>
-                                    <p><b>Is Has Tutorial</b></p>
-                                    <p><b>Is Has Practical</b></p>
+                                    <p><b>Core Subject</b></p>
+                                    <p><b>Has Lecture</b></p>
+                                    <p><b>Has Tutorial</b></p>
+                                    <p><b>Has Practical</b></p>
                                 </div>
 
                                 <div class="sidebar_bottom_right_part1">
@@ -232,7 +257,7 @@
         // onclick .delete_button prevent default and confirm
         $(".delete_button").click(function(e){
             e.preventDefault();
-            var c = confirm("Are you sure you want to delete this room?");
+            var c = confirm("Are you sure you want to delete this subject?");
             if(c){
                 // get href from parent div
                 var href = $(this).parent().attr("href");

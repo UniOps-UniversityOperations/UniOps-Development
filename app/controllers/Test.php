@@ -12,7 +12,7 @@
             $this->view('test/v_uploadImage');
         }
 
-        public function upload(){
+        public function upload($id){
 
             // die('done');
 
@@ -20,11 +20,12 @@
                 $name = $_FILES['image']['name'];
                 $type = $_FILES['image']['type'];
                 $data = file_get_contents($_FILES['image']['tmp_name']);
-                $r_id = 10;
+                $r_id = $id;
                 
                 if($this->RI_postModel->upload($r_id, $name, $type, $data)){
-                    redirect('Test/viewImages');
-                    // die("uploded!");
+                    //redirect to view rooms page
+                    
+                    die("uploded!");
                 }else{
                     die('Something went wrong');
                 }

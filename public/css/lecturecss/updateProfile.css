@@ -62,12 +62,18 @@ body {
   }
   
 
-.option4 {
+  .option4 {
     border-left: 5px solid #010058af;
     background-color: var(--Border-color);
     color: white;
     cursor: pointer;
-}
+    border-radius: 50px;
+    }
+  
+  .option4:hover {
+    border-left: 5px solid #010058af;
+    background-color: var(--Border-color);
+    }
   
     .create_button{
         background-color: #1848A0;

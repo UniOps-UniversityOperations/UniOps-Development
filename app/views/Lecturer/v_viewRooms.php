@@ -10,19 +10,19 @@ $data_json = json_encode($data);
         <h2 id="roomIdHeader">Room Details </h2>
         <p class = "item-title">Number of Boards <span class = "item-value" id="boards"></span></p>
         <p class = "item-title">Number of Computers <span class = "item-value" id="computers"></span></p>
-        <p class = "item-title">Is_AC <span class = "item-value" id="AC"></span></p>
-        <p class = "item-title">Is_WIFI <span class = "item-value" id="WI-FI"></span></p>
-        <p class = "item-title">Number of Projectors <span id="projectors"></span> </p>
-        <p class = "item-title">Is_Media <span class = "item-value" id="media"></span></p>
-        <p class = "item-title">Is_Lecture <span class = "item-value" id="lecture"></span></p>
-        <p class = "item-title">Is_Lab <span class = "item-value" id="lab"></span></p>
-        <p class = "item-title">Is_Tutorial <span class = "item-value" id="tutorial"></span></p>
-        <p class = "item-title">Is_Meeting <span class = "item-value" id="meeting"></span></p>
-        <p class = "item-title">Is_Seminar <span class = "item-value" id="seminar"></span></p>
-        <p class = "item-title">Is_Exam <span class = "item-value" id="exam"></span></p>
+        <p class = "item-title">Number of Projectors <span class = "item-value" id="projectors"></span> </p>
+        <p class = "item-title">AC <span class = "item-value" id="AC"></span></p>
+        <p class = "item-title">WIFI <span class = "item-value" id="WI-FI"></span></p>   
+        <p class = "item-title">Media <span class = "item-value" id="media"></span></p>
+        <p class = "item-title">Lecture <span class = "item-value" id="lecture"></span></p>
+        <p class = "item-title">Lab <span class = "item-value" id="lab"></span></p>
+        <p class = "item-title">Tutorial <span class = "item-value" id="tutorial"></span></p>
+        <p class = "item-title">Meeting <span class = "item-value" id="meeting"></span></p>
+        <p class = "item-title">Seminar <span class = "item-value" id="seminar"></span></p>
+        <p class = "item-title">Exam <span class = "item-value" id="exam"></span></p>
     </div>
 
-    <button class = "view" id="view">View</button>
+    <button class = "view" id="view">Allocate</button>
 
 </div>
 
@@ -36,15 +36,16 @@ $data_json = json_encode($data);
         <label for="filter">Filter By Type</label>
         <select name="type" id="filter">
             <option value="All">All</option>
-            <option value="Lecture">Lecture Rooms</option>
-            <option value="Lab">Laboratories</option>
-            <option value="Meeting">Meeting Rooms</option>
-            <option value="Other">Other</option>
+            <option value="LECTURE">LECTURE</option>
+            <option value="LAB">LAB</option>
+            <option value="MEETING">MEETING</option>
+            <option value="COMMON">COMMON</option>
+            <option value="OTHER">OTHER</option>
         </select>
     </div>
 
     <div class="tabs-section">
-        <div id="tab">View Booking Grid View</div>
+        <div id="tab">Booking Grid </div>
     </div>
 
 </div>

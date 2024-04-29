@@ -14,22 +14,37 @@
             <!-- Have to look this later **************************************************************************************************************-->
             <?php
                 // Count the number of Lecturers
-                $count = 0;
+                $counti = 0;
+                $countal = 0;
                 foreach ($data['posts'] as $post) {
-                    $count++;
+                    if ($post->i_positionRank == "Instructor") {
+                        $counti++;
+                    } else {
+                        $countal++;
+                    }
                 }
             ?>
                 
                 <div class="top">
-                <h1 class="topic">Adminitsrator / Instructors</h1>
+                <h1 class="topic">Administrator &#10145; Instructors & Assistant Lecturers</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
                         // Display the count for each type
                             echo "<div class='count_tile'>";
                             echo "<div class='count_row'>";
-                            echo "<div class='count_column'><p># Instructors:</p></div>";
-                            echo "<div class='count_column'><p>$count</p></div>";
+                            echo "<div class='count_column'><p># INSTUCTORS:</p></div>";
+                            echo "<div class='count_column'><p>$counti</p></div>";
+                            echo "</div>";
+                            echo "</div>"
+                        ?>
+                        
+                        <?php
+                        // Display the count for each type
+                            echo "<div class='count_tile'>";
+                            echo "<div class='count_row'>";
+                            echo "<div class='count_column'><p># ASISTANT LECTURERS:</p></div>";
+                            echo "<div class='count_column'><p>$countal</p></div>";
                             echo "</div>";
                             echo "</div>"
                         ?>
@@ -44,7 +59,7 @@
 
                     <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createInstructor">
-                            <button class="create_button">Add Instructor</button>
+                            <button class="create_button">Add New </button>
                         </a>
                     </div>
                 </div>
@@ -63,7 +78,7 @@
                         <p class="title_item"><b>Code</b></p>
                         <p class="title_item"><b>Email</b></p>
                         <p class="title_item"><b>Contact</b></p>
-                        <p style="padding-right: 220px;" class="title_item"><b>Department</b></p>
+                        <p style="padding-right: 290px;" class="title_item"><b>Department</b></p>
                     </div> 
 
                 </div>
@@ -242,7 +257,7 @@
                                         <td>
                                             <?php 
                                                 $text = $post->i_qualifications;
-                                                $chunks = str_split($text, 20);
+                                                $chunks = str_split($text, 15);
 
                                                 foreach ($chunks as $key => $chunk):
                                                     echo $key === 0 ? "<b>: </b>" : ''; // Add <b>: </b> for the first chunk
