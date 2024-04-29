@@ -1,6 +1,6 @@
 <?php $style = "logReport"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <h1>Reports &#10145; LOG REPORT</h1>
 

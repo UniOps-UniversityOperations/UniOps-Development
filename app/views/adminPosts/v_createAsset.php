@@ -1,6 +1,6 @@
 <?php $style = "createAssets"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <h1>Add New Lecturer</h1>
 

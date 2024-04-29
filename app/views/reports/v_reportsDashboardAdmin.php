@@ -1,6 +1,6 @@
 <?php $style = "reportsDashboard"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <h1>Reports Dashboard</h1>
 

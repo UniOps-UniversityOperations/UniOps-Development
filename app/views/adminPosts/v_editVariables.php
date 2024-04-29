@@ -1,6 +1,6 @@
 <?php $style = "addUser"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <h1>Edit Variables</h1>
 

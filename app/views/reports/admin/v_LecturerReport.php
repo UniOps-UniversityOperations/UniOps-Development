@@ -1,6 +1,6 @@
 <?php $style = "lecturerReport"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <!-- convert l_nameWithInitials ri Camel case -->
 <?php $l_nameWithInitials = ucwords(strtolower($data['lecturer']->l_nameWithInitials)); ?>
