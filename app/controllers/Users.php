@@ -5,6 +5,9 @@ require_once APPROOT . '/controllers/Mail.php';
 class Users extends Controller {
     public function __construct(){
         $this->userModel = $this->model('M_Users');
+
+        //Report Model
+        $this->reportModel = $this->model('M_Reports');
     }
     
     public function login(){
@@ -38,6 +41,9 @@ class Users extends Controller {
                 if($data['password'] == $user->pwd){
                     $this->createUserSession($user);
                     $this->redirectByRole($user->role);
+
+                    //set a report for the user login
+                    $this->reportModel->setReportLogin($user->user_id, $user->role);
                 }
                 else{
                     $data['Error'] = TRUE;
