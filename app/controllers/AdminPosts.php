@@ -1617,6 +1617,10 @@ require_once APPROOT . '/controllers/Mail.php';
             if($lpt == 2){
                 $conflit_delails = $this->RSI_postModel->getOtherHighestPreference_p($sub_code, $postId);
             }
+
+            if($lpt == 3){
+                $conflit_delails = $this->RSI_postModel->getOtherHighestPreference_t($sub_code, $postId);
+            }
             
             if(!$postsRS){
                 $postsRS = "null";
@@ -1787,6 +1791,37 @@ require_once APPROOT . '/controllers/Mail.php';
         //assign tutorial...
 
         public function i_addToAssignTutorial($sub_code, $instructor_code){
+
+            $this_l_preference = $this->RSI_postModel->getPreferencetoTutorial($sub_code, $instructor_code);
+            $other_highest_preference = $this->RSI_postModel->getOtherHighestPreference_t($sub_code, $instructor_code);
+            $max_preference = $this->RSI_postModel->getMinPrefLevel_t($sub_code , $instructor_code);
+
+            if($other_highest_preference){
+                
+                //case 1  - if the lecturer has no preference for the subject
+                if($this_l_preference == 0 || $this_l_preference > $max_preference){
+                    if($this->ASI_postModel->add_t($sub_code, $instructor_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/0' . '/1' . '/1' . '/' . $sub_code . '/3');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                    
+                }else{
+                    //case 2 - if the lecturer has a same preference for the subject
+                    if($this->ASI_postModel->add_t($sub_code, $instructor_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/0' . '/2' . '/1' . '/' . $sub_code . '/3');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+            }
+
+
+
+
+
             // die($sub_code . "and" . $lecturer_code);
             //add subject to the requestedSubjects table
             if($this->ASI_postModel->add_t($sub_code, $instructor_code)){
