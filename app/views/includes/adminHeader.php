@@ -88,7 +88,7 @@
 					</div>
 
 					<div class="nav-option option8">
-					<a href="">
+					<a href="<?php echo URLROOT;?>/AdminPosts/roombookingrequests/">
 							<img class="bellw" src="<?php echo URLROOT;?>/images/bellw.svg" alt="Notifications & Requests">
 							<h3> Notifications  & Requests</h3>
 						</a>

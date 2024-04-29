@@ -19,6 +19,7 @@ require_once APPROOT . '/controllers/Mail.php';
             $this->ASI_postModel = $this->model('M_assignedSubjectsInstructor');
             $this->V_postModel = $this->model('M_variables');
             $this->RI_postModel = $this->model('M_RoomImages');
+            $this->M_Notification = $this->model('M_Notifications');
         }
 
 
@@ -1971,6 +1972,67 @@ require_once APPROOT . '/controllers/Mail.php';
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 
+        /*My(Charith Lakshan's) part */
+        /* Room booking requests Notifications */
+        public function roombookingrequests($conflict = false, $emailresult = '') { /* This function retrieves and shows all the bokking requests. */
+
+            $bookingrequests = $this->M_Notification->viewroombookingrequests();
+
+            $data = [
+                "emailresult" => $emailresult,
+                "conflict" => $conflict,
+                "bookingrequests" => $bookingrequests
+            ];
+
+            $this->view('adminPosts/v_roomBookingRequests',$data);
+        }
+
+        public function roomBookingRequestAccepted() {
+            if(isset($_POST['submit'])) {
+
+                $r_id = $_POST['r_id'];
+                $request_date = $_POST['request_date'];
+                $start_time = $_POST['start_time'];
+                $end_time = $_POST['end_time'];
+                $purpose = $_POST['purpose'];
+                $requested_by = $_POST['requested_by'];
+
+                $roombookingsconflict = $this->M_Notification->roombookingsconflictcheck($r_id,$request_date,$start_time);
+
+                if(!empty($roombookingsconflict)) {
+                    die("Roombookingsconflict");
+                    /* redirect('AdminPosts/roombookingrequests/true'); */
+
+                }
+
+                $dayOfWeek = date('l', strtotime($request_date));
+                $lecturebookingconflicts = $this->M_Notification->lecturebookingconflictscheck($r_id,$dayOfWeek,$start_time);
+
+                if(!empty($lecturebookingconflicts)) {
+                    die("lecturebookingconflicts");
+                    /* redirect('AdminPosts/roombookingrequests/true'); */
+                }
+
+                $result = $this->M_Notification->roomBookingRequestAccepted($r_id,$request_date,$start_time,$end_time,$purpose,$requested_by);
+
+                if(!$result) {
+                    die("Something went wrong. Try Again.");
+                }
+
+                $to = $requested_by;
+                $subject = "Your Room Booking Request Accepted";
+
+                $body = "<p>Dear $requested_by,\n\nWe are pleased to inform you that your room booking request for $purpose on $request_date from $start_time to $end_time for $r_id has been accepted.Should you have any further questions or require assistance, please feel free to contact us.\n\nBest regards</p>";
+
+                $Mail_class = new Mail();
+               /*  $result = $Mail_class->sendMail($to, $subject, $body); */
+               die("Before calling view");
+                $this->view("adminPosts/v_roomBookingRequests/false/$result");
+
+            } else {
+                die("OOps :(");
+            }
+        }
 }
 
 ?>
