@@ -16,7 +16,7 @@ class Controller {
             $instance = new $className();
             return $instance;
         } else {
-            echo "Class Name doesn't exist";
+            // echo "Class Name doesn't exist";
             return NULL;
         }
     }

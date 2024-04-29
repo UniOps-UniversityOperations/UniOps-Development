@@ -1,0 +1,255 @@
+/* ------------------- image component -------------------- */
+
+.image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    height: auto;
+    padding: 30px 40px 30px 40px;
+}
+
+.illustration {
+    width: 60%;
+    min-width: 400px;
+    height: auto;
+}
+
+.name {
+    height: auto;
+    width: 60%;
+    min-width: 400px;
+    margin-top: 30px;
+}
+
+/* ------------------- button component -------------------- */
+
+/* 2 button container */
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 300px;
+    min-width: 300px;
+}
+
+/* gradient button border */
+.outline {
+    background: var(--gradient);
+    border-style: none;
+    border-radius: 20px;
+    width: 135px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.4s;
+}
+
+/* 2 gradient buttons */
+.fill-inside {
+    background-color: var(--gradient);
+    border-style: none;
+    border-radius: 18px;
+    width: 128px;
+    height: 28px;
+    color: var(--ghost_white);
+    font-weight: 500;
+    transition-duration: 0.4s;
+}
+
+.fill-inside:hover {
+    background-color: var(--dark_blue);
+    border-style: none;
+    border-radius: 18px;
+    width: 128px;
+    height: 28px;
+    color: var(--ghost_white);
+    font-weight: 500;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.outline-inside {
+    background-color: var(--dark_blue);
+    border-style: none;
+    border-radius: 18px;
+    width: 128px;
+    height: 28px;
+    color: var(--ghost_white);
+    font-weight: 500;
+    transition-duration: 0.4s;
+}
+
+.outline-inside:hover {
+    background: var(--gradient);
+    border-style: none;
+    border-radius: 18px;
+    width: 128px;
+    height: 28px;
+    color: var(--ghost_white);
+    font-weight: 500;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+/* 1 gradient button */
+.save-btn {
+    background: var(--gradient);
+    border-style: none;
+    border-radius: 20px;
+    width: 135px;
+    height: 35px;
+    color: var(--ghost_white);
+    font-weight: 500;
+    transition-duration: 0.6s;
+}
+
+.save-btn:hover {
+    background: var(--gradient);
+    opacity: 0.7;
+    border-style: none;
+    border-radius: 20px;
+    width: 135px;
+    height: 35px;
+    color: var(--ghost_white);
+    font-weight: 500;
+    transition-duration: 0.6s;
+    cursor: pointer;
+}
+
+.save-btn-long {
+    background: var(--gradient);
+    border-style: none;
+    border-radius: 20px;
+    width: 100%;
+    height: 25px;
+    min-height: 25px;
+    color: var(--ghost_white);
+    font-weight: 500;
+    transition-duration: 0.6s;
+}
+
+.save-btn-long:hover {
+    background: var(--gradient);
+    opacity: 0.7;
+    border-style: none;
+    border-radius: 20px;
+    width: 100%;
+    height: 25px;
+    min-height: 25px;
+    color: var(--ghost_white);
+    font-weight: 500;
+    transition-duration: 0.6s;
+    cursor: pointer;
+}
+
+/* 2 color buttons */
+.fill-inside-color {
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: var(--dark_blue);
+    background-color: var(--dark_blue);
+    width: 126px;
+    height: 26px;
+    color: var(--platinum);
+    font-weight: 500;
+    transition-duration: 0.4s;
+}
+
+.fill-inside-color:hover {
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: var(--dark_blue);
+    background-color: var(--platinum);
+    width: 126px;
+    height: 26px;
+    color: var(--dark_blue);
+    font-weight: 500;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.outline-inside-color {
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: var(--dark_blue);
+    background-color: var(--platinum);
+    width: 126px;
+    height: 26px;
+    color: var(--dark_blue);
+    font-weight: 500;
+    transition-duration: 0.4s;
+}
+
+.outline-inside-color:hover {
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: var(--dark_blue);
+    background: var(--dark_blue);
+    width: 126px;
+    height: 26px;
+    color: var(--platinum);
+    font-weight: 500;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+/* 1 color button */
+.save-btn-color {
+    background: var(--dark_blue);
+    border-style: none;
+    border-radius: 20px;
+    width: 135px;
+    height: 35px;
+    color: var(--platinum);
+    font-weight: 500;
+    transition-duration: 0.6s;
+}
+
+.save-btn-color:hover {
+    background: var(--dark_blue);
+    opacity: 0.7;
+    border-style: none;
+    border-radius: 20px;
+    width: 135px;
+    height: 35px;
+    color: var(--platinum);
+    font-weight: 500;
+    transition-duration: 0.6s;
+    cursor: pointer;
+}
+
+.save-btn-color-long {
+    background: var(--dark_blue);
+    border-style: none;
+    border-radius: 20px;
+    width: 135px;
+    height: 35px;
+    color: var(--platinum);
+    font-weight: 500;
+    transition-duration: 0.6s;
+    width: 60%;
+    min-height: 35px;
+}
+
+.save-btn-color-long:hover {
+    background: var(--dark_blue);
+    opacity: 0.7;
+    border-style: none;
+    border-radius: 20px;
+    width: 135px;
+    height: 35px;
+    color: var(--platinum);
+    font-weight: 500;
+    transition-duration: 0.6s;
+    width: 60%;
+    min-height: 35px;
+    cursor: pointer;
+}
