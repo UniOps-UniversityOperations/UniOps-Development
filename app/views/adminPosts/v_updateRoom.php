@@ -3,15 +3,57 @@
 
 <?php require APPROOT . '/views/includes/adminHeader.php'; ?>
 
+
+<?php if($data['popup']){ ?>
+    
+    <div id="popup" 
+        style="
+        display: none; 
+        position: fixed; 
+        border-radius: 10px;
+        font-size: 19px;
+        font-weight: bold;
+        color: red;
+        top: 10%; 
+        left: 78%; 
+        transform: 
+        translate(50%, -25%); 
+        background-color: white; 
+        padding: 20px 20px 20px 20px;
+        margin-right: 20px;
+        border: 1px red solid; 
+        transition: top 0.5s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+        <!-- if popup = 1 Request Email Sent | if popup = 2 Status Email Sent -->
+        <p>Room ID already exists! </p>
+        
+    </div>
+    
+    <script>
+        // Function to show the popup message
+        function showPopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+    
+            // Hide the popup after 5 seconds
+            setTimeout(function() {
+                popup.style.display = 'none';
+            }, 3000);
+        }
+    
+        // Call the showPopup function when the page loads
+        window.onload = showPopup;
+    </script>
+    
+    <?php } ?>
+
+
 <div class="content">
     <h1>Update Lecture Room Information</h1>
     <form action="<?php echo URLROOT;?>/AdminPosts/updateRoom/<?php echo $data['id'];?>" method="POST">
 
         <!-- input feilds -->
         <fieldset>
-        <label class="lable" for="id">ID:
-        <input type="text" id="id" name="id" placeholder="id" value="<?php echo $data["id"];?>" required>
-        </label>
 
         <label class="lable" for="name">Name / Code: :
         <input type="text" id="name" name="name" placeholder="name" value="<?php echo strtoupper($data["name"]); ?>" oninput="this.value = this.value.toUpperCase();" required>
@@ -19,9 +61,9 @@
 
         <label class="lable" for="type">Type:
         <select id="type" name="type" required>
-            <option value="LECTUER" <?php echo ($data["type"] == 'LECTUER') ? 'selected' : ''; ?>>LECTUER</option>
+            <option value="LECTURE" <?php echo ($data["type"] == 'LECTURE') ? 'selected' : ''; ?>>LECTURE</option>
             <option value="LAB" <?php echo ($data["type"] == 'LAB') ? 'selected' : ''; ?>>LAB</option>
-            <option value="MEEING" <?php echo ($data["type"] == 'MEEING') ? 'selected' : ''; ?>>MEEING</option>
+            <option value="MEETING" <?php echo ($data["type"] == 'MEETING') ? 'selected' : ''; ?>>MEETING</option>
             <option value="COMMON" <?php echo ($data["type"] == 'COMMON') ? 'selected' : ''; ?>>COMMON</option>
             <option value="OTHER" <?php echo ($data["type"] == 'OTHER') ? 'selected' : ''; ?>>OTHER</option>
         </select>

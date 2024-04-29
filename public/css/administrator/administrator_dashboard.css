@@ -18,7 +18,13 @@ border: none;
 padding: 10px 20px;
 cursor: pointer;
 transition: background-color 0.3s;
+margin: 10px 15px 0px 0px;
 }
+
+.add_user1{
+  margin-right: 0px;
+}
+
 .add_user a{
     color: white;
     text-decoration: none;
@@ -29,7 +35,7 @@ background-color: #0f2c61;
 }
 
 .table-wrapper {
-    max-height: 418px; /* Set your desired height for the table body */
+    max-height: 95%; /* Set your desired height for the table body */
     overflow-y: auto; /* Make the table body scrollable */
     margin-top: 0px;
     margin-bottom: 10px;
@@ -211,12 +217,12 @@ background-color: #0f2c61;
 }
 
 .inner_column:nth-child(1) {
-    width: 70%;
+    width: 65%;
     background-color: #DCDCE2;
 }
 
 .inner_column:nth-child(2) {
-    width: 30%;
+    width: 35%;
     background-color: #DCDCE2;
 }
 
@@ -224,7 +230,7 @@ background-color: #0f2c61;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 

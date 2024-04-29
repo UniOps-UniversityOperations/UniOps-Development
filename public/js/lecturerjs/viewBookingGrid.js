@@ -29,6 +29,8 @@ freeSlots.forEach(function(slot) {
 
         var r_id = slot.getAttribute('room_Id');
         document.getElementById('r_id').value = r_id;
+        document.getElementById('room_name').innerHTML = "Room Id :- "+r_id;
+        document.getElementById('date_of_request_form').innerHTML = "Date :- " + document.getElementById('dateInput').value
 
         allocationRequestForm.style.display = 'block';
 
@@ -43,7 +45,7 @@ reservation_form.addEventListener('submit',(event)=>{
     // Get selected start and end times
     var selectedStartTime = startTimeSelect.value;
     var selectedEndTime = endTimeSelect.value;
-    if (selectedStartTime >= selectedEndTime) {
+    if (parseInt(selectedStartTime) >= parseInt(selectedEndTime)) {
         // Display an error message (you can customize this part)
         alert("End time must be later than start time. Please select valid times.");
         

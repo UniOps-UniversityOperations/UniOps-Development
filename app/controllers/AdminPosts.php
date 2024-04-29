@@ -1,5 +1,7 @@
 <?php
 
+require_once APPROOT . '/controllers/Mail.php';
+
     class AdminPosts extends Controller{
 
         public function __construct(){
@@ -17,6 +19,7 @@
             $this->ASI_postModel = $this->model('M_assignedSubjectsInstructor');
             $this->V_postModel = $this->model('M_variables');
             $this->RI_postModel = $this->model('M_RoomImages');
+            $this->M_Notification = $this->model('M_Notifications');
         }
 
 
@@ -25,7 +28,7 @@
     
         //show 
         public function showDashboard(){
-            $posts = $this->U_postModel->getUsers();
+            $posts = $this->U_postModel->getAdmins();
             $r_count = $this->R_postModel->getCount();
             $s_count = $this->S_postModel->getCount();
             $l_count = $this->L_postModel->getCount();
@@ -48,7 +51,7 @@
         }
 
         //Add User
-        public function addUser(){
+        public function addUser($popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -59,13 +62,18 @@
                     'user_id' => trim($_POST['user_id']),
                     'username' => trim($_POST['username']),
                     'pwd' => trim($_POST['pwd']),
-                    'role' => trim($_POST['role']),
-                    
+                    'popup' => $popup,
+                                        
                     'user_idError' => '',
                 ];
 
                 if(empty($data['user_id'])){
                     $data['user_idError'] = 'Please enter User ID';
+                }
+
+                //check if user_id already exists
+                if($this->U_postModel->userExists($data['user_id'])){
+                    redirect('AdminPosts/addUser/1');
                 }
 
                 if(empty($data['user_idError'])){
@@ -87,7 +95,7 @@
                     'user_id' => '',
                     'username' => '',
                     'pwd' => '',
-                    'role' => '',
+                    'popup' => $popup,
                     
                     'user_idError' => '',
                 ];
@@ -107,10 +115,9 @@
                     'title' => 'Update User',
                     'postId' => $postId,
 
-                    'user_id' => trim($_POST['user_id']),
+                    'user_id' => $postId,
                     'username' => trim($_POST['username']),
                     'pwd' => trim($_POST['pwd']),
-                    'role' => trim($_POST['role']),
                     
                 ];
 
@@ -129,7 +136,6 @@
                     'user_id' => $post->user_id,
                     'username' => $post->username,
                     'pwd' => $post->pwd,
-                    'role' => $post->role,
                 ];
                 $this->view('adminPosts/v_updateUser', $data);
             }
@@ -144,12 +150,79 @@
             }
         }
 
+        //Edit / Update Variables
+        public function editVariables(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+
+                    'title' => 'Edit Variables',
+
+                    'lecturer_max_lec_hrs' => trim($_POST['lecturer_max_lec_hrs']) > 0 ? trim($_POST['lecturer_max_lec_hrs']) : 0,
+                    'lec_hrs_per_credit' => trim($_POST['lec_hrs_per_credit']) > 0 ? trim($_POST['lec_hrs_per_credit']) : 0,
+                    'practcal_hrs_per_credit' => trim($_POST['practcal_hrs_per_credit']) > 0 ? trim($_POST['practcal_hrs_per_credit']) : 0,
+                    'tutorial_hrs_per_credit' => trim($_POST['tutorial_hrs_per_credit']) > 0 ? trim($_POST['tutorial_hrs_per_credit']) : 0,
+                    'instructor_max_practical_hrs' => trim($_POST['instructor_max_practical_hrs']) > 0 ? trim($_POST['instructor_max_practical_hrs']) : 0,
+                    'instructor_max_tutorial_hrs' => trim($_POST['instructor_max_tutorial_hrs']) > 0 ? trim($_POST['instructor_max_tutorial_hrs']) : 0,
+                    'max_students_per_lecturer' => trim($_POST['max_students_per_lecturer']) > 0 ? trim($_POST['max_students_per_lecturer']) : 0,
+                    'instructor_max_students_lecturer' => trim($_POST['instructor_max_students_lecturer']) > 0 ? trim($_POST['instructor_max_students_lecturer']) : 0,
+                    'instructor_max_students_practical' => trim($_POST['instructor_max_students_practical']) > 0 ? trim($_POST['instructor_max_students_practical']) : 0,
+                    'instructor_max_students_tutorial' => trim($_POST['instructor_max_students_tutorial']) > 0 ? trim($_POST['instructor_max_students_tutorial']) : 0,
+                    'n_1_yr_cs' => trim($_POST['n_1_yr_cs']) > 0 ? trim($_POST['n_1_yr_cs']) : 0,
+                    'n_2_yr_cs' => trim($_POST['n_2_yr_cs']) > 0 ? trim($_POST['n_2_yr_cs']) : 0,
+                    'n_3_yr_cs' => trim($_POST['n_3_yr_cs']) > 0 ? trim($_POST['n_3_yr_cs']) : 0,
+                    'n_4_yr_cs' => trim($_POST['n_4_yr_cs']) > 0 ? trim($_POST['n_4_yr_cs']) : 0,
+                    'n_1_yr_is' => trim($_POST['n_1_yr_is']) > 0 ? trim($_POST['n_1_yr_is']) : 0,
+                    'n_2_yr_is' => trim($_POST['n_2_yr_is']) > 0 ? trim($_POST['n_2_yr_is']) : 0,
+                    'n_3_yr_is' => trim($_POST['n_3_yr_is']) > 0 ? trim($_POST['n_3_yr_is']) : 0,
+                    'n_4_yr_is' => trim($_POST['n_4_yr_is']) > 0 ? trim($_POST['n_4_yr_is']) : 0,             
+                ];
+
+                if(1){
+                    if($this->V_postModel->updateVariables($data)){
+                        redirect('AdminPosts/showDashboard');
+                    }else{
+                        die('Something went wrong');
+                    }
+                }
+            }else{
+
+                $vars = $this->V_postModel->getAll();
+                $data = [
+
+                    'title' => 'Edit Variables',
+
+                    'lecturer_max_lec_hrs' => $vars[0]->v_value,
+                    'lec_hrs_per_credit' => $vars[1]->v_value,
+                    'practcal_hrs_per_credit' => $vars[2]->v_value,
+                    'tutorial_hrs_per_credit' => $vars[3]->v_value,
+                    'instructor_max_practical_hrs' => $vars[4]->v_value,
+                    'instructor_max_tutorial_hrs' => $vars[5]->v_value,
+                    'max_students_per_lecturer' => $vars[6]->v_value,
+                    'instructor_max_students_lecturer' => $vars[7]->v_value,
+                    'instructor_max_students_practical' => $vars[8]->v_value,
+                    'instructor_max_students_tutorial' => $vars[9]->v_value,
+                    'n_1_yr_cs' => $vars[10]->v_value,
+                    'n_2_yr_cs' => $vars[11]->v_value,
+                    'n_3_yr_cs' => $vars[12]->v_value,
+                    'n_4_yr_cs' => $vars[13]->v_value,
+                    'n_1_yr_is' => $vars[14]->v_value,
+                    'n_2_yr_is' => $vars[15]->v_value,
+                    'n_3_yr_is' => $vars[16]->v_value,
+                    'n_4_yr_is' => $vars[17]->v_value,
+                    
+                ];
+                $this->view('adminPosts/v_editVariables', $data);
+            }
+        }
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 //----- CRUD for Room ------------------------------------------------------------------------------------------------------------------------------------
 
-        public function createRoom(){
+        public function createRoom($popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -157,16 +230,16 @@
 
                     'title' => 'Create Room',
 
-                    'id' => trim($_POST['id']),
+                    // 'id' => trim($_POST['id']),
                     'name' => trim($_POST['name']),
                     'type' => trim($_POST['type']),
-                    'capacity' => trim($_POST['capacity']),
+                    'capacity' => trim($_POST['capacity']) > 0 ? trim($_POST['capacity']) : 0,
                     'current_availability' => trim($_POST['current_availability']),
-                    'no_of_tables' => trim($_POST['no_of_tables']),
-                    'no_of_chairs' => trim($_POST['no_of_chairs']),
-                    'no_of_boards' => trim($_POST['no_of_boards']),
-                    'no_of_projectors' => trim($_POST['no_of_projectors']),
-                    'no_of_computers' => trim($_POST['no_of_computers']),
+                    'no_of_tables' => trim($_POST['no_of_tables']) > 0 ? trim($_POST['no_of_tables']) : 0,
+                    'no_of_chairs' => trim($_POST['no_of_chairs']) > 0 ? trim($_POST['no_of_chairs']) : 0,
+                    'no_of_boards' => trim($_POST['no_of_boards']) > 0 ? trim($_POST['no_of_boards']) : 0,
+                    'no_of_projectors' => trim($_POST['no_of_projectors']) > 0 ? trim($_POST['no_of_projectors']) : 0,
+                    'no_of_computers' => trim($_POST['no_of_computers']) > 0 ? trim($_POST['no_of_computers']) : 0,
                     'is_ac' => isset($_POST['is_ac']) ? '1' : '0',
                     'is_wifi' => isset($_POST['is_wifi']) ? '1' : '0',
                     'is_media' => isset($_POST['is_media']) ? '1' : '0',
@@ -176,31 +249,40 @@
                     'is_meeting' => isset($_POST['is_meeting']) ? '1' : '0',
                     'is_seminar' => isset($_POST['is_seminar']) ? '1' : '0',         
                     'is_exam' => isset($_POST['is_exam']) ? '1' : '0',
+                    'popup' => $popup,
                     
                     'idError' => '',
                 ];
 
-                if(empty($data['id'])){
+                if(empty($data['name'])){
                     $data['idError'] = 'Please enter Room ID';
                 }
 
-                if(empty($data['idError'])){
-                    if($this->R_postModel->createRoom($data)){
-                        //flash('post_message', 'Room Added');
-                        //redirect('pages/administrator_dashboard');
-                        redirect('adminPosts/viewRooms');
-                    }else{
-                        die('Something went wrong');
-                    }
+                //check if room_id already exists
+                if($this->R_postModel->roomExists($data['name'])){
+                    redirect('AdminPosts/createRoom/1');
+                    // die('room already exists');
                 }else{
-                    $this->view('posts/v_createRoom', $data);
+
+                    if(!empty($data['name'])){
+                        if($this->R_postModel->createRoom($data)){
+                            //flash('post_message', 'Room Added');
+                            //redirect('pages/administrator_dashboard');
+                            redirect('adminPosts/viewRooms');
+                        }else{
+                            die('Something went wrong');
+                        }
+                    }else{
+                        $this->view('posts/v_createRoom', $data);
+                    }
                 }
+
             }  else{
                 $data = [
 
                     'title' => 'Create Room',
 
-                    'id' => '',
+                    // 'id' => '',
                     'name' => '',
                     'type' => '',
                     'capacity' => '',
@@ -219,6 +301,7 @@
                     'is_meeting' => '',
                     'is_seminar' => '',         
                     'is_exam' => '',
+                    'popup' => $popup,
                     
                     'idError' => '',
                 ];
@@ -238,7 +321,7 @@
             $this->view('adminPosts/v_viewRooms', $data);
         }
 
-        public function updateRoom($postId){
+        public function updateRoom($postId, $popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -247,16 +330,16 @@
                     'title' => 'Update Room',
                     'postId' => $postId,
 
-                    'id' => trim($_POST['id']),
+                    'id' => $postId,
                     'name' => trim($_POST['name']),
                     'type' => trim($_POST['type']),
-                    'capacity' => trim($_POST['capacity']),
+                    'capacity' => trim($_POST['capacity']) > 0 ? trim($_POST['capacity']) : 0,
                     'current_availability' => trim($_POST['current_availability']),
-                    'no_of_tables' => trim($_POST['no_of_tables']),
-                    'no_of_chairs' => trim($_POST['no_of_chairs']),
-                    'no_of_boards' => trim($_POST['no_of_boards']),
-                    'no_of_projectors' => trim($_POST['no_of_projectors']),
-                    'no_of_computers' => trim($_POST['no_of_computers']),
+                    'no_of_tables' => trim($_POST['no_of_tables']) > 0 ? trim($_POST['no_of_tables']) : 0,
+                    'no_of_chairs' => trim($_POST['no_of_chairs']) > 0 ? trim($_POST['no_of_chairs']) : 0,
+                    'no_of_boards' => trim($_POST['no_of_boards']) > 0 ? trim($_POST['no_of_boards']) : 0,
+                    'no_of_projectors' => trim($_POST['no_of_projectors']) > 0 ? trim($_POST['no_of_projectors']) : 0,
+                    'no_of_computers' => trim($_POST['no_of_computers']) > 0 ? trim($_POST['no_of_computers']) : 0,
                     'is_ac' => isset($_POST['is_ac']) ? '1' : '0',
                     'is_wifi' => isset($_POST['is_wifi']) ? '1' : '0',
                     'is_media' => isset($_POST['is_media']) ? '1' : '0',
@@ -266,22 +349,32 @@
                     'is_meeting' => isset($_POST['is_meeting']) ? '1' : '0',
                     'is_seminar' => isset($_POST['is_seminar']) ? '1' : '0',         
                     'is_exam' => isset($_POST['is_exam']) ? '1' : '0',
+
+                    'popup' => $popup,
                     
                 ];
 
-                if(1){
-                    if($this->R_postModel->updateRoom($data)){
-                        redirect('AdminPosts/viewRooms');
-                    }else{
-                        die('Something went wrong');
+                //check if room_id already exists
+                if($this->R_postModel->roomExists2($data['name'], $postId)){
+                    redirect('AdminPosts/updateRoom/' . $postId . '/1');
+                    // die('room already exists');
+                }else{
+
+                    if(1){
+                        if($this->R_postModel->updateRoom($data)){
+                            redirect('AdminPosts/viewRooms');
+                        }else{
+                            die('Something went wrong');
+                        }
                     }
                 }
+
             }else{
                 $post = $this->R_postModel->getRoomById($postId);
                 $data = [
                     'title' => 'Update Room',
 
-                    'id' => $post->id,
+                    'id' => $postId,
                     'name' => $post->name,
                     'type' => $post->type,
                     'capacity' => $post->capacity,
@@ -300,6 +393,8 @@
                     'is_meeting' => $post->is_meeting,
                     'is_seminar' => $post->is_seminar,         
                     'is_exam' => $post->is_exam,
+
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_updateRoom', $data);
             }
@@ -334,7 +429,10 @@
                 // sub_isHavePractical
                 // sub_isDeleted
 
-        public function createSubject(){
+        public function createSubject($popup = 0){
+
+            $variables = $this->V_postModel->getAll();
+
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -348,31 +446,42 @@
                     'sub_year' => trim($_POST['sub_year']),
                     'sub_semester' => trim($_POST['sub_semester']),
                     'sub_stream' => trim($_POST['sub_stream']),
-                    'sub_nStudents' => trim($_POST['sub_nStudents']),
+                    'sub_nStudents' => trim($_POST['sub_nStudents']) > 0 ? trim($_POST['sub_nStudents']) : 0,
                     'sub_isCore' => isset($_POST['sub_isCore']) ? '1' : '0',
                     'sub_isHaveLecture' => isset($_POST['sub_isHaveLecture']) ? '1' : '0',
                     'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
                     'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0',
 
-                    'sub_codeError' => ''
+                    'sub_codeError' => '',
+
+                    'variables' => $variables,
+                    'popup' => $popup
                 ];
 
                 if(empty($data['sub_code'])){
                     $data['sub_codeError'] = 'Please enter Subject Code';
                 }
 
-                if(empty($data['sub_codeError'])){
-                    if($this->S_postModel->createSubject($data)){
-                        //flash('post_message', 'Subject Added');
-                        //redirect('pages/administrator_dashboard');
-                        redirect('AdminPosts/viewSubjects');
-                    }else{
-                        die('Something went wrong');
-                    }
+                //check if sub_code already exists
+                if($this->S_postModel->subjectExists($data['sub_code'])){
+                    redirect('AdminPosts/createSubject/1');
+                    // die('room already exists');
                 }else{
-                    $this->view('adminPosts/v_createSubject', $data);
 
+                    if(empty($data['sub_codeError'])){
+                        if($this->S_postModel->createSubject($data)){
+                            //flash('post_message', 'Subject Added');
+                            //redirect('pages/administrator_dashboard');
+                            redirect('AdminPosts/viewSubjects');
+                        }else{
+                            die('Something went wrong');
+                        }
+                    }else{
+                        $this->view('adminPosts/v_createSubject', $data);
+    
+                    }
                 }
+
             }  else{
                 $data = [
 
@@ -390,7 +499,10 @@
                     'sub_isHaveTutorial' => '',
                     'sub_isHavePractical' => '',
 
-                    'sub_codeError' => ''
+                    'sub_codeError' => '',
+
+                    'variables' => $variables,
+                    'popup' => $popup
                 ];
                 $this->view('adminPosts/v_createSubject', $data);
             }  
@@ -406,7 +518,10 @@
             $this->view('adminPosts/v_viewSubjects', $data);
         }
 
-        public function updateSubject($postId){
+        public function updateSubject($postId, $popup = 0){
+
+            $variables = $this->V_postModel->getAll();
+
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -415,33 +530,44 @@
                     'title' => 'Update Subject',
                     'postId' => $postId,
 
-                    'sub_id' => trim($_POST['sub_id']),
+                    'sub_id' => $postId,
                     'sub_code' => trim($_POST['sub_code']),
                     'sub_name' => trim($_POST['sub_name']),
                     'sub_credits' => trim($_POST['sub_credits']),
                     'sub_year' => trim($_POST['sub_year']),
                     'sub_semester' => trim($_POST['sub_semester']),
                     'sub_stream' => trim($_POST['sub_stream']),
-                    'sub_nStudents' => trim($_POST['sub_nStudents']),
+                    'sub_nStudents' => trim($_POST['sub_nStudents']) > 0 ? trim($_POST['sub_nStudents']) : 0,
                     'sub_isCore' => isset($_POST['sub_isCore']) ? '1' : '0',
                     'sub_isHaveLecture' => isset($_POST['sub_isHaveLecture']) ? '1' : '0',
                     'sub_isHaveTutorial' => isset($_POST['sub_isHaveTutorial']) ? '1' : '0',
-                    'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0'                    
+                    'sub_isHavePractical' => isset($_POST['sub_isHavePractical']) ? '1' : '0',
+                    
+                    'variables' => $variables,
+                    'popup' => $popup
                 ];
 
-                if(1){
-                    if($this->S_postModel->updateSubject($data)){
-                        redirect('AdminPosts/viewSubjects');
-                    }else{
-                        die('Something went wrong');
+                //check if sub_code already exists
+                if($this->S_postModel->subjectExists2($data['sub_code'], $postId)){
+                    redirect('AdminPosts/updateSubject/' . $postId . '/1');
+                    // die('room already exists');
+
+                }else{
+                    if(1){
+                        if($this->S_postModel->updateSubject($data)){
+                            redirect('AdminPosts/viewSubjects');
+                        }else{
+                            die('Something went wrong');
+                        }
                     }
+
                 }
             }else{
                 $post = $this->S_postModel->getSubjectById($postId);
                 $data = [
                     'title' => 'Update Subject',
 
-                    'sub_id' => $post->sub_id,
+                    'sub_id' => $postId,
                     'sub_code' => $post->sub_code,
                     'sub_name' => $post->sub_name,
                     'sub_credits' => $post->sub_credits,
@@ -452,7 +578,10 @@
                     'sub_isCore' => $post->sub_isCore,
                     'sub_isHaveLecture' => $post->sub_isHaveLecture,
                     'sub_isHaveTutorial' => $post->sub_isHaveTutorial,
-                    'sub_isHavePractical' => $post->sub_isHavePractical
+                    'sub_isHavePractical' => $post->sub_isHavePractical,
+
+                    'variables' => $variables,
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_updateSubject', $data);
             }
@@ -489,10 +618,11 @@
 //----- CRUD for Lecturer --------------------------------------------------------------------------------------------------------------------------------
         
         //Create Lecturer
-        public function createLecturer(){
+        public function createLecturer($popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+                $sendEmail = isset($_POST['sendEmail']) ? '1' : '0';
                 $data = [
 
                     'title' => 'Create Lecturer',
@@ -519,24 +649,50 @@
                     'pwd' => trim($_POST['pwd']),
                     
                     'l_codeError' => '',
+                    'popup' => $popup,
+
                 ];
 
                 if(empty($data['l_code'])){
                     $data['l_codeError'] = 'Please enter Lecturer Code';
                 }
 
-                if(empty($data['l_codeError'])){
-                    if($this->L_postModel->createLecturer($data) && $this->U_postModel->addUser($data)){
-                        //flash('post_message', 'Lecturer Added');
-                        //redirect('pages/administrator_dashboard');
-                        redirect('adminPosts/viewLecturers');
-                    }else{
-                        die('Something went wrong');
-                    }
-                }else{
-                    $this->view('posts/v_createLecturer', $data);
 
+                //check if l_code already exists
+                if($this->L_postModel->lecturerExists($data['l_code']) && $this->U_postModel->userExistsemail($data['l_email'])){
+                    redirect('AdminPosts/createLecturer/3');
+                    // die('room already exists');
+                }else if($this->L_postModel->lecturerExists($data['l_code'])){
+                    redirect('AdminPosts/createLecturer/1');
+                }else if($this->U_postModel->userExistsemail($data['l_email'])){
+                    // die('email already exists');
+                    redirect('AdminPosts/createLecturer/2');
+                }else{
+                    // die('ok');
+                    if(empty($data['l_codeError'])){
+                        if($this->L_postModel->createLecturer($data) && $this->U_postModel->addUser($data)){
+                            //flash('post_message', 'Lecturer Added');
+                            //redirect('pages/administrator_dashboard');
+    
+                            //if send email is checked then send email to the lecturer
+                            //call the send email function
+                            if($sendEmail){
+                                $email = $data['l_email'];
+                                $pwd = $data['pwd'];
+                                $name = $data['l_nameWithInitials'];
+                                $this->send_acccount_created_email($email, $pwd, $name);
+                            }
+    
+                            redirect('adminPosts/viewLecturers');
+                        }else{
+                            die('Something went wrong');
+                        }
+                    }else{
+                        $this->view('posts/v_createLecturer', $data);
+    
+                    }
                 }
+
             }  else{
                 $data = [
 
@@ -564,6 +720,7 @@
                     'role' => '',
 
                     'l_codeError' => '',
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_createLecturer', $data);
             }  
@@ -579,16 +736,19 @@
             $this->view('adminPosts/v_viewLecturers', $data);
         }
 
-        public function updateLecturer($postId){
+        public function updateLecturer($postId, $popup = 0){
+            //userneame = l_nameWithInitials
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
+                
+                $username = $this->L_postModel->getLecturerById($postId)->l_nameWithInitials;
+                $email = $this->L_postModel->getLecturerById($postId)->l_email;
                 $data = [
 
                     'title' => 'Update Lecturer',
                     'postId' => $postId,
 
-                    'l_id' => trim($_POST['l_id']),
+                    'l_id' => $postId, //added
                     'l_code' => trim($_POST['l_code']),
                     'l_email' => trim($_POST['l_email']),
                     'l_fullName' => trim($_POST['l_fullName']),
@@ -602,22 +762,37 @@
                     'l_dateOfJoin' => trim($_POST['l_dateOfJoin']),
                     'l_qualifications' => trim($_POST['l_qualifications']),
                     'l_isExamSupervisor' => isset($_POST['l_isExamSupervisor']) ? '1' : '0',
-                    'l_isSecondExaminar' => isset($_POST['l_isSecondExaminar']) ? '1' : '0',                    
+                    'l_isSecondExaminar' => isset($_POST['l_isSecondExaminar']) ? '1' : '0', 
+                    
+                    'popup' => $popup,
                 ];
 
-                if(1){
-                    if($this->L_postModel->updateLecturer($data)){
-                        redirect('adminPosts/viewLecturers');
-                    }else{
-                        die('Something went wrong');
+                //check if l_code already exists
+                if($this->L_postModel->lecturerExists2($data['l_code'], $postId) && $this->U_postModel->userExistsemail2($data['l_email'], $username)){
+                    redirect('AdminPosts/updateLecturer/' . $postId . '/3');
+                    // die('room already exists');
+                }else if($this->L_postModel->lecturerExists2($data['l_code'], $postId)){
+                    redirect('AdminPosts/updateLecturer/' . $postId . '/1');
+                }else if($this->U_postModel->userExistsemail2($data['l_email'], $username)){
+                    redirect('AdminPosts/updateLecturer/' . $postId . '/2');
+                }else{
+
+                    if(1){
+                        //update_id_name($old_id, $old_name, $new_id, $new_name)
+                        if($this->L_postModel->updateLecturer($data) && $this->U_postModel->update_id_name($email, $username, $data['l_email'], $data['l_nameWithInitials'])){
+                            redirect('adminPosts/viewLecturers');
+                        }else{
+                            die('Something went wrong');
+                        }
                     }
                 }
+
             }else{
                 $post = $this->L_postModel->getLecturerById($postId);
                 $data = [
                     'title' => 'Update Lecturer',
 
-                    'l_id' => $post->l_id, //added
+                    'l_id' => $postId,
                     'l_code' => $post->l_code,
                     'l_email' => $post->l_email,
                     'l_fullName' => $post->l_fullName,
@@ -632,6 +807,8 @@
                     'l_qualifications' => $post->l_qualifications,
                     'l_isExamSupervisor' => $post->l_isExamSupervisor,
                     'l_isSecondExaminar' => $post->l_isSecondExaminar,
+
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_updateLecturer', $data);
             }
@@ -646,9 +823,13 @@
 
         public function deleteLecturer($postId, $lecturer_code){
             // die("postID = " . $postId . "    lecturer_code = " . $lecturer_code);
+            //get email of the lecturer
+            $email = $this->L_postModel->getEmail($lecturer_code)->l_email;
+
             if($this->L_postModel->deleteLecturer($postId) &&
                 $this->AS_postModel->deleteForLecturer($lecturer_code) &&
-                $this->RS_postModel->deleteForLecturer($lecturer_code)
+                $this->RS_postModel->deleteForLecturer($lecturer_code) &&
+                $this->U_postModel->deleteUser($email)
             ){
                 redirect('AdminPosts/viewLecturers');
             }else{
@@ -679,10 +860,11 @@
             // 15	i_isDeleted	tinyint(4)	
 
 
-        public function createInstructor(){
+        public function createInstructor($popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+                $sendEmail = isset($_POST['sendEmail']) ? '1' : '0';
                 $data = [
 
                     'title' => 'Create Instructor',
@@ -701,26 +883,55 @@
                     'i_qualifications' => trim($_POST['i_qualifications']),
                     'i_isExamInvigilator' => isset($_POST['i_isExamInvigilator']) ? '1' : '0',
 
+                    //user
+                    'user_id' => trim($_POST['i_email']),
+                    'username' => trim($_POST['i_nameWithInitials']),
+                    'role' => 'I',
+                    'pwd' => trim($_POST['pwd']),
                     
                     'i_codeError' => '',
+
+                    'popup' => $popup,
                 ];
 
                 if(empty($data['i_code'])){
                     $data['i_codeError'] = 'Please enter Instructor Name';
                 }
 
-                if(empty($data['i_codeError'])){
-                    if($this->I_postModel->createInstructor($data)){
-                        //flash('post_message', 'Instructor Added');
-                        //redirect('pages/administrator_dashboard');
-                        redirect('adminPosts/viewInstructors');
-                    }else{
-                        die('Something went wrong');
-                    }
+                //check if i_code already exists
+                if($this->I_postModel->instructorExists($data['i_code']) && $this->U_postModel->userExistsemail($data['i_email'])){
+                    redirect('AdminPosts/createInstructor/3');
+                    // die('room already exists');
+                }else if($this->I_postModel->instructorExists($data['i_code'])){
+                    redirect('AdminPosts/createInstructor/1');
+                }else if($this->U_postModel->userExistsemail($data['i_email'])){
+                    redirect('AdminPosts/createInstructor/2');
                 }else{
-                    $this->view('posts/v_createInstructor', $data);
-
+                    
+                    if(empty($data['i_codeError'])){
+                        if($this->I_postModel->createInstructor($data) && $this->U_postModel->addUser($data)){
+                            //flash('post_message', 'Instructor Added');
+                            //redirect('pages/administrator_dashboard');
+    
+                            //if send email is checked then send email to the instructor
+                            //call the send email function
+                            if($sendEmail){
+                                $email = $data['i_email'];
+                                $pwd = $data['pwd'];
+                                $name = $data['i_nameWithInitials'];
+                                $this->send_acccount_created_email($email, $pwd, $name);
+                            }
+    
+                            redirect('adminPosts/viewInstructors');
+                        }else{
+                            die('Something went wrong');
+                        }
+                    }else{
+                        $this->view('posts/v_createInstructor', $data);
+    
+                    }
                 }
+
             }  else{
                 $data = [
 
@@ -740,6 +951,15 @@
                     'i_qualifications' => '',
                     'i_isExamInvigilator' => '',
 
+                    //user
+                    'user_id' => '',
+                    'username' => '',
+                    'pwd' => '',
+                    'role' => '',
+
+                    'i_codeError' => '',
+                    'popup' => $popup,
+
                 ];
                 $this->view('adminPosts/v_createInstructor', $data);
             }  
@@ -755,16 +975,19 @@
             $this->view('adminPosts/v_viewInstructors', $data);
         }
 
-        public function updateInstructor($postId){
+        public function updateInstructor($postId, $popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $username = $this->I_postModel->getInstructorById($postId)->i_nameWithInitials;
+                $email = $this->I_postModel->getInstructorById($postId)->i_email;
 
                 $data = [
 
                     'title' => 'Update Instructor',
                     'postId' => $postId,
 
-                    'i_id' => trim($_POST['i_id']),
+                    'i_id' => $postId,
                     'i_code' => trim($_POST['i_code']), 
                     'i_email' => trim($_POST['i_email']),
                     'i_fullName' => trim($_POST['i_fullName']),
@@ -778,21 +1001,36 @@
                     'i_dateOfJoin' => trim($_POST['i_dateOfJoin']),
                     'i_qualifications' => trim($_POST['i_qualifications']),
                     'i_isExamInvigilator' => isset($_POST['i_isExamInvigilator']) ? '1' : '0',    
+
+                    'popup' => $popup,
                 ];
 
-                if(1){
-                    if($this->I_postModel->updateInstructor($data)){
-                        redirect('adminPosts/viewInstructors');
-                    }else{
-                        die('Something went wrong');
+                //check if i_code already exists
+                if($this->I_postModel->instructorExists2($data['i_code'], $postId) && $this->U_postModel->userExistsemail2($data['i_email'], $username)){
+                    redirect('AdminPosts/updateInstructor/' . $postId . '/3');
+                    // die('room already exists');
+                }else if($this->I_postModel->instructorExists2($data['i_code'], $postId)){
+                    redirect('AdminPosts/updateInstructor/' . $postId . '/1');
+                }else if($this->U_postModel->userExistsemail2($data['i_email'], $username)){
+                    redirect('AdminPosts/updateInstructor/' . $postId . '/2');
+                }else{
+
+                    if(1){
+                        //update_id_name($old_id, $old_name, $new_id, $new_name)
+                        if($this->I_postModel->updateInstructor($data) && $this->U_postModel->update_id_name($email, $username, $data['i_email'], $data['i_nameWithInitials'])){
+                            redirect('adminPosts/viewInstructors');
+                        }else{
+                            die('Something went wrong');
+                        }
                     }
                 }
+
             }else{
                 $post = $this->I_postModel->getInstructorById($postId);
                 $data = [
                     'title' => 'Update Instructor',
 
-                    'i_id' => $post->i_id,
+                    'i_id' => $postId,
                     'i_code' => $post->i_code,
                     'i_email' => $post->i_email,
                     'i_fullName' => $post->i_fullName,
@@ -805,7 +1043,9 @@
                     'i_positionRank' => $post->i_positionRank,
                     'i_dateOfJoin' => $post->i_dateOfJoin,
                     'i_qualifications' => $post->i_qualifications,
-                    'i_isExamInvigilator' => $post->i_isExamInvigilator,                    
+                    'i_isExamInvigilator' => $post->i_isExamInvigilator,     
+                    
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_updateInstructor', $data);
             }
@@ -824,11 +1064,15 @@
 
         public function deleteInstructor($postId, $instructor_code){
             // die("postID = " . $postId . "    instructor_code = " . $instructor_code);
+            //get email of the instructor
+            $email = $this->I_postModel->getEmail($instructor_code)->i_email;
+
             if($this->I_postModel->deleteInstructor($postId) &&
                 $this->AS_postModel->deleteForInstructor($instructor_code) &&
                 $this->ASI_postModel->deleteForInstructor_p($instructor_code) &&
                 $this->ASI_postModel->deleteForInstructor_t($instructor_code) &&
-                $this->RSI_postModel->deleteForInstructor($instructor_code)
+                $this->RSI_postModel->deleteForInstructor($instructor_code) &&
+                $this->U_postModel->deleteUser($email)
             ){
                 redirect('adminPosts/viewInstructors');
             }else{
@@ -873,8 +1117,8 @@
                     's_contactNumber' => trim($_POST['s_contactNumber']),
                     's_stream' => trim($_POST['s_stream']),
                     's_year' => trim($_POST['s_year']),
-                    's_semester' => trim($_POST['s_semester']),
-                    // 's_isDeleted' => isset($_POST['s_isDeleted']) ? '1' : '0',
+                    // 's_semester' => trim($_POST['s_semester']),
+                    // 's_isDeleted' => isset($ _POST['s_isDeleted']) ? '1' : '0',
                     
                     's_codeError' => '',
                 ];
@@ -910,7 +1154,7 @@
                     's_contactNumber' => '',
                     's_stream' => '',
                     's_year' => '',
-                    's_semester' => '',
+                    // 's_semester' => '',
                     // 's_isDeleted' => '',
  
                     // 's_codeError' => '',
@@ -949,7 +1193,7 @@
                     's_contactNumber' => trim($_POST['s_contactNumber']),
                     's_stream' => trim($_POST['s_stream']),
                     's_year' => trim($_POST['s_year']),
-                    's_semester' => trim($_POST['s_semester']),
+                    // 's_semester' => trim($_POST['s_semester']),
                     's_isDeleted' => isset($_POST['s_isDeleted']) ? '1' : '0',                   
                 ];
 
@@ -976,7 +1220,7 @@
                     's_contactNumber' => $post->s_contactNumber,
                     's_stream' => $post->s_stream,
                     's_year' => $post->s_year,
-                    's_semester' => $post->s_semester,
+                    // 's_semester' => $post->s_semester,
                     's_isDeleted' => $post->s_isDeleted,
             
                 ];
@@ -1118,7 +1362,7 @@
 
 // ----- For Lecturer asign Subjects -----------------------------------------------------------------------------------------------------------------------------------
         //Assign Subjects to Lecturer
-        public function assignSubjects($postId){
+        public function assignSubjects($postId, $popup = 0, $case = 0, $ohp = 0, $sub_code = 0){
             $postsRS = $this->RS_postModel->getSubjects($postId);
             $postsAS = $this->AS_postModel->getSubjects($postId);
             $subjects = $this->AS_postModel->getSubjectDetails();
@@ -1126,6 +1370,12 @@
             // get Lecturer name uing the postId(Lecturer code)
             $lecturerName = $this->L_postModel->getLecturerByCode($postId);
             $email = $this->L_postModel->getEmail($postId);
+
+            if($sub_code != 0){
+                $conflit_delails = $this->RS_postModel->getOtherHighestPreference($sub_code, $postId);
+            }else{
+                $conflit_delails = null;
+            }
             
             if(!$postsRS){
                 $postsRS = "null";
@@ -1138,7 +1388,11 @@
                 'subjects' => $subjects,
                 'variables' => $variables,
                 'lecturerName' => $lecturerName,
-                'email' => $email
+                'email' => $email,
+                'popup' => $popup,
+                'case' => $case,
+                'conflit_delails' => $conflit_delails,
+                'ohp' => $ohp
             ];
             $this->view('adminPosts/v_assignSubjects', $data);
         }
@@ -1146,6 +1400,42 @@
         public function addToAssignSubjects($sub_code, $lecturer_code){
             // die($sub_code . "and" . $lecturer_code);
             //add subject to the requestedSubjects table
+
+            //this lecturers preferencee level for the subject
+            $this_l_preference = $this->RS_postModel->getPreference($sub_code, $lecturer_code);
+            // die("this_l_preference = " . $this_l_preference);
+            
+            //get othwe hihghest preference level for the subject
+            $other_highest_preference = $this->RS_postModel->getOtherHighestPreference($sub_code, $lecturer_code);
+            $max_preference = $this->RS_postModel->getMinPrefLevel($sub_code , $lecturer_code);
+            // die(var_dump($other_highest_preference));
+            if($other_highest_preference){
+                // die("case -> " . $this_l_preference . " and " . $max_preference);
+                
+                //case 1  - if the lecturer has no preference for the subject
+                if($this_l_preference == 0 || $this_l_preference > $max_preference){
+                    // die("case 1");
+                    if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                        redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/0' . '/1' . '/1' . '/' . $sub_code);
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                    
+                }else{
+                    //case 2 - if the lecturer has a same preference for the subject
+                    // die("case 2");
+                    if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                        redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/0' . '/2' . '/1' . '/' . $sub_code);
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+            }
+
+            // die("ok");
+
             if($this->AS_postModel->add($sub_code, $lecturer_code)){
                 redirect('AdminPosts/assignSubjects/' . $lecturer_code);
             }
@@ -1173,18 +1463,165 @@
             }
         }
 
+        // Send a request email to the lecturer for rqeuesting to remove the subject
+        public function sendDeleteRequestEmail($email, $sub_code, $lecturer_code){
+
+            $subject_details = $this->S_postModel->getSubjectDetailsByCode($sub_code);
+            $lecturerName = $this->L_postModel->getLecturerByCode($lecturer_code);
+
+            $to = $email;
+            $subject = 'Request to Remove Subject from Teaching Assignment';
+            $body = "Dear $lecturerName->l_nameWithInitials, <br><br>
+
+            You are receiving this email because the administration of [University/Organization Name] has requested the removal of a subject from your teaching assignment.<br><br>
+            
+            Subject Name: $subject_details->sub_name <br>
+            Subject Code: $sub_code <br>
+            Subject Credits: $subject_details->sub_credits <br>
+            Subject Stream: $subject_details->sub_stream <br>
+            Subject Year: $subject_details->sub_year <br>
+            Subject Semester: $subject_details->sub_semester <br><br>
+            
+            Due to [reason for removal], it is necessary to adjust the teaching assignments accordingly. We kindly ask for your cooperation in this matter. <br><br>
+            
+            If you have any questions or concerns regarding this request, please contact the administration at UniOps@gmail.com. <br><br>
+            
+            Thank you for your attention to this matter. <br><br>
+            
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body);
+
+            redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/1');
+
+        }
+
+        //send a status email to the lecturer that includes the subject details assigned to him/her
+        public function send_AS_status_email($email, $lecturer_code){
+
+            $lecturerName = $this->L_postModel->getLecturerByCode($lecturer_code);
+            $postsAS = $this->AS_postModel->getSubjects($lecturer_code);
+
+            $to = $email;
+            $subject = 'Subject Assignment Status';
+            $body = "Dear $lecturerName->l_nameWithInitials, <br><br>
+
+            You are receiving this email to inform you of the status of the subjects assigned to you for teaching.<br><br>
+
+            The following subjects have been assigned to you for teaching:<br><br>";
+
+            $body .= "<table border='1'>
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>Subject Code</th>
+                            <th>Subject Credits</th>
+                            <th>Subject Stream</th>
+                            <th>Subject Year</th>
+                            <th>Subject Semester</th>
+                        </tr>";
+
+            foreach ($postsAS as $post) {
+                $body .= "<tr>
+                            <td>$post->sub_name</td>
+                            <td>$post->sub_code</td>
+                            <td>$post->sub_credits</td>
+                            <td>$post->sub_stream</td>
+                            <td>$post->sub_year</td>
+                            <td>$post->sub_semester</td>
+                        </tr>";
+            }
+
+            $body .= "</table>";
+
+
+            $body .= "If you have any questions or concerns regarding this assignment, please contact the administration at UniOps@gmai.com. <br><br>
+
+            Thank you for your attention to this matter. <br><br>
+
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body);
+
+            redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/2');
+
+        }
+
+        //Send an email to emai_lecturer_code askimg for removing the subject to assign to another lecturer (lecturer_code)
+        public function sendForceEmail($send_lecturer_code, $sub_code, $lecturer_code){
+
+            $send_lec_name = '';
+            if($this->L_postModel->getLecturerByCode($send_lecturer_code)){
+                $send_lec_name = $this->L_postModel->getLecturerByCode($send_lecturer_code)->l_nameWithInitials;
+                $send_lec_email = $this->L_postModel->getEmail($send_lecturer_code)->l_email;
+            }else{
+                $send_lec_name = $this->I_postModel->getInstructorByCode($send_lecturer_code)->i_nameWithInitials;
+                $send_lec_email = $this->I_postModel->getEmail($send_lecturer_code)->i_email;
+            }
+
+            $lec_name = $this->L_postModel->getLecturerByCode($lecturer_code);
+            $subject_details = $this->S_postModel->getSubjectDetailsByCode($sub_code);
+
+            $to = $send_lec_email;
+            $subject = 'Request to Remove Subject from Teaching Assignment';
+
+            $body = "Dear $send_lec_name;, <br><br>
+
+            You are receiving this email because the administration of UniOps has requested the removal of a subject for the teaching assignment of $lec_name->l_nameWithInitials.<br><br>
+
+            Subject Name: $subject_details->sub_name <br>
+            Subject Code: $sub_code <br>
+            Subject Credits: $subject_details->sub_credits <br>
+            Subject Stream: $subject_details->sub_stream <br>
+            Subject Year: $subject_details->sub_year <br>
+            Subject Semester: $subject_details->sub_semester <br><br>
+
+            Due to request of administration / $lec_name->l_nameWithInitials, it is necessary to adjust the teaching assignments accordingly. We kindly ask for your cooperation in this matter. <br><br>
+
+            If you have any questions or concerns regarding this request, please contact the administration at UniOps@gmailcom. <br><br>
+
+            Thank you for your attention to this matter. <br><br>
+
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body );
+
+            redirect('AdminPosts/assignSubjects/' . $lecturer_code . '/1');
+
+
+        }
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 // ----- For Instructor asign Subjects ------------------------------------------------------------------------------------------------------------------------------
 
-        public function assignSubjectsInstructor($postId){
+        public function assignSubjectsInstructor($postId, $popup = 0, $case = 0, $ohp = 0, $sub_code = 0, $lpt = 0){
             $postsRS = $this->RSI_postModel->getSubjects($postId);
             $postsASI = $this->ASI_postModel->getSubjects($postId);
             $subjects = $this->ASI_postModel->getSubjectDetails();
             $variables = $this->V_postModel->getAll();
             // get instructor name uing the postId(instructor code)
             $instructorName = $this->I_postModel->getInstructorByCode($postId);
+            $email = $this->I_postModel->getEmail($postId);
+
+            $conflit_delails = null;
+            if($lpt == 1){
+                $conflit_delails = $this->RS_postModel->getOtherHighestPreference($sub_code, $postId);
+            }
+
+            if($lpt == 2){
+                $conflit_delails = $this->RSI_postModel->getOtherHighestPreference_p($sub_code, $postId);
+            }
+
+            if($lpt == 3){
+                $conflit_delails = $this->RSI_postModel->getOtherHighestPreference_t($sub_code, $postId);
+            }
             
             if(!$postsRS){
                 $postsRS = "null";
@@ -1196,7 +1633,13 @@
                 'postsASI' => $postsASI,
                 'subjects' => $subjects,
                 'variables' => $variables,
-                'instructorName' => $instructorName
+                'instructorName' => $instructorName,
+                'email' => $email,
+                'popup' => $popup,
+                'case' => $case,
+                'ohp' => $ohp,
+                'lpt' => $lpt,
+                'conflit_delails' => $conflit_delails
             ];
             $this->view('adminPosts/v_assignSubjectsInstructor', $data);
         }
@@ -1214,14 +1657,58 @@
         //assign lecture...
 
         public function i_addToAssignSubjects($sub_code, $lecturer_code){
-            // die($sub_code . "and" . $lecturer_code);
-            //add subject to the requestedSubjects table
+
+            $this_l_preference = $this->RS_postModel->getPreference($sub_code, $lecturer_code);
+            
+            $other_highest_preference = $this->RS_postModel->getOtherHighestPreference($sub_code, $lecturer_code);
+            $max_preference = $this->RS_postModel->getMinPrefLevel($sub_code , $lecturer_code);
+            // die(var_dump($other_highest_preference));
+            if($other_highest_preference){
+                
+                //case 1  - if the lecturer has no preference for the subject
+                if($this_l_preference == 0 || $this_l_preference > $max_preference){
+                    if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code . '/0' . '/1' . '/1' . '/' . $sub_code . '/1');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                    
+                }else{
+                    //case 2 - if the lecturer has a same preference for the subject
+                    if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code . '/0' . '/2' . '/1' . '/' . $sub_code . '/1');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+            }
+
+            // die("ok");
+
             if($this->AS_postModel->add($sub_code, $lecturer_code)){
                 redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code);
             }
             else{
                 die('Something went wrong');
             }
+
+
+
+
+
+
+
+
+            // // die($sub_code . "and" . $lecturer_code);
+            // //add subject to the requestedSubjects table
+            // if($this->AS_postModel->add($sub_code, $lecturer_code)){
+            //     redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code);
+            // }
+            // else{
+            //     die('Something went wrong');
+            // }
         }
 
         public function i_deleteRowAS($lecturer_code, $subject_code){
@@ -1246,6 +1733,33 @@
         //assign practical...
 
         public function i_addToAssignPractical($sub_code, $instructor_code){
+
+            $this_l_preference = $this->RSI_postModel->getPreferencetoPractical($sub_code, $instructor_code);
+            $other_highest_preference = $this->RSI_postModel->getOtherHighestPreference_p($sub_code, $instructor_code);
+            $max_preference = $this->RSI_postModel->getMinPrefLevel_p($sub_code , $instructor_code);
+
+            if($other_highest_preference){
+                
+                //case 1  - if the lecturer has no preference for the subject
+                if($this_l_preference == 0 || $this_l_preference > $max_preference){
+                    if($this->ASI_postModel->add_p($sub_code, $instructor_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/0' . '/1' . '/1' . '/' . $sub_code . '/2');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                    
+                }else{
+                    //case 2 - if the lecturer has a same preference for the subject
+                    if($this->ASI_postModel->add_p($sub_code, $instructor_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/0' . '/2' . '/1' . '/' . $sub_code . '/2');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+            }
+
             // die($sub_code . "and" . $lecturer_code);
             //add subject to the requestedSubjects table
             if($this->ASI_postModel->add_p($sub_code, $instructor_code)){
@@ -1278,6 +1792,37 @@
         //assign tutorial...
 
         public function i_addToAssignTutorial($sub_code, $instructor_code){
+
+            $this_l_preference = $this->RSI_postModel->getPreferencetoTutorial($sub_code, $instructor_code);
+            $other_highest_preference = $this->RSI_postModel->getOtherHighestPreference_t($sub_code, $instructor_code);
+            $max_preference = $this->RSI_postModel->getMinPrefLevel_t($sub_code , $instructor_code);
+
+            if($other_highest_preference){
+                
+                //case 1  - if the lecturer has no preference for the subject
+                if($this_l_preference == 0 || $this_l_preference > $max_preference){
+                    if($this->ASI_postModel->add_t($sub_code, $instructor_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/0' . '/1' . '/1' . '/' . $sub_code . '/3');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                    
+                }else{
+                    //case 2 - if the lecturer has a same preference for the subject
+                    if($this->ASI_postModel->add_t($sub_code, $instructor_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/0' . '/2' . '/1' . '/' . $sub_code . '/3');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+            }
+
+
+
+
+
             // die($sub_code . "and" . $lecturer_code);
             //add subject to the requestedSubjects table
             if($this->ASI_postModel->add_t($sub_code, $instructor_code)){
@@ -1306,8 +1851,308 @@
                 die('Something went wrong');
             }
         }
+
+        //emails
+
+        //send a status email to the instructor that includes the subject details assigned to him/her
+        public function send_ASI_status_email($email, $instructor_code){
+
+            $instructorName = $this->I_postModel->getInstructorByCode($instructor_code);
+            $postsASI = $this->ASI_postModel->getSubjects($instructor_code);
+
+            $to = $email;
+            $subject = 'Subject Assignment Status';
+            $body = "Dear $instructorName->i_nameWithInitials, <br><br>
+
+            You are receiving this email to inform you of the status of the subjects assigned to you for teaching.<br><br>
+
+            The following subjects have been assigned to you for teaching:<br><br>";
+
+            $body .= "<table border='1'>
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>Subject Code</th>
+                            <th>Subject Credits</th>
+                            <th>Subject Stream</th>
+                            <th>Subject Year</th>
+                            <th>Subject Semester</th>
+                            <th>Lecture</th>
+                            <th>Practical</th>
+                            <th>Tutorial</th>
+                        </tr>";
+
+            foreach ($postsASI as $post) {
+                $body .= "<tr>
+                            <td>$post->sub_name</td>
+                            <td>$post->sub_code</td>
+                            <td>$post->sub_credits</td>
+                            <td>$post->sub_stream</td>
+                            <td>$post->sub_year</td>
+                            <td>$post->sub_semester</td>";
+                            if($post->lecturer_code == $instructor_code){
+                                $body .= "<td><p> <span style='color: green;'>&#10004;</span> </p> </td>";
+                            }else{
+                                $body .= "<td><p> <span style='color: red;'>&#10008;</span> </p> </td>";
+                            }
+                            if($post->p_instructor_code == $instructor_code){
+                                $body .= "<td><p> <span style='color: green;'>&#10004;</span> </p> </td>";
+                            }else{
+                                $body .= "<td><p> <span style='color: red;'>&#10008;</span> </p> </td>";
+                            }
+                            if($post->t_instructor_code == $instructor_code){
+                                $body .= "<td><p> <span style='color: green;'>&#10004;</span> </p> </td></tr>";
+                            }else{
+                                $body .= "<td><p> <span style='color: red;'>&#10008;</span> </p> </td></tr>";
+                            }
+            }
+
+            $body .= "</table>";
+
+            $body .= "If you have any questions or concerns regarding this assignment, please contact the administration at UniOps.@gmail.com. <br><br>
+
+            Thank you for your attention to this matter. <br><br>
+
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body);
+
+            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/2');
+        }
+
+        //Send a lecture request email to the instructor for rqeuesting to remove the subject lecture
+        public function sendDeleteRequestEmailLPT($email=0, $sub_code=0, $instructor_code=0, $lpt=0){
+            // die("email = $email <br>sub_code = $sub_code <br>instructor_code = $instructor_code <br>lpt = $lpt");
+
+            $subject_details = $this->S_postModel->getSubjectDetailsByCode($sub_code);
+            $instructorName = $this->I_postModel->getInstructorByCode($instructor_code);
+
+            $to = $email;
+
+            if($lpt == 1){
+                $subject = 'Request to Remove Subject Lecture from Teaching Assignment';
+            }else if($lpt == 2){
+                $subject = 'Request to Remove Subject Practical from Teaching Assignment';
+            }else{
+                $subject = 'Request to Remove Subject Tutorial from Teaching Assignment';
+            }
+
+            $body = "Dear $instructorName->i_nameWithInitials, <br><br>
+
+            You are receiving this email because the administration of [University/Organization Name] has requested the removal of a subject";
+            if($lpt == 1){
+                $body .= " lecture";
+            }else if($lpt == 2){
+                $body .= " practical";
+            }else{
+                $body .= " tutorial";
+            }
+            $body .= " from your teaching assignment.<br><br>
+
+            Subject Name: $subject_details->sub_name <br>
+            Subject Code: $sub_code <br>
+            Subject Credits: $subject_details->sub_credits <br>
+            Subject Stream: $subject_details->sub_stream <br>
+            Subject Year: $subject_details->sub_year <br>
+            Subject Semester: $subject_details->sub_semester <br><br>
+
+            Due to [reason for removal], it is necessary to adjust the teaching assignments accordingly. We kindly ask for your cooperation in this matter. <br><br>
+
+            If you have any questions or concerns regarding this request, please contact the administration at UniOps@gmail.com. <br><br>
+
+            Thank you for your attention to this matter. <br><br>
+
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body);
+
+            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/1');
+        }
+
+        //Send an email to emai_lecturer_code askimg for removing the subject to assign to another lecturer (lecturer_code)
+        public function sendForceEmailLPT($send_instructor_code=0, $sub_code=0, $instructor_code=0, $lpt=0){
+            // die("send_instructor_code = $send_instructor_code <br>sub_code = $sub_code <br>instructor_code = $instructor_code <br>lpt = $lpt");
+
+            $send_lec_name = '';
+            if($this->L_postModel->getLecturerByCode($send_instructor_code)){
+                $send_lec_name = $this->L_postModel->getLecturerByCode($send_instructor_code)->l_nameWithInitials;
+                $send_lec_email = $this->L_postModel->getEmail($send_instructor_code)->l_email;
+            }else{
+                $send_lec_name = $this->I_postModel->getInstructorByCode($send_instructor_code)->i_nameWithInitials;
+                $send_lec_email = $this->I_postModel->getEmail($send_instructor_code)->i_email;
+            }
+
+            $lec_name = $this->I_postModel->getInstructorByCode($instructor_code);
+            $subject_details = $this->S_postModel->getSubjectDetailsByCode($sub_code);
+
+            $to = $send_lec_email;
+
+            if($lpt == 1){
+                $subject = 'Request to Remove Subject Lecture from Teaching Assignment';
+            }else if($lpt == 2){
+                $subject = 'Request to Remove Subject Practical from Teaching Assignment';
+            }else{
+                $subject = 'Request to Remove Subject Tutorial from Teaching Assignment';
+            }
+
+            $body = "Dear $send_lec_name;, <br><br>
+
+            You are receiving this email because the administration of UniOps has requested the removal of a subject";
+            if($lpt == 1){
+                $body .= " lecture";
+            }else if($lpt == 2){
+                $body .= " practical";
+            }else{
+                $body .= " tutorial";
+            }
+            $body .= " for the teaching assignment of $lec_name->i_nameWithInitials.<br><br>
+
+            Subject Name: $subject_details->sub_name <br>
+            Subject Code: $sub_code <br>
+            Subject Credits: $subject_details->sub_credits <br>
+            Subject Stream: $subject_details->sub_stream <br>
+            Subject Year : $subject_details->sub_year <br>
+            Subject Semester: $subject_details->sub_semester <br><br>
+            
+            Due to request of administration / $lec_name->i_nameWithInitials, it is necessary to adjust the teaching assignments accordingly. We kindly ask for your cooperation in this matter. <br><br>
+
+            If you have any questions or concerns regarding this request, please contact the administration at UniOps@gmailcom. <br><br>
+
+            Thank you for your attention to this matter. <br><br>
+
+            Best regards, <br>
+            UniOps Team.";
+
+            $Mail_class = new Mail();
+            $Mail_class->sendMail($to, $subject, $body );
+
+            redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/1');
+        }
         
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+
+     //Send test mail call the view test mail
+     public function sendTestMail(){
+
+        //Call the sendMail function to send the mail Controller
+        
+        $Mail_class = new Mail();
+        $response = $Mail_class->sendMail('cltowandl@gmail.com', "test", "test message");
+
+        $response = '';
+        // sendMail('cltowandl@gmail.com', "test", "test message");
+        $data = [
+            'title' => 'Send Test Mail',
+            'response' => $response
+        ];
+        $this->view('test/v_sendTestMail', $data);
     }
+
+    //dummy index
+    public function index(){
+    }
+
+
+//Emails --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //send created account email
+        public function send_acccount_created_email($email, $pwd, $name){
+            
+            $to = $email;
+            $subject = 'Account Created';
+
+            $body = 'Dear ' . $name . ',<br><br>';
+
+            $body .= 'We are pleased to inform you that your account for the UniOps system has been successfully created.<br><br>
+
+            Your login credentials are as follows:<br><br>
+
+            Username: ' . $email . '<br>
+            Temporary Password: ' . $pwd . '<br><br>
+
+            We kindly request you to log in to the system using the provided credentials. Upon logging in, you will have the opportunity to change your password for added security.<br><br>
+
+            Should you encounter any difficulties during the login process or have any inquiries regarding the system, please do not hesitate to contact the system administrator for assistance.<br><br>
+
+            Thank you for your attention to this matter.<br><br>
+
+            Best Regards,<br>
+            UniOps Team.';
+
+
+            $mail = new Mail();
+            $mail->sendMail($to, $subject, $body);
+
+        }
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        /*My(Charith Lakshan's) part */
+        /* Room booking requests Notifications */
+        public function roombookingrequests($conflict = false, $emailresult = '') { /* This function retrieves and shows all the bokking requests. */
+
+            $bookingrequests = $this->M_Notification->viewroombookingrequests();
+
+            $data = [
+                "emailresult" => $emailresult,
+                "conflict" => $conflict,
+                "bookingrequests" => $bookingrequests
+            ];
+
+            $this->view('adminPosts/v_roomBookingRequests',$data);
+        }
+
+        public function roomBookingRequestAccepted() {
+            if(isset($_POST['submit'])) {
+
+                $r_id = $_POST['r_id'];
+                /* die($r_id); */
+                $request_date = $_POST['request_date'];
+                $start_time = $_POST['start_time'];
+                $end_time = $_POST['end_time'];
+                $purpose = $_POST['purpose'];
+                $requested_by = $_POST['requested_by'];
+
+                $roombookingsconflict = $this->M_Notification->roombookingsconflictcheck($r_id,$request_date,$start_time);
+
+                if(!empty($roombookingsconflict)) {
+                    die("Roombookingsconflict");
+                    redirect('AdminPosts/roombookingrequests/true');
+
+                }
+
+                $dayOfWeek = date('l', strtotime($request_date));
+                $lecturebookingconflicts = $this->M_Notification->lecturebookingconflictscheck($r_id,$dayOfWeek,$start_time);
+
+                if(!empty($lecturebookingconflicts)) {
+                    die("lecturebookingconflicts");
+                    redirect('AdminPosts/roombookingrequests/true');
+                }
+
+                $result = $this->M_Notification->roomBookingRequestAccepted($r_id,$request_date,$start_time,$end_time,$purpose,$requested_by);
+
+                if(!$result) {
+                    die("Something went wrong. Try Again.");
+                }
+
+                $to = $requested_by;
+                $subject = "Your Room Booking Request Accepted";
+
+                $body = "<p>Dear $requested_by,\n\nWe are pleased to inform you that your room booking request for $purpose on $request_date from $start_time to $end_time for $r_id has been accepted.Should you have any further questions or require assistance, please feel free to contact us.\n\nBest regards</p>";
+
+                $Mail_class = new Mail();
+               /*  $result = $Mail_class->sendMail($to, $subject, $body); */
+               /* die("Before calling view"); */
+                redirect("adminPosts/roombookingrequests");
+
+            } else {
+                die("OOps :(");
+            }
+        }
+}
 
 ?>

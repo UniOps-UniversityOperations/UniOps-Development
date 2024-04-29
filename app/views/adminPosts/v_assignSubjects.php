@@ -6,16 +6,63 @@
 
 <div class="main">
     <div class="top">
-            <h1 class="topic">Adminitsrator / Lecturer / Assign Subjects </h1>
+            <h1 class="topic">Administrator &#10145; Lecturer &#10145; Assign Subjects </h1>
             <h2 class="topic2">Lcturer: <?php echo $data['lecturerName']->l_nameWithInitials; ?> (<?php echo $data['postId']; ?>)</h2>
             <!-- dispay email -->
             <h2 class="topic2">Email: <?php echo $data['email']->l_email; ?></h2>
-    </div>        
+    </div> 
+    
+    <!-- print popup value in the console -->
+    <script>console.log(<?php echo $data['popup']; ?>);</script>
+    
+    <?php if($data['popup']){ ?>
+
+        <div id="popup" 
+        style="
+        display: none; 
+        position: fixed; 
+        border-radius: 10px;
+        font-size: 19px;
+        font-weight: bold;
+        color: green;
+        top: 10%; 
+        left: 80%; 
+        transform: 
+        translate(50%, -25%); 
+        background-color: white; 
+        padding: 20px; border: 1px green solid; 
+        transition: top 0.5s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+        <!-- if popup = 1 Request Email Sent | if popup = 2 Status Email Sent -->
+            <?php if($data['popup'] == 1){ ?>
+                <p>Request Email Sent</p>
+            <?php }else if($data['popup'] == 2){ ?>
+                <p>Status Email Sent</p>
+            <?php } ?>
+        </div>
+
+        <script>
+            // Function to show the popup message
+            function showPopup() {
+                var popup = document.getElementById('popup');
+                popup.style.display = 'block';
+
+                // Hide the popup after 5 seconds
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                }, 3000);
+            }
+
+            // Call the showPopup function when the page loads
+            window.onload = showPopup;
+        </script>
+
+    <?php } ?>
 
     <div class="container">
         <div class="column">
             <!-- Content for the first column -->
-            <h2 style='color: #010127'>Requeted Subjects by the lecturer</h2>
+            <h2 style='color: #010127'>Preferred Subjects by the lecturer</h2>
 
             <div class="title_bar">
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
@@ -50,7 +97,7 @@
             <!-- horizontal line -->
             <hr class="hr">
 
-            <h2 style='color: #010127'>Assign Subjects</h2>
+            <h2 style='color: #010127'>Assigned Subjects</h2>
 
             <div class="title_bar">
                 <p style="padding-left: 20px;" class="title_item"><b>Subject</b></p>
@@ -64,7 +111,16 @@
             <?php 
             $i = 1;
             foreach($data['postsAS'] as $post) : ?>
-                <div class="lecture_room">
+                <div class="lecture_room"
+                    <?php if($data['postsRS'] != "null"){
+                        foreach($data['postsRS'] as $postRS) {
+                            if($postRS->subject_code == $post->subject_code){
+                                echo "style='background-color: lightgreen;'";
+                            }
+                        }
+                    }
+                    ?>
+                >
                     <div class="lecture_room_header">
                         <p class="row_num"><?php echo $i++; ?></p>
                         <p class="header_title"><?php echo $post->subject_code; ?></p>
@@ -73,21 +129,37 @@
                         <p class="header_title"><?php echo $post->sub_stream; ?></p>
                         <p class="header_title"><?php echo $post->sub_nStudents; ?></p>
 
+                        <a href="<?php echo URLROOT; ?>/AdminPosts/sendDeleteRequestEmail/<?php echo $data['email']->l_email; ?>/<?php echo $post->subject_code; ?>/<?php echo $data['postId']; ?>" title="Send Request Email" style="padding-right: 10px;">
+                            <button class="email_button">
+                                <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Email Icon" class="email_icon">
+                            </button>
+                        </a>
+
                         <a href="<?php echo URLROOT; ?>/AdminPosts/deleteRowAS/<?php echo $data['postId']; ?>/<?php echo $post->subject_code; ?>" title="Delete">
                             <button class="delete_button">
                                 <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
                             </button>
                         </a>
+
                     </div>
                 </div>
+
+                
+
             <?php endforeach; ?>
             </div>
-
-            <a href="" title="Add Row">
-                <button class="add_button">
-                    <img src="<?php echo URLROOT;?>/images/plus_icon.svg" alt="Add Icon" class="add_icon">
-                </button>
-            </a>
+            
+            <div class='btns'>
+                <a href="" title="Add Row">
+                    <button class="add_button">
+                        <img src="<?php echo URLROOT;?>/images/plus_icon.svg" alt="Add Icon" class="add_icon">
+                    </button>
+                </a>
+    
+                <a href="<?php echo URLROOT; ?>/AdminPosts/send_AS_status_email/<?php echo $data['email']->l_email; ?>/<?php echo $data['postId']; ?>" title="Send Status Email" style="padding-right: 10px;">
+                    <button class="status_email_button">Send Status Email</button>
+                </a>  
+            </div>
 
         </div>
 
@@ -179,22 +251,24 @@
                     <p><b>Assigned Number of Students &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $assigned_nStudents; ?></b></p>
                     </div>
 
-                </div>
-                <!-- print lecturer_max_lec_hrs -->
-                <p>lecturer_max_lec_hrs: <?php echo $data['variables'][0]->v_value; ?></p>
-                <!-- print lec_hrs_per_credit -->
-                <p>lec_hrs_per_credit: <?php echo $data['variables'][1]->v_value; ?></p>
-                <!-- print max_students_per_lecturer -->
-                <p>max_students_per_lecturer: <?php echo $data['variables'][2]->v_value; ?></p>
-                <!-- print assigned_subjects -->
-                <p>assigned_subjects_credits: <?php echo $assigned_subjects_credits; ?></p>
-                <!-- print assigned_subjects_credits_precentage -->
-                <p>assigned_subjects_credits_precentage: <?php echo $assigned_subjects_credits_precentage; ?></p>
-                <!-- print assigned_subjects_lec_hrs -->
-                <p>assigned_subjects_lec_hrs: <?php echo $assigned_subjects_lec_hrs; ?></p>
-                <!-- print assigned_nStudents -->
-                <p>assigned_nStudents: <?php echo $assigned_nStudents; ?></p>
+                    <div class="conflicts">
+                        <h2>Preference Level Conflicts :</h2>
+                        <?php if($data['case'] == 1){ ?>
+                            <!-- <p>Case 1 </p> -->
+                            <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                <p><b><?php echo $conflict->lecturer_code; ?></b> has a higher preference level for <b><?php echo $conflict->subject_code; ?></b></p>
+                            <?php endforeach; ?>
+                        <?php } else if($data['case'] == 2){ ?>
+                            <!-- <p>Case 2 </p> -->
+                            <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                <p><b><?php echo $conflict->lecturer_code; ?></b> has the same preference level for <b><?php echo $conflict->subject_code; ?></b></p>
+                            <?php endforeach; ?>
+                            
+                        <?php } ?>
 
+                    </div>
+
+                </div>
             </div>
   </div>
 
@@ -219,9 +293,9 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <!-- <?php foreach ($data['years'] as $year) : ?>
+                <?php foreach ($data['years'] as $year) : ?>
                     <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                <?php endforeach; ?> -->
+                <?php endforeach; ?> 
             </select>
 
             <label for="semesterFilter">Semester:</label>
@@ -258,26 +332,56 @@
                 <tbody>        
                     <?php $i = 0;
                     foreach($data['subjects'] as $subject) : ?>
-                        <tr>
-                            <?php if ($subject->subject_code && $subject->lecturer_code != $data['postId']){?>
-                                    <td><?php echo $subject->sub_code; ?></td>
-                                    <td><?php echo $subject->sub_name; ?></td>
-                                    <td><?php echo $subject->sub_year; ?></td>
-                                    <td><?php echo $subject->sub_semester; ?></td>
-                                    <td><?php echo $subject->sub_credits; ?></td>
-                                    <td><?php echo $subject->sub_stream; ?></td>
-                                    <td><?php echo $subject->sub_nStudents; ?></td>
-                                    <td><span style='color: red;'><b>Assigned</b></span></td>
-                                    <td>
-                                        <form action="<?php echo URLROOT;?>/AdminPosts/forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
-                                            <input class="force" type="submit" value="FORCE">
-                                        </form>
-                                    </td>
-                                    <td><?php echo $subject->lecturer_code; ?></td>
-                                
-                                    
-                                
-                            <?php }else{ ?>
+                        <?php if ($subject->subject_code && $subject->lecturer_code != $data['postId']){?>
+                            <tr
+                                <?php if($data['postsRS'] != "null"){
+                                    foreach($data['postsRS'] as $postRS) {
+                                        if($postRS->subject_code == $subject->sub_code){
+                                            echo "style='background-color: lightgreen;'";
+                                            //terminate the loop
+                                            break;
+                                        }
+                                    }
+                                }
+                                ?>
+                            >
+                                <td><?php echo $subject->sub_code; ?></td>
+                                <td><?php echo $subject->sub_name; ?></td>
+                                <td><?php echo $subject->sub_year; ?></td>
+                                <td><?php echo $subject->sub_semester; ?></td>
+                                <td><?php echo $subject->sub_credits; ?></td>
+                                <td><?php echo $subject->sub_stream; ?></td>
+                                <td><?php echo $subject->sub_nStudents; ?></td>
+                                <td><span style='color: red;'><b>Assigned</b></span></td>
+                                <td>
+                                    <form action="<?php echo URLROOT;?>/AdminPosts/forceAssignLecturers/<?php echo $subject->sub_code; ?>/<?php echo $data['postId']; ?>" method="POST">
+                                        <input class="force" type="submit" value="FORCE">
+                                    </form>
+                                </td>
+                                <td>
+                                    <div class='btns1'>
+                                        <p><?php echo $subject->lecturer_code; ?></p>
+                                        <a href="<?php echo URLROOT; ?>/AdminPosts/sendForceEmail/<?php echo $subject->lecturer_code; ?>/<?php echo $subject->subject_code; ?>/<?php echo $data['postId']; ?>" title="Send Request Email" style="padding-right: 10px;">
+                                            <button class="email_button">
+                                                <img src="<?php echo URLROOT;?>/images/email_icon.svg" alt="Email Icon" class="email_icon">
+                                            </button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php }else if(!$subject->subject_code){ ?>
+                            <tr
+                                <?php if($data['postsRS'] != "null"){
+                                    foreach($data['postsRS'] as $postRS) {
+                                        if($postRS->subject_code == $subject->sub_code){
+                                            echo "style='background-color: lightgreen;'";
+                                            //terminate the loop
+                                            break;
+                                        }
+                                    }
+                                }
+                                ?>
+                            >
                                 <td><?php echo $subject->sub_code; ?></td>
                                 <td><?php echo $subject->sub_name; ?></td>
                                 <td><?php echo $subject->sub_year; ?></td>
@@ -293,9 +397,9 @@
                                     </form> 
                                 </td>
                                 <td>-</td>
-                            <?php }?>
+                            </tr>
+                        <?php }?>
                             
-                        </tr>
                     <?php endforeach; ?>
             </table> 
         </div>
@@ -305,8 +409,11 @@
     </form>
     
     <div class="legend">
+        <h3>Note:</h3>
         <p><b><span style='color: green;'>Available</span></b> - can be assigned.</p>
         <p><b><span style='color: red;'>Assigned</span></b> - can't be assigned to this lecturer but can be forced (remove the current lecturer and assign to this lecturer).</p>
+        <!--  inform thar by clickeng the mail icon, an email will be sent to the lecturer -->
+        <p><b>Mail Icon</b> - Send an email to the lecturer (Assigned To), requesting to remove the subject to assign to this lecturer.</p>
     </div>
     
     </div>

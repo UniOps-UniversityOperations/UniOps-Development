@@ -8,6 +8,19 @@
 </head>
 <body>
 
+<?php
+
+// Get the current URL path
+$urlPath = $_SERVER['REQUEST_URI'];
+
+// Split the path into segments
+$pathSegments = explode('/', trim($urlPath, '/'));
+
+// Get the last element(This is to ckeck whether pwd reset)
+$last = end($pathSegments);
+
+?>
+
     <div class="left-section">
 
         <img src="<?php echo URLROOT;?>/images/loginimg.svg" class="login-img" alt="login Image">
@@ -29,6 +42,14 @@
         <button type="submit">Login</button>
 
         </form>
+
+        <?php if($last === "PasswordReset") : ?>
+
+            <p>Password was reset</p>
+        
+        <?php endif; ?>
+
+        <a id="forgotpasswordmsg" href="<?php echo URLROOT; ?>/Users/resetPasswordPage">Forgot Password?</a>
 
         <?php
             if($data['Error']){

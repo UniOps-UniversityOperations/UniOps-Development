@@ -23,8 +23,6 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
     <button type="submit">Show Schedule</button>
 </form>
 
-
-
 <div id="scheduleGrid">
 
     <!--Existing room labels and time slots will be dynamically generated here -->
@@ -33,10 +31,10 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 
     /* Generate Time Slots */
         for($i=7;$i<=11;$i++){
-            echo "<div class='time'>{$i}am</div>";
+            echo "<div class='time'>{$i}</div>";
         }
         for($i=12;$i<=19;$i++){
-            echo "<div class='time'>{$i}pm</div>";
+            echo "<div class='time'>{$i}</div>";
         }
         
         $previous = '7:00:00';
@@ -45,8 +43,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
             // Check if this is not the first object retrieved
             if($i!=0){
                 // Check if the room ID has changed
-                if($data[$i]->id!==$data[$i-1]->id){
-                    
+                if((string)$data[$i]->id != (string)$data[$i-1]->id){
                     /* Check if the last items booking up until  7pm has been recorded.If not make free slot*/
                     if($previous !== '19:00:00') {
                         $startTime = new DateTime($previous);
@@ -221,9 +218,15 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
         
         <form action='<?php echo URLROOT."/Lecturer/roomBookingRequest"; ?>' method='POST' id='reservation_form'>
             <h1>Fill the Below Form for Reservations<span id='close-btn'>X</span></h1>
-
+            <br>
+            <input type="hidden" name='is_Grid' id='is_grid' value = 1>
             <input type="hidden" name = 'request_date' id= 'booking_date' value = "">
             <input type="hidden" name = 'r_id' id = 'r_id' value = "">
+
+            <p><h3 id="room_name">Room Id :- </h3></p>
+            <p><h3 id="date_of_request_form">Date :- </h3></p>
+
+            <br>
 
             <label for='startTime' class='reservation_label'>Start Time:</label>
             <select id='startTime' name='startTime' required>
@@ -235,8 +238,18 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                 <!-- Add options for each hour -->
    
             </select>
-            <label for='purpose' class='reservation_label'>Purpose:</label>
-            <textarea id='purpose' name='purpose' rows='4' required></textarea>
+
+            <label for="droplistpurpose" class='reservation_label'>Purpose :</label>
+            <select name="droplistpurpose" id="droplistpurpose">
+                <option value="Lecture">Lecture</option>
+                <option value="Tutorial">Tutorial</option>
+                <option value="Lab">Lab Practical</option>
+                <option value="Other">Other</option>
+            </select>
+
+
+            <label for='purpose' class='reservation_label'>Description : </label>
+            <textarea id='purpose' name='purpose' rows='4'></textarea>
             <button id='reservation_submit'>Submit</submit>
         </form>
     </div>
@@ -259,7 +272,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 // Check if the session variable is set
 if (isset($_SESSION['booking_result'])) {
     // Display the message based on the session variable
-    $resultMessage = $_SESSION['booking_result'] ? 'Booking successful' : 'Booking failed';
+    $resultMessage = $_SESSION['booking_result'] ? 'Booking Request Successful' : 'Booking Request Failed';
     
     // Create a pop-up modal using HTML and CSS
     echo '<div id="myModal" class="modal">

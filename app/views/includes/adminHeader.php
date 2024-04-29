@@ -74,14 +74,14 @@
 					<div class="nav-option option4">
 						<a href="<?php echo URLROOT;?>/AdminPosts/viewLecturers/">
 							<img src="<?php echo URLROOT;?>/images/lecturer.svg" class="nav-img" alt="Lecturer">
-							<h3> Lecturer</h3>
+							<h3> Lecturers</h3>
 						</a>
 					</div>
 
 					<div class="nav-option option5">
 						<a href="<?php echo URLROOT;?>/AdminPosts/viewInstructors/">
 							<img src="<?php echo URLROOT;?>/images/instructor.svg" Class="nav-img" alt="Instructor">
-							<h3> Instructor</h3>
+							<h3> Instructors & Assistant ...</h3>
 						</a>
 					</div>
 
@@ -100,16 +100,25 @@
 					</div>
 
 					<div class="nav-option option8">
-					<a href="">
+					<a href="<?php echo URLROOT;?>/AdminPosts/roombookingrequests/">
 							<img class="bellw" src="<?php echo URLROOT;?>/images/bellw.svg" alt="Notifications & Requests">
 							<h3> Notifications  & Requests</h3>
 						</a>
 					</div>
 
-					<div class="nav-option">
+
+					<div class="nav-option option9">
 						<a href="<?=URLROOT?>/Timetable/timetableIndex">
 							<img src="<?=URLROOT;?>/images/timetable.svg" class="nav-img">
+					
 							<h3>Timetables</h3>
+						</a>
+					</div>
+
+					<div class="nav-option option10">
+						<a href="<?php echo URLROOT;?>/Reports/viewReportsDashboard/">
+							<img src="<?php echo URLROOT;?>/images/reports.svg" class="nav-img">
+							<h3>Reports</h3>
 						</a>
 					</div>
 

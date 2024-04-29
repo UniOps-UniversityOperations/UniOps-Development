@@ -1,0 +1,91 @@
+.option8 {
+    border-left: 5px solid #010058af;
+    background-color: var(--Border-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 50px;
+    }
+
+.option8:hover {
+    border-left: 5px solid #010058af;
+    background-color: var(--Border-color);
+    }
+    
+
+
+
+/* Table Styles Starts Here. */
+
+.styled-table {
+    width: 100%;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.styled-table tbody tr {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+.styled-table thead tr {
+    background-color: #1e58c4;
+}
+
+.styled-table td,
+.styled-table th {
+    padding: 15px;
+}
+
+.styled-table tr td:first-child,
+.styled-table tr th:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.styled-table tr td:last-child,
+.styled-table tr th:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+td.description {
+    max-width: 400px; /* Adjust the max-width as needed */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Accept Button */
+
+#accept_button{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    /* width: 130px; */
+    font-weight: bold;
+  }
+  
+  #accept_button:hover {
+    background-color: #45a049;
+  }
+
+  
+#deny_button{
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    /* width: 130px; */
+    font-weight: bold;
+  }
+  
+  #deny_button:hover {
+    background-color: #d32f2f;
+  }
