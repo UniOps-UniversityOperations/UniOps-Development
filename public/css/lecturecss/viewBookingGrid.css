@@ -1,9 +1,15 @@
 .option2 {
-    border-left: 5px solid #010058af;
-    background-color: var(--Border-color);
-    color: white;
-    cursor: pointer;
-}
+  border-left: 5px solid #010058af;
+  background-color: var(--Border-color);
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+  }
+
+.option2:hover {
+  border-left: 5px solid #010058af;
+  background-color: var(--Border-color);
+  }
 
 h1 {
     margin-bottom: 30px;

@@ -98,7 +98,7 @@ class M_Lecturer {
 
         WHERE rb.booking_date = :dates
     
-    UNION ALL
+    UNION
     
     SELECT 
         r.id,
@@ -115,11 +115,11 @@ class M_Lecturer {
         lecturebookings lb ON r.id = lb.r_id AND lb.day_of_week = :day_of_week
         
     ORDER BY 
-        id, start_time;
-    
-     
+        id, 
+        CASE WHEN start_time IS NOT NULL THEN 0 ELSE 1 END,
+        start_time;
         ";
-
+      
         $day = date("l",strtotime($dateSelected));
 
         $this->db->query($sql);
