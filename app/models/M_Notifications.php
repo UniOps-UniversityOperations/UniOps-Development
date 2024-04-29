@@ -10,10 +10,10 @@ class M_Notifications{
     public function viewroombookingrequests() {
         $date = date('Y-m-d');
         $current_time = date('H:i:s'); // Get the current time
-        $sql = 'SELECT * FROM roombookingrequests WHERE request_date >= ? AND start_time >= ? ORDER BY r_id,request_date,start_time,end_time;';
+        $sql = 'SELECT * FROM roombookingrequests WHERE request_date >= ? ORDER BY r_id,request_date,start_time,end_time;';
         $this->db->query($sql);
         $this->db->bind(1,$date);
-        $this->db->bind(2,$current_time);
+        /* $this->db->bind(2,$current_time); */
         return $this->db->resultSet();
     }
 
