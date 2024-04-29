@@ -88,7 +88,6 @@
 
         public function updateRoom($data){
             $this->db->query('UPDATE rooms SET 
-                id = :id,
                 name = :name,
                 type = :type,
                 capacity = :capacity,
@@ -165,7 +164,35 @@
             return $row;
         }
 
+    //a function to return true if the room exists else false
+    public function roomExists($name){
+        $this->db->query("SELECT * FROM rooms WHERE name = :name AND r_isDeleted = 0");
+        $this->db->bind(':name', $name);
+        $this->db->single();
+        $row = $this->db->rowCount();
+        if($row > 0){
+            return true;
+        } else {
+            return false;
+        }
     }
+
+    //roomExists2($data['name'], $postId)
+    public function roomExists2($name, $id){
+        $this->db->query("SELECT * FROM rooms WHERE name = :name AND id != :id AND r_isDeleted = 0");
+        $this->db->bind(':name', $name);
+        $this->db->bind(':id', $id);
+        $this->db->single();
+        $row = $this->db->rowCount();
+        if($row > 0){
+            return true;
+        } else {
+            return false;
+        }
+
+
+    }
+}
 
 
 

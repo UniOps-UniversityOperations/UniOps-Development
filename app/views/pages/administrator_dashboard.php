@@ -61,22 +61,8 @@
             <div class='inner_column'>
 
                 <div class='uses_top_bar'>
-                    <h3 style='padding-bottom:10px;'>Users</h3>
-
-                    <div class="filters filter-container">
-                        <label for="streamFilter">Stream:</label>
-                        <select id="streamFilter">
-                            <option value="">All</option>
-                            <option value="administator">Administator</option>
-                            <option value="lecturer">Lecturer</option>
-                            <option value="instructor">Instructor</option>
-                            <option value="student">Student</option>
-                            <?php foreach ($data['streams'] as $stream) : ?>
-                                <option value="<?php echo $stream; ?>"><?php echo $stream; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    
+                    <h2 style='padding-bottom:10px;'>Administrators</h2>
+                    <button class="add_user"><a href="<?php echo URLROOT;?>/AdminPosts/addUser">Add Administator</a></button>
                 </div>
 
                 <div class="table-wrapper">
@@ -86,7 +72,6 @@
                                 <th>user_id</th>
                                 <th>username</th>
                                 <th>pwd</th>
-                                <th>role</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -101,24 +86,6 @@
                                     <td><?php echo $user->user_id; ?></td>
                                     <td><?php echo $user->username; ?></td>
                                     <td><?php echo $user->pwd; ?></td>
-                                    <td><?php switch(strtoupper($user->role)){
-                                        case "A":
-                                            echo "administator";
-                                            break;
-                                        case "L":
-                                            echo "lecturer";
-                                            break;
-                                        case "I":
-                                            echo "instructor";
-                                            break;
-                                        case "S":
-                                            echo "student";
-                                            break;
-                                        default:
-                                            echo "User";
-                                            break;
-                                    } 
-                                    ?></td>
                                     <td class="link">
                                     <a href="<?php echo URLROOT;?>/AdminPosts/updateUser/<?php echo $user->user_id; ?>">
                                         <button class="update_button">
@@ -140,24 +107,7 @@
                                     <td><?php echo $user->user_id; ?></td>
                                     <td><?php echo $user->username; ?></td>
                                     <td><?php echo $user->pwd; ?></td>
-                                    <td><?php switch($user->role){
-                                       case "a":
-                                            echo "administator";
-                                            break;
-                                        case "l":
-                                            echo "lecturer";
-                                            break;
-                                        case "i":
-                                            echo "instructor";
-                                            break;
-                                        case "s":
-                                            echo "student";
-                                            break;
-                                        default:
-                                            echo "User";
-                                            break;
-                                    } 
-                                    ?></td>
+                                    
                                     <td class="link">
                                     <a href="<?php echo URLROOT;?>/AdminPosts/updateUser/<?php echo $user->user_id; ?>">
                                         <button class="update_button">
@@ -178,38 +128,39 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                </div>
-
-                <button class="add_user"><a href="<?php echo URLROOT;?>/AdminPosts/addUser">Add User</a></button>
-                
-                <button class="add_user"><a href="<?php echo URLROOT;?>/AdminPosts/showDashboard">Refresh</a></button>
+                </div>                
                 
 
             </div>
 
             <div class='inner_column'>
-                <h3 style='padding-bottom:10px;'>Variables</h3>
-                    
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>var name</th>
-                            <th>var value</th>
-                        </tr>
-                    </thead>
-                    <tbody>        
-                        <?php
-                        foreach($data['vars'] as $var) : ?>
-
-                        
+                <div class='uses_top_bar'>
+                    <h2 style='padding-bottom:10px;'>Variables</h2>
+                    <button class="add_user add_user1"><a href="<?php echo URLROOT;?>/AdminPosts/editVariables">Edit</a></button>
+                </div>
+                   
+                <div class="table-wrapper">
+                    <table class="styled-table">
+                        <thead>
                             <tr>
-                                <td><?php echo $var->v_name; ?></td>
-                                <td><?php echo $var->v_value; ?></td>
-                            </tr>    
-                        
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                                <th>var name</th>
+                                <th>var value</th>
+                            </tr>
+                        </thead>
+                        <tbody>        
+                            <?php
+                            foreach($data['vars'] as $var) : ?>
+
+                            
+                                <tr>
+                                    <td><?php echo $var->v_name; ?></td>
+                                    <td><?php echo $var->v_value; ?></td>
+                                </tr>    
+                            
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
 
@@ -221,6 +172,21 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<!-- Popup to Confrim Delete administrator -->
+<script>
+    $(".delete_button").click(function (e) {
+        e.preventDefault();
+        var c = confirm("Are you sure you want to delete this administrator?");
+        if (c) {
+            // get href from parent div
+            var href = $(this).parent().attr("href");
+            // follow the href
+            window.location.href = href;
+        }
+    });
+</script>
 
 <script src="<?php echo URLROOT;?>/js/administrator/administrator_dashboard.js"></script>
 

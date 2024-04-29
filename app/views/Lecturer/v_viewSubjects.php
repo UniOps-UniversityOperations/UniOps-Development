@@ -113,10 +113,13 @@ $totalHours = array_values($data['numofLecHours']);
 <h2>Requested Subjects</h2>
 
 <?php if(is_string($data['PrefferedSubjects'])):?>
-
+    <br>
     <p>You have not yet set your preferrences.</p>
     
 <?php else : ?> 
+
+    <br>
+    <p>The subject you request first will get the highest preference.(The lower the pref_level number the higher the preference level.)So when requesting subjects be sure that you request them in order of your preference</p>
 
 <table class="styled-table">
     <thead>
@@ -127,6 +130,7 @@ $totalHours = array_values($data['numofLecHours']);
             <th>Year</th>
             <th>Semester</th>
             <th>Num of Credits</th>
+            <th>Pref_Level</th>
             <th></th>
         </tr>
     </thead>
@@ -140,8 +144,9 @@ $totalHours = array_values($data['numofLecHours']);
                 <td><?php echo $subject->sub_year; ?></td>
                 <td><?php echo $subject->sub_semester; ?></td>
                 <td><?php echo $subject->sub_credits; ?></td>
+                <td><?php echo $subject->pref_level; ?></td>
                 <td>
-                    <a href="<?php echo URLROOT; ?>/lecturer/deletePreferredSubject/<?php echo $subject->subject_code; ?>" title="Delete">
+                    <a href="<?php echo URLROOT; ?>/lecturer/deletePreferredSubject/<?php echo $subject->subject_code; ?>/<?php echo $subject->pref_level;?>" title="Delete">
                         <button class="delete_button">
                             <img src="<?php echo URLROOT;?>/images/minus_icon.svg" alt="Delete Icon" class="delete_icon">
                         </button>

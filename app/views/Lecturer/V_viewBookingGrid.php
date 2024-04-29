@@ -221,9 +221,15 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
         
         <form action='<?php echo URLROOT."/Lecturer/roomBookingRequest"; ?>' method='POST' id='reservation_form'>
             <h1>Fill the Below Form for Reservations<span id='close-btn'>X</span></h1>
+            <br>
             <input type="hidden" name='is_Grid' id='is_grid' value = 1>
             <input type="hidden" name = 'request_date' id= 'booking_date' value = "">
             <input type="hidden" name = 'r_id' id = 'r_id' value = "">
+
+            <p><h3 id="room_name">Room Id :- </h3></p>
+            <p><h3 id="date_of_request_form">Date :- </h3></p>
+
+            <br>
 
             <label for='startTime' class='reservation_label'>Start Time:</label>
             <select id='startTime' name='startTime' required>
@@ -235,8 +241,18 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                 <!-- Add options for each hour -->
    
             </select>
-            <label for='purpose' class='reservation_label'>Purpose:</label>
-            <textarea id='purpose' name='purpose' rows='4' required></textarea>
+
+            <label for="droplistpurpose" class='reservation_label'>Purpose :</label>
+            <select name="droplistpurpose" id="droplistpurpose">
+                <option value="Lecture">Lecture</option>
+                <option value="Tutorial">Tutorial</option>
+                <option value="Lab">Lab Practical</option>
+                <option value="Other">Other</option>
+            </select>
+
+
+            <label for='purpose' class='reservation_label'>Description : </label>
+            <textarea id='purpose' name='purpose' rows='4'></textarea>
             <button id='reservation_submit'>Submit</submit>
         </form>
     </div>

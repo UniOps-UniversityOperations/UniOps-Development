@@ -46,6 +46,8 @@ function reserve(start_time,end_time) {
   sidebar.innerHTML = `
   <form action='${urlroot}/Lecturer/roomBookingRequest' method='POST' id='reservation_form'>
   <div id ='sidebar-header'><h2 id='requestformh2'>Reservations <span id='close-btn' class='clsbtnres'>X</span></h2></div>
+  <p><h3 id="room_name"></h3></p>
+  <p><h3 id="date_of_request_form"></h3></p>
   
   <input type="hidden" name='is_Grid' id='is_grid' value=0>
 
@@ -55,14 +57,23 @@ function reserve(start_time,end_time) {
   <label for='startTime' class='reservation_label'>Start Time:</label>
   <select id='startTime' name='startTime' required>
       <!-- Add options for each hour -->
-
   </select>
+
   <label for='endTime' class='reservation_label'>End Time:</label>
   <select id='endTime' name='endTime' required>
       <!-- Add options for each hour -->
-
   </select>
-  <label for='purpose' class='reservation_label'>Purpose:</label>
+
+  <label for="droplistpurpose" class='reservation_label'>Purpose :</label>
+  <select name="droplistpurpose" id="droplistpurpose">
+    <option value="Lecture">Lecture</option>
+    <option value="Tutorial">Tutorial</option>
+    <option value="Lab">Lab Practical</option>
+    <option value="Other">Other</option>
+  </select>
+
+
+  <label for='purpose' class='reservation_label'>Description:</label>
   <textarea id='purpose' name='purpose' rows='4' required></textarea>
   <button id='reservation_submit'>Submit</button>
 </form>
@@ -79,6 +90,8 @@ function reserve(start_time,end_time) {
   </div>
 </div>
   `
+  document.getElementById('room_name').innerHTML = "Room Id : " + document.getElementById('roomid').textContent;
+  document.getElementById('date_of_request_form').innerHTML = "Date : " + document.getElementById('dateInput').value;
   var startTimeSelect = document.getElementById('startTime');
   var endTimeSelect = document.getElementById('endTime');
   // Clear existing options
@@ -119,7 +132,7 @@ toggleButtons.forEach(toggleButton => {
             // Get selected start and end times
             var selectedStartTime = startTimeSelect.value;
             var selectedEndTime = endTimeSelect.value;
-            if (selectedStartTime >= selectedEndTime) {
+            if (parseInt(selectedStartTime) >= parseInt(selectedEndTime)) {
                 // Display an error message (you can customize this part)
                 alert("End time must be later than start time. Please select valid times.");
                 

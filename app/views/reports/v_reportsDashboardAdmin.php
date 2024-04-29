@@ -7,7 +7,7 @@
 
   <div class="center">
     <div class="row">
-        <a href="" class="btn1 btn"><h2>Overall Report</h2></a>
+        <a href="<?php echo URLROOT;?>/Reports/viewOverallReport" class="btn1 btn"><h2>Overall Report</h2></a>
         <a href="" class="btn2 btn"><h2>Timetable Report</h2></a>
     </div>
     <div class="row">

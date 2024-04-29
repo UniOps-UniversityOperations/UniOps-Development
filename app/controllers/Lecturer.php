@@ -63,7 +63,8 @@
         $startTime = $_POST['startTime'].':00:00';
         $endTime = $_POST['endTime'].':00:00';
         $purpose = $_POST['purpose'];
-        $result = $this->lecturerModel->roomBookingRequest($r_id,$booking_date,$startTime,$endTime,$purpose);//$result variable holds true or false based on the insertion was success or failure.
+        $droplistpurpose = $_POST['droplistpurpose'];
+        $result = $this->lecturerModel->roomBookingRequest($r_id,$booking_date,$startTime,$endTime,$purpose,$droplistpurpose);//$result variable holds true or false based on the insertion was success or failure.
 
         // Set session variable based on the result
         $_SESSION['booking_result'] = $result;
@@ -173,13 +174,16 @@
     public function requestSubject() {
       if(isset($_POST['submit'])){
         $sub_code = $_POST['sub_code'];
-        $result = $this->lecturerModel->requestSubject($sub_code);
+
+        //This finds the number of requested subjetcs by a lecturer so that we can set the preference level
+        $num_of_requested_subjects = (int) $this->lecturerModel->findnumofrequestedsub();
+        $result = $this->lecturerModel->requestSubject($sub_code,$num_of_requested_subjects);
         redirect('Lecturer/viewSubjects');
       }
     }
 
-    public function deletePreferredSubject($sub_code) {
-      $this->lecturerModel->deletePreferredSubject($sub_code);
+    public function deletePreferredSubject($sub_code,$pref_level) {
+      $this->lecturerModel->deletePreferredSubject($sub_code,$pref_level);
       redirect('Lecturer/viewSubjects');
     }
 

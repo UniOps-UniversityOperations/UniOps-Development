@@ -727,3 +727,34 @@ margin-bottom: 20px;
   width : 100px;
   align-items: center;
 }
+
+/* console like error message  showing section */
+.conflicts{
+  display: flex;
+  display: flex;
+  background-color: whitesmoke;
+  color: #f44336;
+  font-style: italic;
+  border: none;
+  padding: 20px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 20px;
+  width: 100%;
+  font-weight: bold;
+  margin-top: 30px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.conflicts h2{
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  flex: 1; /* Equal flex distribution for each paragraph */
+}
+
+.conflicts p{
+  padding-left: 30px;
+  padding-bottom: 5px;
+}

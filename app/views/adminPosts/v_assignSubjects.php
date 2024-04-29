@@ -6,7 +6,7 @@
 
 <div class="main">
     <div class="top">
-            <h1 class="topic">Administrator / Lecturer / Assign Subjects </h1>
+            <h1 class="topic">Administrator &#10145; Lecturer &#10145; Assign Subjects </h1>
             <h2 class="topic2">Lcturer: <?php echo $data['lecturerName']->l_nameWithInitials; ?> (<?php echo $data['postId']; ?>)</h2>
             <!-- dispay email -->
             <h2 class="topic2">Email: <?php echo $data['email']->l_email; ?></h2>
@@ -249,6 +249,23 @@
                     <p><b>Assigned Number of Credits &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $assigned_subjects_credits; ?></b></p>
                     <p><b>Assigned Number of Lecture Hours &nbsp; : <?php echo $assigned_subjects_lec_hrs; ?></b></p>
                     <p><b>Assigned Number of Students &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php echo $assigned_nStudents; ?></b></p>
+                    </div>
+
+                    <div class="conflicts">
+                        <h2>Preference Level Conflicts :</h2>
+                        <?php if($data['case'] == 1){ ?>
+                            <!-- <p>Case 1 </p> -->
+                            <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                <p><b><?php echo $conflict->lecturer_code; ?></b> has a higher preference level for <b><?php echo $conflict->subject_code; ?></b></p>
+                            <?php endforeach; ?>
+                        <?php } else if($data['case'] == 2){ ?>
+                            <!-- <p>Case 2 </p> -->
+                            <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                <p><b><?php echo $conflict->lecturer_code; ?></b> has the same preference level for <b><?php echo $conflict->subject_code; ?></b></p>
+                            <?php endforeach; ?>
+                            
+                        <?php } ?>
+
                     </div>
 
                 </div>

@@ -31,7 +31,7 @@ class Mail extends Controller{
       $mail->IsHTML(true);
       $mail->Subject = $subject;
       $mail->Body = $message;
-      $mail->AltBody = $massage;
+      $mail->AltBody = $message;
       if(!$mail->send()){
          return "Email not send. Please try again";
       }else{
