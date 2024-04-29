@@ -12,12 +12,12 @@ function toggleSidebar() {
 
 // Function to find an object by id
 function findObjectById(id) {
-  return data.find(obj => obj.id === id);
+  return data.find(obj => obj.name === id);
 }
 
 function viewMore(id) {
   var clickedObject = findObjectById(id);
-  document.getElementById("roomIdHeader").innerHTML = clickedObject.id;
+  document.getElementById("roomIdHeader").innerHTML = clickedObject.name;
   document.getElementById("boards").innerHTML = clickedObject.no_of_boards;
   document.getElementById("projectors").innerHTML = clickedObject.no_of_projectors;
   document.getElementById("computers").innerHTML = clickedObject.no_of_computers;

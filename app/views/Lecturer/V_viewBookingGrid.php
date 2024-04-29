@@ -60,7 +60,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                     $previous = '7:00:00';
 
                     //New room row
-                    echo "<div class='room-id'>{$data[$i]->id}</div>";
+                    echo "<div class='room-id'>{$data[$i]->name}</div>";
                     /* Checking whether start time is not null is for checking whether there are bookings for the room */
                     if($data[$i]->start_time !== NULL && $data[$i]->start_time !== $previous) {
                         $startTime = new DateTime($data[$i]->start_time);
@@ -148,7 +148,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
             }
             /* If $i = 0(If this is the first item retrieved) */
             else {
-                echo "<div class='room-id'>{$data[$i]->id}</div>";
+                echo "<div class='room-id'>{$data[$i]->name}</div>";
                 $previous = '7:00:00';
                 if($data[$i]->start_time!==NULL && $data[$i]->start_time !== $previous) {
                     $startTime = new DateTime($data[$i]->start_time);
