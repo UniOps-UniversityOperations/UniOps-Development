@@ -1,6 +1,13 @@
 <?php
 
-class Course extends M_Subject {
+class Course {
+
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new Database();
+    }
 
     // private $sub_stream;
     // private $sub_semester;
@@ -115,28 +122,28 @@ class Course extends M_Subject {
 
     public function getCourseNames() {
 
-        $array = $this->getSubjects();
+        // $array = $this->getSubjects();
 
-        $new_array = [];
+        // $new_array = [];
         
-        foreach($array as $obj) {
-            if(property_exists($obj, 'sub_name')) {
-                $new_obj = new stdClass();
-                $new_obj->id = $obj->sub_id;
-                $new_obj->course_name = $obj->sub_name;
-                $new_array[] = $new_obj;
-            }
-        }
-        return $new_array;
+        // foreach($array as $obj) {
+        //     if(property_exists($obj, 'sub_name')) {
+        //         $new_obj = new stdClass();
+        //         $new_obj->id = $obj->sub_id;
+        //         $new_obj->course_name = $obj->sub_name;
+        //         $new_array[] = $new_obj;
+        //     }
+        // }
+        // return $new_array;
     }
 
     public function get_course_name($course_id) {
 
-        $course_id = json_decode($course_id);
-        $course_name = $this->getSubjectById($course_id)->sub_name;
+        // $course_id = json_decode($course_id);
+        // $course_name = $this->getSubjectById($course_id)->sub_name;
 
-        // show($course_name);die;
-        return $course_name;
+        // // show($course_name);die;
+        // return $course_name;
 
     }
 }
