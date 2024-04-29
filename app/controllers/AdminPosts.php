@@ -1991,6 +1991,7 @@ require_once APPROOT . '/controllers/Mail.php';
             if(isset($_POST['submit'])) {
 
                 $r_id = $_POST['r_id'];
+                /* die($r_id); */
                 $request_date = $_POST['request_date'];
                 $start_time = $_POST['start_time'];
                 $end_time = $_POST['end_time'];
@@ -2001,7 +2002,7 @@ require_once APPROOT . '/controllers/Mail.php';
 
                 if(!empty($roombookingsconflict)) {
                     die("Roombookingsconflict");
-                    /* redirect('AdminPosts/roombookingrequests/true'); */
+                    redirect('AdminPosts/roombookingrequests/true');
 
                 }
 
@@ -2010,7 +2011,7 @@ require_once APPROOT . '/controllers/Mail.php';
 
                 if(!empty($lecturebookingconflicts)) {
                     die("lecturebookingconflicts");
-                    /* redirect('AdminPosts/roombookingrequests/true'); */
+                    redirect('AdminPosts/roombookingrequests/true');
                 }
 
                 $result = $this->M_Notification->roomBookingRequestAccepted($r_id,$request_date,$start_time,$end_time,$purpose,$requested_by);
@@ -2026,8 +2027,8 @@ require_once APPROOT . '/controllers/Mail.php';
 
                 $Mail_class = new Mail();
                /*  $result = $Mail_class->sendMail($to, $subject, $body); */
-               die("Before calling view");
-                $this->view("adminPosts/v_roomBookingRequests/false/$result");
+               /* die("Before calling view"); */
+                redirect("adminPosts/roombookingrequests");
 
             } else {
                 die("OOps :(");

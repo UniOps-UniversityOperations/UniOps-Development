@@ -23,8 +23,6 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
     <button type="submit">Show Schedule</button>
 </form>
 
-
-
 <div id="scheduleGrid">
 
     <!--Existing room labels and time slots will be dynamically generated here -->
@@ -33,10 +31,10 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 
     /* Generate Time Slots */
         for($i=7;$i<=11;$i++){
-            echo "<div class='time'>{$i}am</div>";
+            echo "<div class='time'>{$i}</div>";
         }
         for($i=12;$i<=19;$i++){
-            echo "<div class='time'>{$i}pm</div>";
+            echo "<div class='time'>{$i}</div>";
         }
         
         $previous = '7:00:00';
@@ -45,8 +43,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
             // Check if this is not the first object retrieved
             if($i!=0){
                 // Check if the room ID has changed
-                if($data[$i]->id!==$data[$i-1]->id){
-                    
+                if((string)$data[$i]->id != (string)$data[$i-1]->id){
                     /* Check if the last items booking up until  7pm has been recorded.If not make free slot*/
                     if($previous !== '19:00:00') {
                         $startTime = new DateTime($previous);

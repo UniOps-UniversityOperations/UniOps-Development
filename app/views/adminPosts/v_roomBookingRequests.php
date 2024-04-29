@@ -4,7 +4,7 @@
 
 <h1>Request for Room Bookings</h1>
 
-<?php if($data["conflict"]) :?>
+<!-- <?php if($data["conflict"]) :?>
 
     <p>Could not accept the Booking request because the room you are requesting is alredy booked for that time slot.</p>
 
@@ -16,7 +16,7 @@
 
     <p><?php echo $data['emailresult']; ?></p>
     
-<?php endif ; ?>
+<?php endif ; ?> -->
 
 
 <?php if(empty($data["bookingrequests"])) : ?>
