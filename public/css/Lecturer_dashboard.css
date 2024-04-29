@@ -3,9 +3,10 @@
     background-color: var(--Border-color);
     color: white;
     cursor: pointer;
+    border-radius: 50px;
     }
-
-.option1:hover {
+  
+  .option1:hover {
     border-left: 5px solid #010058af;
     background-color: var(--Border-color);
     }
