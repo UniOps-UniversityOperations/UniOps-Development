@@ -71,7 +71,6 @@
                             <tr>
                                 <th>user_id</th>
                                 <th>username</th>
-                                <th>pwd</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -85,7 +84,6 @@
                                 <tr>
                                     <td><?php echo $user->user_id; ?></td>
                                     <td><?php echo $user->username; ?></td>
-                                    <td><?php echo $user->pwd; ?></td>
                                     <td class="link">
                                     <a href="<?php echo URLROOT;?>/AdminPosts/updateUser/<?php echo $user->user_id; ?>">
                                         <button class="update_button">
