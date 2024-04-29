@@ -1,0 +1,136 @@
+.side-panel-container {
+    width: calc(100vw - 200px);
+    min-width: fit-content;
+    padding: 0px 10px 10px 10px;
+    overflow: scroll;
+    position: relative;
+    top: 60px;
+    left: 200px;
+    height: calc(100vh - 50px);
+    min-height: fit-content;
+    background-color: var(--platinum);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.side-panel-toggle-btn {
+    width: 20px;
+    height: 20px;
+    display: grid;
+    place-items: center;
+    color: var(--black);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 25px;
+    z-index: 9;
+    background-color: transparent;
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 1350px) {
+    .side-panel-toggle-btn {
+        display: none;
+    }
+}
+
+.close-btn {
+    display: none;
+}
+
+.close-btn, .toggle-btn {
+    height: 20px;
+    width: 20px;
+}
+
+.side-panel {
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 300px;
+    min-width: 300px;
+    padding: 20px;
+    background-color: var(--ghost_white);
+    height: calc(100vh - 70px);
+    min-height: 400px;
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    z-index: 15;
+    margin-left: 10px;
+    border-radius: 20px;
+    animation: moving .3s ease;
+}
+
+@keyframes moving {
+    from{transform: translateX(50px); opacity: 0;}
+    to{transform: translateX(0px); opacity: 1;}
+}
+
+.side-panel-open .side-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.side-panel-open .toggle-btn {
+    display: none;
+}
+
+.side-panel-open .close-btn {
+    display: initial;
+}
+
+.side-panel .title-div {
+    background-color: var(--dark_blue);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: fit-content;
+    padding: 10px;
+    width: 100%;
+    border-radius: 15px;
+    color: var(--platinum);
+}
+
+.side-panel .title-div h3, h5 {
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.side-panel .content-div {
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    min-width: fit-content;
+    height: 100%;
+    min-height: fit-content;
+    border-radius: 15px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+}
+
+.side-panel .button-div {
+    width: 100%;
+    min-width: fit-content;
+    height: 30px;
+    min-height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-panel .save-btn-long {
+    height: 25px;
+    width: 100%;
+    min-height: 25px;
+}
+
+
