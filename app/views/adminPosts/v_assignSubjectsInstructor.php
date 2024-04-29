@@ -448,9 +448,26 @@
                         <progress class="progress" value="<?php echo $assigned_total_students; ?>" max="<?php echo $instructor_total_students; ?>"></progress>
                     </div>
                 </div>
-            </div>
 
-            
+                    <div class="conflicts">
+                        <h2>Preference Level Conflicts :</h2>
+                        <?php if($data['case'] == 1){ ?>
+                            <!-- <p>Case 1 </p> -->
+                            <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                <p><b><?php echo $conflict->lecturer_code; ?></b> has a higher preference level for <b><?php echo $conflict->subject_code; ?></b></p>
+                            <?php endforeach; ?>
+                        <?php } else if($data['case'] == 2){ ?>
+                            <!-- <p>Case 2 </p> -->
+                            <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                <p><b><?php echo $conflict->lecturer_code; ?></b> has the same preference level for <b><?php echo $conflict->subject_code; ?></b></p>
+                            <?php endforeach; ?>
+                            
+                        <?php } ?>
+
+                    </div>
+
+
+            </div>
   </div>
 
     <div class="popup-form">

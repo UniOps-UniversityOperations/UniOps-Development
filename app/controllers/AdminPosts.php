@@ -1600,7 +1600,7 @@ require_once APPROOT . '/controllers/Mail.php';
 
 // ----- For Instructor asign Subjects ------------------------------------------------------------------------------------------------------------------------------
 
-        public function assignSubjectsInstructor($postId, $popup = 0){
+        public function assignSubjectsInstructor($postId, $popup = 0, $case = 0, $ohp = 0, $sub_code = 0, $lpt = 0){
             $postsRS = $this->RSI_postModel->getSubjects($postId);
             $postsASI = $this->ASI_postModel->getSubjects($postId);
             $subjects = $this->ASI_postModel->getSubjectDetails();
@@ -1608,6 +1608,13 @@ require_once APPROOT . '/controllers/Mail.php';
             // get instructor name uing the postId(instructor code)
             $instructorName = $this->I_postModel->getInstructorByCode($postId);
             $email = $this->I_postModel->getEmail($postId);
+
+            $conflit_delails = null;
+            if($lpt == 1){
+                $conflit_delails = $this->RS_postModel->getOtherHighestPreference($sub_code, $postId);
+            }else{
+                $conflit_delails = null;
+            }
             
             if(!$postsRS){
                 $postsRS = "null";
@@ -1621,7 +1628,11 @@ require_once APPROOT . '/controllers/Mail.php';
                 'variables' => $variables,
                 'instructorName' => $instructorName,
                 'email' => $email,
-                'popup' => $popup
+                'popup' => $popup,
+                'case' => $case,
+                'ohp' => $ohp,
+                'lpt' => $lpt,
+                'conflit_delails' => $conflit_delails
             ];
             $this->view('adminPosts/v_assignSubjectsInstructor', $data);
         }
@@ -1639,14 +1650,61 @@ require_once APPROOT . '/controllers/Mail.php';
         //assign lecture...
 
         public function i_addToAssignSubjects($sub_code, $lecturer_code){
-            // die($sub_code . "and" . $lecturer_code);
-            //add subject to the requestedSubjects table
+
+            $this_l_preference = $this->RS_postModel->getPreference($sub_code, $lecturer_code);
+            
+            $other_highest_preference = $this->RS_postModel->getOtherHighestPreference($sub_code, $lecturer_code);
+            $max_preference = $this->RS_postModel->getMinPrefLevel($sub_code , $lecturer_code);
+            // die(var_dump($other_highest_preference));
+            if($other_highest_preference){
+                // die("case -> " . $this_l_preference . " and " . $max_preference);
+                
+                //case 1  - if the lecturer has no preference for the subject
+                if($this_l_preference == 0 || $this_l_preference > $max_preference){
+                    // die("case 1");
+                    if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code . '/0' . '/1' . '/1' . '/' . $sub_code . '/1');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                    
+                }else{
+                    //case 2 - if the lecturer has a same preference for the subject
+                    // die("case 2");
+                    if($this->AS_postModel->add($sub_code, $lecturer_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code . '/0' . '/2' . '/1' . '/' . $sub_code . '/1');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+            }
+
+            // die("ok");
+
             if($this->AS_postModel->add($sub_code, $lecturer_code)){
                 redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code);
             }
             else{
                 die('Something went wrong');
             }
+
+
+
+
+
+
+
+
+            // // die($sub_code . "and" . $lecturer_code);
+            // //add subject to the requestedSubjects table
+            // if($this->AS_postModel->add($sub_code, $lecturer_code)){
+            //     redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code);
+            // }
+            // else{
+            //     die('Something went wrong');
+            // }
         }
 
         public function i_deleteRowAS($lecturer_code, $subject_code){
