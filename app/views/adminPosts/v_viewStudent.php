@@ -9,7 +9,6 @@
         <!-- <div class="wrapper side-panel-open"> -->
         <div class="wrapper">
         <div class="main">
-            <h1 class="topic">Adminitsrator / Students</h1>
 
             <!-- Have to look this later *************************************************************************************************************-->
             <?php
@@ -19,7 +18,24 @@
                     $count++;
                 }
             ?>
+
+
+            <?php
+                // Count the number of rooms for each year
+                $roomYears = [];
+                foreach ($data['posts'] as $post) {
+                    $year = $post->s_year;
+                    if (!isset($roomYears[$year])) {
+                        $roomYears[$year] = 1;
+                    } else {
+                        $roomYears[$year]++;
+                    }
+                }
+            ?>
+
                 
+                <div class="top">
+                <h1 class="topic">Administrator / Students</h1>
                 <div class="centered_container">
                     <div class="room_type_counts">
                         <?php
@@ -31,6 +47,7 @@
                             echo "</div>";
                             echo "</div>"
                         ?>
+
                     </div>
                 </div>
 
@@ -40,7 +57,20 @@
                         <span class="clear-icon" id="clear-search">&#10006;</span>
                     </div>
 
-                    <div class="create_room_button">
+                    <div class="filter-container">
+                        <label for="filter-type">Filter by year:</label>
+                        <select id="filter-type">
+                            <option value="">All years</option>
+                            <?php
+                            // Populate the dropdown with unique room types
+                            foreach (array_keys($roomYears) as $year) {
+                                echo "<option value=\"$year\">$year</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                   <div class="create_room_button">
                         <a href="<?php echo URLROOT;?>/AdminPosts/createStudent">
                             <button class="create_button">Create Student</button>
                         </a>
@@ -60,14 +90,18 @@
                     <p style="padding-left: 25px;" class="title_item"><b>Name</b></p>
                     <p class="title_item"><b>Email</b></p>
                     <p class="title_item"><b>Index</b></p>
-                    <p class="title_item"><b>Registration Number</b></p>
-                    <p style="padding-right: 280px;" class="title_item"><b>Stream</b></p>
+                    <p class="title_item"><b>Year</b></p>
+                    <p style="padding-right: 240px;" class="title_item"><b>Stream</b></p>
                 </div> 
+            </div>
+            <?php $test = $stu_room = []; ?>
 
+            <div class="list">
+            <?php 
+            $i = 1;
+            foreach($data['posts'] as $post) : ?>
 
-            <?php foreach($data['posts'] as $post) : ?>
-
-                <div class="student_room" data-room-name="<?php echo $post->s_fullName; ?>">
+                <div class="student_room" data-room-name="<?php echo $post->s_fullNam; ?>" data-room-type="<?php echo $post->s_year; ?>">
 
                     <!-- Idle view -->
                     <div class="idle-view">
@@ -75,7 +109,7 @@
                                 <h3 class="header_title"><?php echo $post->s_nameWithInitial; ?></h3>
                                 <p class="header_item"><b></b> <?php echo $post->s_email; ?></p>
                                 <p class="header_item"><b></b> <?php echo $post->s_indexNumber; ?></p>
-                                <p class="header_item"><b></b> <?php echo $post->s_regNumber; ?></p>
+                                <p class="header_item"><b></b> <?php echo $post->s_year; ?></p>
                                 <p class="header_item"><b></b> <?php echo $post->s_stream; ?></p>
                                 
                                 <div class="action_buttons">
@@ -104,6 +138,7 @@
                     <!-- Detailed view -->
 
                             <?php
+                            $test[] = $post->s_code;
                              $stu_room[] = $post;
                             ?>
                     
@@ -111,6 +146,7 @@
                 </div>
                 
             <?php endforeach; ?>
+            </div>
 
 
         </div>
@@ -221,7 +257,7 @@
                                     <p><b>IsDeleted</b></p>
                                 </div> -->
 
-                            </div>
+                            <!-- </div> -->
                         </div>
                     <?php
                     echo "</div>";
@@ -232,6 +268,7 @@
         </div>
     
         </div>
+        
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="<?php echo URLROOT;?>/js/administrator/viewStudent.js"></script>
@@ -271,4 +308,3 @@
 
 
 <?php require APPROOT . '/views/includes/adminFooter.php'; ?>
-
