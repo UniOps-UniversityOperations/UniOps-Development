@@ -448,9 +448,52 @@
                         <progress class="progress" value="<?php echo $assigned_total_students; ?>" max="<?php echo $instructor_total_students; ?>"></progress>
                     </div>
                 </div>
-            </div>
 
-            
+                    <div class="conflicts">
+                        <h2>Preference Level Conflicts :</h2>
+                        <?php if($data['lpt'] == 1){ ?>
+                            <?php if($data['case'] == 1){ ?>
+                                <!-- <p>Case 1 </p> -->
+                                <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                    <p><b><?php echo $conflict->lecturer_code; ?></b> has a higher preference level for the <b>lecture</b> of <b><?php echo $conflict->subject_code; ?></b></p>
+                                <?php endforeach; ?>
+                            <?php } else if($data['case'] == 2){ ?>
+                                <!-- <p>Case 2 </p> -->
+                                <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                    <p><b><?php echo $conflict->lecturer_code; ?></b> has the same preference level for the <b>lecture</b> of <b><?php echo $conflict->subject_code; ?></b></p>
+                                <?php endforeach; ?>
+                            <?php } ?>
+                            
+                        <?php } else if($data['lpt'] == 2){ ?>
+                            <?php if($data['case'] == 1){ ?>
+                                <!-- <p>Case 1 </p> -->
+                                <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                    <p><b><?php echo $conflict->instructor_code; ?></b> has a higher preference level for the <b>practical</b> of <b><?php echo $conflict->subject_code; ?></b></p>
+                                <?php endforeach; ?>
+                            <?php } else if($data['case'] == 2){ ?>
+                                <!-- <p>Case 2 </p> -->
+                                <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                    <p><b><?php echo $conflict->instructor_code; ?></b> has the same preference level for the <b>practical</b> of <b><?php echo $conflict->subject_code; ?></b></p>
+                                <?php endforeach; ?>
+                            <?php } ?>
+                        <?php } else if($data['lpt'] == 3){ ?>
+                            <?php if($data['case'] == 1){ ?>
+                                <!-- <p>Case 1 </p> -->
+                                <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                    <p><b><?php echo $conflict->instructor_code; ?></b> has a higher preference level for the <b>tutorial</b> of <b><?php echo $conflict->subject_code; ?></b></p>
+                                <?php endforeach; ?>
+                            <?php } else if($data['case'] == 2){ ?>
+                                <!-- <p>Case 2 </p> -->
+                                <?php foreach($data['conflit_delails'] as $conflict) : ?>
+                                    <p><b><?php echo $conflict->instructor_code; ?></b> has the same preference level for the <b>tutorial</b> of <b><?php echo $conflict->subject_code; ?></b></p>
+                                <?php endforeach; ?>
+                            <?php } ?>
+                        <?php } ?>
+
+                    </div>
+
+
+            </div>
   </div>
 
     <div class="popup-form">
