@@ -41,8 +41,18 @@ class Reports extends Controller {
         $this->view('reports/admin/v_LecturerReportHome', $data);
     }
 
-    public function viewLecturerReport($l_code){
+    public function viewLecturerReport($l_code, $role = 'A'){
         // die('viewLecturerReport -> ' . $l_code);
+
+        if($role == 'L'){
+            // $l_code = $email;
+            //get l_code from email
+            if($this->Rpt_postModel->getLecturerCodefromEmail($l_code)){
+                $l_code = $this->Rpt_postModel->getLecturerCodefromEmail($l_code)->l_code;
+            }else{
+                die('Invalid email');
+            }
+        }
 
         $lecturer = $this->Rpt_postModel->getLecturer($l_code);
         $variables = $this->Rpt_postModel->getVariables();
@@ -56,7 +66,14 @@ class Reports extends Controller {
             'postsRS' => $postsRS
         ];
 
-        $this->view('reports/admin/v_LecturrerReport', $data);
+        if($role == 'A'){
+            $this->view('reports/admin/v_LecturerReport', $data);
+        }else if($role == 'L'){
+            // die('viewLecturerReport -> ' . $role);
+            $this->view('reports/lecturer/v_LecturrerReport', $data);
+        }
+
+        // $this->view('reports/admin/v_LecturrerReport', $data);
     }
 //---------------------------------------------------------------------------------------------------------------------------
 
@@ -105,7 +122,7 @@ class Reports extends Controller {
 // --------------------------------------------------------------------------------------------------------------------------
 
 // overall report------------------------------------------------------------------------------------------------------------
-    public function viewOverallReport(){
+    public function viewOverallReport($role = 'A'){
         // $lecturer_count = count($data['lecturers']);
         // $assigned_lec_count = $data['assigned_lec_count']->assigned_lec_count;
 
@@ -185,9 +202,30 @@ class Reports extends Controller {
             
         ];
 
-        $this->view('reports/admin/v_OverallReport', $data);
+        if($role == 'A'){
+            $this->view('reports/admin/v_OverallReport', $data);
+        }else if($role == 'L'){
+            // die('viewOverallReport -> ' . $role);
+            $this->view('reports/lecturer/v_OverallReportLecturer', $data);
+        }
+
+        // $this->view('reports/admin/v_OverallReport', $data);
+    }
+//---------------------------------------------------------------------------------------------------------------------------
+
+//For Lecturer---------------------------------------------------------------------------------------------------------------
+
+    public function viewReportsDashboardLecturer(){
+        //get current user id as email
+        $email = $_SESSION['user_id'];
+        // die('viewReportsDashboardLecturer -> ' . $user_id);
+
+        $data = [
+            'email' => $email
+        ];
+
+        $this->view('reports/v_reportsDashboardLecturer', $data);
     }
 
-//---------------------------------------------------------------------------------------------------------------------------
 
 }

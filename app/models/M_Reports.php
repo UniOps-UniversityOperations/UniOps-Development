@@ -323,6 +323,13 @@ class M_Reports{
         return $results;
     }
 
+    // getLecturerCodefromEmail
+    public function getLecturerCodefromEmail($email){
+        $this->db->query('SELECT l_code FROM lecturers WHERE l_email = :email AND l_isDeleted = 0');
+        $this->db->bind(':email', $email);
+        $result = $this->db->single();
+        return $result;
+    }
     
 
 
