@@ -65,7 +65,7 @@ class Users extends Controller {
     public function createUserSession($user){
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['username'] = $user->username;
-        // $_SESSION['profilePicture'] = $user->profilePicture;
+         $_SESSION['profilePicture'] = $user->profilePicture;
     }
 
     public function logout(){
