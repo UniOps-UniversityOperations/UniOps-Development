@@ -15,22 +15,18 @@ class Controller {
         if(class_exists($className)){
             $instance = new $className();
             return $instance;
+        } else {
+            // echo "Class Name doesn't exist";
+            return NULL;
         }
-        // else {
-        //     echo "Class Name doesn't exist";
-        //     return NULL;
-        // }
     }
 
     //load the view
     public function view($view, $data = []){
-
-        extract($data);
-        
         if(file_exists('../app/views/' . $view . '.php')){
             require_once '../app/views/' . $view . '.php';
         }else{
-            echo "File could not find";
+            die('View does not exist');
         }
     }
 }
