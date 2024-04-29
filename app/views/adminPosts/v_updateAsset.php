@@ -1,6 +1,6 @@
 <?php $style = "createAssets"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <!-- Body -->
     <div class="content">

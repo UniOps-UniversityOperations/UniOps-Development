@@ -1,6 +1,6 @@
 <?php $style = "createStudent"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <h1>Create New Student</h1>
 

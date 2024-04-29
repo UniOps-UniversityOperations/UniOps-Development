@@ -1,7 +1,7 @@
 <!-- this variable is used to set the css file for this view -->
 <?php $style = "createRoom"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 
 <h1>Add New Room</h1><br>

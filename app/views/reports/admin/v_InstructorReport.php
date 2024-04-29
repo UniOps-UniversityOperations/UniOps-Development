@@ -1,6 +1,6 @@
 <?php $style = "instructorReport"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <?php $i_nameWithInitials = ucwords(strtolower($data['instructor']->i_nameWithInitials)); ?>
 <h1>Reports &#10145; Instructors &#10145; <?php echo $i_nameWithInitials; ?> (<?php echo $data['instructor']->i_code; ?>)</h1>

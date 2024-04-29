@@ -1,6 +1,6 @@
 <?php $style = "roomBookingRequests"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <h1>Request for Room Bookings</h1>
 

@@ -227,5 +227,19 @@ class Reports extends Controller {
         $this->view('reports/v_reportsDashboardLecturer', $data);
     }
 
+// --------------------------------------------------------------------------------------------------------------------------
+
+//logReport
+    public function viewLogReport(){
+        $logs = $this->Rpt_postModel->getLogs();
+
+        $data = [
+            'logs' => $logs,
+        ];
+
+        $this->view('reports/admin/v_LogReport', $data);
+    }
+
+
 
 }

@@ -1,6 +1,6 @@
 <?php $style = "OverallReport"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <h1>Reports &#10145; Overall</h1>
 

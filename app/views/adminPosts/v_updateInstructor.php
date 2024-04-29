@@ -1,6 +1,6 @@
 <?php $style = "createInstructor"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <?php if($data['popup']){ ?>
     

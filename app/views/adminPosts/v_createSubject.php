@@ -1,6 +1,6 @@
 <?php $style = "createSubject"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <h1>Add New Subject</h1><br>
 
