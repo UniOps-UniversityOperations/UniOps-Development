@@ -1,0 +1,242 @@
+body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: var(--ghost_white);
+}
+
+.main-login {
+    background-color: var(--ghost_white);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 20px 0;
+}
+
+.image-container {
+    width: 50%;
+    height: 100vh;
+    background-color: var(--dark_blue);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 800px;
+    min-width: 500px;
+}
+
+.right-container {
+    width: 50%;
+    height: 100%;
+    background-color: var(--ghost_white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 800px;
+    min-width: 500px;
+}
+
+.form-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin-bottom: 50px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 12px;
+    width: 60%;
+    margin-bottom: 35px;
+    
+}
+
+.input-box {
+    width: 100%;
+    border-style: solid;
+    border-color: var(--silver);
+    border-radius: 5px;
+    border-width: 0.02rem;
+    height: 35px;
+    padding-left: 5px;
+    background-color: var(--ghost_white);
+    color: var(--erie_black);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.input-box input {
+    height: 100%;
+    width: 85%;
+    border-style: none;
+    outline: 0;
+    background-color: var(--ghost_white);
+    color: var(--erie_black);
+    padding-left: 5px;
+}
+
+.input-box:hover {
+    width: 100%;
+    border-style: solid;
+    /* x y blur_radius spread_radius color */
+    box-shadow: 0px 0px 5px 0 var(--silver);
+    border-color: var(--silver);
+    border-radius: 5px;
+    border-width: 0.02rem;
+    height: 35px;
+    padding-left: 10px;
+    background-color: var(--ghost_white);
+    color: var(--erie_black);
+}
+
+.input-box:focus {
+    width: 100%;
+    border-style: solid;
+    /* x y blur_radius spread_radius color */
+    box-shadow: 0px 0px 5px 0 var(--silver);
+    border-color: var(--silver);
+    border-radius: 5px;
+    border-width: 0.02rem;
+    height: 35px;
+    padding-left: 10px;
+    background-color: var(--ghost_white);
+    color: var(--erie_black);
+    outline: 0;
+}
+
+label {
+    width: 100%;
+    color: var(--dim_grey);
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+a {
+    color: var(--primary_blue);
+    font-weight: 600;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    margin-left: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a:hover {
+    color: var(--secondary_blue);
+}
+
+.link {
+    display: flex;
+    align-self: self-end;
+    position: relative;
+    top: 3px;
+    right: 3px;
+    font-size: 0.6rem;
+    font-weight: 400;
+}
+
+h6 {
+    font-weight: 300;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.error {
+    color: var(--red);
+    display: flex;
+    align-self: self-end;
+    position: relative;
+    top: 3px;
+    right: 3px;
+
+}
+
+.border-red {
+    border-style: solid;
+    border-color: var(--red);
+    border-radius: 5px;
+    border-width: 0.02rem;
+}
+
+.message {
+    width: 55%;
+    color: var(--ghost_white);
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark_blue);
+    border-style: none;
+    border-radius: 5px;
+    position: relative;
+    bottom: 25px;
+}
+
+h4 {
+    font-weight: 300;
+    font-size: 0.8rem;
+}
+
+.eye-icon {
+    width: 25px;
+    cursor: pointer;
+    position: relative;
+    right: 10px;
+}
+
+.remember-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 20px;
+    left: 10px;
+    width: 60%;
+    margin-top: 30px;
+}
+
+.remember-me label {
+    font-size: 0.8rem;
+    margin-left: 5px;
+    margin-bottom: 0;
+}
+
+.remember-me input {
+    background-color: var(--ghost_white);
+}
+
+.main-login .save-btn-long {
+    width: 60%;
+    height: 32px;
+}
+
+.main-login .save-btn-long:hover {
+    width: 60%;
+    height: 32px;
+}
+
