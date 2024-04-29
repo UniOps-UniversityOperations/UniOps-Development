@@ -27,6 +27,9 @@
     // Load Config
     require_once 'config/config.php';
 
+    // Load Timetable Helpers
+    require '../app/helpers/timetables/functions.php';
+
     // Libraries
     require_once 'libraries/Core.php';
     require_once 'libraries/Controller.php';

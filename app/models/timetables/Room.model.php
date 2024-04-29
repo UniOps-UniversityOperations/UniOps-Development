@@ -1,8 +1,13 @@
 <?php
 
-class Room extends M_Room {
+class Room {
 
-    protected $db;
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new Database();
+    }
 
     public function getRoomsByLectureType($lecture_type) {
 
