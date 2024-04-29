@@ -1098,7 +1098,7 @@ require_once APPROOT . '/controllers/Mail.php';
             // 12	s_isDeleted	date	
         
         //Create Student
-        public function createStudent(){
+        public function createStudent($popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -1121,24 +1121,34 @@ require_once APPROOT . '/controllers/Mail.php';
                     // 's_isDeleted' => isset($ _POST['s_isDeleted']) ? '1' : '0',
                     
                     's_codeError' => '',
+
+                    'popup' => $popup,
                 ];
 
                 if(empty($data['s_code'])){
                     $data['s_codeError'] = 'Please enter Student Name';
                 }
 
-                if(empty($data['s_codeError'])){
-                    if($this->Stu_postModel->createStudent($data)){
-                        //flash('post_message', 'Student Added');
-                        //redirect('pages/administrator_dashboard');
-                        redirect('adminPosts/viewStudent');
-                    }else{
-                        die('Something went wrong');
-                    }
+                //check if s_code already exists
+                if($this->Stu_postModel->studentExists($data['s_code'])){
+                    redirect('AdminPosts/createStudent/1');
+                    // die('room already exists');
                 }else{
-                    $this->view('posts/v_createStudent', $data);
 
+                    if(empty($data['s_codeError'])){
+                        if($this->Stu_postModel->createStudent($data)){
+                            //flash('post_message', 'Student Added');
+                            //redirect('pages/administrator_dashboard');
+                            redirect('adminPosts/viewStudent');
+                        }else{
+                            die('Something went wrong');
+                        }
+                    }else{
+                        $this->view('posts/v_createStudent', $data);
+    
+                    }
                 }
+
             }  else{
                 $data = [
 
@@ -1158,6 +1168,8 @@ require_once APPROOT . '/controllers/Mail.php';
                     // 's_isDeleted' => '',
  
                     // 's_codeError' => '',
+
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_createStudent', $data);
             }  
