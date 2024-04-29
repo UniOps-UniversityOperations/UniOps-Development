@@ -74,7 +74,7 @@ function reserve(start_time,end_time) {
 
 
   <label for='purpose' class='reservation_label'>Description:</label>
-  <textarea id='purpose' name='purpose' rows='4' required></textarea>
+  <textarea id='purpose' name='purpose' rows='4' ></textarea>
   <button id='reservation_submit'>Submit</button>
 </form>
 

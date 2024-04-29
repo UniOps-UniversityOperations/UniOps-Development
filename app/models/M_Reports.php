@@ -330,6 +330,26 @@ class M_Reports{
         $result = $this->db->single();
         return $result;
     }
+
+    //setReportLogin set data as LOGIN
+    public function setReportLogin($user_id, $role){
+        $this->db->query('INSERT INTO user_log_report(user_id, user_role, data) VALUES(:user_id, :role, "LOGIN")');
+        $this->db->bind(':user_id', $user_id);
+        $this->db->bind(':role', $role);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    //getLogs
+    public function getLogs(){
+        $this->db->query('SELECT * FROM user_log_report ORDER BY id');
+        $results = $this->db->resultSet();
+        return $results;
+    }
     
 
 

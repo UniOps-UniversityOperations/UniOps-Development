@@ -23,7 +23,7 @@ class M_Lecturer {
     }
 
     public function viewRooms() {
-        $this->db->query("SELECT * FROM rooms");
+        $this->db->query("SELECT * FROM rooms WHERE r_isDeleted = 0;");
         $result = $this->db->resultSet();
         if($result){
             return $result;
@@ -82,7 +82,7 @@ class M_Lecturer {
     }
 
     public function viewBookingGrid($dateSelected) {
-        $sql = "SELECT 
+/*         $sql = "SELECT 
         r.id,
         r.name,
         rb.booking_date AS date,
@@ -92,13 +92,13 @@ class M_Lecturer {
         rb.booked_by,
         'event' AS booking_type
     FROM 
-        rooms r
+        rooms r 
     LEFT JOIN 
-        roombookings rb ON r.id = rb.r_id
+        roombookings rb ON r.name = rb.r_id AND r.r_isDeleted =  0
 
-        WHERE rb.booking_date = :dates
+        WHERE rb.booking_date = :dates 
     
-    UNION
+    UNION 
     
     SELECT 
         r.id,
@@ -112,13 +112,49 @@ class M_Lecturer {
     FROM 
         rooms r
     LEFT JOIN 
-        lecturebookings lb ON r.id = lb.r_id AND lb.day_of_week = :day_of_week
+        lecturebookings lb ON r.name = lb.r_id AND lb.day_of_week = :day_of_week AND r.r_isDeleted =  0
         
     ORDER BY 
         id, 
         CASE WHEN start_time IS NOT NULL THEN 0 ELSE 1 END,
         start_time;
-        ";
+        "; */
+
+        $sql = "SELECT 
+        r.id,
+        r.name,
+        rb.booking_date AS date,
+        rb.start_time,
+        rb.end_time,
+        rb.event AS booking_name,
+        rb.booked_by,
+        'event' AS booking_type
+    FROM (SELECT * FROM rooms WHERE r_isDeleted=0) r 
+    LEFT JOIN 
+        roombookings rb ON r.name = rb.r_id 
+
+        WHERE rb.booking_date = :dates 
+    
+    UNION 
+    
+    SELECT 
+        r.id,
+        r.name,
+        lb.day_of_week AS date,
+        lb.start_time,
+        lb.end_time,
+        lb.subject AS booking_name,
+        lb.type AS booked_by,
+        'lecture' AS booking_type
+    FROM 
+    (SELECT * FROM rooms WHERE r_isDeleted=0) r
+    LEFT JOIN 
+        lecturebookings lb ON r.name = lb.r_id AND lb.day_of_week = :day_of_week 
+        
+    ORDER BY 
+        id, 
+        CASE WHEN start_time IS NOT NULL THEN 0 ELSE 1 END,
+        start_time;";
       
         $day = date("l",strtotime($dateSelected));
 

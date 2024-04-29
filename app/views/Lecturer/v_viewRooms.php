@@ -2,7 +2,6 @@
 $data_json = json_encode($data);
 ?> 
 
-
 <?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
 
 <div class="sidebar"  id="room">
@@ -55,7 +54,7 @@ $data_json = json_encode($data);
     <table class="styled-table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Name</th>
                 <th>Type</th>
                 <th>Capacity</th>
                 <th>No_Of_Tables</th>
@@ -66,8 +65,8 @@ $data_json = json_encode($data);
 
             <?php
             foreach ($data as $row) {
-                echo '<tr id="'.$row->id.'">';
-                echo '<td class = "id">'.$row->id.'</td>';
+                echo '<tr id="'.$row->name.'">';
+                echo '<td class = "id">'.$row->name.'</td>';
                 echo '<td>'.$row->type.'</td>';
                 echo '<td>'.$row->capacity.'</td>';
                 echo '<td>'.$row->no_of_tables.'</td>';

@@ -1,6 +1,6 @@
 <?php $style = "addUser"; ?>
 
-<?php require APPROOT . '/views/includes/adminHeader.php'; ?>
+<?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
 <h1>Update Adminidtrator</h1>
 
@@ -17,7 +17,7 @@
             </label>
 
             <label class="lable" for="pwd">Password:
-            <input type="pwd" name="pwd" id="pwd" value="<?php echo $data['pwd']; ?>" required>
+            <input type="password" name="pwd" id="pwd" value="<?php echo $data['pwd']; ?>" required>
             </label>
 
             <b><label class="lable" for="role">Role: Administator</label></b>

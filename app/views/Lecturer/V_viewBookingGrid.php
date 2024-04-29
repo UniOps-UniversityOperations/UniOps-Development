@@ -52,7 +52,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $previousTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$previousTime->format('H:i:s')}' room_Id='{$data[$i-1]->id}'>Free</div>";
+                            echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$previousTime->format('H:i:s')}' room_Id='{$data[$i-1]->name}'>Free</div>";
                         }
                         echo '<div></div>';/* The empty Div at the end of each row */
                     }
@@ -60,7 +60,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                     $previous = '7:00:00';
 
                     //New room row
-                    echo "<div class='room-id'>{$data[$i]->id}</div>";
+                    echo "<div class='room-id'>{$data[$i]->name}</div>";
                     /* Checking whether start time is not null is for checking whether there are bookings for the room */
                     if($data[$i]->start_time !== NULL && $data[$i]->start_time !== $previous) {
                         $startTime = new DateTime($data[$i]->start_time);
@@ -71,7 +71,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $previousTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max='{$startTime->format('H:i:s')}' room_Id='{$data[$i]->id}'>Free</div>";
+                            echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max='{$startTime->format('H:i:s')}' room_Id='{$data[$i]->name}'>Free</div>";
                         }
 
                         //
@@ -87,7 +87,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $endTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$endTime->format('H:i:s')}' room_Id='{$data[$i]->id}'>Free</div>";
+                            echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$endTime->format('H:i:s')}' room_Id='{$data[$i]->name}'>Free</div>";
                         }
 
                         //The last empty div
@@ -124,7 +124,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                         // Calculate the difference(Free slot)
                         $timeDifference = $previousTime->diff($startTime)->h;
                         for($diff=1;$diff<=$timeDifference;$diff++){
-                            echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max = '{$startTime->format('H:i:s')}' room_Id='{$data[$i]->id}'>Free</div>";
+                            echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max = '{$startTime->format('H:i:s')}' room_Id='{$data[$i]->name}'>Free</div>";
                         }
 
                         //
@@ -148,7 +148,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
             }
             /* If $i = 0(If this is the first item retrieved) */
             else {
-                echo "<div class='room-id'>{$data[$i]->id}</div>";
+                echo "<div class='room-id'>{$data[$i]->name}</div>";
                 $previous = '7:00:00';
                 if($data[$i]->start_time!==NULL && $data[$i]->start_time !== $previous) {
                     $startTime = new DateTime($data[$i]->start_time);
@@ -159,7 +159,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                     // Calculate the difference(Free slot)
                     $timeDifference = $previousTime->diff($startTime)->h;
                     for($diff=1;$diff<=$timeDifference;$diff++){
-                        echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max='{$startTime->format('H:i:s')}' room_Id='{$data[$i]->id}'>Free</div>";
+                        echo "<div class='free_slot' min='{$previousTime->format('H:i:s')}' max='{$startTime->format('H:i:s')}' room_Id='{$data[$i]->name}'>Free</div>";
                     }
                 }
 
@@ -173,7 +173,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
                     // Calculate the difference(Free slot)
                     $timeDifference = $endTime->diff($startTime)->h;
                     for($diff=1;$diff<=$timeDifference;$diff++){
-                        echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$endTime->format('H:i:s')}' room_Id='{$data[$i]->id}'>Free</div>";
+                        echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$endTime->format('H:i:s')}' room_Id='{$data[$i]->name}'>Free</div>";
                     }
 
                     //The last empty div
@@ -206,7 +206,7 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
             // Calculate the difference(Free slot)
             $timeDifference = $previousTime->diff($startTime)->h;
             for($diff=1;$diff<=$timeDifference;$diff++){
-                echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$previousTime->format('H:i:s')}' room_Id='{$data[count($data)-1]->id}'>Free</div>";
+                echo "<div class='free_slot' min='{$startTime->format('H:i:s')}' max='{$previousTime->format('H:i:s')}' room_Id='{$data[count($data)-1]->name}'>Free</div>";
             }
             echo '<div></div>';/* The empty Div at the end of each row */
         }
