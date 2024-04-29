@@ -1264,7 +1264,7 @@ require_once APPROOT . '/controllers/Mail.php';
         }
 
         //Create Asset
-        public function createAsset(){
+        public function createAsset($popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -1277,24 +1277,34 @@ require_once APPROOT . '/controllers/Mail.php';
                     'a_isInUse' => isset($_POST['a_isInUse']) ? '1' : '0',
 
                     'a_codeError' => '',
+
+                    'popup' => $popup,
                 ];
 
                 if(empty($data['a_code'])){
                     $data['a_codeError'] = 'Please enter Asset Code';
                 }
 
-                if(empty($data['a_codeError'])){
-                    if($this->A_postModel->createAsset($data)){
-                        //flash('post_message', 'Asset Added');
-                        //redirect('pages/administrator_dashboard');
-                        redirect('adminPosts/viewAssets');
-                    }else{
-                        die('Something went wrong');
-                    }
+                //check if a_code already exists
+                if($this->A_postModel->assetExists($data['a_code'])){
+                    redirect('AdminPosts/createAsset/1');
+                    // die('room already exists');
                 }else{
-                    $this->view('posts/v_createAsset', $data);
 
+                    if(empty($data['a_codeError'])){
+                        if($this->A_postModel->createAsset($data)){
+                            //flash('post_message', 'Asset Added');
+                            //redirect('pages/administrator_dashboard');
+                            redirect('adminPosts/viewAssets');
+                        }else{
+                            die('Something went wrong');
+                        }
+                    }else{
+                        $this->view('posts/v_createAsset', $data);
+    
+                    }
                 }
+
             }  else{
                 $data = [
                     'title' => 'Create Asset',
@@ -1305,13 +1315,15 @@ require_once APPROOT . '/controllers/Mail.php';
                     'a_isInUse' => '',
 
                     'a_codeError' => '',
+
+                    'popup' => $popup,
                 ];
                 $this->view('adminPosts/v_createAsset', $data);
             }  
         }
 
         //Update Asset
-        public function updateAsset($postId){
+        public function updateAsset($postId, $popup = 0){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -1319,20 +1331,36 @@ require_once APPROOT . '/controllers/Mail.php';
                     'title' => 'Update Asset',
                     'postId' => $postId,
 
-                    'a_id' => trim($_POST['a_id']),
+                    'a_id' => $postId,
                     'a_code' => trim($_POST['a_code']),
                     'a_type' => trim($_POST['a_type']),
                     'a_addedDate' => trim($_POST['a_addedDate']),
                     'a_isInUse' => isset($_POST['a_isInUse']) ? '1' : '0',
+
+                    'a_codeError' => '',
+
+                    'popup' => $popup,
                 ];
 
-                if(1){
-                    if($this->A_postModel->updateAsset($data)){
-                        redirect('adminPosts/viewAssets');
-                    }else{
-                        die('Something went wrong');
+                if(empty($data['a_code'])){
+                    $data['a_codeError'] = 'Please enter Asset Code';
+                }
+
+                //check if a_code already exists
+                if($this->A_postModel->assetExists2($data['a_code'], $postId)){
+                    redirect('AdminPosts/updateAsset/' . $postId . '/1');
+                    // die('room already exists');
+                }else{
+
+                    if(1){
+                        if($this->A_postModel->updateAsset($data)){
+                            redirect('adminPosts/viewAssets');
+                        }else{
+                            die('Something went wrong');
+                        }
                     }
                 }
+
             }else{
                 $post = $this->A_postModel->getAssetById($postId);
                 $data = [
@@ -1343,6 +1371,9 @@ require_once APPROOT . '/controllers/Mail.php';
                     'a_type' => $post->a_type,
                     'a_addedDate' => $post->a_addedDate,
                     'a_isInUse' => $post->a_isInUse,
+
+                    'popup' => $popup,
+
                 ];
                 $this->view('adminPosts/v_updateAsset', $data);
             }
