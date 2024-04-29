@@ -9,6 +9,16 @@
 	<title>Admin Dashboard</title>
 	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/administrator/adminHeaderStyles.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo URLROOT;?>/css/administrator/<?php echo $style ;?>.css">
+
+	<!-- Timetable styles -->
+	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/timetables/main.css">
+	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/timetables/header.css">
+	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/timetables/side_panel.css">
+	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/timetables/components.css">
+	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/timetables/timetables_add.css">
+	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/timetables/timetables_index.css">
+	<link rel="stylesheet"href="<?php echo URLROOT;?>/css/timetables/timetables_view.css">
+
 </head>
 
 <body>
@@ -33,6 +43,8 @@
 	</header>
 
 	<div class="main-container">
+
+		<!-- Side navigation bar -->
 		<div class="navcontainer">
 			<nav class="nav">
 				<div class="nav-upper-options">
@@ -94,9 +106,9 @@
 						</a>
 					</div>
 
-					<div class="nav-option timetable">
-						<a href="">
-							<img src="<?php echo URLROOT;?>/images/timetable.svg" class="nav-img">
+					<div class="nav-option">
+						<a href="<?=URLROOT?>/Timetable/timetableIndex">
+							<img src="<?=URLROOT;?>/images/timetable.svg" class="nav-img">
 							<h3>Timetables</h3>
 						</a>
 					</div>
