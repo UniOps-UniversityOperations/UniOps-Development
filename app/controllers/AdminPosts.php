@@ -1612,8 +1612,10 @@ require_once APPROOT . '/controllers/Mail.php';
             $conflit_delails = null;
             if($lpt == 1){
                 $conflit_delails = $this->RS_postModel->getOtherHighestPreference($sub_code, $postId);
-            }else{
-                $conflit_delails = null;
+            }
+
+            if($lpt == 2){
+                $conflit_delails = $this->RSI_postModel->getOtherHighestPreference_p($sub_code, $postId);
             }
             
             if(!$postsRS){
@@ -1657,11 +1659,9 @@ require_once APPROOT . '/controllers/Mail.php';
             $max_preference = $this->RS_postModel->getMinPrefLevel($sub_code , $lecturer_code);
             // die(var_dump($other_highest_preference));
             if($other_highest_preference){
-                // die("case -> " . $this_l_preference . " and " . $max_preference);
                 
                 //case 1  - if the lecturer has no preference for the subject
                 if($this_l_preference == 0 || $this_l_preference > $max_preference){
-                    // die("case 1");
                     if($this->AS_postModel->add($sub_code, $lecturer_code)){
                         redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code . '/0' . '/1' . '/1' . '/' . $sub_code . '/1');
                     }
@@ -1671,7 +1671,6 @@ require_once APPROOT . '/controllers/Mail.php';
                     
                 }else{
                     //case 2 - if the lecturer has a same preference for the subject
-                    // die("case 2");
                     if($this->AS_postModel->add($sub_code, $lecturer_code)){
                         redirect('AdminPosts/assignSubjectsInstructor/' . $lecturer_code . '/0' . '/2' . '/1' . '/' . $sub_code . '/1');
                     }
@@ -1729,6 +1728,33 @@ require_once APPROOT . '/controllers/Mail.php';
         //assign practical...
 
         public function i_addToAssignPractical($sub_code, $instructor_code){
+
+            $this_l_preference = $this->RSI_postModel->getPreferencetoPractical($sub_code, $instructor_code);
+            $other_highest_preference = $this->RSI_postModel->getOtherHighestPreference_p($sub_code, $instructor_code);
+            $max_preference = $this->RSI_postModel->getMinPrefLevel_p($sub_code , $instructor_code);
+
+            if($other_highest_preference){
+                
+                //case 1  - if the lecturer has no preference for the subject
+                if($this_l_preference == 0 || $this_l_preference > $max_preference){
+                    if($this->ASI_postModel->add_p($sub_code, $instructor_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/0' . '/1' . '/1' . '/' . $sub_code . '/2');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                    
+                }else{
+                    //case 2 - if the lecturer has a same preference for the subject
+                    if($this->ASI_postModel->add_p($sub_code, $instructor_code)){
+                        redirect('AdminPosts/assignSubjectsInstructor/' . $instructor_code . '/0' . '/2' . '/1' . '/' . $sub_code . '/2');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+            }
+
             // die($sub_code . "and" . $lecturer_code);
             //add subject to the requestedSubjects table
             if($this->ASI_postModel->add_p($sub_code, $instructor_code)){
