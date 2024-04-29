@@ -758,3 +758,8 @@ margin-bottom: 20px;
   padding-left: 30px;
   padding-bottom: 5px;
 }
+
+.conflicts b{
+  font-weight: bolder;
+  font-size: 21px;
+}

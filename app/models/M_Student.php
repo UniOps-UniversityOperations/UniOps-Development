@@ -134,6 +134,30 @@ class M_Student{
         }
     }
 
+    // public function getTimeTable() {
+    //     $this->db->query("SELECT s_year,s_stream FROM students WHERE s_email = :uid");
+    //     $this->db->bind(':uid', $this->uid);
+    //     $studentResult = $this->db->single();
+
+    //     if($studentResult) {
+    //         // $studentYear = $studentYearResult['s_code'];
+        
+    //         $this->db->query("SELECT * FROM studenttimetable WHERE s_year = :studentYear AND s_stream = :sstream ORDER BY start_time");
+    //         $this->db->bind(':studentYear',$studentResult->s_year);
+    //         $this->db->bind(':sstream',$studentResult->s_stream);
+    //         // $this->db->bind(':uid',$this->uid);
+    //         // $this->db->bind(':current_day',$current_day);
+    //         $result = $this->db->resultSet();
+    //         if($result){
+    //             return $result;
+    //         } else {
+    //             return "";
+    //         }
+    //     }else{
+    //         return "";
+    //     }
+    // }
+
     public function getTimeTable($current_Day) {
         $this->db->query("SELECT s_year,s_stream FROM students WHERE s_email = :uid");
         $this->db->bind(':uid', $this->uid);
@@ -157,7 +181,31 @@ class M_Student{
             return "";
         }
     }
-    
+
+//     public function getTimeTableByDay($day)
+// {
+//     $this->db->query("SELECT s_year, s_stream FROM students WHERE s_email = :uid");
+//     $this->db->bind(':uid', $this->uid);
+//     $studentResult = $this->db->single();
+
+//     if ($studentResult) {
+//         $this->db->query("SELECT * FROM studenttimetable WHERE s_year = :studentYear AND s_stream = :sstream AND day_of_week = :day ORDER BY start_time");
+//         $this->db->bind(':studentYear', $studentResult->s_year);
+//         $this->db->bind(':sstream', $studentResult->s_stream);
+//         $this->db->bind(':day', $day);
+//         $result = $this->db->resultSet();
+
+//         if ($result) {
+//             return $result;
+//         } else {
+//             return [];
+//         }
+//     } else {
+//         return [];
+//     }
+// }
+
+
 
     public function viewRooms() {
         $this->db->query("SELECT * FROM rooms");
@@ -179,6 +227,7 @@ class M_Student{
             return "Empty";
         }
     }
+    
     public function updateProfile($data){
         // $data['s_id']=130;
         if (!empty($data['s_id'])) {
