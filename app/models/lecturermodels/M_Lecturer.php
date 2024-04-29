@@ -131,7 +131,7 @@ class M_Lecturer {
         'event' AS booking_type
     FROM (SELECT * FROM rooms WHERE r_isDeleted=0) r 
     LEFT JOIN 
-        roombookings rb ON r.name = rb.r_id AND r.r_isDeleted =  0
+        roombookings rb ON r.name = rb.r_id 
 
         WHERE rb.booking_date = :dates 
     
@@ -149,7 +149,7 @@ class M_Lecturer {
     FROM 
     (SELECT * FROM rooms WHERE r_isDeleted=0) r
     LEFT JOIN 
-        lecturebookings lb ON r.name = lb.r_id AND lb.day_of_week = :day_of_week AND r.r_isDeleted =  0
+        lecturebookings lb ON r.name = lb.r_id AND lb.day_of_week = :day_of_week 
         
     ORDER BY 
         id, 
