@@ -411,12 +411,12 @@
                 <div class='mpr_top_right'>
                 
                     <div class="top_bar" style="justify-content: flex-end; z-index: 1;">
-                        <a href="">
+                        <!-- <a href="">
                             <button class="more_btn1">MORE</button>
-                        </a>
+                        </a> -->
                     </div>
 
-                    <div class='pie_chart' style="margin-top: -48px;">
+                    <div class='pie_chart' style="margin-top: -10px;">
                         <div class="pieID--categories pie-chart--wrapper">
                             <h3 class="chart_name">Room Types</h3>
                             <div class="pie-chart" style="scale: 1; margin: -5px auto;">
@@ -539,9 +539,9 @@
             <div class='mpr_top_right'>
             
                 <div class="top_bar" style="justify-content: flex-end;">
-                    <a href="">
+                    <!-- <a href="">
                         <button class="more_btn1">MORE</button>
-                    </a>
+                    </a> -->
                 </div>
 
 
@@ -589,9 +589,9 @@
             <div class="top_bar">
                 <h2>Instructors & Assistant Lecturers</h2>
     
-                <a href="">
+                <!-- <a href="">
                     <button class="more_btn1">MORE</button>
-                </a>
+                </a> -->
             </div>
 
             <div class='progress_bars_container'>

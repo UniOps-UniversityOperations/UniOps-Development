@@ -2,6 +2,12 @@
 
 <?php require APPROOT . '/views/includes/LecturerHeader.php'; ?>
 
+<!-- <script>
+    window.onload = function() {
+        document.body.style.zoom = "150%"; // Adjust the zoom level as needed
+    };
+</script> -->
+
 <h1>Reports Dashboard</h1>
 
 
