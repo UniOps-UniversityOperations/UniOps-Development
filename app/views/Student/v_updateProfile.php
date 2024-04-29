@@ -18,15 +18,15 @@
         <input type="email" id="s_email" name="s_email" placeholder="s_email" value="<?php echo $data["s_email"];?>" required>
         </label></br>
 
-        <label class="lable" for="s_fullName">Student Full Name:
+        <label class="lable" for="s_fullName">Full Name:
         <input type="text" id="s_fullName" name="s_fullName" placeholder="s_fullName" value="<?php echo $data["s_fullName"];?>" required>
         </label></br>
 
-        <label class="lable" for="s_nameWithInitial">Student Name With Initials:
+        <label class="lable" for="s_nameWithInitial">Name With Initials:
         <input type="text" id="s_nameWithInitial" name="s_nameWithInitial" placeholder="s_nameWithInitial" value="<?php echo $data["s_nameWithInitial"];?>" required>
         </label></br>
 
-        <label class="lable" for="s_contactNumber">Student Contact Number:
+        <label class="lable" for="s_contactNumber">Contact Number:
         <input type="text" id="s_contactNumber" name="s_contactNumber" placeholder="s_contactNumber" 
            value="<?php echo $data["s_contactNumber"];?>" 
            pattern="[0-9]{10}" 

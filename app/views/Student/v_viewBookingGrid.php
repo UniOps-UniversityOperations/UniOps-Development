@@ -33,10 +33,10 @@ $maxDate = (new DateTime())->add(new DateInterval('P1M'))->format('Y-m-d');
 
     /* Generate Time Slots */
         for($i=7;$i<=11;$i++){
-            echo "<div class='time'>{$i}am</div>";
+            echo "<div class='time'>{$i}</div>";
         }
         for($i=12;$i<=19;$i++){
-            echo "<div class='time'>{$i}pm</div>";
+            echo "<div class='time'>{$i}</div>";
         }
         
         $previous = '7:00:00';
