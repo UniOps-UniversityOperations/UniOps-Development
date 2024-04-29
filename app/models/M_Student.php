@@ -262,43 +262,6 @@ class M_Student{
 
     public function viewBookings($date,$roomId) {
 
-        $sql = "SELECT
-        rb.r_id,
-        rb.start_time,
-        rb.end_time,
-        rb.event AS event,
-        NULL AS subject,
-        rb.booked_by AS booked_by
-        FROM roombookings rb
-        WHERE rb.r_id = :room_id and rb.booking_date = :dates
-        UNION ALL
-        SELECT
-        lb.r_id,
-        lb.start_time,
-        lb.end_time,
-        'Lecture' AS event,
-        lb.subject AS subject,
-        NULL AS booked_by
-        FROM lecturebookings lb
-        WHERE lb.r_id = :room_id and lb.day_of_week = :day_of_week
-        ORDER BY start_time
-        ";
-
-        $day = date("l",strtotime($date));
-
-        $this->db->query($sql);
-        $this->db->bind(':room_id',$roomId);
-        $this->db->bind(':dates',$date);
-        $this->db->bind(':day_of_week',$day);
-        $result = $this->db->resultSet();
-        if($result){
-            return $result;
-        } else {
-            return "Empty";
-        }
-    }
-
-    public function viewBookingGrid($dateSelected) {
         $sql = "SELECT 
         r.id,
         r.name,
@@ -315,7 +278,7 @@ class M_Student{
 
         WHERE rb.booking_date = :dates
     
-    UNION ALL
+    UNION
     
     SELECT 
         r.id,
@@ -332,9 +295,9 @@ class M_Student{
         lecturebookings lb ON r.id = lb.r_id AND lb.day_of_week = :day_of_week
         
     ORDER BY 
-        id, start_time;
-    
-     
+        id, 
+        CASE WHEN start_time IS NOT NULL THEN 0 ELSE 1 END,
+        start_time;
         ";
 
         $day = date("l",strtotime($dateSelected));
