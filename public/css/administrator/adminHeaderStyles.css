@@ -97,8 +97,8 @@ height: 42px;
 .main {
     height: calc(100vh - 70px);
     width: 100%;
-    overflow-y: scroll;
-    overflow-x: scroll;
+    /* overflow-y: scroll;
+    overflow-x: scroll; */
     padding: 20px 15px 30px 15px;
 }
 

@@ -375,6 +375,22 @@ class M_Student{
 
 
 
+
+    //studentExists($data['s_code'])
+    public function studentExists($s_code){
+        $this->db->query('SELECT * FROM students WHERE s_code = :s_code AND s_isDeleted = 0');
+        $this->db->bind(':s_code', $s_code);
+        $row = $this->db->single();
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+
 }
 
 

@@ -79,6 +79,37 @@ class M_Asset{
         return $row;
     }
 
+    //assetExists($data['a_code'])
+    public function assetExists($a_code){
+        $this->db->query('SELECT * FROM assets WHERE a_code = :a_code AND a_isDeleted = 0');
+        $this->db->bind(':a_code', $a_code);
+
+        $row = $this->db->single();
+
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //assetExists2($data['a_code'], $postId)
+    public function assetExists2($a_code, $a_id){
+        $this->db->query('SELECT * FROM assets WHERE a_code = :a_code AND a_id != :a_id AND a_isDeleted = 0');
+        $this->db->bind(':a_code', $a_code);
+        $this->db->bind(':a_id', $a_id);
+
+        $row = $this->db->single();
+
+        //Check row
+        if($this->db->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }
 
