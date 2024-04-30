@@ -253,7 +253,7 @@
     background-color: transparent;
     border: none;
     color: var(--black);
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .column-div div {
@@ -275,6 +275,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .column-div .filled-slot {

@@ -291,49 +291,59 @@
             $data['academic_years'] = $academic_year->getAcademicYears();
             $data['current_academic_year'] = $academic_year->get_current_academic_year();
             $data['current_academic_year_id'] = $academic_year->get_current_academic_year_id();
+            $data['timetable_error'] = '';
+
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $data = [
 
-                    'academic_year_id' => trim($_POST['academic_year_id']),
-                    'degree_name_id' => trim($_POST['degree_name_id']),
-                    'year_id' => trim($_POST['year_id']),
-                    'semester_id' => trim($_POST['semester_id']),
+                    'academic_year' => trim($_POST['academic_year']),
+                    'stream' => trim($_POST['stream']),
+                    'year' => trim($_POST['year']),
+                    'semester' => trim($_POST['semester']),
                     'added_date' => date("Y-m-d H:i:s"),
                 ];
 
 
-                if($data) {
+                $timetable = new Timetable_Model();
+                $timetables = new Timetables();
 
-                    $timetable = new Timetable_Model();
-                    $timetables = new Timetables();
-                    $course = new Course();
-                    $room = new Room();
+                // show($data);die;
 
-                    // show($data);die;
+                if($timetable->add_timetables($data)) {
 
-                    if($timetable->add_timetables($data)) {
-                        if($timetables->create_timetable_table($data['academic_year_id'], $data['year_id'], $data['degree_name_id'])) {
-                            
-                            $timetables->fill_timetable($data['academic_year_id'], $data['year_id'], $data['degree_name_id']);
-                            // $timetables->update_semester($data['semester_id']);
+                    $data['timetable_error'] = '';
 
-                            // $course->send_timetable_details($data);
-                            // $data['rooms'] = $room->get_rooms($data);
+                    if($timetables->create_timetable_table($data['academic_year'], $data['year'], $data['stream'])) {
+                        
+                        $timetables->fill_timetable($data['academic_year'], $data['year'], $data['stream']);
+                        // $timetables->update_semester($data['semester_id']);
+
+                        // $course->send_timetable_details($data);
+                        // $data['rooms'] = $room->get_rooms($data);
 
 
-                            $_SESSION['timetable_data'] = $data;
+                        $_SESSION['timetable_data'] = $data;
 
-                            redirect('timetable/addTimetableCourse');
+                        redirect('timetable/addTimetableCourse');
 
-                        }
-                        // die("success");
                     }
-
-                    
+                    // die("success");
                 }
+                else {
+
+                    $academic_year = new Academic_Year();
+                    $data['academic_years'] = $academic_year->getAcademicYears();
+                    $data['current_academic_year'] = $academic_year->get_current_academic_year();
+                    $data['current_academic_year_id'] = $academic_year->get_current_academic_year_id();
+
+                    $data['timetable_error'] = "Timetable Already Exists!";
+
+                }
+
             }
+
 
             $this->view('timetables/add_l_timetable_details.view', $data);
         }
@@ -343,12 +353,16 @@
 
             $data = $_SESSION['timetable_data'];
 
-            if($data) {
-                $this->view('timetables/add_l_timetable_courses.view', $data);
-            }
+            $data['timetable_name'] = 
+                    $data['academic_year'] . " " . 
+                    $data['year'] . "_Year " . 
+                    $data['stream'] . " " . 
+                    $data['semester'] . "_semester timetable";
 
+
+            $_SESSION['timetable_data'] = $data;
             
-            $this->view('timetables/add_l_timetable_courses.view');
+            $this->view('timetables/add_l_timetable_courses.view', $data);
         }
 
 
@@ -364,8 +378,10 @@
 
                 // show($_POST);die;
 
-                $data['day'] = trim($_POST['day_of_week']);
-                $data['timeslot'] = trim($_POST['start_time']);
+                $data['day_of_week'] = trim($_POST['day_of_week']);
+                $data['start_time'] = trim($_POST['start_time']);
+                $data['end_time'] = trim($_POST['end_time']);
+                $data['timeslot_id'] = trim($_POST['timeslot_id']);
 
                 // show($data);die;
             }
@@ -449,7 +465,7 @@
                 
             }
 
-            redirect('timetables/addTimetableCourse');
+            $this->view('timetables/add_l_timetable_courses.view', $data);
 
         }
     }

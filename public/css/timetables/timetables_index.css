@@ -15,10 +15,14 @@
     height: 200px;
     min-height: 200px;
     min-width: fit-content;
-    background-color: var(--dark_blue);
+    background-color: var(--ghost_white);
     border-radius: 20px;
     margin-bottom: 20px;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark_blue);
 }
 
 .timetable-list {

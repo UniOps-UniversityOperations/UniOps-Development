@@ -6,6 +6,7 @@ time_slots.forEach((timeslot) => {
 
     var day_of_week = timeslot.getAttribute('day_of_week');
     var start_time = timeslot.getAttribute('start_time');
+    var end_time = timeslot.getAttribute("end_time");
     var slot_id = timeslot.getAttribute('id');
 
     // console.log(day_of_week);
@@ -23,14 +24,26 @@ time_slots.forEach((timeslot) => {
     dayInput.setAttribute("value", day_of_week);
 
     // Create an input element for the timeslot parameter
-    var timeslotInput = document.createElement("input");
-    timeslotInput.setAttribute("type", "hidden");
-    timeslotInput.setAttribute("name", "start_time");
-    timeslotInput.setAttribute("value", start_time);
+    var startTime = document.createElement("input");
+    startTime.setAttribute("type", "hidden");
+    startTime.setAttribute("name", "start_time");
+    startTime.setAttribute("value", start_time);
+
+    var endTime = document.createElement("input");
+    endTime.setAttribute("type", "hidden");
+    endTime.setAttribute("name", "end_time");
+    endTime.setAttribute("value", end_time);
+
+    var timeslotId = document.createElement("input");
+    timeslotId.setAttribute("type", "hidden");
+    timeslotId.setAttribute("name", "timeslot_id");
+    timeslotId.setAttribute("value", slot_id);
 
     // Append the input elements to the form
     form.appendChild(dayInput);
-    form.appendChild(timeslotInput);
+    form.appendChild(startTime);
+    form.appendChild(endTime);
+    form.appendChild(timeslotId);
 
     // Append the form to the body and submit it
     document.body.appendChild(form);

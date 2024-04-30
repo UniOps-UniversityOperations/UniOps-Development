@@ -1,7 +1,13 @@
 <?php
 
-class Timetable_Model extends Model
+class Timetable_Model
 {
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new Database();
+    }
 
     protected $table = "timetables";
     public $errors = [];
@@ -31,33 +37,85 @@ class Timetable_Model extends Model
 
 
     public function add_timetables($data) {
-        $this->db->query('INSERT INTO timetables (
-            academic_year,
-            degree_name,
-            year,
-            semester,
-            added_date
-            ) VALUES (
-                :academic_year_id,
-                :degree_name_id,
-                :year_id,
-                :semester_id,
-                :added_date
-                )');
-        //Bind values
-        $this->db->bind(':academic_year_id', $data['academic_year_id']);
-        $this->db->bind(':degree_name_id', $data['degree_name_id']);
-        $this->db->bind(':year_id', $data['year_id']);
-        $this->db->bind(':semester_id', $data['semester_id']);
-        $this->db->bind(':added_date', $data['added_date']);
 
-        //Execute function
-        if($this->db->execute()){
-            return true;
-        }else{
-            return false;
+        $table_name = 
+        $data['academic_year'] . "_" . 
+        $data['year'] . "_" . 
+        $data['stream'] . "_" . 
+        $data['semester'];
+
+        // show($id);die;
+
+        $query = 'SELECT table_name FROM timetables';
+        $this->db->query($query);
+        $results = $this->db->resultSet();
+
+
+        $query2 = 'INSERT INTO timetables (
+                    table_name,
+                    academic_year,
+                    year,
+                    semester,
+                    stream,
+                    added_date
+                    ) VALUES (
+                        :table_name,
+                        :academic_year,
+                        :year,
+                        :semester,
+                        :stream,
+                        :added_date
+                        )';
+
+
+        if(empty($results)) {
+
+            $this->db->query($query2);
+            //Bind values
+            $this->db->bind(':table_name', $table_name);
+            $this->db->bind(':academic_year', $data['academic_year']);
+            $this->db->bind(':stream', $data['stream']);
+            $this->db->bind(':year', $data['year']);
+            $this->db->bind(':semester', $data['semester']);
+            $this->db->bind(':added_date', $data['added_date']);
+
+            //Execute function
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
         }
-    
+
+        if(!empty($results)) {
+
+            foreach($results as $obj) {
+
+            if($obj->table_name != $table_name) {
+
+                $this->db->query($query2);
+                //Bind values
+                $this->db->bind(':table_name', $table_name);
+                $this->db->bind(':academic_year', $data['academic_year']);
+                $this->db->bind(':stream', $data['stream']);
+                $this->db->bind(':year', $data['year']);
+                $this->db->bind(':semester', $data['semester']);
+                $this->db->bind(':added_date', $data['added_date']);
+
+                //Execute function
+                if($this->db->execute()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            else if($obj->table_name == $table_name) {
+                return false;
+            }
+        }
+
+        }
+        
     }
 
 
@@ -186,31 +244,6 @@ class Timetable_Model extends Model
             return $row;
         }
 
-
-    public function findAllTimetables($order = 'dsc')
-    {
-
-        $query = "select * from " .$this->table ." order by id $order ";
-
-        $this->db->query($query);
-        $result = $this->db->resultSet();
-
-        // show($result);die;
-
-        if(is_array($result))
-        {
-            if(property_exists($this, 'after_select'))
-            {
-                foreach($this->after_select as $func) {
-                    $result = $this->$func($result);
-                }
-            }
-            // show($result);die;
-            return $result;
-        }
-
-        return false;
-    }
 
     
     protected function get_academic_year($rows) {

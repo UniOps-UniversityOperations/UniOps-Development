@@ -66,7 +66,8 @@
     align-items: flex-start;
     justify-content: flex-start;
     align-self: flex-start;
-    overflow: scroll;
+    /* overflow: scroll; */
+    /* background-color: beige; */
 }
 
 .stick {
@@ -95,6 +96,7 @@
     justify-content: space-between;
     align-items: baseline;
     padding: 25px 20px 10px 20px;
+    margin-bottom: 20px;
 }
 
 .title h2, .title h3 {
@@ -176,15 +178,13 @@
 
 .inputs {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     min-width: fit-content;
     min-height: fit-content;
     height: fit-content;
-    position: relative;
-    top: 120px;
-    left: 10px;
 }
 
 .tab-links {
@@ -331,22 +331,27 @@
 .form-title {
     width: 100%;
     min-width: 400px;
-    height: fit-content;
+    height: 200px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-start;
     padding: 20px 20px 10px 20px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     margin-top: 10px;
-    position: relative;
-    top: 0;
-    left: 0;
+
 }
 
 .form-title h2, .form-title h3 {
     font-weight: 600;
     color: var(--black);
 }
+
+.fill-time-slot {
+
+    align-self: flex-start;
+}
+
 
 .side-link-content form {
     display: flex;
