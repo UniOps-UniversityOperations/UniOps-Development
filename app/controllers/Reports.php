@@ -8,6 +8,7 @@ class Reports extends Controller {
         $this->RS_postModel = $this->model('M_requestedSubjects');
         $this->RSI_postModel = $this->model('M_requestedSubjectsInstructor');
         $this->ASI_postModel = $this->model('M_assignedSubjectsInstructor');
+        $this->lecturerModel = $this->model('lecturermodels/M_Lecturer');
     }
     
 
@@ -59,11 +60,37 @@ class Reports extends Controller {
         $postsAS = $this->AS_postModel->getSubjects($l_code);
         $postsRS = $this->RS_postModel->getSubjects($l_code);
 
+        //get email from l_code
+        $l_email = $this->Rpt_postModel->getEmailfromLecturerCode($l_code)->l_email;
+
+        $numofLecHours = $this->Rpt_postModel->numofLecHours($l_email);
+
+        $hourData = [
+            'Monday' => 0,
+            'Tuesday' => 0,
+            'Wednesday' => 0,
+            'Thursday' => 0,
+            'Friday' => 0,
+    /*         'Saturday' => 0,
+            'Sunday' => 0, */
+          ];
+
+          // Iterate through your fetched data and update the total hours for each day
+            if(is_array($numofLecHours)){
+                foreach ($numofLecHours as $item) {
+                $day = $item -> day_of_week;
+                $totalHours = $item -> total_hours;
+                $hourData[$day] = $totalHours;
+                }
+            }
+
+
         $data = [
             'lecturer' => $lecturer,
             'variables' => $variables,
             'postsAS' => $postsAS,
-            'postsRS' => $postsRS
+            'postsRS' => $postsRS,
+            'numofLecHours' => $hourData
         ];
 
         if($role == 'A'){
@@ -241,5 +268,6 @@ class Reports extends Controller {
     }
 
 
+    
 
 }

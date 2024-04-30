@@ -351,6 +351,39 @@ class M_Reports{
         return $results;
     }
     
+    public function numofLecHours($l_email) {
+        $sql = 'SELECT
+        day_of_week,
+        SUM(TIMESTAMPDIFF(MINUTE, start_time, end_time))/60 AS total_hours
+        FROM
+            lecturertimetables
+        WHERE
+            l_code = :l_email
+        GROUP BY
+            day_of_week
+        ORDER BY
+            FIELD(day_of_week, "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+        ';
+
+        $this->db->query($sql);
+        // $this->db->bind(':l_email',$_SESSION['user_id']);
+        $this->db->bind(':l_email',$l_email);
+        $result = $this->db->resultSet();
+
+        if($result){
+            return $result;
+        } else {
+            return "Empty";
+        }
+    }
+
+    //getEmailfromLecturerCode
+    public function getEmailfromLecturerCode($l_code){
+        $this->db->query('SELECT l_email FROM lecturers WHERE l_code = :l_code AND l_isDeleted = 0');
+        $this->db->bind(':l_code', $l_code);
+        $result = $this->db->single();
+        return $result;
+    }
 
 
 }

@@ -2,6 +2,50 @@
 
 <?php require APPROOT . '/views/includes/admin/adminHeader.php'; ?>
 
+
+<?php if($data['popup']){ ?>
+    
+    <div id="popup" 
+        style="
+        display: none; 
+        position: fixed; 
+        border-radius: 10px;
+        font-size: 19px;
+        font-weight: bold;
+        color: red;
+        top: 10%; 
+        left: 78%; 
+        transform: 
+        translate(50%, -25%); 
+        background-color: white; 
+        padding: 20px 20px 20px 20px;
+        margin-right: 20px;
+        border: 1px red solid; 
+        transition: top 0.5s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+        <!-- if popup = 1 Request Email Sent | if popup = 2 Status Email Sent -->
+        <p>Student ID already exists! </p>
+        
+    </div>
+    
+    <script>
+        // Function to show the popup message
+        function showPopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+    
+            // Hide the popup after 5 seconds
+            setTimeout(function() {
+                popup.style.display = 'none';
+            }, 3000);
+        }
+    
+        // Call the showPopup function when the page loads
+        window.onload = showPopup;
+    </script>
+    
+    <?php } ?>
+
 <h1>Create New Student</h1>
 
 <div class="content">
@@ -74,6 +118,28 @@
         </label>
         
     </fieldset>
+
+
+    <fieldset>
+            <!-- Add this Lecturer as a user of the system -->
+            <h3>Add as a System User:</h3>
+
+            <label class="lable" for="user_id ">User ID: Student Email </label>
+
+            <label class="lable" for="username">User Name: Student Name With Initials</label>
+
+            <label class="label" for="role">Role: Student </label>
+
+            <label class="lable" for="pwd">password:
+            <input type="pwd" name="pwd" id="pwd" placeholder="pwd" value="<?php $data['pwd']; ?>" required>
+            </label>
+
+            <!-- tick for send email -->
+            <label>
+            <input type="checkbox" class="inline"  id="sendEmail" name="sendEmail" value="true">
+            Send Email</label>
+
+        </fieldset>
 
 
         <!-- Buttons -->

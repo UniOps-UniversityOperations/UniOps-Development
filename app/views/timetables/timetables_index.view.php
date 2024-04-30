@@ -10,7 +10,7 @@
 
         <div class="content">
             <div class="summary">
-                <h1>Timetables</h1>
+                <h1>Number of Lecture Timetables : <?=count($data['rows'])?></h1>
             </div>
             <div class="timetable-list">
                 <div class="title">
@@ -20,18 +20,6 @@
                         <button class="save-btn">Add Timetable</button>
                     </a>
                 </div>
-
-                <!-- <div class="pop-up" id="pop-up">
-                    <div class="pop-up-close">
-                        <button data-close-button class="pop-up-close-btn">&times;</button>
-                    </div>
-                    <div class="pop-up-links">
-                        <a class="tabs-links" href="<?=URLROOT?>/timetable/timetable/add/1"><button>Add Academic Calendar</button></a>
-                        <a class="tabs-links" href="<?=URLROOT?>/timetable/timetable/add/2"><button>Add Lecture Timetable</button></a>
-                        <a class="tabs-links" href="<?=URLROOT?>/timetable/timetable/add/3"><button>Add Exam Timetable</button></a>
-                    </div>
-                </div>
-                <div id="overlay"></div> -->
 
                 <div class="bar">
                     <div class="selected">
@@ -53,7 +41,7 @@
                             <?php foreach(($data['rows']) as $row):?>
                                 <tr onclick="viewTimetable(this)" class="row" id="<?=esc($row->id)?>" type="button">
                                     <td class="first-column"><?=esc($row->academic_year?? '')?></td>
-                                    <td class="second-column"><?=esc($row->degree_name ?? '')?></td>
+                                    <td class="second-column"><?=esc($row->stream ?? '')?></td>
                                     <td class="third-column"><?=esc($row->year ?? '')?></td>
                                     <td class="fourth-column"><?=esc($row->semester ?? '')?></td>
                                 </tr>

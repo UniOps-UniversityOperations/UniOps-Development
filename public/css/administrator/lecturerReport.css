@@ -41,6 +41,8 @@
     /* border-radius: 15px; */
     margin: 10px;
     height: 50%;
+    flex-direction: row;
+
 }
 
 .top_left{
@@ -50,6 +52,7 @@
     border-radius: 15px;
     width: 49%;
     height: 146%;
+    flex-direction: column;
 }
 
 .top_left h2{
@@ -328,3 +331,62 @@
   cursor: pointer;
   border-radius: 50px;
 }
+
+.top_top{
+  display: flex;
+}
+
+.top_bottom{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+#workload {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+#chart {
+  flex-grow: 1;
+  width: 100%;
+}
+
+
+
+#headings {
+  display: flex;
+  cursor: pointer;
+}
+
+#timetable:hover {
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#subjects:hover {
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#details:hover {
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.section {
+  margin-right: 40px;
+  margin-bottom: 20px;
+}
+
+#subjects {
+  color: blue;
+}
+
+
