@@ -2096,11 +2096,13 @@ require_once APPROOT . '/controllers/Mail.php';
         public function roombookingrequests($conflict = false, $emailresult = '') { /* This function retrieves and shows all the bokking requests. */
 
             $bookingrequests = $this->M_Notification->viewroombookingrequests();
+            $bookings = $this->M_Notification->viewroombookings();
 
             $data = [
                 "emailresult" => $emailresult,
                 "conflict" => $conflict,
-                "bookingrequests" => $bookingrequests
+                "bookingrequests" => $bookingrequests,
+                "bookings" => $bookings
             ];
 
             $this->view('adminPosts/v_roomBookingRequests',$data);
@@ -2117,20 +2119,20 @@ require_once APPROOT . '/controllers/Mail.php';
                 $purpose = $_POST['purpose'];
                 $requested_by = $_POST['requested_by'];
 
-                $roombookingsconflict = $this->M_Notification->roombookingsconflictcheck($r_id,$request_date,$start_time);
+                $roombookingsconflict = $this->M_Notification->roombookingsconflictcheck($r_id,$request_date,$start_time,$end_time);
 
                 if(!empty($roombookingsconflict)) {
-                    die("Roombookingsconflict");
-                    redirect('AdminPosts/roombookingrequests/true');
+                    /* die("Roombookingsconflict"); */
+                    redirect("adminPosts/roombookingrequests/1/");
 
                 }
 
                 $dayOfWeek = date('l', strtotime($request_date));
-                $lecturebookingconflicts = $this->M_Notification->lecturebookingconflictscheck($r_id,$dayOfWeek,$start_time);
+                $lecturebookingconflicts = $this->M_Notification->lecturebookingconflictscheck($r_id,$dayOfWeek,$start_time,$end_time);
 
                 if(!empty($lecturebookingconflicts)) {
-                    die("lecturebookingconflicts");
-                    redirect('AdminPosts/roombookingrequests/true');
+                    //die("lecturebookingconflicts");
+                    redirect('AdminPosts/roombookingrequests/1');
                 }
 
                 $result = $this->M_Notification->roomBookingRequestAccepted($r_id,$request_date,$start_time,$end_time,$purpose,$requested_by);
@@ -2145,10 +2147,50 @@ require_once APPROOT . '/controllers/Mail.php';
                 $body = "<p>Dear $requested_by,\n\nWe are pleased to inform you that your room booking request for $purpose on $request_date from $start_time to $end_time for $r_id has been accepted.Should you have any further questions or require assistance, please feel free to contact us.\n\nBest regards</p>";
 
                 $Mail_class = new Mail();
-               /*  $result = $Mail_class->sendMail($to, $subject, $body); */
+                $result = $Mail_class->sendMail($to, $subject, $body);
                /* die("Before calling view"); */
-                redirect("adminPosts/roombookingrequests");
+                redirect("adminPosts/roombookingrequests/0/$result");
 
+            } else {
+                die("OOps :(");
+            }
+        }
+
+        public function roomBookingdelete() {
+            if(isset($_POST['submit'])) {
+                $r_id = $_POST['r_id'];
+                $booking_date = $_POST['booking_date'];
+                $start_time = $_POST['start_time'];
+                $end_time = $_POST['end_time'];
+                $event = $_POST['event'];
+                $booked_by = $_POST['booked_by'];
+                $this->M_Notification->roomBookingdelete($r_id,$booking_date,$start_time,$end_time,$event,$booked_by);
+                redirect("adminPosts/roombookingrequests");
+            } else {
+                die("OOps :(");
+            }
+        }
+
+        public function roomBookingRequestdenied() {
+
+            if(isset($_POST['submit'])) {
+                $r_id = $_POST['r_id'];
+                $request_date = $_POST['request_date'];
+                $start_time = $_POST['start_time'];
+                $end_time = $_POST['end_time'];
+                $purpose = $_POST['purpose'];
+                $requested_by = $_POST['requested_by'];
+                $this->M_Notification->roomBookingRequestdenied($r_id,$request_date,$start_time,$end_time,$purpose,$requested_by);
+
+                $to = $requested_by;
+                $subject = "Your Room Booking Request Denied";
+
+                $body = "<p>Dear $requested_by,\n\nWe are sorry to inform you that your room booking request for $purpose on $request_date from $start_time to $end_time for $r_id has been denied.Should you have any further questions or require assistance, please feel free to contact us.\n\nBest regards</p>";
+
+                $Mail_class = new Mail();
+                $result = $Mail_class->sendMail($to, $subject, $body);
+               /* die("Before calling view"); */
+                redirect("adminPosts/roombookingrequests/");
             } else {
                 die("OOps :(");
             }

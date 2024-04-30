@@ -74,7 +74,7 @@ td.description {
   }
 
   
-#deny_button{
+#deny_button,#dlt_button{
     background-color: #f44336;
     color: white;
     border: none;
@@ -89,3 +89,16 @@ td.description {
   #deny_button:hover {
     background-color: #d32f2f;
   }
+
+  #dlt_button:hover {
+    background-color: #d32f2f;
+  }
+
+
+  hr{
+    border: 1px solid #1848A0;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
