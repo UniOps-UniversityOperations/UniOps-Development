@@ -120,6 +120,28 @@
     </fieldset>
 
 
+    <fieldset>
+            <!-- Add this Lecturer as a user of the system -->
+            <h3>Add as a System User:</h3>
+
+            <label class="lable" for="user_id ">User ID: Student Email </label>
+
+            <label class="lable" for="username">User Name: Student Name With Initials</label>
+
+            <label class="label" for="role">Role: Student </label>
+
+            <label class="lable" for="pwd">password:
+            <input type="pwd" name="pwd" id="pwd" placeholder="pwd" value="<?php $data['pwd']; ?>" required>
+            </label>
+
+            <!-- tick for send email -->
+            <label>
+            <input type="checkbox" class="inline"  id="sendEmail" name="sendEmail" value="true">
+            Send Email</label>
+
+        </fieldset>
+
+
         <!-- Buttons -->
         <button type="submit" class="create_button">Create Student</button>
 

@@ -257,7 +257,7 @@ class Reports extends Controller {
 // --------------------------------------------------------------------------------------------------------------------------
 
 //logReport
-    public function viewLogReport($l_email){
+    public function viewLogReport(){
         $logs = $this->Rpt_postModel->getLogs();
 
         $data = [

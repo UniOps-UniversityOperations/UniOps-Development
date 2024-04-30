@@ -1119,6 +1119,12 @@ require_once APPROOT . '/controllers/Mail.php';
                     's_year' => trim($_POST['s_year']),
                     // 's_semester' => trim($_POST['s_semester']),
                     // 's_isDeleted' => isset($ _POST['s_isDeleted']) ? '1' : '0',
+
+                    //user
+                    'user_id' => trim($_POST['s_email']),
+                    'username' => trim($_POST['s_nameWithInitial']),
+                    'role' => 'S',
+                    'pwd' => trim($_POST['pwd']),
                     
                     's_codeError' => '',
 
@@ -1136,7 +1142,7 @@ require_once APPROOT . '/controllers/Mail.php';
                 }else{
 
                     if(empty($data['s_codeError'])){
-                        if($this->Stu_postModel->createStudent($data)){
+                        if($this->Stu_postModel->createStudent($data) && $this->U_postModel->addUser($data)){
                             //flash('post_message', 'Student Added');
                             //redirect('pages/administrator_dashboard');
                             redirect('adminPosts/viewStudent');
@@ -1166,6 +1172,12 @@ require_once APPROOT . '/controllers/Mail.php';
                     's_year' => '',
                     // 's_semester' => '',
                     // 's_isDeleted' => '',
+
+                    //user
+                    'user_id' => '',
+                    'username' => '',
+                    'pwd' => '',
+                    'role' => '',
  
                     // 's_codeError' => '',
 
