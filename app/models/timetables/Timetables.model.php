@@ -100,23 +100,22 @@ class Timetables {
 
         // show($data);die;
 
-        $this->tableName = $data['academic_year_id'] . "_" . $data['year_id'] . "_" . $data['degree_name_id'] . "_timetable";
+        $this->tableName = $data['academic_year'] . "_" . $data['year'] . "_" . $data['degree_name'] . "_timetable";
 
         $this->db->query("UPDATE `$this->tableName` SET
-            -- semester = :semester,
             sub_code = :sub_code,
             room_code = :room_code
 
-            WHERE semester = :semester_id
+            WHERE semester = :semester
             AND day = :day
             AND timeslot = :timeslot
         ");
 
         $this->db->bind(':sub_code', $data['selected_course_code']);
         $this->db->bind(':room_code', $data['selected_room']);
-        $this->db->bind(':semester_id', $data['semester_id']);
-        $this->db->bind(':day', '1');
-        $this->db->bind(':timeslot', '1');
+        $this->db->bind(':semester', $data['semester']);
+        $this->db->bind(':day', $data['day_of_week']);
+        $this->db->bind(':timeslot', $data['start_date']);
 
         try {
             $this->db->execute();

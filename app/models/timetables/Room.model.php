@@ -38,7 +38,7 @@ class Room {
 
             $query = 
             'SELECT *
-              FROM rooms
+              FROM room_timetable
               INNER JOIN lecturebookings ON id = r_id
               WHERE r_isDeleted = 0
               AND is_Booked = 0
@@ -73,7 +73,7 @@ class Room {
 
             $query = 
             'SELECT *
-              FROM rooms
+              FROM room_timetable
               INNER JOIN lecturebookings ON id = r_id
               WHERE r_isDeleted = 0
               AND is_Booked = 0
