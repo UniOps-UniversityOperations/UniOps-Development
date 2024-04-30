@@ -3,40 +3,20 @@
 
     <!-- <div class="main"> -->
 
-        <div class="side-panel-container">
+        
 
             <div class="content-container">
                     <div class="title">
-                        <!-- <h2><?=esc($data['rows'][0]->academic_year . " " .
-                        $data['rows'][0]->study_year . "th Year " .
-                        $data['rows'][0]->stream . " Semester" .
-                        $data['rows'][0]->semester . " Timetable")?></h2> -->
-                        <h3>03, December 2023</h3>
+                        <!-- <div class="form-title">
+                        <h2><?=$data['timetable_name']?></h2>
+                        <h3>Added Date : <?=date("j M, Y")?></h3>
+                        <h3>Day of Week : <?=$data['day_of_week']?></h3>
+                        <h3>Timeslot : <?=$data['start_time'] . "-" . $data['end_time']?></h3> -->
+                        
                     </div>
-                    <!-- Course, Lecturer, Academic, Exam, Room Tabs -->
-                    <div class="tabs-container3">
-                        <div class="tabs3">
-                            <!-- <div class="tab3 active">Course</div> -->
-                            <!-- <div class="tab3">Lecture</div> -->
-                            <!-- <div class="tab3">Academic</div> -->
-                            <!-- <div class="tab3">Exam</div> -->
-                            <!-- <div class="tab3">Room</div> -->
-                            <!-- <div class="tab-focus"></div> -->
-                        </div>
-                
-                    <!-- Course, Lecturer, Academic, Exam, Room Content -->
-                    <div class="tab-content-container3">
-                        <div class="tab-content3 active">
-                            <!-- Timetable, Details -->
-                            <div class="tabs-container2">
-                                <!-- Timetable, Details Tabs -->
-                                <!-- <div class="tabs2">
-                                    <div class="tab2 active">Timetable</div>
-                                    <div class="tab2">Details</div>
-                                </div> -->
-                                <!-- Timetable, Details Content -->
-                                <div class="tab-content-container2">
-                                    <div class="tab-content2 active">
+                    </div>
+                    
+                    
                                         <form action="">
                                             <!-- <div class="select-search">
                                                 <select name="degree_name" id="degree_name">
@@ -147,28 +127,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-content2">
-                                        <h3>Details</h3>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-content">
-                            <div class="tabs-container2">
-                                <!-- <div class="tabs2">
-                                    <div class="tab2 active">Timetable</div>
-                                    <div class="tab2">Details</div>
-                                </div> -->
-                                <div class="tab-content-container2">
-                                    <div class="tab-content2">
-                                        
-                                    </div>
-                                    <div class="tab-content2">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

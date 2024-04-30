@@ -248,7 +248,7 @@
 
                 $data['rows'] = $lecture_timetables->getLectureTimetableById($data);
 
-                // show($data);die;
+                // $data = $_SESSION['timetable_data'];
 
                 $this->view('timetables/timetables_view.view', $data);
 

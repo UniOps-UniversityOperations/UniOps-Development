@@ -100,7 +100,7 @@ class Timetables {
 
         // show($data);die;
 
-        $this->tableName = $data['academic_year'] . "_" . $data['year'] . "_" . $data['degree_name'] . "_timetable";
+        $this->tableName = $data['academic_year'] . "_" . $data['year'] . "_" . $data['stream'] . "_timetable";
 
         $this->db->query("UPDATE `$this->tableName` SET
             sub_code = :sub_code,
@@ -151,7 +151,7 @@ class Timetables {
         $this->db->bind(':start_time', '08:00:00');
         $this->db->bind(':end_time', '10:00:00');
 
-        show($data);die;
+        // show($data);die;
 
         try {
             $this->db->execute();
@@ -161,7 +161,6 @@ class Timetables {
             // Optionally, return false or throw an exception
             return false;
         }
-
 
     }
 
